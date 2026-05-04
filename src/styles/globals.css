@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Palette — HSL tokens (never hardcode hex in JSX) */
+    --primary: 217 61% 14%;          /* #0E1F3A deep navy */
+    --primary-foreground: 37 42% 94%;
+    --accent: 16 52% 47%;            /* #B85C3A rust */
+    --accent-foreground: 37 42% 94%;
+    --surface: 37 42% 94%;           /* #F6F1E9 warm bone */
+    --surface-alt: 39 42% 89%;       /* #EFE7D8 deeper cream */
+    --text: 240 13% 12%;             /* #1A1A22 warm charcoal */
+    --muted: 29 11% 38%;             /* #6B6056 warm gray */
+    --border: 34 31% 87%;            /* #E8DFD3 subtle warm */
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: hsl(var(--surface));
+    color: hsl(var(--text));
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+    font-variant-ligatures: contextual common-ligatures;
+  }
+
+  /* Display serif takes optical sizing seriously */
+  .font-serif {
+    font-feature-settings: 'ss01', 'ss02';
+    font-variation-settings: 'opsz' 144;
+  }
+
+  ::selection {
+    background: hsl(var(--accent) / 0.18);
+    color: hsl(var(--text));
+  }
+
+  /* Tighter focus rings — premium feel */
+  :focus-visible {
+    outline: 2px solid hsl(var(--accent));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Smooth scroll for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Hairline rules */
+  hr {
+    border-color: hsl(var(--border));
+    border-top-width: 1px;
+  }
+}
+
+@layer components {
+  /* Section header pattern reused everywhere */
+  .eyebrow {
+    @apply font-sans text-eyebrow uppercase text-accent tracking-tracked;
+  }
+
+  /* The italic span in display headlines */
+  .display-italic {
+    @apply font-serif italic;
+    font-variation-settings: 'opsz' 144, 'SOFT' 50;
+  }
+}
+
+/* Reduce motion preference respected */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

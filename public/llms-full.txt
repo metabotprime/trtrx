@@ -1,0 +1,74 @@
+# trtrx — full site context
+
+## Brand
+
+trtrx is a direct-to-consumer testosterone replacement therapy site. We serve men 35–55 who suspect low testosterone and want a transparent, modern alternative to legacy hormone clinics. Doctor-supervised, telehealth-based, premium-positioned.
+
+## Treatments offered
+
+### Cypionate (testosterone cypionate)
+Long-acting injectable ester. Standard 1×/week subcutaneous or intramuscular dosing. FDA-approved when prescribed as a generic; also commonly compounded for cost efficiency. Suppresses endogenous testosterone production over time. Not fertility-preserving in standard protocols.
+
+### Enanthate (testosterone enanthate)
+Long-acting injectable ester, very similar pharmacokinetics to cypionate. 1×/week typical dosing. FDA-approved brand and generic options exist. Suppressive of natural production; not fertility-preserving alone.
+
+### Enclomiphene
+Selective estrogen receptor modulator (SERM) that increases endogenous testosterone production. Oral tablet, daily. Compounded. Fertility-preserving — does not suppress sperm production. Often the right choice for younger men or men planning fatherhood.
+
+### HCG (human chorionic gonadotropin)
+Used adjunctively with TRT to maintain testicular function and fertility. Subcutaneous injection 2–3× per week typically. Compounded. Often combined with cypionate or enanthate to preserve fertility while on TRT.
+
+### Topical cream
+Daily application, applied to skin. Compounded. Avoids needles. Steady-state delivery without injection peaks/valleys. Cost-effective alternative for men who prefer non-injectable routes.
+
+## Process (how it works)
+
+1. **Symptom assessment.** Free online checklist (~2 minutes). Surfaces likely candidates for evaluation.
+2. **At-home labs.** Quest or Labcorp partner draws (4,400+ locations). Lab kit also available.
+3. **Physician consult.** 15-minute video call with a board-certified physician. Treatment protocol set during this consult based on labs and symptom profile.
+4. **Therapy delivered.** Free, fast, discreet shipping. Refills automated.
+
+Total timeline: under 14 days from symptom assessment to first vial in hand.
+
+## Pricing approach
+
+trtrx surfaces the real first-month cost transparently — no hidden upcharges. Itemized: initial labs + physician consult + first vial + shipping. Ongoing supply is monthly. Cancel anytime. FSA-eligible where applicable. No insurance required and we don't pretend to take it.
+
+## Trust stack
+
+- Quest and Labcorp lab partners
+- Board-certified physician network
+- Named medical director with public credentials
+- 30-day satisfaction guarantee
+- FSA-eligible products
+- Same-day shipping for verified prescriptions
+
+## Compounded vs FDA-approved
+
+- **FDA-approved** medications (e.g., cypionate, enanthate brand-name) are standardized — identical in every batch, often higher cost, FSA/insurance friendly when applicable. Best when predictability and standardization matter most.
+- **Compounded** medications are custom-formulated for the patient by licensed 503A compounding pharmacies. Lower cost, more options (creams, troches, alternative esters), but not FDA-evaluated as compounded preparations. Best when budget, alternative routes, or non-standard dosing matter.
+- The physician helps patients choose during the intake consult based on goals, lifestyle, and budget.
+
+## Frequently asked questions (selected)
+
+**How fast will I feel different?**
+Most men notice changes in energy, libido, and mood within 4–6 weeks. Full effect on body composition and recovery typically takes 12 weeks.
+
+**Is testosterone safe long-term?**
+TRT is well-studied with decades of clinical evidence. Risks (hematocrit, lipid changes, cardiovascular markers) are monitored through regular follow-up labs. Modern protocols have a strong safety profile when supervised.
+
+**Will TRT affect my fertility?**
+Standard TRT (cypionate or enanthate alone) suppresses sperm production. Fertility-preserving options include enclomiphene (alternative to TRT) or TRT + HCG combinations. We discuss this in your consult.
+
+**Do you accept insurance?**
+No. Insurance coverage of TRT is inconsistent and slow. Our prices are designed to be lower than insurance copays in many cases. We are FSA-eligible where applicable, which lets you use pre-tax dollars.
+
+**What's the difference between cypionate and enanthate?**
+Pharmacokinetically nearly identical. Both are long-acting esters of testosterone with weekly dosing. Choice usually comes down to availability and cost.
+
+**Is TRT legal in my state?**
+TRT prescribed by a licensed physician for a documented medical indication is legal in all 50 states. Some states require a prior in-person exam; we comply with state-specific requirements during intake.
+
+## Contact
+
+General inquiries: hello@trtrx.com
