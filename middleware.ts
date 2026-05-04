@@ -3,24 +3,23 @@ import type { NextRequest } from 'next/server';
 
 /**
  * Edge middleware blocks parasitic SEO scrapers and pen-test bots.
- * Saves bandwidth and stops competitors profiling our keyword set.
  *
  * AI engines (GPTBot, ClaudeBot, PerplexityBot, etc.) are explicitly
  * allowed via robots.txt and not blocked here.
  */
 const BLOCKED_AGENTS = [
   // SEO scrapers
-  'AhrefsBot',
-  'SemrushBot',
-  'MJ12bot',
-  'DotBot',
-  'DataForSeoBot',
-  'BLEXBot',
-  'MegaIndex',
-  'Mauibot',
-  'PetalBot',
+  'ahrefsbot',
+  'semrushbot',
+  'mj12bot',
+  'dotbot',
+  'dataforseobot',
+  'blexbot',
+  'megaindex',
+  'mauibot',
+  'petalbot',
   // Pen-test / vulnerability scanners
-  'ZmEu',
+  'zmeu',
   'masscan',
   'nmap',
   'sqlmap',
@@ -28,21 +27,15 @@ const BLOCKED_AGENTS = [
 ];
 
 export const config = {
-  matcher: [
-    /*
-     * Match all paths except:
-     * - _next/static (static files)
-     * - _next/image (image optimization)
-     * - favicon, robots.txt, sitemap.xml, llms.txt, llms-full.txt
-     */
-    '/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|llms.txt|llms-full.txt).*)',
-  ],
+  matcher: '/((?!_next/static|_next/image|favicon.ico).*)',
 };
 
 export function middleware(req: NextRequest) {
-  const ua = req.headers.get('user-agent') ?? '';
-  if (BLOCKED_AGENTS.some((agent) => ua.toLowerCase().includes(agent.toLowerCase()))) {
-    return new NextResponse('Forbidden', { status: 403 });
+  const ua = (req.headers.get('user-agent') ?? '').toLowerCase();
+  for (const agent of BLOCKED_AGENTS) {
+    if (ua.includes(agent)) {
+      return new NextResponse('Forbidden', { status: 403 });
+    }
   }
   return NextResponse.next();
 }
