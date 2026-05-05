@@ -11,6 +11,7 @@ import { TreatmentTable } from '@/components/sections/TreatmentTable';
 import { MedicalDirector } from '@/components/sections/MedicalDirector';
 import { HowItWorksSteps } from '@/components/sections/HowItWorksSteps';
 import { TestimonialCards } from '@/components/sections/TestimonialCards';
+import { CompoundedExplainer } from '@/components/sections/CompoundedExplainer';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 
 export default function HomePage() {
@@ -33,8 +34,8 @@ export default function HomePage() {
         <MedicalDirector />
         <HowItWorksSteps />
         <TestimonialCards />
-        {/* Additional homepage sections (compounded explainer, FAQ)
-            ship in subsequent commits per the spec. */}
+        <CompoundedExplainer />
+        {/* Additional homepage sections (FAQ) ship in subsequent commits per the spec. */}
         <FooterCTABand />
       </PageShell>
     </>
