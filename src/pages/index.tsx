@@ -3,6 +3,8 @@ import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
 import { WebSiteSchema } from '@/components/seo/schemas/WebSiteSchema';
+import { FAQSchema } from '@/components/seo/schemas/FAQSchema';
+import { getHomepageFAQs } from '@/content/faqs';
 import { HeroCentered } from '@/components/sections/HeroCentered';
 import { TrustStrip } from '@/components/sections/TrustStrip';
 import { PricingTransparency } from '@/components/sections/PricingTransparency';
@@ -25,6 +27,7 @@ export default function HomePage() {
       />
       <OrganizationSchema />
       <WebSiteSchema />
+      <FAQSchema faqs={getHomepageFAQs()} />
 
       <PageShell>
         <HeroCentered />
