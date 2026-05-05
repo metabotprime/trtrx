@@ -26,6 +26,10 @@ const BLOCKED_AGENTS = [
   'nikto',
 ];
 
+export const config = {
+  matcher: '/((?!_next/static|_next/image|favicon.ico).*)',
+};
+
 export function middleware(req: NextRequest) {
   const ua = (req.headers.get('user-agent') ?? '').toLowerCase();
   for (const agent of BLOCKED_AGENTS) {
