@@ -8,7 +8,7 @@ export type Treatment = {
   fertilityPreserving: boolean;
   fdaStatus: 'FDA-approved' | 'Compounded' | 'Both available';
   monthlyPriceFrom: number;
-  headline: string;
+  headline?: string;
   eyebrow: string;
   summary: string;
   bullets: string[];
@@ -27,7 +27,6 @@ export const TREATMENTS: Treatment[] = [
     fertilityPreserving: false,
     fdaStatus: 'Both available',
     monthlyPriceFrom: 129,
-    headline: 'Testosterone Cypionate',
     eyebrow: 'INJECTABLE · 1× WEEKLY · FDA-APPROVED',
     summary:
       'The most-prescribed form of testosterone in the United States. A single weekly injection delivers steady serum levels with a predictable half-life of around eight days. Most men feel noticeable changes in energy and drive within the first three to six weeks. Subcutaneous works for most patients. Intramuscular is an option if you prefer it.',
@@ -60,7 +59,6 @@ export const TREATMENTS: Treatment[] = [
     fertilityPreserving: false,
     fdaStatus: 'Both available',
     monthlyPriceFrom: 129,
-    headline: 'Testosterone Enanthate',
     eyebrow: 'INJECTABLE · 1× WEEKLY · FDA-APPROVED',
     summary:
       'A close cousin of cypionate with a slightly shorter half-life of about seven days. Identical dosing schedule, near-identical results. Some patients tolerate enanthate better; others prefer cypionate. Your physician helps you choose, and switching between the two is straightforward if your first pick is not the right fit.',
@@ -93,7 +91,6 @@ export const TREATMENTS: Treatment[] = [
     fertilityPreserving: true,
     fdaStatus: 'Compounded',
     monthlyPriceFrom: 99,
-    headline: 'Enclomiphene',
     eyebrow: 'ORAL · DAILY · FERTILITY-PRESERVING',
     summary:
       'A daily tablet that signals your body to make more of its own testosterone instead of replacing it. Sperm production stays intact, which makes enclomiphene the right choice for men who want higher T without sacrificing fertility. Results build over six to twelve weeks as your endogenous output increases.',
@@ -126,7 +123,6 @@ export const TREATMENTS: Treatment[] = [
     fertilityPreserving: true,
     fdaStatus: 'Compounded',
     monthlyPriceFrom: 109,
-    headline: 'HCG Therapy',
     eyebrow: 'ADJUNCT · 2–3× WEEKLY · FERTILITY SUPPORT',
     summary:
       'Human chorionic gonadotropin keeps the testicles working while you are on injectable TRT. It mimics LH, the pituitary signal that drives sperm production and testicular size. Men who want to preserve fertility, prevent atrophy, or come off TRT later add HCG to their protocol. It is an adjunct, not a standalone therapy.',

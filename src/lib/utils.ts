@@ -8,3 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export const SITE_URL = 'https://trtrx.com';
 export const SITE_NAME = 'trtrx';
 export const SITE_TAGLINE = 'Doctor-supervised testosterone therapy.';
+
+export function formatUSD(n: number): string {
+  return `$${n.toLocaleString('en-US')}`;
+}

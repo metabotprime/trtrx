@@ -249,7 +249,7 @@ export function getHomepageFAQs(): FAQ[] {
 }
 
 export function getFAQsByCategory(): Record<FAQCategory, FAQ[]> {
-  const empty: Record<FAQCategory, FAQ[]> = {
+  const byCategory: Record<FAQCategory, FAQ[]> = {
     results: [],
     safety: [],
     fertility: [],
@@ -262,7 +262,7 @@ export function getFAQsByCategory(): Record<FAQCategory, FAQ[]> {
     refund: [],
   };
   for (const faq of FAQS) {
-    empty[faq.category].push(faq);
+    byCategory[faq.category].push(faq);
   }
-  return empty;
+  return byCategory;
 }
