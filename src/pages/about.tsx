@@ -2,22 +2,54 @@ import type { GetStaticProps } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
-import { ComingSoon } from '@/components/sections/ComingSoon';
+import { MedicalDirector } from '@/components/sections/MedicalDirector';
+import { CompanyNarrative } from '@/components/sections/CompanyNarrative';
+import { PhysicianNetwork } from '@/components/sections/PhysicianNetwork';
+import { FooterCTABand } from '@/components/sections/FooterCTABand';
 
 export default function AboutPage() {
   return (
     <>
       <SEOHead
-        title="About trtrx"
-        description="Doctor-supervised testosterone therapy, built around transparent pricing and a board-certified physician network."
+        title="About"
+        description="Doctor-supervised testosterone therapy built around transparent pricing, board-certified physicians, and a refusal to play the legacy-clinic game."
         path="/about"
       />
       <OrganizationSchema />
+
       <PageShell>
-        <ComingSoon
-          eyebrow="Our Story"
-          title="Built for men who *won't settle.*"
-          subtitle="A board-certified physician network, transparent pricing, and a refusal to play the legacy-clinic game. Full team and medical-director profile ship before launch."
+        {/* Hero */}
+        <section className="bg-surface">
+          <div className="container max-w-hero px-5 pb-12 pt-20 text-center md:pb-16 md:pt-28 lg:pt-32">
+            <p className="eyebrow mb-7 inline-flex flex-wrap justify-center gap-x-3 gap-y-1">
+              <span>About trtrx</span>
+              <span aria-hidden className="text-muted/60">·</span>
+              <span>Doctor-Led</span>
+              <span aria-hidden className="text-muted/60">·</span>
+              <span>No Surprises</span>
+            </p>
+
+            <h1
+              className="font-serif text-display-xl font-medium text-primary"
+              style={{ fontVariationSettings: "'opsz' 144" }}
+            >
+              Built for men who{' '}
+              <span className="display-italic text-primary">won&apos;t settle.</span>
+            </h1>
+
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-[1.55] text-muted md:text-xl">
+              A board-certified physician network, transparent pricing, and a refusal to play the legacy-clinic game.
+            </p>
+          </div>
+        </section>
+
+        <CompanyNarrative />
+        <MedicalDirector />
+        <PhysicianNetwork />
+        <FooterCTABand
+          headline="Bring your concerns."
+          italic="We'll listen."
+          caption="Doctor-supervised · Cancel anytime · 30-day guarantee"
         />
       </PageShell>
     </>
