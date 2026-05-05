@@ -43,6 +43,14 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'translateY(8px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+        'acc-down': {
+          '0%': { height: '0' },
+          '100%': { height: 'var(--radix-accordion-content-height)' },
+        },
+        'acc-up': {
+          '0%': { height: 'var(--radix-accordion-content-height)' },
+          '100%': { height: '0' },
+        },
       },
       animation: {
         'fade-up': 'fade-up 0.6s ease-out both',
