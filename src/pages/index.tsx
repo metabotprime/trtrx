@@ -8,6 +8,7 @@ import { TrustStrip } from '@/components/sections/TrustStrip';
 import { PricingTransparency } from '@/components/sections/PricingTransparency';
 import { TreatmentGrid } from '@/components/sections/TreatmentGrid';
 import { TreatmentTable } from '@/components/sections/TreatmentTable';
+import { MedicalDirector } from '@/components/sections/MedicalDirector';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 
 export default function HomePage() {
@@ -27,9 +28,10 @@ export default function HomePage() {
         <PricingTransparency />
         <TreatmentGrid />
         <TreatmentTable />
-        {/* Additional homepage sections (medical director, how-it-works,
-            testimonials, compounded explainer, FAQ) ship in subsequent
-            commits per the spec. */}
+        <MedicalDirector />
+        {/* Additional homepage sections (how-it-works, testimonials,
+            compounded explainer, FAQ) ship in subsequent commits per
+            the spec. */}
         <FooterCTABand />
       </PageShell>
     </>
