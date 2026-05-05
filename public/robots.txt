@@ -54,3 +54,4 @@ User-agent: Amazonbot
 Allow: /
 
 Sitemap: https://trtrx.com/sitemap.xml
+Sitemap: https://trtrx.com/image-sitemap.xml
