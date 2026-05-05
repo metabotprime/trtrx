@@ -18,6 +18,7 @@ export default function HowItWorksPage() {
         title="How It Works"
         description="From symptom assessment to your first vial in under 14 days. Doctor-supervised TRT delivered to your door."
         path="/how-it-works"
+        ogImage="/og/how-it-works.png"
       />
       <OrganizationSchema />
 

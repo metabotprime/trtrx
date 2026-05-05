@@ -17,6 +17,7 @@ export default function AboutPage() {
         title="About"
         description="Doctor-supervised testosterone therapy built around transparent pricing, board-certified physicians, and a refusal to play the legacy-clinic game."
         path="/about"
+        ogImage="/og/about.png"
       />
       <OrganizationSchema />
       <PersonSchema

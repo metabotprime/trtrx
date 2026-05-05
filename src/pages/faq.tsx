@@ -15,6 +15,7 @@ export default function FAQPage() {
         title="Frequently Asked Questions"
         description="Plain answers about testosterone therapy, fertility, insurance, state legality, side effects, and more. No medical hand-waving."
         path="/faq"
+        ogImage="/og/faq.png"
       />
       <OrganizationSchema />
       <FAQSchema faqs={FAQS} />

@@ -12,6 +12,7 @@ export default function ContactPage() {
         title="Contact"
         description="General inquiries: hello@trtrx.com. For medical questions, please get started with a consult."
         path="/contact"
+        ogImage="/og/contact.png"
       />
       <OrganizationSchema />
       <PageShell hideMobileCTA>

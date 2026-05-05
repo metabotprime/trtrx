@@ -18,6 +18,7 @@ export default function TreatmentsHubPage() {
         title="Treatments"
         description="Five evidence-based testosterone therapy options. Cypionate, enanthate, enclomiphene, HCG, and topical cream — compared side-by-side."
         path="/treatments"
+        ogImage="/og/treatments.png"
       />
       <OrganizationSchema />
       <ItemListSchema

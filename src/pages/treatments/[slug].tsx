@@ -22,6 +22,7 @@ export default function TreatmentDetailPage({ treatment }: Props) {
         title={treatment.name}
         description={treatment.summary}
         path={`/treatments/${treatment.slug}`}
+        ogImage={`/og/treatment-${treatment.slug}.png`}
       />
       <OrganizationSchema />
       <MedicalTherapySchema treatment={treatment} />

@@ -21,6 +21,7 @@ export default function PricingPage() {
         title="Pricing"
         description="Transparent monthly pricing — no hidden fees, no insurance hoops. See your real first-month cost up front."
         path="/pricing"
+        ogImage="/og/pricing.png"
       />
       <OrganizationSchema />
       <FAQSchema faqs={pricingFaqs} />
