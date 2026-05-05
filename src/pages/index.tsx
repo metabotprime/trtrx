@@ -6,6 +6,8 @@ import { WebSiteSchema } from '@/components/seo/schemas/WebSiteSchema';
 import { HeroCentered } from '@/components/sections/HeroCentered';
 import { TrustStrip } from '@/components/sections/TrustStrip';
 import { PricingTransparency } from '@/components/sections/PricingTransparency';
+import { TreatmentGrid } from '@/components/sections/TreatmentGrid';
+import { TreatmentTable } from '@/components/sections/TreatmentTable';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 
 export default function HomePage() {
@@ -23,9 +25,11 @@ export default function HomePage() {
         <HeroCentered />
         <TrustStrip />
         <PricingTransparency />
-        {/* Additional homepage sections (comparison, medical director,
-            how-it-works, testimonials, compounded explainer, FAQ) ship in
-            subsequent commits per the spec. */}
+        <TreatmentGrid />
+        <TreatmentTable />
+        {/* Additional homepage sections (medical director, how-it-works,
+            testimonials, compounded explainer, FAQ) ship in subsequent
+            commits per the spec. */}
         <FooterCTABand />
       </PageShell>
     </>
