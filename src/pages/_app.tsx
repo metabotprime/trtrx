@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app';
 import { Fraunces, Inter, JetBrains_Mono } from 'next/font/google';
 import { HelmetProvider } from 'react-helmet-async';
+import { usePagePerformance } from '@/hooks/usePagePerformance';
 import '@/styles/globals.css';
 
 const inter = Inter({
@@ -26,6 +27,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+  usePagePerformance();
+
   return (
     <HelmetProvider>
       <div
