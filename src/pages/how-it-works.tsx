@@ -8,6 +8,7 @@ import { HowItWorksSteps } from '@/components/sections/HowItWorksSteps';
 import { ProcessLabPartners } from '@/components/sections/ProcessLabPartners';
 import { ProcessConsultDetail } from '@/components/sections/ProcessConsultDetail';
 import { ProcessShipping } from '@/components/sections/ProcessShipping';
+import { ProcessSupport } from '@/components/sections/ProcessSupport';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 import { Button } from '@/components/ui/button';
 
@@ -49,7 +50,7 @@ export default function HowItWorksPage() {
             </h1>
 
             <p className="mx-auto mt-6 max-w-xl text-lg leading-[1.55] text-muted md:text-xl">
-              Symptom checklist, at-home labs, a 15-minute video consult, and free shipping. No office visits. No insurance hassles. No off-brand patient portals.
+              Symptom checklist, at-home labs, a 15-minute video consult, free shipping, and your own 24/7 patient portal. No office visits. No off-brand third-party tools. No insurance hassles.
             </p>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
@@ -69,6 +70,7 @@ export default function HowItWorksPage() {
         <ProcessLabPartners />
         <ProcessConsultDetail />
         <ProcessShipping />
+        <ProcessSupport />
         <FooterCTABand
           headline="Ready when"
           italic="you are."

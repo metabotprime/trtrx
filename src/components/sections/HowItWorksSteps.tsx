@@ -1,4 +1,11 @@
-import { ClipboardList, FlaskConical, Video, Truck, type LucideIcon } from 'lucide-react';
+import {
+  ClipboardList,
+  FlaskConical,
+  Video,
+  Truck,
+  MessageCircle,
+  type LucideIcon,
+} from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
 
 type Step = {
@@ -33,6 +40,12 @@ const STEPS: Step[] = [
     title: 'Receive your therapy',
     body: 'Free, fast, discreet shipping. Refills automated.',
   },
+  {
+    number: '05',
+    Icon: MessageCircle,
+    title: 'Stay in touch, 24/7',
+    body: 'Message your doctor anytime in your patient portal.',
+  },
 ];
 
 type Props = { showHeader?: boolean };
@@ -51,7 +64,7 @@ export function HowItWorksSteps({ showHeader = true }: Props = {}) {
         )}
 
         <ol
-          className={`mx-auto ${showHeader ? 'mt-16' : ''} grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8`}
+          className={`mx-auto ${showHeader ? 'mt-16' : ''} grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-5 lg:gap-7`}
         >
           {STEPS.map(({ number, Icon, title, body }) => (
             <li key={number} className="flex flex-col">

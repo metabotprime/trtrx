@@ -214,6 +214,14 @@ export const FAQS: FAQ[] = [
       'Total and free testosterone, estradiol (sensitive assay), CBC for hematocrit, comprehensive metabolic panel, lipids, PSA after age 40, and SHBG when relevant. The full panel runs through Quest or LabCorp at locations near you.',
     onHomePage: false,
   },
+  {
+    id: 'monitoring-doctor-access',
+    category: 'monitoring',
+    question: 'How do I reach my doctor between visits?',
+    answer:
+      'Through your 24/7 patient portal. Send your physician a message anytime — about side effects, dose adjustments, lab questions, refills, anything. Most messages get a clinical reply within one business day, often the same day. The portal is also where you view your labs, prescription history, and shipment tracking. No phone tag, no scheduling a follow-up just to ask a question.',
+    onHomePage: false,
+  },
 
   // lifestyle (1)
   {

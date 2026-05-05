@@ -21,6 +21,7 @@ export const PRICING_STRUCTURE = {
   whatsIncluded: [
     'Medication',
     'Ongoing physician supervision',
+    '24/7 patient portal — message your doctor anytime',
     'Two lab panels per year (Quest / Labcorp)',
     'Free shipping (always)',
     'Cancel anytime',
