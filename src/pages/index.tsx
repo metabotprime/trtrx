@@ -5,6 +5,7 @@ import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema'
 import { WebSiteSchema } from '@/components/seo/schemas/WebSiteSchema';
 import { HeroCentered } from '@/components/sections/HeroCentered';
 import { TrustStrip } from '@/components/sections/TrustStrip';
+import { PricingTransparency } from '@/components/sections/PricingTransparency';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 
 export default function HomePage() {
@@ -21,7 +22,8 @@ export default function HomePage() {
       <PageShell>
         <HeroCentered />
         <TrustStrip />
-        {/* Additional homepage sections (pricing, comparison, medical director,
+        <PricingTransparency />
+        {/* Additional homepage sections (comparison, medical director,
             how-it-works, testimonials, compounded explainer, FAQ) ship in
             subsequent commits per the spec. */}
         <FooterCTABand />
