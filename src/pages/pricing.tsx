@@ -2,11 +2,16 @@ import type { GetStaticProps } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
+import { FAQSchema } from '@/components/seo/schemas/FAQSchema';
 import { PricingHero } from '@/components/sections/PricingHero';
 import { PricingBreakdown } from '@/components/sections/PricingBreakdown';
 import { PricingPerProduct } from '@/components/sections/PricingPerProduct';
 import { PricingFAQs } from '@/components/sections/PricingFAQs';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
+import { FAQS } from '@/content/faqs';
+
+const PRICING_CATEGORIES = new Set(['insurance', 'refund', 'legality']);
+const pricingFaqs = FAQS.filter((f) => PRICING_CATEGORIES.has(f.category));
 
 export default function PricingPage() {
   return (
@@ -17,12 +22,17 @@ export default function PricingPage() {
         path="/pricing"
       />
       <OrganizationSchema />
+      <FAQSchema faqs={pricingFaqs} />
       <PageShell>
         <PricingHero />
         <PricingBreakdown />
         <PricingPerProduct />
         <PricingFAQs />
-        <FooterCTABand />
+        <FooterCTABand
+          headline="Ready when"
+          italic="you are."
+          caption="Free shipping · 30-day guarantee · Cancel anytime"
+        />
       </PageShell>
     </>
   );
