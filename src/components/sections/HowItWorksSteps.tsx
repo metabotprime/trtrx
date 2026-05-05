@@ -35,18 +35,24 @@ const STEPS: Step[] = [
   },
 ];
 
-export function HowItWorksSteps() {
+type Props = { showHeader?: boolean };
+
+export function HowItWorksSteps({ showHeader = true }: Props = {}) {
   return (
     <section className="bg-surface-alt">
       <div className="container py-20 md:py-28">
-        <SectionHeader
-          eyebrow="The Process"
-          title="How it *works.*"
-          subtitle="From symptoms to your first vial in under 14 days."
-          align="center"
-        />
+        {showHeader && (
+          <SectionHeader
+            eyebrow="The Process"
+            title="How it *works.*"
+            subtitle="From symptoms to your first vial in under 14 days."
+            align="center"
+          />
+        )}
 
-        <ol className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <ol
+          className={`mx-auto ${showHeader ? 'mt-16' : ''} grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8`}
+        >
           {STEPS.map(({ number, Icon, title, body }) => (
             <li key={number} className="flex flex-col">
               <span

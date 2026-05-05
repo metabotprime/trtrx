@@ -1,23 +1,70 @@
 import type { GetStaticProps } from 'next';
+import Link from 'next/link';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
-import { ComingSoon } from '@/components/sections/ComingSoon';
+import { HowItWorksSteps } from '@/components/sections/HowItWorksSteps';
+import { ProcessLabPartners } from '@/components/sections/ProcessLabPartners';
+import { ProcessConsultDetail } from '@/components/sections/ProcessConsultDetail';
+import { ProcessShipping } from '@/components/sections/ProcessShipping';
+import { FooterCTABand } from '@/components/sections/FooterCTABand';
+import { Button } from '@/components/ui/button';
 
 export default function HowItWorksPage() {
   return (
     <>
       <SEOHead
-        title="How it works"
+        title="How It Works"
         description="From symptom assessment to your first vial in under 14 days. Doctor-supervised TRT delivered to your door."
         path="/how-it-works"
       />
       <OrganizationSchema />
+
       <PageShell>
-        <ComingSoon
-          eyebrow="The Process"
-          title="From symptoms to your first vial in *under 14 days.*"
-          subtitle="Symptom assessment, at-home labs through Quest and Labcorp partners, a 15-minute physician video consult, and free, fast, discreet shipping. Full step-by-step ships before launch."
+        {/* Hero */}
+        <section className="bg-surface">
+          <div className="container max-w-hero px-5 pb-12 pt-20 text-center md:pb-16 md:pt-28 lg:pt-32">
+            <p className="eyebrow mb-7 inline-flex flex-wrap justify-center gap-x-3 gap-y-1">
+              <span>The Process</span>
+              <span aria-hidden className="text-muted/60">·</span>
+              <span>Under 14 Days</span>
+              <span aria-hidden className="text-muted/60">·</span>
+              <span>No Office Visit</span>
+            </p>
+
+            <h1
+              className="font-serif text-display-xl font-medium text-primary"
+              style={{ fontVariationSettings: "'opsz' 144" }}
+            >
+              From symptoms to your first vial in{' '}
+              <span className="display-italic text-primary">under 14 days.</span>
+            </h1>
+
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-[1.55] text-muted md:text-xl">
+              Symptom checklist, at-home labs, a 15-minute video consult, and free shipping. No office visits. No insurance hassles. No off-brand patient portals.
+            </p>
+
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+              <Link href="/pricing">
+                <Button size="md">See Pricing</Button>
+              </Link>
+              <Link href="/treatments">
+                <Button size="md" variant="outline">
+                  Browse Treatments
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <HowItWorksSteps showHeader={false} />
+        <ProcessLabPartners />
+        <ProcessConsultDetail />
+        <ProcessShipping />
+        <FooterCTABand
+          headline="Ready when"
+          italic="you are."
+          caption="Doctor-supervised · Cancel anytime · 30-day guarantee"
         />
       </PageShell>
     </>
