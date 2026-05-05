@@ -3,6 +3,8 @@
  * Adding/removing a route here updates sitemap.xml automatically.
  */
 
+import { BLOG_POSTS } from '@/content/blog';
+
 export type RouteEntry = {
   path: string;
   changeFreq: 'daily' | 'weekly' | 'monthly' | 'yearly';
@@ -33,6 +35,13 @@ export const ROUTES: RouteEntry[] = [
   { path: '/pricing', changeFreq: 'weekly', priority: 0.95, inSitemap: true },
   { path: '/about', changeFreq: 'monthly', priority: 0.7, inSitemap: true },
   { path: '/faq', changeFreq: 'monthly', priority: 0.75, inSitemap: true },
+  { path: '/blog', changeFreq: 'daily', priority: 0.8, inSitemap: true },
+  ...BLOG_POSTS.map((p) => ({
+    path: `/blog/${p.slug}`,
+    changeFreq: 'monthly' as const,
+    priority: 0.7,
+    inSitemap: true,
+  })),
   { path: '/contact', changeFreq: 'yearly', priority: 0.5, inSitemap: true },
   { path: '/privacy', changeFreq: 'yearly', priority: 0.3, inSitemap: true },
   { path: '/terms', changeFreq: 'yearly', priority: 0.3, inSitemap: true },
