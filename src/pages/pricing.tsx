@@ -3,6 +3,7 @@ import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
 import { FAQSchema } from '@/components/seo/schemas/FAQSchema';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { PricingHero } from '@/components/sections/PricingHero';
 import { PricingBreakdown } from '@/components/sections/PricingBreakdown';
 import { PricingPerProduct } from '@/components/sections/PricingPerProduct';
@@ -24,6 +25,12 @@ export default function PricingPage() {
       <OrganizationSchema />
       <FAQSchema faqs={pricingFaqs} />
       <PageShell>
+        <Breadcrumbs
+          items={[
+            { name: 'Home', href: '/' },
+            { name: 'Pricing', href: '/pricing' },
+          ]}
+        />
         <PricingHero />
         <PricingBreakdown />
         <PricingPerProduct />

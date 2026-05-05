@@ -2,6 +2,7 @@ import type { GetStaticProps } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { SectionHeader } from '@/components/sections/SectionHeader';
 
 export default function ContactPage() {
@@ -14,6 +15,12 @@ export default function ContactPage() {
       />
       <OrganizationSchema />
       <PageShell hideMobileCTA>
+        <Breadcrumbs
+          items={[
+            { name: 'Home', href: '/' },
+            { name: 'Contact', href: '/contact' },
+          ]}
+        />
         <section className="bg-surface">
           <div className="container py-24 md:py-32">
             <SectionHeader

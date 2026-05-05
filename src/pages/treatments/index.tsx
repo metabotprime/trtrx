@@ -2,11 +2,14 @@ import type { GetStaticProps } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
+import { ItemListSchema } from '@/components/seo/schemas/ItemListSchema';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { TreatmentGrid } from '@/components/sections/TreatmentGrid';
 import { TreatmentTable } from '@/components/sections/TreatmentTable';
 import { CompoundedExplainer } from '@/components/sections/CompoundedExplainer';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 import { SectionHeader } from '@/components/sections/SectionHeader';
+import { TREATMENTS } from '@/content/treatments';
 
 export default function TreatmentsHubPage() {
   return (
@@ -17,8 +20,22 @@ export default function TreatmentsHubPage() {
         path="/treatments"
       />
       <OrganizationSchema />
+      <ItemListSchema
+        name="trtrx Treatments"
+        items={TREATMENTS.map((t) => ({
+          name: t.name,
+          url: `/treatments/${t.slug}`,
+          description: t.summary,
+        }))}
+      />
 
       <PageShell>
+        <Breadcrumbs
+          items={[
+            { name: 'Home', href: '/' },
+            { name: 'Treatments', href: '/treatments' },
+          ]}
+        />
         <section className="bg-surface">
           <div className="container max-w-hero pb-12 pt-20 text-center md:pb-16 md:pt-28 lg:pt-32">
             <SectionHeader

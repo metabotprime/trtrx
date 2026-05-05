@@ -2,6 +2,8 @@ import type { GetStaticPaths, GetStaticProps } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
+import { MedicalTherapySchema } from '@/components/seo/schemas/MedicalTherapySchema';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { ProductHero } from '@/components/sections/ProductHero';
 import { ProductOverview } from '@/components/sections/ProductOverview';
 import { DosingProtocol } from '@/components/sections/DosingProtocol';
@@ -22,8 +24,16 @@ export default function TreatmentDetailPage({ treatment }: Props) {
         path={`/treatments/${treatment.slug}`}
       />
       <OrganizationSchema />
+      <MedicalTherapySchema treatment={treatment} />
 
       <PageShell>
+        <Breadcrumbs
+          items={[
+            { name: 'Home', href: '/' },
+            { name: 'Treatments', href: '/treatments' },
+            { name: treatment.name, href: `/treatments/${treatment.slug}` },
+          ]}
+        />
         <ProductHero treatment={treatment} />
         <ProductOverview treatment={treatment} />
         <DosingProtocol treatment={treatment} />

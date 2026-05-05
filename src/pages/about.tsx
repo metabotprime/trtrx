@@ -2,10 +2,13 @@ import type { GetStaticProps } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
+import { PersonSchema } from '@/components/seo/schemas/PersonSchema';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { MedicalDirector } from '@/components/sections/MedicalDirector';
 import { CompanyNarrative } from '@/components/sections/CompanyNarrative';
 import { PhysicianNetwork } from '@/components/sections/PhysicianNetwork';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
+import { MEDICAL_DIRECTOR } from '@/content/physician';
 
 export default function AboutPage() {
   return (
@@ -16,8 +19,20 @@ export default function AboutPage() {
         path="/about"
       />
       <OrganizationSchema />
+      <PersonSchema
+        name={MEDICAL_DIRECTOR.name}
+        jobTitle={MEDICAL_DIRECTOR.title}
+        credentials={MEDICAL_DIRECTOR.credentials}
+        image={MEDICAL_DIRECTOR.photo}
+      />
 
       <PageShell>
+        <Breadcrumbs
+          items={[
+            { name: 'Home', href: '/' },
+            { name: 'About', href: '/about' },
+          ]}
+        />
         {/* Hero */}
         <section className="bg-surface">
           <div className="container max-w-hero px-5 pb-12 pt-20 text-center md:pb-16 md:pt-28 lg:pt-32">

@@ -3,6 +3,7 @@ import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
 import { FAQSchema } from '@/components/seo/schemas/FAQSchema';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 import { FAQByCategory } from '@/components/sections/FAQByCategory';
 import { FAQS } from '@/content/faqs';
@@ -19,6 +20,12 @@ export default function FAQPage() {
       <FAQSchema faqs={FAQS} />
 
       <PageShell>
+        <Breadcrumbs
+          items={[
+            { name: 'Home', href: '/' },
+            { name: 'FAQ', href: '/faq' },
+          ]}
+        />
         {/* Hero */}
         <section className="bg-surface">
           <div className="container max-w-hero px-5 pb-12 pt-20 text-center md:pb-16 md:pt-28 lg:pt-32">
