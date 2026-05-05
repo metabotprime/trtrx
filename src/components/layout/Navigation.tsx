@@ -83,7 +83,13 @@ export function Navigation() {
             })}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden items-center gap-6 lg:flex">
+            <Link
+              href="/sign-in"
+              className="text-sm font-medium tracking-tight text-primary transition-colors hover:text-accent"
+            >
+              Sign in
+            </Link>
             <Link href="/how-it-works">
               <Button size="sm">Get Started</Button>
             </Link>
@@ -124,11 +130,17 @@ export function Navigation() {
               </li>
             ))}
           </ul>
-          <div className="mt-auto">
+          <div className="mt-auto space-y-3">
             <Link href="/how-it-works" className="block">
               <Button className="w-full" size="lg">
                 Get Started
               </Button>
+            </Link>
+            <Link
+              href="/sign-in"
+              className="block text-center text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent"
+            >
+              Sign in
             </Link>
           </div>
         </div>
