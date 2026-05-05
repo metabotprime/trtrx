@@ -3,6 +3,7 @@ import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
 import { PricingHero } from '@/components/sections/PricingHero';
+import { PricingBreakdown } from '@/components/sections/PricingBreakdown';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 
 export default function PricingPage() {
@@ -16,6 +17,7 @@ export default function PricingPage() {
       <OrganizationSchema />
       <PageShell>
         <PricingHero />
+        <PricingBreakdown />
         <FooterCTABand />
       </PageShell>
     </>
