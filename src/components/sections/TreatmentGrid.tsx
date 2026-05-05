@@ -10,18 +10,24 @@ const FDA_LABEL: Record<string, string> = {
   'Both available': 'FDA + Compounded',
 };
 
-export function TreatmentGrid() {
+type Props = { showHeader?: boolean };
+
+export function TreatmentGrid({ showHeader = true }: Props = {}) {
   return (
     <section className="bg-surface">
       <div className="container py-20 md:py-28">
-        <SectionHeader
-          eyebrow="Five Evidence-Based Options"
-          title="Find the right *treatment.*"
-          subtitle="Choose by lifestyle, fertility goals, and how you want to dose."
-          align="center"
-        />
+        {showHeader && (
+          <SectionHeader
+            eyebrow="Five Evidence-Based Options"
+            title="Find the right *treatment.*"
+            subtitle="Choose by lifestyle, fertility goals, and how you want to dose."
+            align="center"
+          />
+        )}
 
-        <ul className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ul
+          className={`mx-auto ${showHeader ? 'mt-14' : ''} grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3`}
+        >
           {TREATMENTS.map((t) => (
             <li key={t.slug}>
               <Link
