@@ -76,18 +76,21 @@ export function TreatmentGrid({ showHeader = true }: Props = {}) {
 
                   <hr className="my-5 border-border" />
 
-                  {/* Price */}
+                  {/* Price — flat monthly. Adjunct treatments show "+" prefix. */}
                   <div className="flex items-baseline gap-1">
-                    <span className="font-mono text-[11px] uppercase tracking-tracked text-muted">
-                      from
-                    </span>
                     <span
                       className="font-serif text-3xl font-medium text-primary"
                       style={{ fontVariationSettings: "'opsz' 144" }}
                     >
+                      {t.formFactor === 'Adjunct' ? '+' : ''}
                       {formatUSD(t.monthlyPriceFrom)}
                     </span>
                     <span className="text-sm text-muted">/mo</span>
+                    {t.formFactor === 'Adjunct' && (
+                      <span className="ml-2 font-mono text-[11px] uppercase tracking-tracked text-muted">
+                        adjunct
+                      </span>
+                    )}
                   </div>
 
                   {/* Spacer pushes the link to bottom */}

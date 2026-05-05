@@ -40,7 +40,9 @@ export function RelatedTreatments({ currentSlug }: Props) {
                 </p>
                 <div className="mt-auto pt-5 flex items-baseline justify-between">
                   <span className="font-mono text-xs text-muted">
-                    from {formatUSD(t.monthlyPriceFrom)}/mo
+                    {t.formFactor === 'Adjunct' ? '+' : ''}
+                    {formatUSD(t.monthlyPriceFrom)}/mo
+                    {t.formFactor === 'Adjunct' && ' adjunct'}
                   </span>
                   <ArrowRight
                     size={14}

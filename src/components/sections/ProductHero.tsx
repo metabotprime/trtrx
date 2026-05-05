@@ -47,16 +47,19 @@ export function ProductHero({ treatment }: Props) {
 
             <div className="mt-8 flex flex-wrap items-baseline gap-x-6 gap-y-2">
               <div className="flex items-baseline gap-2">
-                <span className="font-mono text-[11px] uppercase tracking-tracked text-muted">
-                  from
-                </span>
                 <span
                   className="font-serif text-3xl font-medium text-primary"
                   style={{ fontVariationSettings: "'opsz' 144" }}
                 >
+                  {treatment.formFactor === 'Adjunct' ? '+' : ''}
                   {formatUSD(treatment.monthlyPriceFrom)}
                 </span>
                 <span className="text-sm text-muted">/mo</span>
+                {treatment.formFactor === 'Adjunct' && (
+                  <span className="font-mono text-[11px] uppercase tracking-tracked text-muted">
+                    adjunct to base TRT
+                  </span>
+                )}
               </div>
               {treatment.fertilityPreserving && (
                 <span className="font-mono text-[11px] uppercase tracking-tracked text-accent">

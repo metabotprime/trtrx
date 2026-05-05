@@ -83,8 +83,10 @@ export function TreatmentTable() {
               <Row label="Price / month">
                 {TREATMENTS.map((t) => (
                   <Cell key={t.slug}>
-                    <span className="text-muted">from </span>
-                    <span className="text-text">{formatUSD(t.monthlyPriceFrom)}</span>
+                    <span className="text-text">
+                      {t.formFactor === 'Adjunct' ? '+' : ''}
+                      {formatUSD(t.monthlyPriceFrom)}
+                    </span>
                   </Cell>
                 ))}
               </Row>
