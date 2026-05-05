@@ -39,7 +39,7 @@ export default function PricingPage() {
         <FooterCTABand
           headline="Ready when"
           italic="you are."
-          caption="Free shipping · 30-day guarantee · Cancel anytime"
+          caption="Free shipping · 60-day guarantee · Cancel anytime"
         />
       </PageShell>
     </>

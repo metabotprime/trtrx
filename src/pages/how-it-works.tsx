@@ -74,7 +74,7 @@ export default function HowItWorksPage() {
         <FooterCTABand
           headline="Ready when"
           italic="you are."
-          caption="Doctor-supervised · Cancel anytime · 30-day guarantee"
+          caption="Doctor-supervised · Cancel anytime · 60-day guarantee"
         />
       </PageShell>
     </>

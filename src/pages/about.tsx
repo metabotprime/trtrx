@@ -65,7 +65,7 @@ export default function AboutPage() {
         <FooterCTABand
           headline="Bring your concerns."
           italic="We'll listen."
-          caption="Doctor-supervised · Cancel anytime · 30-day guarantee"
+          caption="Doctor-supervised · Cancel anytime · 60-day guarantee"
         />
       </PageShell>
     </>

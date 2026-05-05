@@ -1,9 +1,9 @@
 const ITEMS = [
+  { label: 'MD-led', sub: 'Board-certified' },
   { label: 'Quest', sub: 'Lab partner' },
   { label: 'Labcorp', sub: 'Lab partner' },
   { label: 'FSA-eligible', sub: 'Pre-tax dollars' },
-  { label: '30-day', sub: 'Guarantee' },
-  { label: 'Free shipping', sub: 'Same day' },
+  { label: '60-day', sub: 'Guarantee' },
 ];
 
 export function TrustStrip() {

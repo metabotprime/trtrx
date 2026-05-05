@@ -43,7 +43,7 @@ export default function TreatmentDetailPage({ treatment }: Props) {
         <FooterCTABand
           headline="Start with"
           italic={`${treatment.shortName.toLowerCase()}.`}
-          caption="Doctor-supervised · Cancel anytime · 30-day guarantee"
+          caption="Doctor-supervised · Cancel anytime · 60-day guarantee"
         />
       </PageShell>
     </>

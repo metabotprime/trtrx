@@ -41,10 +41,11 @@ const FOOTER_GROUPS = [
 ];
 
 const TRUST_ITEMS = [
+  'MD-led',
   'Quest',
   'Labcorp',
   'FSA-eligible',
-  '30-day guarantee',
+  '60-day guarantee',
 ];
 
 export function Footer() {

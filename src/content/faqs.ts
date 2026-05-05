@@ -245,9 +245,17 @@ export const FAQS: FAQ[] = [
   {
     id: 'refund-policy',
     category: 'refund',
-    question: 'What if my first month does not work for me?',
+    question: 'What if the protocol does not work for me?',
     answer:
-      'If your initial labs come back outside the range that justifies treatment, we refund the medication portion of your initial fee. Once medication ships, we cannot refund it for safety and regulatory reasons. We will work with your physician to adjust the protocol instead.',
+      'Within your first 60 days, if the protocol is not the right fit, your physician adjusts it through the portal. If it still is not working, you cancel and we refund the unused portion of your supply. After 60 days you can still cancel anytime; we just cannot refund medication that has already shipped, for safety and regulatory reasons.',
+    onHomePage: false,
+  },
+  {
+    id: 'safety-md-led',
+    category: 'safety',
+    question: 'Is my care plan set by an MD or a nurse practitioner?',
+    answer:
+      'A board-certified MD, licensed in your state. Many online TRT clinics route patients through nurse practitioners or physician assistants for cost reasons — capable clinicians, but for prescription protocol design and dose adjustments we believe MD oversight is non-negotiable. Every trtrx member meets a real physician for the initial consult and stays under MD care for refills, dose adjustments, and lab interpretation.',
     onHomePage: false,
   },
 ];

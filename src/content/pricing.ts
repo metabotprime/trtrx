@@ -25,6 +25,6 @@ export const PRICING_STRUCTURE = {
     'Two lab panels per year (Quest / Labcorp)',
     'Free shipping (always)',
     'Cancel anytime',
-    '30-day satisfaction guarantee',
+    '60-day satisfaction guarantee',
   ],
 } as const;

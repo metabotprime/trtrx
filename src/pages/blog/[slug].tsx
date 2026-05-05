@@ -198,7 +198,7 @@ export default function BlogPostPage({ post }: Props) {
         <FooterCTABand
           headline="The standard"
           italic="for TRT."
-          caption="Free shipping · 30-day guarantee · Cancel anytime"
+          caption="Free shipping · 60-day guarantee · Cancel anytime"
         />
       </PageShell>
     </>

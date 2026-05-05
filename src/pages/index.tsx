@@ -10,6 +10,7 @@ import { TrustStrip } from '@/components/sections/TrustStrip';
 import { PricingTransparency } from '@/components/sections/PricingTransparency';
 import { TreatmentGrid } from '@/components/sections/TreatmentGrid';
 import { TreatmentTable } from '@/components/sections/TreatmentTable';
+import { WhyDifferent } from '@/components/sections/WhyDifferent';
 import { MedicalDirector } from '@/components/sections/MedicalDirector';
 import { HowItWorksSteps } from '@/components/sections/HowItWorksSteps';
 import { TestimonialCards } from '@/components/sections/TestimonialCards';
@@ -36,6 +37,7 @@ export default function HomePage() {
         <PricingTransparency />
         <TreatmentGrid />
         <TreatmentTable />
+        <WhyDifferent />
         <MedicalDirector />
         <HowItWorksSteps />
         <TestimonialCards />
