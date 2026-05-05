@@ -20,8 +20,8 @@ export function HeroCentered() {
           className="font-serif text-display-xl font-medium text-primary animate-fade-up [animation-delay:60ms]"
           style={{ fontVariationSettings: "'opsz' 144" }}
         >
-          Hormones,{' '}
-          <span className="display-italic text-primary">handled.</span>
+          TRT,{' '}
+          <span className="display-italic text-primary">finally.</span>
         </h1>
 
         <p className="mx-auto mt-6 max-w-xl text-lg leading-[1.55] text-muted md:text-xl animate-fade-up [animation-delay:120ms]">
