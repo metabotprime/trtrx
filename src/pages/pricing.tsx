@@ -5,6 +5,7 @@ import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema'
 import { PricingHero } from '@/components/sections/PricingHero';
 import { PricingBreakdown } from '@/components/sections/PricingBreakdown';
 import { PricingPerProduct } from '@/components/sections/PricingPerProduct';
+import { PricingFAQs } from '@/components/sections/PricingFAQs';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 
 export default function PricingPage() {
@@ -20,6 +21,7 @@ export default function PricingPage() {
         <PricingHero />
         <PricingBreakdown />
         <PricingPerProduct />
+        <PricingFAQs />
         <FooterCTABand />
       </PageShell>
     </>
