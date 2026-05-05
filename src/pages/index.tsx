@@ -15,6 +15,7 @@ import { HowItWorksSteps } from '@/components/sections/HowItWorksSteps';
 import { TestimonialCards } from '@/components/sections/TestimonialCards';
 import { CompoundedExplainer } from '@/components/sections/CompoundedExplainer';
 import { FAQAccordion } from '@/components/sections/FAQAccordion';
+import { HomeBlogSection } from '@/components/sections/HomeBlogSection';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 
 export default function HomePage() {
@@ -40,6 +41,7 @@ export default function HomePage() {
         <TestimonialCards />
         <CompoundedExplainer />
         <FAQAccordion />
+        <HomeBlogSection />
         <FooterCTABand />
       </PageShell>
     </>
