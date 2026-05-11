@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" rx="180" ry="180" fill="#1D4173"/>
+  <text x="512" y="535"
+        font-family="Georgia, 'Times New Roman', 'DejaVu Serif', serif"
+        font-style="italic"
+        font-weight="700"
+        font-size="640"
+        fill="#ED8D1A"
+        text-anchor="middle"
+        dominant-baseline="central">rx</text>
+</svg>
