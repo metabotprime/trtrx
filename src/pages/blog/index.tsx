@@ -12,7 +12,12 @@ import {
   getFeaturedBlogPosts,
 } from '@/content/blog';
 
-export default function BlogIndexPage() {
+type Props = {
+  /** Pre-formatted on server so SSR/CSR don't diverge and hydrate-mismatch. */
+  publishedAtDisplay: Record<string, string>;
+};
+
+export default function BlogIndexPage({ publishedAtDisplay }: Props) {
   const totalPosts = BLOG_POSTS.length;
   const featured = getFeaturedBlogPosts().slice(0, 3);
   const sorted = [...BLOG_POSTS].sort((a, b) =>
@@ -123,11 +128,7 @@ export default function BlogIndexPage() {
                         {CATEGORY_LABELS[post.category]}
                       </p>
                       <p className="font-mono text-[10px] uppercase tracking-tracked text-muted">
-                        {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                          month: 'short',
-                          day: 'numeric',
-                          year: 'numeric',
-                        })}
+                        {publishedAtDisplay[post.slug]}
                       </p>
                     </div>
                     <h3
@@ -166,6 +167,13 @@ export default function BlogIndexPage() {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  return { props: {}, revalidate: 3600 };
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const publishedAtDisplay: Record<string, string> = {};
+  for (const post of BLOG_POSTS) {
+    publishedAtDisplay[post.slug] = new Date(post.publishedAt).toLocaleDateString(
+      'en-US',
+      { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' },
+    );
+  }
+  return { props: { publishedAtDisplay }, revalidate: 3600 };
 };
