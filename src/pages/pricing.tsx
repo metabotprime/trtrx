@@ -1,8 +1,9 @@
 import type { GetStaticProps } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
+import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { FAQSchema } from '@/components/seo/schemas/FAQSchema';
+import { TREATMENT_ENTITIES } from '@/lib/seo/entities';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { PricingHero } from '@/components/sections/PricingHero';
 import { PricingBreakdown } from '@/components/sections/PricingBreakdown';
@@ -23,7 +24,12 @@ export default function PricingPage() {
         path="/pricing"
         ogImage="/og/pricing.png"
       />
-      <OrganizationSchema />
+      <EntityGraphSchema
+        title="Pricing"
+        description="Transparent monthly pricing — no hidden fees, no insurance hoops. See your real first-month cost up front."
+        url="/pricing"
+        aboutEntityIds={Object.values(TREATMENT_ENTITIES).map((t) => t.id)}
+      />
       <FAQSchema faqs={pricingFaqs} />
       <PageShell>
         <Breadcrumbs

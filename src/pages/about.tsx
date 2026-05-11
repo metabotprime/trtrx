@@ -1,7 +1,7 @@
 import type { GetStaticProps } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
+import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { PersonSchema } from '@/components/seo/schemas/PersonSchema';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { MedicalDirector } from '@/components/sections/MedicalDirector';
@@ -19,7 +19,12 @@ export default function AboutPage() {
         path="/about"
         ogImage="/og/about.png"
       />
-      <OrganizationSchema />
+      <EntityGraphSchema
+        title="About"
+        description="Doctor-supervised testosterone therapy built around transparent pricing, board-certified physicians, and a refusal to play the legacy-clinic game."
+        url="/about"
+        pageType="AboutPage"
+      />
       <PersonSchema
         name={MEDICAL_DIRECTOR.name}
         jobTitle={MEDICAL_DIRECTOR.title}

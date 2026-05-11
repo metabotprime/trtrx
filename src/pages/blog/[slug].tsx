@@ -2,7 +2,7 @@ import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
+import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { BlogPostingSchema } from '@/components/seo/schemas/BlogPostingSchema';
 import { MedicalWebPageSchema } from '@/components/seo/schemas/MedicalWebPageSchema';
 import { SpeakableSchema } from '@/components/seo/schemas/SpeakableSchema';
@@ -35,7 +35,12 @@ export default function BlogPostPage({ post }: Props) {
         path={`/blog/${post.slug}`}
         ogImage={post.ogImage ?? '/og/blog-default.png'}
       />
-      <OrganizationSchema />
+      <EntityGraphSchema
+        title={post.title}
+        description={post.excerpt}
+        url={`/blog/${post.slug}`}
+        pageType="MedicalWebPage"
+      />
       <BlogPostingSchema post={post} />
       <MedicalWebPageSchema
         name={post.title}

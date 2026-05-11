@@ -1,9 +1,9 @@
 import type { GetStaticProps } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
-import { WebSiteSchema } from '@/components/seo/schemas/WebSiteSchema';
+import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { FAQSchema } from '@/components/seo/schemas/FAQSchema';
+import { TREATMENT_ENTITIES } from '@/lib/seo/entities';
 import { getHomepageFAQs } from '@/content/faqs';
 import { HeroCentered } from '@/components/sections/HeroCentered';
 import { TrustStrip } from '@/components/sections/TrustStrip';
@@ -27,8 +27,12 @@ export default function HomePage() {
         description="Doctor-supervised TRT with transparent pricing and same-day shipping. No memberships you can't cancel. No hidden math."
         path="/"
       />
-      <OrganizationSchema />
-      <WebSiteSchema />
+      <EntityGraphSchema
+        title="Doctor-supervised testosterone therapy"
+        description="Doctor-supervised TRT with transparent pricing and same-day shipping. No memberships you can't cancel. No hidden math."
+        url="/"
+        aboutEntityIds={Object.values(TREATMENT_ENTITIES).map((t) => t.id)}
+      />
       <FAQSchema faqs={getHomepageFAQs()} />
 
       <PageShell>

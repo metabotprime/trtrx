@@ -1,9 +1,10 @@
 import type { GetStaticProps } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
+import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { ItemListSchema } from '@/components/seo/schemas/ItemListSchema';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { TREATMENT_ENTITIES } from '@/lib/seo/entities';
 import { TreatmentGrid } from '@/components/sections/TreatmentGrid';
 import { TreatmentTable } from '@/components/sections/TreatmentTable';
 import { CompoundedExplainer } from '@/components/sections/CompoundedExplainer';
@@ -20,7 +21,13 @@ export default function TreatmentsHubPage() {
         path="/treatments"
         ogImage="/og/treatments.png"
       />
-      <OrganizationSchema />
+      <EntityGraphSchema
+        title="Treatments"
+        description="Five evidence-based testosterone therapy options. Cypionate, enanthate, enclomiphene, HCG, and topical cream — compared side-by-side."
+        url="/treatments"
+        pageType="CollectionPage"
+        aboutEntityIds={Object.values(TREATMENT_ENTITIES).map((t) => t.id)}
+      />
       <ItemListSchema
         name="trtrx Treatments"
         items={TREATMENTS.map((t) => ({

@@ -1,7 +1,7 @@
 import type { GetStaticProps } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
+import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { FAQSchema } from '@/components/seo/schemas/FAQSchema';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
@@ -17,7 +17,12 @@ export default function FAQPage() {
         path="/faq"
         ogImage="/og/faq.png"
       />
-      <OrganizationSchema />
+      <EntityGraphSchema
+        title="Frequently Asked Questions"
+        description="Plain answers about testosterone therapy, fertility, insurance, state legality, side effects, and more. No medical hand-waving."
+        url="/faq"
+        pageType="FAQPage"
+      />
       <FAQSchema faqs={FAQS} />
 
       <PageShell>

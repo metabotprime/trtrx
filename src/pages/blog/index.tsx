@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
+import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 import {
@@ -27,7 +27,12 @@ export default function BlogIndexPage() {
         path="/blog"
         ogImage="/og/blog.png"
       />
-      <OrganizationSchema />
+      <EntityGraphSchema
+        title="The trtrx Blog"
+        description={`${totalPosts} plain-English articles on testosterone replacement therapy, written and reviewed by physicians who specialize in men's hormone health.`}
+        url="/blog"
+        pageType="CollectionPage"
+      />
 
       <PageShell>
         <Breadcrumbs

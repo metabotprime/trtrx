@@ -2,7 +2,7 @@ import type { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
+import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { HowItWorksSteps } from '@/components/sections/HowItWorksSteps';
 import { ProcessLabPartners } from '@/components/sections/ProcessLabPartners';
@@ -21,7 +21,11 @@ export default function HowItWorksPage() {
         path="/how-it-works"
         ogImage="/og/how-it-works.png"
       />
-      <OrganizationSchema />
+      <EntityGraphSchema
+        title="How It Works"
+        description="From symptom assessment to your first vial in under 14 days. Doctor-supervised TRT delivered to your door."
+        url="/how-it-works"
+      />
 
       <PageShell>
         <Breadcrumbs

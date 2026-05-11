@@ -1,8 +1,9 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
+import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { MedicalTherapySchema } from '@/components/seo/schemas/MedicalTherapySchema';
+import { TREATMENT_ENTITIES } from '@/lib/seo/entities';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { ProductHero } from '@/components/sections/ProductHero';
 import { ProductOverview } from '@/components/sections/ProductOverview';
@@ -24,7 +25,13 @@ export default function TreatmentDetailPage({ treatment }: Props) {
         path={`/treatments/${treatment.slug}`}
         ogImage={`/og/treatment-${treatment.slug}.png`}
       />
-      <OrganizationSchema />
+      <EntityGraphSchema
+        title={treatment.name}
+        description={treatment.summary}
+        url={`/treatments/${treatment.slug}`}
+        pageType="MedicalWebPage"
+        aboutEntityIds={[TREATMENT_ENTITIES[treatment.slug]!.id]}
+      />
       <MedicalTherapySchema treatment={treatment} />
 
       <PageShell>
