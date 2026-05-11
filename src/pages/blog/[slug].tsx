@@ -20,9 +20,13 @@ import {
   type BlogPost,
 } from '@/content/blog';
 
-type Props = { post: BlogPost };
+type Props = {
+  post: BlogPost;
+  /** Pre-formatted on the server so SSR/CSR don't diverge and hydrate-mismatch. */
+  lastReviewedDisplay: string;
+};
 
-export default function BlogPostPage({ post }: Props) {
+export default function BlogPostPage({ post, lastReviewedDisplay }: Props) {
   const author = getAuthor(post.authorId);
   const reviewer = getReviewer(post.reviewerId);
   const related = getRelatedBlogPosts(post.slug, 4);
@@ -86,14 +90,7 @@ export default function BlogPostPage({ post }: Props) {
                 {post.title}
               </h1>
               <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] uppercase tracking-tracked text-muted">
-                <span>
-                  Last updated{' '}
-                  {new Date(post.lastReviewedAt).toLocaleDateString('en-US', {
-                    month: 'long',
-                    day: 'numeric',
-                    year: 'numeric',
-                  })}
-                </span>
+                <span>Last updated {lastReviewedDisplay}</span>
                 <span aria-hidden>·</span>
                 <span>{post.readMinutes} min read</span>
                 {reviewer && (
@@ -155,11 +152,7 @@ export default function BlogPostPage({ post }: Props) {
                       {reviewer.title}
                     </p>
                     <p className="mt-3 text-sm leading-relaxed text-text">
-                      Last reviewed:{' '}
-                      {new Date(post.lastReviewedAt).toLocaleDateString(
-                        'en-US',
-                        { month: 'long', day: 'numeric', year: 'numeric' },
-                      )}
+                      Last reviewed: {lastReviewedDisplay}
                     </p>
                   </div>
                 )}
@@ -172,7 +165,7 @@ export default function BlogPostPage({ post }: Props) {
         {related.length > 0 && (
           <section className="bg-surface-alt">
             <div className="container py-16 md:py-20">
-              <p className="eyebrow mb-8 text-center">Keep Reading</p>
+              <h2 className="eyebrow mb-8 text-center">Keep Reading</h2>
               <ul className="mx-auto grid max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 {related.map((p) => (
                   <li key={p.slug}>
@@ -221,5 +214,9 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const slug = params?.slug as string;
   const post = getBlogPostBySlug(slug);
   if (!post) return { notFound: true };
-  return { props: { post }, revalidate: 86400 };
+  const lastReviewedDisplay = new Date(post.lastReviewedAt).toLocaleDateString(
+    'en-US',
+    { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' },
+  );
+  return { props: { post, lastReviewedDisplay }, revalidate: 86400 };
 };

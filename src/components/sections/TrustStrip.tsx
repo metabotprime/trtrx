@@ -17,7 +17,7 @@ export function TrustStrip() {
               className="flex flex-col items-center text-center md:border-l md:border-border/70 md:first:border-l-0"
             >
               <span className="font-serif text-base text-primary">{item.label}</span>
-              <span className="mt-1 font-mono text-[11px] uppercase tracking-tracked text-muted/80">
+              <span className="mt-1 font-mono text-[11px] uppercase tracking-tracked text-muted">
                 {item.sub}
               </span>
             </li>

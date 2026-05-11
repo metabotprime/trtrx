@@ -49,7 +49,7 @@ export function FAQByCategory() {
               <a
                 key={cat}
                 href={`#${cat}`}
-                className="font-mono text-[11px] uppercase tracking-tracked text-muted underline-offset-4 transition-colors hover:text-accent"
+                className="inline-block px-3 py-2 font-mono text-[11px] uppercase tracking-tracked text-muted underline-offset-4 transition-colors hover:text-accent"
               >
                 {CATEGORY_TITLES[cat]}
               </a>

@@ -45,10 +45,10 @@ HSL tokens in `src/styles/globals.css`. After comparing 12 preview directions th
 | Token | HSL | Hex | Use |
 |---|---|---|---|
 | `--primary` | `215 60% 28%` | `#1D4173` | ocean blue — headlines, primary buttons, footer band, "trt" in logo |
-| `--accent` | `30 90% 52%` | `#ED8D1A` | warm amber — CTAs, italic emphasis words, eyebrow text, italic "rx" in logo |
+| `--accent` | `30 88% 38%` | `#B5710C` | burnt amber — CTAs, italic emphasis words, eyebrow text, italic "rx" in logo. **Darkened 14 L-points from initial `30 90% 52%` so text-accent passes WCAG AA (4.5:1) on cream — accessibility, not visual preference.** |
 | `--surface` | `36 35% 97%` | `#FCFAF6` | light cream — default page background |
 | `--surface-alt` | `36 28% 93%` | `#F1EBE0` | deeper cream — banded sections |
-| `--text` | `220 25% 14%` | `#1B2233` | dark text body |
+| `--text` | `220 25% 14%` | `#1B2233` | dark text body — also used as `--accent-foreground` (dark navy on amber buttons, 5.5:1 contrast) |
 | `--muted` | `30 10% 42%` | `#74695E` | warm gray — subheads, captions |
 | `--border` | `36 25% 89%` | `#EBE2D1` | hairlines, card edges |
 

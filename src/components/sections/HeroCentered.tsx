@@ -39,7 +39,7 @@ export function HeroCentered() {
           </Link>
         </div>
 
-        <p className="mt-8 text-eyebrow uppercase tracking-tracked text-muted/80 animate-fade-up [animation-delay:240ms]">
+        <p className="mt-8 text-eyebrow uppercase tracking-tracked text-muted animate-fade-up [animation-delay:240ms]">
           Quest &amp; Labcorp partners · FSA-eligible · 60-day guarantee
         </p>
 

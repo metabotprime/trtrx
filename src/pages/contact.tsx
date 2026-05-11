@@ -5,6 +5,12 @@ import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { SectionHeader } from '@/components/sections/SectionHeader';
 
+const SUBJECT = encodeURIComponent('trtrx — general inquiry');
+const BODY = encodeURIComponent(
+  "Hi trtrx team,\n\n[Your message here]\n\nThanks,\n",
+);
+const MAILTO = `mailto:hello@trtrx.com?subject=${SUBJECT}&body=${BODY}`;
+
 export default function ContactPage() {
   return (
     <>
@@ -30,78 +36,39 @@ export default function ContactPage() {
               subtitle="General inquiries only. For medical questions, please start a consult through the Get Started flow."
             />
 
-            <form
-              action="mailto:hello@trtrx.com"
-              method="post"
-              encType="text/plain"
-              className="mx-auto mt-12 grid max-w-xl gap-5"
-            >
-              <Field label="Name" name="name" type="text" required />
-              <Field label="Email" name="email" type="email" required />
-              <Field label="Phone (optional)" name="phone" type="tel" />
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block font-mono text-eyebrow uppercase tracking-tracked text-muted"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  className="mt-2 w-full resize-none rounded-2xl border border-border bg-surface px-4 py-3 text-base text-text shadow-sm placeholder:text-muted/60 focus:border-accent focus:outline-none"
-                />
-              </div>
-
-              <p className="text-xs leading-relaxed text-muted">
-                This form is for general inquiries. For medical questions, please get started with a consult.
+            <div className="mx-auto mt-12 max-w-xl rounded-2xl border border-border bg-surface-alt p-8 text-center md:p-10">
+              <p className="font-mono text-[11px] uppercase tracking-tracked text-muted">
+                Email
               </p>
-
-              <div className="pt-2">
-                <button
-                  type="submit"
+              <p
+                className="mt-3 font-serif text-2xl font-medium text-primary md:text-3xl"
+                style={{ fontVariationSettings: "'opsz' 144" }}
+              >
+                hello@trtrx.com
+              </p>
+              <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted">
+                Replies within one business day, often same-day. For medical
+                questions please get started with a consult instead.
+              </p>
+              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+                <a
+                  href={MAILTO}
                   className="inline-flex h-12 items-center justify-center rounded-full bg-accent px-7 text-[15px] font-medium text-accent-foreground transition-all hover:-translate-y-px hover:bg-accent/90"
                 >
-                  Send message
-                </button>
+                  Compose email
+                </a>
+                <a
+                  href="/how-it-works"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-primary bg-transparent px-7 text-[15px] font-medium text-primary transition-all hover:-translate-y-px hover:bg-primary hover:text-primary-foreground"
+                >
+                  Start a consult
+                </a>
               </div>
-            </form>
+            </div>
           </div>
         </section>
       </PageShell>
     </>
-  );
-}
-
-function Field({
-  label,
-  name,
-  type,
-  required,
-}: {
-  label: string;
-  name: string;
-  type: string;
-  required?: boolean;
-}) {
-  return (
-    <div>
-      <label
-        htmlFor={name}
-        className="block font-mono text-eyebrow uppercase tracking-tracked text-muted"
-      >
-        {label}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        required={required}
-        className="mt-2 h-12 w-full rounded-full border border-border bg-surface px-5 text-base text-text shadow-sm placeholder:text-muted/60 focus:border-accent focus:outline-none"
-      />
-    </div>
   );
 }
 
