@@ -4,16 +4,16 @@
 
 @layer base {
   :root {
-    /* Palette — HSL tokens (never hardcode hex in JSX) */
-    --primary: 217 61% 14%;          /* #0E1F3A deep navy */
-    --primary-foreground: 37 42% 94%;
-    --accent: 16 52% 47%;            /* #B85C3A rust */
-    --accent-foreground: 37 42% 94%;
-    --surface: 37 42% 94%;           /* #F6F1E9 warm bone */
-    --surface-alt: 39 42% 89%;       /* #EFE7D8 deeper cream */
-    --text: 240 13% 12%;             /* #1A1A22 warm charcoal */
-    --muted: 29 11% 38%;             /* #6B6056 warm gray */
-    --border: 34 31% 87%;            /* #E8DFD3 subtle warm */
+    /* Palette — Modern Amber: ocean blue + warm amber on light cream */
+    --primary: 215 60% 28%;          /* #1D4173 ocean blue */
+    --primary-foreground: 36 35% 97%;
+    --accent: 30 90% 52%;            /* #ED8D1A warm amber */
+    --accent-foreground: 36 35% 97%;
+    --surface: 36 35% 97%;           /* #FCFAF6 light cream */
+    --surface-alt: 36 28% 93%;       /* #F1EBE0 deeper cream */
+    --text: 220 25% 14%;             /* #1B2233 dark text */
+    --muted: 30 10% 42%;             /* #74695E warm gray */
+    --border: 36 25% 89%;            /* #EBE2D1 warm light border */
   }
 
   html {
