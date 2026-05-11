@@ -40,18 +40,19 @@ The site already ships in production-ready state for the marketing layer. What r
 ## Design system (locked)
 
 ### Palette
-HSL tokens in `src/styles/globals.css`. Three options were proposed and the current site uses **Option 1 — centered editorial restraint** with navy/rust/bone:
+HSL tokens in `src/styles/globals.css`. After comparing 12 preview directions the locked palette is **modern-amber — ocean blue + warm amber on light cream**:
 
 | Token | HSL | Hex | Use |
 |---|---|---|---|
-| `--primary` | `217 61% 14%` | `#0E1F3A` | deep navy — headlines, primary buttons, footer band |
-| `--accent` | `16 52% 47%` | `#B85C3A` | rust — CTAs, italic emphasis words, eyebrow text |
-| `--surface` | `37 42% 94%` | `#F6F1E9` | warm bone — default page background |
-| `--surface-alt` | `39 42% 89%` | `#EFE7D8` | deeper cream — banded sections |
-| `--text` | `240 13% 12%` | `#1A1A22` | warm charcoal — body text |
-| `--muted` | `29 11% 38%` | `#6B6056` | warm gray — subheads, captions |
-| `--border` | `34 31% 87%` | `#E8DFD3` | hairlines, card edges |
+| `--primary` | `215 60% 28%` | `#1D4173` | ocean blue — headlines, primary buttons, footer band, "trt" in logo |
+| `--accent` | `30 90% 52%` | `#ED8D1A` | warm amber — CTAs, italic emphasis words, eyebrow text, italic "rx" in logo |
+| `--surface` | `36 35% 97%` | `#FCFAF6` | light cream — default page background |
+| `--surface-alt` | `36 28% 93%` | `#F1EBE0` | deeper cream — banded sections |
+| `--text` | `220 25% 14%` | `#1B2233` | dark text body |
+| `--muted` | `30 10% 42%` | `#74695E` | warm gray — subheads, captions |
+| `--border` | `36 25% 89%` | `#EBE2D1` | hairlines, card edges |
 
+Mobile chrome theme-color: `#1D4173` (set in `src/pages/_document.tsx`).
 Never use pure white or pure black. Avoid `[hsl(...)]` arbitrary classes — always tokens.
 
 ### Typography
@@ -220,36 +221,15 @@ trtrx/
 
 ---
 
-## 9 preview branches available (for visual exploration)
+## Design direction (locked 2026-05-11)
 
-Worktrees on disk under `/Users/christosi/Desktop/trtrx-preview-*/`. Vercel auto-deploys each branch.
+Winner: **`preview/modern-amber`** — ocean blue + warm amber on light cream. Merged into `main`. All 12 preview branches (9 original visual explorations + 3 blue/white/orange variations) deleted.
 
-| Branch | Vibe | Preview URL |
-|---|---|---|
-| `preview/dark-engineered` | Tesla/Marek — dark navy + amber + Newsreader + mono ticker | https://trtrx-git-preview-dark-engineered-trimi1.vercel.app/ |
-| `preview/editorial-magazine` | GQ/Aesop — cream + oxblood + Cormorant + portrait split | https://trtrx-git-preview-editorial-magazine-trimi1.vercel.app/ |
-| `preview/brutalist-clinic` | Linear-app — white + electric green + Space Grotesk + metric tiles | https://trtrx-git-preview-brutalist-clinic-trimi1.vercel.app/ |
-| `preview/sand-sage` | Hims-direct — sand + forest green + terracotta + Inter Tight + photo-led | https://trtrx-git-preview-sand-sage-trimi1.vercel.app/ |
-| `preview/sage-modern` | Function/Curology — bone + sage + DM Sans single-family + soft rounds | https://trtrx-git-preview-sage-modern-trimi1.vercel.app/ |
-| `preview/coastal-clinic` | Ro/Roman — teal + peach + Inter ExtraBold + offset photo block | https://trtrx-git-preview-coastal-clinic-trimi1.vercel.app/ |
-| `preview/forest-bronze` | Current layout, forest green + bronze palette | https://trtrx-git-preview-forest-bronze-trimi1.vercel.app/ |
-| `preview/burgundy-cream` | Current layout, deep wine + warm gold palette | https://trtrx-git-preview-burgundy-cream-trimi1.vercel.app/ |
-| `preview/charcoal-sage` | Current layout, warm charcoal + muted sage palette | https://trtrx-git-preview-charcoal-sage-trimi1.vercel.app/ |
-
-When a direction is locked, merge the winning branch into main and delete the rest:
-
-```bash
-cd /Users/christosi/Desktop/trtrx
-# example: pick burgundy-cream
-git merge preview/burgundy-cream
-git push
-# clean up
-for b in dark-engineered editorial-magazine brutalist-clinic sand-sage sage-modern coastal-clinic forest-bronze charcoal-sage; do
-  git worktree remove "../trtrx-preview-${b}" --force
-  git branch -D "preview/${b}"
-  git push origin --delete "preview/${b}"
-done
-```
+The decision flow that landed here:
+1. Compared 9 original directions (dark-engineered, editorial-magazine, brutalist-clinic, sand-sage, sage-modern, coastal-clinic, forest-bronze, burgundy-cream, charcoal-sage)
+2. User picked the blue/orange feel from `preview/dark-engineered` but on white instead of dark navy, keeping main's Fraunces `trt` + italic `rx` logo
+3. Three light-mode variations spun up: `engineered-precision` (cool/electric), `heritage-editorial` (warm/deep), `modern-amber` (balanced)
+4. `modern-amber` chosen as the locked direction
 
 ---
 
