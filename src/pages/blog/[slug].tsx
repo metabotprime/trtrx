@@ -5,8 +5,11 @@ import { SEOHead } from '@/components/seo/SEOHead';
 import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
 import { BlogPostingSchema } from '@/components/seo/schemas/BlogPostingSchema';
 import { MedicalWebPageSchema } from '@/components/seo/schemas/MedicalWebPageSchema';
+import { SpeakableSchema } from '@/components/seo/schemas/SpeakableSchema';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { QuickAnswerBox } from '@/components/blog/QuickAnswerBox';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
+import { toAbsoluteUrl } from '@/lib/seo/site';
 import {
   BLOG_POSTS,
   CATEGORY_LABELS,
@@ -48,6 +51,11 @@ export default function BlogPostPage({ post }: Props) {
               }
             : undefined
         }
+      />
+      <SpeakableSchema
+        name={post.title}
+        url={toAbsoluteUrl(`/blog/${post.slug}`)}
+        speakableSelectors={['.speakable-answer']}
       />
 
       <PageShell>
@@ -94,15 +102,7 @@ export default function BlogPostPage({ post }: Props) {
               </p>
             </header>
 
-            {/* Quick Answer callout */}
-            <div className="mt-10 rounded-2xl border-l-4 border-accent bg-surface-alt px-6 py-5 md:px-8 md:py-6">
-              <p className="font-mono text-[11px] uppercase tracking-tracked text-accent">
-                Quick Answer
-              </p>
-              <p className="mt-2 text-[16px] leading-[1.65] text-text md:text-[17px]">
-                {post.quickAnswer}
-              </p>
-            </div>
+            <QuickAnswerBox answer={post.quickAnswer} />
 
             {/* Body */}
             <div className="prose mt-10 max-w-none text-[16px] leading-[1.7] text-text [&>p]:mt-5 [&>p:first-child]:mt-0 [&>h2]:mt-12 [&>h2]:font-serif [&>h2]:text-2xl [&>h2]:font-medium [&>h2]:leading-tight [&>h2]:text-primary [&>h3]:mt-8 [&>h3]:font-serif [&>h3]:text-xl [&>h3]:font-medium [&>h3]:text-primary md:text-[17px]">
