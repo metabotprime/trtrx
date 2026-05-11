@@ -82,12 +82,12 @@ export function HowItWorksSteps({ showHeader = true }: Props = {}) {
                 aria-hidden
               />
 
-              <h3
+              <h2
                 className="mt-5 font-serif text-[22px] font-medium leading-tight text-primary"
                 style={{ fontVariationSettings: "'opsz' 144" }}
               >
                 {title}
-              </h3>
+              </h2>
 
               <p className="mt-3 text-[15px] leading-relaxed text-muted">
                 {body}

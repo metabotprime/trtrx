@@ -77,9 +77,9 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-8 md:col-span-8 md:grid-cols-4">
             {FOOTER_GROUPS.map((group) => (
               <div key={group.label}>
-                <h3 className="text-eyebrow uppercase tracking-tracked text-surface/55">
+                <h2 className="text-eyebrow uppercase tracking-tracked text-surface/55">
                   {group.label}
-                </h3>
+                </h2>
                 <ul className="mt-4 space-y-3">
                   {group.links.map((link) => (
                     <li key={link.href}>

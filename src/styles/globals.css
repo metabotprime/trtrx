@@ -5,11 +5,11 @@
 @layer base {
   :root {
     /* Palette — Modern Amber: ocean blue + burnt amber on light cream */
-    /* Amber darkened 14pts in L (52→38) so text-accent passes 4.5:1 on cream */
+    /* Amber at L=35% gives 4.85:1 contrast both directions on cream surface */
     --primary: 215 60% 28%;          /* #1D4173 ocean blue */
     --primary-foreground: 36 35% 97%;
-    --accent: 30 88% 38%;            /* #B5710C burnt amber (WCAG AA on cream) */
-    --accent-foreground: 220 25% 14%; /* #1B2233 dark navy text on amber */
+    --accent: 30 88% 35%;            /* #A8590B burnt amber (WCAG AA, both as text and as bg) */
+    --accent-foreground: 36 35% 97%; /* cream — passes 4.85:1 on the darker amber */
     --surface: 36 35% 97%;           /* #FCFAF6 light cream */
     --surface-alt: 36 28% 93%;       /* #F1EBE0 deeper cream */
     --text: 220 25% 14%;             /* #1B2233 dark text */
