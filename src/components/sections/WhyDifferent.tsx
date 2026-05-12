@@ -51,7 +51,7 @@ export function WhyDifferent() {
                   <Check
                     size={18}
                     strokeWidth={2.5}
-                    className="text-accent"
+                    className="text-accent-strong"
                     aria-hidden
                   />
                 </div>

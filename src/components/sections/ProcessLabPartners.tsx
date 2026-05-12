@@ -32,7 +32,7 @@ export function ProcessLabPartners() {
         <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
           {STATS.map(({ Icon, value, label }) => (
             <div key={label} className="flex flex-col items-center text-center">
-              <Icon size={24} strokeWidth={1.5} className="text-accent" aria-hidden />
+              <Icon size={24} strokeWidth={1.5} className="text-accent-strong" aria-hidden />
               <p
                 className="mt-3 font-serif text-3xl font-medium text-primary"
                 style={{ fontVariationSettings: "'opsz' 144" }}
@@ -47,7 +47,7 @@ export function ProcessLabPartners() {
         </div>
 
         <div className="mx-auto mt-14 max-w-3xl rounded-2xl border border-border bg-surface-alt p-8 md:p-10">
-          <p className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+          <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
             What we test
           </p>
           <ul className="mt-5 grid grid-cols-1 gap-y-3 sm:grid-cols-2">

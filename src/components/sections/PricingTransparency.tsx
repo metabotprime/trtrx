@@ -28,7 +28,7 @@ export function PricingTransparency() {
         <div className="mx-auto mt-12 max-w-xl rounded-2xl border border-border bg-surface p-8 text-center shadow-sm md:p-10">
           <div className="flex items-baseline justify-center gap-2">
             <span
-              className="font-serif text-[clamp(3rem,6vw+1rem,4.5rem)] font-medium leading-none text-accent"
+              className="font-serif text-[clamp(3rem,6vw+1rem,4.5rem)] font-medium leading-none text-accent-strong"
               style={{ fontVariationSettings: "'opsz' 144" }}
             >
               {formatUSD(headlineMonthly)}
@@ -50,7 +50,7 @@ export function PricingTransparency() {
                 <Check
                   size={16}
                   strokeWidth={2.5}
-                  className="mt-[3px] shrink-0 text-accent"
+                  className="mt-[3px] shrink-0 text-accent-strong"
                   aria-hidden
                 />
                 <span>{item}</span>
@@ -68,7 +68,7 @@ export function PricingTransparency() {
         <div className="mt-8 flex justify-center">
           <Link
             href="/pricing"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent-strong"
           >
             See per-product pricing
             <ArrowRight

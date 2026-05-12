@@ -19,12 +19,12 @@ export function Breadcrumbs({ items }: Props) {
                 {!isLast ? (
                   <Link
                     href={item.href}
-                    className="text-muted underline-offset-4 transition-colors hover:text-accent"
+                    className="text-muted underline-offset-4 transition-colors hover:text-accent-strong"
                   >
                     {item.name}
                   </Link>
                 ) : (
-                  <span className="text-accent" aria-current="page">
+                  <span className="text-accent-strong" aria-current="page">
                     {item.name}
                   </span>
                 )}

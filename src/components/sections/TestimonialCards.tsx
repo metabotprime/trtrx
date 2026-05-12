@@ -69,7 +69,7 @@ export function TestimonialCards() {
                   <ArrowRight
                     size={16}
                     strokeWidth={2}
-                    className="text-accent"
+                    className="text-accent-strong"
                     aria-hidden
                   />
                   <span

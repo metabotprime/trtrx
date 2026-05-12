@@ -29,7 +29,7 @@ export function PricingPerProduct() {
                 >
                   <div>
                     <p
-                      className="font-serif text-xl font-medium text-primary group-hover:text-accent transition-colors"
+                      className="font-serif text-xl font-medium text-primary group-hover:text-accent-strong transition-colors"
                       style={{ fontVariationSettings: "'opsz' 144" }}
                     >
                       {tier.productName}
@@ -42,7 +42,7 @@ export function PricingPerProduct() {
                   </div>
                   <div className="flex items-center gap-4">
                     <span
-                      className="font-serif text-2xl font-medium text-accent tabular-nums"
+                      className="font-serif text-2xl font-medium text-accent-strong tabular-nums"
                       style={{ fontVariationSettings: "'opsz' 144" }}
                     >
                       {formatUSD(tier.monthlyPrice)}
@@ -50,7 +50,7 @@ export function PricingPerProduct() {
                     <ArrowRight
                       size={16}
                       strokeWidth={2}
-                      className="text-muted transition-all duration-150 group-hover:translate-x-0.5 group-hover:text-accent"
+                      className="text-muted transition-all duration-150 group-hover:translate-x-0.5 group-hover:text-accent-strong"
                       aria-hidden
                     />
                   </div>

@@ -24,7 +24,7 @@ export function PricingBreakdown() {
         <div className="mx-auto mt-14 grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-7">
           {/* Monthly */}
           <article className="flex flex-col rounded-2xl border border-border bg-surface p-8">
-            <p className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+            <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
               Standard Monthly
             </p>
             <p
@@ -43,7 +43,7 @@ export function PricingBreakdown() {
                   <Check
                     size={16}
                     strokeWidth={2.5}
-                    className="mt-[3px] shrink-0 text-accent"
+                    className="mt-[3px] shrink-0 text-accent-strong"
                     aria-hidden
                   />
                   <span>{item}</span>
@@ -54,7 +54,7 @@ export function PricingBreakdown() {
 
           {/* Year One */}
           <article className="flex flex-col rounded-2xl border border-border bg-surface p-8">
-            <p className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+            <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
               Year One
             </p>
             <p

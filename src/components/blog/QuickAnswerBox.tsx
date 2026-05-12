@@ -15,7 +15,7 @@ type QuickAnswerBoxProps = {
 export function QuickAnswerBox({ answer, eyebrow = 'Quick Answer' }: QuickAnswerBoxProps) {
   return (
     <div className="speakable-answer mt-10 rounded-2xl border-l-4 border-accent bg-surface-alt px-6 py-5 md:px-8 md:py-6">
-      <p className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+      <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
         {eyebrow}
       </p>
       <p className="mt-2 text-[16px] leading-[1.65] text-text md:text-[17px]">

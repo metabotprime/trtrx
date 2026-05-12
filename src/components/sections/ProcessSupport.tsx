@@ -44,7 +44,7 @@ export function ProcessSupport() {
         <ul className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {CAPABILITIES.map(({ Icon, title, body }) => (
             <li key={title} className="flex flex-col">
-              <Icon size={28} strokeWidth={1.5} className="text-accent" aria-hidden />
+              <Icon size={28} strokeWidth={1.5} className="text-accent-strong" aria-hidden />
               <h3
                 className="mt-5 font-serif text-lg font-medium leading-tight text-primary"
                 style={{ fontVariationSettings: "'opsz' 144" }}

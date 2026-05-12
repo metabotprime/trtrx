@@ -56,7 +56,7 @@ export function MedicalDirector() {
                   <Check
                     size={16}
                     strokeWidth={2.5}
-                    className="mt-1 shrink-0 text-accent"
+                    className="mt-1 shrink-0 text-accent-strong"
                     aria-hidden
                   />
                   <span className="text-text">{credential}</span>
@@ -78,7 +78,7 @@ export function MedicalDirector() {
             <div className="mt-8">
               <Link
                 href="/about"
-                className="group inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent"
+                className="group inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent-strong"
               >
                 Meet our physician network
                 <ArrowRight

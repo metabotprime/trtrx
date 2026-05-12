@@ -39,7 +39,7 @@ export function ProcessConsultDetail() {
                   <Check
                     size={16}
                     strokeWidth={2.5}
-                    className="mt-[3px] shrink-0 text-accent"
+                    className="mt-[3px] shrink-0 text-accent-strong"
                     aria-hidden
                   />
                   <span>{item}</span>

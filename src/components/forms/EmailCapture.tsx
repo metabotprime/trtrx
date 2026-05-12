@@ -31,7 +31,7 @@ export function EmailCapture({ className, variant = 'inline' }: Props) {
           type="button"
           onClick={() => setStatus('open')}
           className={cn(
-            'group inline-flex items-center gap-2 text-sm font-medium text-text underline-offset-4 transition-colors hover:text-accent',
+            'group inline-flex items-center gap-2 text-sm font-medium text-text underline-offset-4 transition-colors hover:text-accent-strong',
             className,
           )}
         >
@@ -47,7 +47,7 @@ export function EmailCapture({ className, variant = 'inline' }: Props) {
       return (
         <div
           className={cn(
-            'inline-flex items-center gap-2 text-sm font-medium text-accent',
+            'inline-flex items-center gap-2 text-sm font-medium text-accent-strong',
             className,
           )}
         >
@@ -89,7 +89,7 @@ export function EmailCapture({ className, variant = 'inline' }: Props) {
   if (status === 'success') {
     return (
       <div className={cn('rounded-2xl border border-border bg-surface p-6', className)}>
-        <div className="flex items-center gap-2 text-accent">
+        <div className="flex items-center gap-2 text-accent-strong">
           <Check size={18} strokeWidth={2.5} />
           <span className="font-medium">You&apos;re on the list.</span>
         </div>

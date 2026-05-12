@@ -45,7 +45,8 @@ HSL tokens in `src/styles/globals.css`. After comparing 12 preview directions th
 | Token | HSL | Hex | Use |
 |---|---|---|---|
 | `--primary` | `215 60% 28%` | `#1D4173` | ocean blue — headlines, primary buttons, footer band, "trt" in logo |
-| `--accent` | `30 88% 35%` | `#A8590B` | burnt amber — CTAs, italic emphasis words, eyebrow text, italic "rx" in logo. **Darkened from initial `30 90% 52%` so text-accent passes WCAG AA both directions on cream (4.85:1) — accessibility, not visual preference.** |
+| `--accent` | `35 95% 55%` | `#F5A623` | bright marigold — **solid fills only** (CTA backgrounds, footer band, dividers, borders) and amber **text on DARK surfaces** (Footer link hover, FooterCTABand italic emphasis, Logo italic-rx on `tone="on-dark"`). Never use as text on cream/light surfaces — `text-accent-strong` is the token for that. |
+| `--accent-strong` | `30 88% 33%` | `#9D5208` | dark amber — **text-only token for amber text on LIGHT surfaces**. Used by `.eyebrow`, blog category labels, Logo italic-rx on `tone="on-light"`, QuickAnswerBox label. Passes WCAG AA on both `--surface` (5.41:1) and `--surface-alt` (4.86:1). |
 | `--surface` | `36 35% 97%` | `#FCFAF6` | light cream — default page background |
 | `--surface-alt` | `36 28% 93%` | `#F1EBE0` | deeper cream — banded sections |
 | `--text` | `220 25% 14%` | `#1B2233` | dark text body |

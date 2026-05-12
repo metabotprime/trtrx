@@ -24,7 +24,7 @@ export function HomeBlogSection() {
                 href={`/blog/${post.slug}`}
                 className="group flex h-full flex-col rounded-2xl border border-border bg-surface p-7 transition-all duration-200 hover:-translate-y-px hover:border-accent/40 hover:shadow-md md:p-8"
               >
-                <p className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+                <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
                   {CATEGORY_LABELS[post.category]}
                 </p>
 
@@ -45,7 +45,7 @@ export function HomeBlogSection() {
                   </span>
                   <ArrowRight
                     size={14}
-                    className="text-primary transition-all duration-150 group-hover:translate-x-0.5 group-hover:text-accent"
+                    className="text-primary transition-all duration-150 group-hover:translate-x-0.5 group-hover:text-accent-strong"
                     aria-hidden
                   />
                 </div>
@@ -57,7 +57,7 @@ export function HomeBlogSection() {
         <div className="mt-10 flex justify-center">
           <Link
             href="/blog"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent-strong"
           >
             View all articles
             <ArrowRight

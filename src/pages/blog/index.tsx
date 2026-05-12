@@ -82,7 +82,7 @@ export default function BlogIndexPage({ publishedAtDisplay }: Props) {
                       href={`/blog/${post.slug}`}
                       className="group flex h-full flex-col rounded-2xl border border-border bg-surface-alt p-7 transition-all duration-200 hover:-translate-y-px hover:border-accent/40 md:p-8"
                     >
-                      <p className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+                      <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
                         {CATEGORY_LABELS[post.category]}
                       </p>
                       <h2
@@ -100,7 +100,7 @@ export default function BlogIndexPage({ publishedAtDisplay }: Props) {
                         </span>
                         <ArrowRight
                           size={14}
-                          className="text-primary transition-all duration-150 group-hover:translate-x-0.5 group-hover:text-accent"
+                          className="text-primary transition-all duration-150 group-hover:translate-x-0.5 group-hover:text-accent-strong"
                           aria-hidden
                         />
                       </div>
@@ -124,7 +124,7 @@ export default function BlogIndexPage({ publishedAtDisplay }: Props) {
                     className="group flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-all duration-200 hover:-translate-y-px hover:border-accent/40 hover:shadow-md"
                   >
                     <div className="mb-4 flex items-baseline justify-between">
-                      <p className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+                      <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
                         {CATEGORY_LABELS[post.category]}
                       </p>
                       <p className="font-mono text-[10px] uppercase tracking-tracked text-muted">
@@ -146,7 +146,7 @@ export default function BlogIndexPage({ publishedAtDisplay }: Props) {
                       </span>
                       <ArrowRight
                         size={14}
-                        className="text-primary transition-all duration-150 group-hover:translate-x-0.5 group-hover:text-accent"
+                        className="text-primary transition-all duration-150 group-hover:translate-x-0.5 group-hover:text-accent-strong"
                         aria-hidden
                       />
                     </div>

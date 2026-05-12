@@ -27,11 +27,11 @@ export default function SignInPage() {
                     <Lock
                       size={18}
                       strokeWidth={2}
-                      className="text-accent"
+                      className="text-accent-strong"
                       aria-hidden
                     />
                   </div>
-                  <p className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+                  <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
                     Patient Portal
                   </p>
                 </div>
@@ -61,7 +61,7 @@ export default function SignInPage() {
               <div className="mt-6 text-center">
                 <Link
                   href="/how-it-works"
-                  className="group inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent"
+                  className="group inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent-strong"
                 >
                   New here? See how trtrx works
                   <ArrowRight

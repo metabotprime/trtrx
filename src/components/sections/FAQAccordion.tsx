@@ -37,7 +37,7 @@ export function FAQAccordion() {
         <div className="mt-10 flex justify-center">
           <Link
             href="/faq"
-            className="group inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent"
+            className="group inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent-strong"
           >
             See all FAQs
             <ArrowRight

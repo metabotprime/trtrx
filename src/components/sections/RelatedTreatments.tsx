@@ -26,7 +26,7 @@ export function RelatedTreatments({ currentSlug }: Props) {
                 href={`/treatments/${t.slug}`}
                 className="group flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-all duration-200 hover:-translate-y-px hover:border-accent/40 hover:shadow-md"
               >
-                <p className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+                <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
                   {t.formFactor}
                 </p>
                 <h3
@@ -46,7 +46,7 @@ export function RelatedTreatments({ currentSlug }: Props) {
                   </span>
                   <ArrowRight
                     size={14}
-                    className="text-primary transition-all duration-150 group-hover:translate-x-0.5 group-hover:text-accent"
+                    className="text-primary transition-all duration-150 group-hover:translate-x-0.5 group-hover:text-accent-strong"
                     aria-hidden
                   />
                 </div>
@@ -58,7 +58,7 @@ export function RelatedTreatments({ currentSlug }: Props) {
         <div className="mt-10 flex justify-center">
           <Link
             href="/treatments"
-            className="group inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent"
+            className="group inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent-strong"
           >
             See all treatments
             <ArrowRight

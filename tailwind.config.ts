@@ -14,6 +14,8 @@ const config: Config = {
         'primary-foreground': 'hsl(var(--primary-foreground))',
         accent: 'hsl(var(--accent))',
         'accent-foreground': 'hsl(var(--accent-foreground))',
+        'accent-strong': 'hsl(var(--accent-strong))',
+        'accent-strong-foreground': 'hsl(var(--accent-strong-foreground))',
         surface: 'hsl(var(--surface))',
         'surface-alt': 'hsl(var(--surface-alt))',
         text: 'hsl(var(--text))',

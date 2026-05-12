@@ -80,7 +80,7 @@ export default function BlogPostPage({ post, lastReviewedDisplay }: Props) {
           <div className="container max-w-3xl px-5 py-12 md:py-16">
             {/* Header */}
             <header>
-              <p className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+              <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
                 {CATEGORY_LABELS[post.category]}
               </p>
               <h1
@@ -173,7 +173,7 @@ export default function BlogPostPage({ post, lastReviewedDisplay }: Props) {
                       href={`/blog/${p.slug}`}
                       className="group flex h-full flex-col rounded-2xl border border-border bg-surface p-5 transition-all duration-200 hover:-translate-y-px hover:border-accent/40"
                     >
-                      <p className="font-mono text-[10px] uppercase tracking-tracked text-accent">
+                      <p className="font-mono text-[10px] uppercase tracking-tracked text-accent-strong">
                         {CATEGORY_LABELS[p.category]}
                       </p>
                       <h3

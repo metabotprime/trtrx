@@ -68,7 +68,7 @@ export function TreatmentTable() {
                 {TREATMENTS.map((t) => (
                   <Cell key={t.slug}>
                     {t.fertilityPreserving ? (
-                      <Check size={16} strokeWidth={2.5} className="text-accent" />
+                      <Check size={16} strokeWidth={2.5} className="text-accent-strong" />
                     ) : (
                       <Minus size={16} strokeWidth={2} className="text-muted/50" />
                     )}

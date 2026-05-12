@@ -24,7 +24,7 @@ export function ProductOverview({ treatment }: Props) {
                   <Check
                     size={16}
                     strokeWidth={2.5}
-                    className="mt-1 shrink-0 text-accent"
+                    className="mt-1 shrink-0 text-accent-strong"
                     aria-hidden
                   />
                   <span>{b}</span>

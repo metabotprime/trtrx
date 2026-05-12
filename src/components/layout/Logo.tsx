@@ -18,7 +18,14 @@ export function Logo({ className, tone = 'on-light' }: LogoProps) {
       )}
     >
       <span className="font-medium">trt</span>
-      <span className="display-italic font-medium text-accent transition-colors group-hover:text-accent/80">
+      <span
+        className={cn(
+          'display-italic font-medium transition-colors',
+          tone === 'on-light'
+            ? 'text-accent-strong group-hover:text-accent-strong/80'
+            : 'text-accent group-hover:text-accent/80',
+        )}
+      >
         rx
       </span>
     </Link>

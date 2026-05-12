@@ -23,7 +23,7 @@ export function ProductHero({ treatment }: Props) {
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Text */}
           <div className="lg:col-span-7">
-            <p className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+            <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
               {treatment.formFactor} · {treatment.frequency} · {FDA_LABEL[treatment.fdaStatus] ?? treatment.fdaStatus}
             </p>
 
@@ -62,7 +62,7 @@ export function ProductHero({ treatment }: Props) {
                 )}
               </div>
               {treatment.fertilityPreserving && (
-                <span className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+                <span className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
                   Fertility-preserving
                 </span>
               )}

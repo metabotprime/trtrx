@@ -53,7 +53,7 @@ export function CompoundedExplainer() {
               key={side.eyebrow}
               className="flex flex-col rounded-2xl border border-border bg-surface p-8 md:p-10"
             >
-              <p className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+              <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
                 {side.eyebrow}
               </p>
 
@@ -77,7 +77,7 @@ export function CompoundedExplainer() {
                     <Check
                       size={16}
                       strokeWidth={2.5}
-                      className="mt-[3px] shrink-0 text-accent"
+                      className="mt-[3px] shrink-0 text-accent-strong"
                       aria-hidden
                     />
                     <span>{item}</span>

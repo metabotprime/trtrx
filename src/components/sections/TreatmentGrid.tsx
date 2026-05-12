@@ -45,7 +45,7 @@ export function TreatmentGrid({ showHeader = true }: Props = {}) {
 
                 <div className="flex flex-1 flex-col p-6">
                   {/* Eyebrow badges */}
-                  <p className="mb-3 font-mono text-[11px] uppercase tracking-tracked text-accent">
+                  <p className="mb-3 font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
                     {t.formFactor} · {FDA_LABEL[t.fdaStatus] ?? t.fdaStatus}
                   </p>
 
@@ -66,7 +66,7 @@ export function TreatmentGrid({ showHeader = true }: Props = {}) {
                     <SpecRow
                       label="Fertility"
                       value={t.fertilityPreserving ? 'Preserving' : 'Not preserving'}
-                      valueClass={t.fertilityPreserving ? 'text-accent' : ''}
+                      valueClass={t.fertilityPreserving ? 'text-accent-strong' : ''}
                     />
                     <SpecRow
                       label="Status"
@@ -95,7 +95,7 @@ export function TreatmentGrid({ showHeader = true }: Props = {}) {
 
                   {/* Spacer pushes the link to bottom */}
                   <div className="mt-auto pt-6">
-                    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors group-hover:text-accent">
+                    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors group-hover:text-accent-strong">
                       Learn more
                       <ArrowRight
                         size={14}

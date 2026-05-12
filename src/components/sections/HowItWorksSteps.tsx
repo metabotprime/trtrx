@@ -69,7 +69,7 @@ export function HowItWorksSteps({ showHeader = true }: Props = {}) {
           {STEPS.map(({ number, Icon, title, body }) => (
             <li key={number} className="flex flex-col">
               <span
-                className="font-mono text-5xl font-medium leading-none text-accent"
+                className="font-mono text-5xl font-medium leading-none text-accent-strong"
                 aria-hidden
               >
                 {number}

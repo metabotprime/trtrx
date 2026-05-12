@@ -11,8 +11,8 @@ const buttonVariants = cva(
           'bg-accent text-accent-foreground hover:bg-accent/90 hover:-translate-y-px shadow-[0_1px_0_0_hsl(var(--accent)/0.4)]',
         outline:
           'border border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground hover:-translate-y-px',
-        ghost: 'bg-transparent text-text hover:text-accent',
-        link: 'bg-transparent text-text underline-offset-4 hover:text-accent',
+        ghost: 'bg-transparent text-text hover:text-accent-strong',
+        link: 'bg-transparent text-text underline-offset-4 hover:text-accent-strong',
       },
       size: {
         sm: 'h-9 px-4 text-sm rounded-full',

@@ -66,8 +66,8 @@ export function Navigation() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    'relative text-sm font-medium tracking-tight text-primary transition-colors hover:text-accent',
-                    active && 'text-accent',
+                    'relative text-sm font-medium tracking-tight text-primary transition-colors hover:text-accent-strong',
+                    active && 'text-accent-strong',
                   )}
                 >
                   {item.label}
@@ -86,7 +86,7 @@ export function Navigation() {
           <div className="hidden items-center gap-6 lg:flex">
             <Link
               href="/sign-in"
-              className="text-sm font-medium tracking-tight text-primary transition-colors hover:text-accent"
+              className="text-sm font-medium tracking-tight text-primary transition-colors hover:text-accent-strong"
             >
               Sign in
             </Link>
@@ -138,7 +138,7 @@ export function Navigation() {
             </Link>
             <Link
               href="/sign-in"
-              className="block text-center text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent"
+              className="block text-center text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent-strong"
             >
               Sign in
             </Link>
