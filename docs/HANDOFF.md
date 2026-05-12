@@ -45,8 +45,8 @@ HSL tokens in `src/styles/globals.css`. After comparing 12 preview directions th
 | Token | HSL | Hex | Use |
 |---|---|---|---|
 | `--primary` | `215 60% 28%` | `#1D4173` | ocean blue — headlines, primary buttons, footer band, "trt" in logo |
-| `--accent` | `35 95% 55%` | `#F5A623` | bright marigold — **solid fills only** (CTA backgrounds, footer band, dividers, borders) and amber **text on DARK surfaces** (Footer link hover, FooterCTABand italic emphasis, Logo italic-rx on `tone="on-dark"`). Never use as text on cream/light surfaces — `text-accent-strong` is the token for that. |
-| `--accent-strong` | `30 88% 33%` | `#9D5208` | dark amber — **text-only token for amber text on LIGHT surfaces**. Used by `.eyebrow`, blog category labels, Logo italic-rx on `tone="on-light"`, QuickAnswerBox label. Passes WCAG AA on both `--surface` (5.41:1) and `--surface-alt` (4.86:1). |
+| `--accent` | `45 95% 55%` | `#F9C31F` | warm gold — **solid fills only** (CTA backgrounds, footer band, dividers, borders) and gold **text on DARK surfaces** (Footer link hover, FooterCTABand italic emphasis, Logo italic-rx on `tone="on-dark"` — passes 5.49:1 on ocean blue). Never use as text on cream/light surfaces — `text-accent-strong` is the token for that. |
+| `--accent-strong` | `45 85% 28%` | `#84660B` | dark gold — **text-only token for gold text on LIGHT surfaces**. Used by `.eyebrow`, blog category labels, Logo italic-rx on `tone="on-light"`, QuickAnswerBox label. Passes WCAG AA on both `--surface` (5.41:1) and `--surface-alt` (4.95:1). |
 | `--surface` | `210 20% 99%` | `#FBFCFD` | cool white — default page background |
 | `--surface-alt` | `220 15% 96%` | `#F0F3F6` | cool light gray — banded sections |
 | `--text` | `220 25% 14%` | `#1B2233` | dark text body |
