@@ -4,18 +4,17 @@
 
 @layer base {
   :root {
-    /* Palette — Gold/Blue/White: ocean blue + bright marigold (with dark-amber text sibling) on cool white */
-    --primary: 215 60% 28%;          /* #1D4173 ocean blue */
-    --primary-foreground: 210 20% 99%;
-    --accent: 45 95% 55%;            /* #F9C31F warm gold — solid fills, dark-surface text */
-    --accent-foreground: 220 25% 14%; /* #1B2233 dark navy — text on bright gold buttons */
-    --accent-strong: 45 85% 28%;     /* #84660B dark gold — text on light surfaces, passes WCAG AA */
-    --accent-strong-foreground: 210 20% 99%; /* cool white — text on dark-gold fills (rare) */
-    --surface: 210 20% 99%;          /* #FBFCFD cool white */
-    --surface-alt: 220 15% 96%;      /* #F0F3F6 cool light gray — banded sections */
-    --text: 220 25% 14%;             /* #1B2233 dark text */
-    --muted: 220 10% 42%;            /* #6A727C cool gray */
-    --border: 220 15% 91%;           /* #E2E6EC cool light border */
+    /* Palette — Light Blue: deep ocean navy primary + bright sky-blue accent on pale icy surface */
+    --primary: 215 60% 25%;            /* deep ocean navy — headlines, buttons */
+    --primary-foreground: 210 40% 98%;
+    --accent: 200 85% 50%;             /* bright sky blue — CTA fills, dividers */
+    --accent-foreground: 215 60% 15%;  /* deep navy on sky-blue (for button text) */
+    --accent-strong: 210 70% 30%;      /* deep ocean blue — text-only on light surfaces (passes AA on icy white) */
+    --surface: 210 40% 98%;            /* pale icy white */
+    --surface-alt: 210 28% 93%;        /* slightly cooler blue-gray */
+    --text: 215 30% 16%;                /* dark slate */
+    --muted: 215 12% 45%;              /* cool gray */
+    --border: 210 25% 88%;
   }
 
   html {
