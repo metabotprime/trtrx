@@ -14,29 +14,29 @@ Targets per HANDOFF.md: **Performance ≥95, Accessibility ≥95, Best Practices
 
 | Page | Perf | A11y | BP | SEO |
 |---|---|---|---|---|
-| `/` | 94 | 96 | 100 | 100 |
-| `/treatments` | 97 | 96 | 100 | 100 |
-| `/treatments/cypionate` | 93 | 95 | 100 | 100 |
-| `/treatments/enanthate` | 93 | 95 | 100 | 100 |
-| `/treatments/enclomiphene` | 93 | 95 | 100 | 100 |
+| `/` | 93 | 96 | 100 | 100 |
+| `/treatments` | 93 | 96 | 100 | 100 |
+| `/treatments/cypionate` | 92 | 95 | 100 | 100 |
+| `/treatments/enanthate` | 92 | 95 | 100 | 100 |
+| `/treatments/enclomiphene` | 97 | 95 | 100 | 100 |
 | `/treatments/hcg` | 93 | 95 | 100 | 100 |
 | `/treatments/cream` | 93 | 95 | 100 | 100 |
 | `/how-it-works` | 94 | 95 | 100 | 100 |
 | `/pricing` | 93 | 95 | 100 | 100 |
-| `/about` | 97 | 95 | 100 | 100 |
-| `/faq` | 94 | 95 | 100 | 100 |
+| `/about` | 94 | 95 | 100 | 100 |
+| `/faq` | 93 | 95 | 100 | 100 |
 | `/blog` | 93 | 95 | 100 | 100 |
 | `/blog/cypionate-vs-enanthate` | 93 | 95 | 100 | 100 |
 | `/blog/trt-and-fertility` | 93 | 95 | 100 | 100 |
 | `/blog/trt-and-hematocrit` | 93 | 95 | 100 | 100 |
-| `/blog/signs-of-low-testosterone-35-55` | 92 | 95 | 100 | 100 |
+| `/blog/signs-of-low-testosterone-35-55` | 93 | 95 | 100 | 100 |
 | `/blog/how-trt-pricing-works` | 93 | 95 | 100 | 100 |
 | `/blog/weekly-vs-twice-weekly-cypionate` | 93 | 95 | 100 | 100 |
-| `/contact` | 92 | 95 | 100 | 100 |
+| `/contact` | 94 | 95 | 100 | 100 |
 | `/sign-in` | 94 | 95 | 100 | **92** ¹ |
-| `/privacy` | 93 | 95 | 100 | 100 |
+| `/privacy` | 97 | 95 | 100 | 100 |
 | `/terms` | 97 | 95 | 100 | 100 |
-| `/accessibility` | 93 | 95 | 100 | 100 |
+| `/accessibility` | 95 | 95 | 100 | 100 |
 | `/medical-disclaimer` | 94 | 95 | 100 | 100 |
 
 ¹ `/sign-in` carries `noindex,nofollow` intentionally as a pre-launch placeholder.
@@ -69,18 +69,25 @@ Targets per HANDOFF.md: **Performance ≥95, Accessibility ≥95, Best Practices
 | `/blog` index | `errors-in-console` (same React #418) | Same pattern — pre-format `publishedAt` for each post in `getStaticProps` |
 | `/contact` | `is-on-https`, `inspector-issues` (Mixed Content, BP=78) | Replaced the `<form action="mailto:...">` pattern with a clean email block + "Compose email" mailto link. Chrome treats mailto form-actions as mixed content from HTTPS pages. |
 
-### Brand color change worth flagging
+### Brand color: two-tier amber
 
-The amber went from `#ED8D1A` (bright marigold, ~`30 90% 52%`) to `#A8590B` (burnt amber, `30 88% 35%`). The contrast math from cream's luminance was the constraint — no amber lighter than ~L=36% can pass 4.5:1 against the cream surface. Pass 1 went to L=38% (3.78:1) and got rejected on the re-audit; pass 2 went to L=35% (4.85:1) and cleared.
+After three audit-driven palette iterations, the locked solution is a **two-tier amber**:
 
-**The amber is now visibly darker than what was locked in modern-amber.** Still amber-family, but more "copper / burnt orange" than "bright marigold."  The favicon was regenerated with the new amber so the brand color stays consistent across surfaces.
+| Token | HSL | Hex | When to use |
+|---|---|---|---|
+| `--accent` | `35 95% 55%` | `#F5A623` bright marigold | Solid amber fills (CTA backgrounds, footer band, dividers, borders). Amber **text only on dark navy surfaces** (Footer link hover, FooterCTABand italic, Logo italic-rx on `tone="on-dark"`). |
+| `--accent-strong` | `30 88% 33%` | `#9D5208` dark amber | Amber **text on light cream surfaces** (eyebrows, blog category labels, QuickAnswerBox label, Logo italic-rx on `tone="on-light"`). Passes 5.41:1 on `--surface`, 4.86:1 on `--surface-alt`. |
+| `--accent-foreground` | `220 25% 14%` | `#1B2233` dark navy | Text **on** amber backgrounds (button copy). Passes 5.56:1 on the bright amber. |
 
-If the visual shift is unacceptable and you'd rather accept the WCAG fail, the revert is one token in `src/styles/globals.css`:
-```css
---accent: 30 90% 52%;            /* old bright */
---accent-foreground: 220 25% 14%; /* dark navy text on bright amber */
-```
-…but you'd be reintroducing 60+ contrast failures across 24 pages.
+This preserves the bright marigold the design lock originally aimed for, without reintroducing the WCAG color-contrast failures that drove the prior two darkening passes.
+
+**The path that got here**, in case you need to invert/iterate later:
+
+1. Pass 1 (commit `8d61dfc`) darkened a single `--accent` token to L=38% — math came in at 3.78:1, still failed
+2. Pass 2 (commit `4f0f932`) darkened further to L=35% — passed at 4.85:1, but the visual was too far from the locked design (the brand lost its marigold pop on CTA buttons)
+3. Pass 3 (commit `240feeb`) introduced the two-tier split — bright amber for fills and dark-surface text, dark amber as a separate `--accent-strong` token for text on light. Best of both: marigold visual + WCAG pass.
+
+The text-accent → text-accent-strong sweep was done via a perl regex with negative lookahead (`text-accent(?![-\w])`) so `text-accent-foreground` was preserved. Footer and FooterCTABand were manually reverted to `text-accent` since they sit on dark navy backgrounds where bright amber has fine contrast. Logo was made tone-aware so it reads dark amber in the header (on cream) and bright amber in the footer (on navy).
 
 ## What's still under threshold
 
@@ -131,3 +138,4 @@ The script audits all 24 paths from `/Users/christosi/Desktop/trtrx/src/lib/seo/
 | `8d61dfc` | 1 | First a11y fix — palette darken L=38%, button text dark navy, components: muted/80, contact form, blog heading, faq tap-targets, favicon regen |
 | `4f0f932` | 2 | Second a11y fix — palette darken L=35% (the previous L=38% still failed at 3.78:1), --accent-foreground reverted to cream, HowItWorks and Footer h3→h2, favicon regen |
 | `820cdc9` | 3 | /blog index date hydration fix (same pattern as /blog/[slug] in pass 1) |
+| `240feeb` | 4 | Two-tier amber refactor — bright marigold restored as `--accent`, new `--accent-strong` token added for amber text on light surfaces, perl-swept `text-accent → text-accent-strong` across 30 files, Footer + FooterCTABand reverted to `text-accent` (dark-bg contexts), Logo made tone-aware, favicon regen with bright marigold |
