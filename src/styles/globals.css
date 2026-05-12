@@ -4,18 +4,18 @@
 
 @layer base {
   :root {
-    /* Palette — Modern Amber: ocean blue + two-tier amber (bright fills + dark text) */
+    /* Palette — Gold/Blue/White: ocean blue + bright marigold (with dark-amber text sibling) on cool white */
     --primary: 215 60% 28%;          /* #1D4173 ocean blue */
-    --primary-foreground: 36 35% 97%;
+    --primary-foreground: 210 20% 99%;
     --accent: 35 95% 55%;            /* #F5A623 bright marigold — solid fills, dark-surface text */
     --accent-foreground: 220 25% 14%; /* #1B2233 dark navy — text on bright amber buttons */
     --accent-strong: 30 88% 33%;     /* #9D5208 dark amber — text on light surfaces, passes WCAG AA */
-    --accent-strong-foreground: 36 35% 97%; /* cream — text on dark-amber fills (rare) */
-    --surface: 36 35% 97%;           /* #FCFAF6 light cream */
-    --surface-alt: 36 28% 93%;       /* #F1EBE0 deeper cream */
+    --accent-strong-foreground: 210 20% 99%; /* cool white — text on dark-amber fills (rare) */
+    --surface: 210 20% 99%;          /* #FBFCFD cool white */
+    --surface-alt: 220 15% 96%;      /* #F0F3F6 cool light gray — banded sections */
     --text: 220 25% 14%;             /* #1B2233 dark text */
-    --muted: 30 10% 42%;             /* #74695E warm gray */
-    --border: 36 25% 89%;            /* #EBE2D1 warm light border */
+    --muted: 220 10% 42%;            /* #6A727C cool gray */
+    --border: 220 15% 91%;           /* #E2E6EC cool light border */
   }
 
   html {

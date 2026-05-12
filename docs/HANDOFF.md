@@ -47,11 +47,11 @@ HSL tokens in `src/styles/globals.css`. After comparing 12 preview directions th
 | `--primary` | `215 60% 28%` | `#1D4173` | ocean blue — headlines, primary buttons, footer band, "trt" in logo |
 | `--accent` | `35 95% 55%` | `#F5A623` | bright marigold — **solid fills only** (CTA backgrounds, footer band, dividers, borders) and amber **text on DARK surfaces** (Footer link hover, FooterCTABand italic emphasis, Logo italic-rx on `tone="on-dark"`). Never use as text on cream/light surfaces — `text-accent-strong` is the token for that. |
 | `--accent-strong` | `30 88% 33%` | `#9D5208` | dark amber — **text-only token for amber text on LIGHT surfaces**. Used by `.eyebrow`, blog category labels, Logo italic-rx on `tone="on-light"`, QuickAnswerBox label. Passes WCAG AA on both `--surface` (5.41:1) and `--surface-alt` (4.86:1). |
-| `--surface` | `36 35% 97%` | `#FCFAF6` | light cream — default page background |
-| `--surface-alt` | `36 28% 93%` | `#F1EBE0` | deeper cream — banded sections |
+| `--surface` | `210 20% 99%` | `#FBFCFD` | cool white — default page background |
+| `--surface-alt` | `220 15% 96%` | `#F0F3F6` | cool light gray — banded sections |
 | `--text` | `220 25% 14%` | `#1B2233` | dark text body |
-| `--muted` | `30 10% 42%` | `#74695E` | warm gray — subheads, captions |
-| `--border` | `36 25% 89%` | `#EBE2D1` | hairlines, card edges |
+| `--muted` | `220 10% 42%` | `#6A727C` | cool gray — subheads, captions |
+| `--border` | `220 15% 91%` | `#E2E6EC` | cool light border — hairlines, card edges |
 
 Mobile chrome theme-color: `#1D4173` (set in `src/pages/_document.tsx`).
 Never use pure white or pure black. Avoid `[hsl(...)]` arbitrary classes — always tokens.
