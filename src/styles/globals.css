@@ -4,18 +4,17 @@
 
 @layer base {
   :root {
-    /* Palette — Gold/Blue/White: ocean blue + bright marigold (with dark-amber text sibling) on cool white */
-    --primary: 215 60% 28%;          /* #1D4173 ocean blue */
-    --primary-foreground: 210 20% 99%;
-    --accent: 45 95% 55%;            /* #F9C31F warm gold — solid fills, dark-surface text */
-    --accent-foreground: 220 25% 14%; /* #1B2233 dark navy — text on bright gold buttons */
-    --accent-strong: 45 85% 28%;     /* #84660B dark gold — text on light surfaces, passes WCAG AA */
-    --accent-strong-foreground: 210 20% 99%; /* cool white — text on dark-gold fills (rare) */
-    --surface: 210 20% 99%;          /* #FBFCFD cool white */
-    --surface-alt: 220 15% 96%;      /* #F0F3F6 cool light gray — banded sections */
-    --text: 220 25% 14%;             /* #1B2233 dark text */
-    --muted: 220 10% 42%;            /* #6A727C cool gray */
-    --border: 220 15% 91%;           /* #E2E6EC cool light border */
+    /* Palette — Light Yellow: warm dark brown primary + rich gold accent on buttery cream */
+    --primary: 30 38% 22%;             /* warm dark coffee brown — headlines, buttons */
+    --primary-foreground: 50 55% 96%;
+    --accent: 45 90% 50%;              /* saturated gold — CTA fills, dividers */
+    --accent-foreground: 30 38% 16%;   /* dark brown on gold (for button text) */
+    --accent-strong: 35 75% 28%;       /* deep amber — text-only on light surfaces (passes AA on cream) */
+    --surface: 50 55% 96%;             /* pale buttery cream */
+    --surface-alt: 48 45% 91%;         /* deeper cream */
+    --text: 30 30% 14%;                /* dark warm charcoal */
+    --muted: 30 12% 42%;               /* warm gray */
+    --border: 45 28% 86%;
   }
 
   html {
