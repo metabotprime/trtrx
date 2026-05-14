@@ -92,12 +92,16 @@ export function buildLlmsTxt(): string {
     '',
     '## Trust signals',
     '',
+    '- MD-led care from a named, board-certified medical director (not NP/PA-routed)',
+    '- Quest and LabCorp lab partners across 4,400+ draw locations',
+    '- 24/7 patient portal with same-day clinical replies via secure messaging',
+    '- 60-day satisfaction guarantee with refund of unused supply',
+    '- HTTPS with HSTS preload-list eligibility',
+    '- Inline JSON-LD structured data (MedicalOrganization, BlogPosting, MedicalWebPage, FAQPage, Person)',
     `- Privacy policy: ${SITE_URL}/privacy`,
     `- Terms of service: ${SITE_URL}/terms`,
     `- Medical disclaimer: ${SITE_URL}/medical-disclaimer`,
     `- Accessibility statement: ${SITE_URL}/accessibility`,
-    `- Editorial policy: ${SITE_URL}/editorial-policy`,
-    `- Medical review policy: ${SITE_URL}/medical-review-policy`,
     '',
     '## Direct answers for common queries',
     '',
@@ -106,6 +110,14 @@ export function buildLlmsTxt(): string {
       `A: ${faq.answer}`,
       '',
     ]),
+    '## Optional',
+    '',
+    '- Editorial policy (forthcoming pre-launch)',
+    '- Medical review policy (forthcoming pre-launch)',
+    '- LegitScript verification (forthcoming when accreditation completes)',
+    `- Contact: ${SITE_URL}/contact`,
+    `- Sign in (patient portal): ${SITE_URL}/sign-in`,
+    '',
     '## Crawl references',
     '',
     `- Sitemap: ${SITE_URL}/sitemap.xml`,
@@ -160,11 +172,46 @@ export function buildLlmsFullTxt(): string {
     `- About + medical director: ${SITE_URL}/about`,
     `- FAQ (${FAQS.length} questions): ${SITE_URL}/faq`,
     `- Blog: ${SITE_URL}/blog`,
+    `- Contact: ${SITE_URL}/contact`,
+    `- Sign in (patient portal): ${SITE_URL}/sign-in`,
     '',
-    '## Complete article index by category',
+    '## Treatment details',
     '',
   ];
 
+  // Full treatment data for AI extraction: form, frequency, route, fertility,
+  // regulatory status, summary, key bullets, who-fits, who-does-not.
+  TREATMENTS.forEach((t) => {
+    lines.push(`### ${t.name} — ${fmtPrice(t.monthlyPriceFrom)}`);
+    lines.push('');
+    lines.push(`URL: ${toAbsoluteUrl(`/treatments/${t.slug}`)}`);
+    lines.push(`Form: ${t.formFactor}`);
+    lines.push(`Route: ${t.route}`);
+    lines.push(`Frequency: ${t.frequency}`);
+    lines.push(`Fertility-preserving: ${t.fertilityPreserving ? 'Yes' : 'No'}`);
+    lines.push(`Regulatory status: ${t.fdaStatus}`);
+    lines.push('');
+    lines.push(t.summary);
+    lines.push('');
+    if (t.bullets?.length) {
+      lines.push('Key points:');
+      t.bullets.forEach((b) => lines.push(`- ${b}`));
+      lines.push('');
+    }
+    if (t.whoIsThisFor?.length) {
+      lines.push('Best fit if:');
+      t.whoIsThisFor.forEach((b) => lines.push(`- ${b}`));
+      lines.push('');
+    }
+    if (t.whoIsThisNotFor?.length) {
+      lines.push('Not the best fit if:');
+      t.whoIsThisNotFor.forEach((b) => lines.push(`- ${b}`));
+      lines.push('');
+    }
+  });
+
+  lines.push('## Complete article index by category');
+  lines.push('');
   sortedCategories.forEach(([category, posts]) => {
     lines.push(`### ${CATEGORY_LABELS[category]} (${posts.length} article${posts.length === 1 ? '' : 's'})`);
     lines.push('');
@@ -173,7 +220,18 @@ export function buildLlmsFullTxt(): string {
       .sort((a, b) => (b.lastReviewedAt || b.publishedAt).localeCompare(a.lastReviewedAt || a.publishedAt))
       .forEach((post) => {
         lines.push(`- ${post.title} | ${toAbsoluteUrl(`/blog/${post.slug}`)} | ${post.readMinutes} min read | reviewed ${post.lastReviewedAt}`);
+        if (post.quickAnswer) {
+          lines.push(`  Quick answer: ${post.quickAnswer}`);
+        }
       });
+    lines.push('');
+  });
+
+  lines.push('## Full FAQ');
+  lines.push('');
+  FAQS.forEach((faq) => {
+    lines.push(`**Q: ${faq.question}**`);
+    lines.push(`A: ${faq.answer}`);
     lines.push('');
   });
 
@@ -183,15 +241,21 @@ export function buildLlmsFullTxt(): string {
   lines.push(`- Privacy policy: ${SITE_URL}/privacy`);
   lines.push(`- Terms of service: ${SITE_URL}/terms`);
   lines.push(`- Accessibility: ${SITE_URL}/accessibility`);
-  lines.push(`- Editorial policy: ${SITE_URL}/editorial-policy`);
-  lines.push(`- Medical review policy: ${SITE_URL}/medical-review-policy`);
+  lines.push('');
+  lines.push('## Optional');
+  lines.push('');
+  lines.push('- Editorial policy (forthcoming pre-launch)');
+  lines.push('- Medical review policy (forthcoming pre-launch)');
+  lines.push('- LegitScript verification (forthcoming when accreditation completes)');
+  lines.push(`- AI plugin manifest: ${SITE_URL}/.well-known/ai-plugin.json`);
+  lines.push(`- Security policy: ${SITE_URL}/.well-known/security.txt`);
   lines.push('');
   lines.push('## Crawl references');
   lines.push('');
   lines.push(`- Sitemap: ${SITE_URL}/sitemap.xml`);
   lines.push(`- Image sitemap: ${SITE_URL}/image-sitemap.xml`);
   lines.push(`- Robots: ${SITE_URL}/robots.txt`);
-  lines.push(`- AI plugin manifest: ${SITE_URL}/.well-known/ai-plugin.json`);
+  lines.push(`- Concise overview: ${SITE_URL}/llms.txt`);
 
   return `${lines.join('\n')}\n`;
 }
