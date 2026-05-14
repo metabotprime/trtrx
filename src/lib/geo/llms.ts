@@ -118,12 +118,16 @@ export function buildLlmsTxt(): string {
     `- Contact: ${SITE_URL}/contact`,
     `- Sign in (patient portal): ${SITE_URL}/sign-in`,
     '',
+    '## Machine-readable data',
+    '',
+    `- Pricing (parseable Markdown for AI agents): ${SITE_URL}/pricing.md`,
+    `- Full content index: ${SITE_URL}/llms-full.txt`,
+    `- AI plugin manifest: ${SITE_URL}/.well-known/ai-plugin.json`,
+    '',
     '## Crawl references',
     '',
     `- Sitemap: ${SITE_URL}/sitemap.xml`,
     `- Image sitemap: ${SITE_URL}/image-sitemap.xml`,
-    `- Full content index: ${SITE_URL}/llms-full.txt`,
-    `- AI plugin manifest: ${SITE_URL}/.well-known/ai-plugin.json`,
     `- Robots policy: ${SITE_URL}/robots.txt`,
   ];
 
@@ -235,6 +239,12 @@ export function buildLlmsFullTxt(): string {
     lines.push('');
   });
 
+  lines.push('## Machine-readable pricing');
+  lines.push('');
+  lines.push(`- Parseable Markdown pricing reference for AI agents: ${SITE_URL}/pricing.md`);
+  lines.push('- Updated on every deploy; revalidated hourly');
+  lines.push('- Includes per-treatment pricing, plan inclusions, eligibility, payment, refund policy');
+  lines.push('');
   lines.push('## Trust and compliance');
   lines.push('');
   lines.push(`- Medical disclaimer: ${SITE_URL}/medical-disclaimer`);
