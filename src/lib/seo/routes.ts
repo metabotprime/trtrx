@@ -4,6 +4,7 @@
  */
 
 import { BLOG_POSTS } from '@/content/blog';
+import { isNoindexBlogSlug } from './noindex-slugs';
 
 export type RouteEntry = {
   path: string;
@@ -40,7 +41,10 @@ export const ROUTES: RouteEntry[] = [
     path: `/blog/${p.slug}`,
     changeFreq: 'monthly' as const,
     priority: 0.7,
-    inSitemap: true,
+    // Slugs in noindex-slugs.ts are excluded from the sitemap. They still
+    // render (PPC / direct nav can reach them) but Google won't crawl them
+    // via the sitemap and the page emits noindex meta.
+    inSitemap: !isNoindexBlogSlug(p.slug),
   })),
   { path: '/contact', changeFreq: 'yearly', priority: 0.5, inSitemap: true },
   { path: '/privacy', changeFreq: 'yearly', priority: 0.3, inSitemap: true },

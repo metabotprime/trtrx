@@ -8,6 +8,7 @@ import { MedicalWebPageSchema } from '@/components/seo/schemas/MedicalWebPageSch
 import { SpeakableSchema } from '@/components/seo/schemas/SpeakableSchema';
 import { CitationSchema, type Citation } from '@/components/seo/schemas/CitationSchema';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { isNoindexBlogSlug } from '@/lib/seo/noindex-slugs';
 import { QuickAnswerBox } from '@/components/blog/QuickAnswerBox';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 import { toAbsoluteUrl } from '@/lib/seo/site';
@@ -39,6 +40,7 @@ export default function BlogPostPage({ post, lastReviewedDisplay }: Props) {
         description={post.excerpt}
         path={`/blog/${post.slug}`}
         ogImage={post.ogImage ?? '/og/blog-default.png'}
+        noindex={isNoindexBlogSlug(post.slug)}
       />
       <EntityGraphSchema
         title={post.title}
