@@ -30,6 +30,16 @@ export type BlogReviewer = {
   photo: string;
 };
 
+export type BlogPostCitation = {
+  type: 'ScholarlyArticle' | 'MedicalScholarlyArticle';
+  headline: string;
+  author?: string[];
+  datePublished?: string; // ISO date (year-only OK: '2023')
+  url?: string;
+  publisher?: string;
+  publicationType?: string; // 'JournalArticle', 'SystematicReview', 'Guideline', etc.
+};
+
 export type BlogPost = {
   slug: string;
   category: BlogCategory;
@@ -45,6 +55,7 @@ export type BlogPost = {
   ogImage?: string; // optional per-post OG override; defaults to /og/blog-default.png
   featured?: boolean; // surfaced in /blog featured strip
   onHomePage?: boolean; // surfaced on homepage 3-card section
+  citations?: BlogPostCitation[]; // clinical trials / guidelines / peer-reviewed refs for E-E-A-T
 };
 
 export const CATEGORY_LABELS: Record<BlogCategory, string> = {
@@ -137,6 +148,65 @@ export const BLOG_POSTS: BlogPost[] = [
     readMinutes: 12,
     featured: false,
     onHomePage: false,
+    citations: [
+      {
+        type: 'MedicalScholarlyArticle',
+        headline:
+          'Cardiovascular Safety of Testosterone-Replacement Therapy (TRAVERSE)',
+        author: [
+          'Lincoff AM',
+          'Bhasin S',
+          'Flevaris P',
+          'Mitchell LM',
+          'Basaria S',
+          'Boden WE',
+          'Cunningham GR',
+          'Granger CB',
+          'Khera M',
+          'Thompson IM Jr',
+          'Wang Q',
+          'Wolski K',
+          'Davey D',
+          'Kalahasti V',
+          'Khan N',
+          'Miller MG',
+          'Snabes MC',
+          'Chan A',
+          'Dubcenco E',
+          'Li X',
+          'Yi T',
+          'Huang B',
+          'Pencina KM',
+          'Travison TG',
+          'Nissen SE',
+        ],
+        datePublished: '2023-07-13',
+        url: 'https://www.nejm.org/doi/full/10.1056/NEJMoa2215025',
+        publisher: 'New England Journal of Medicine',
+        publicationType: 'JournalArticle',
+      },
+      {
+        type: 'MedicalScholarlyArticle',
+        headline:
+          'Testosterone Therapy in Men With Hypogonadism: An Endocrine Society Clinical Practice Guideline',
+        author: [
+          'Bhasin S',
+          'Brito JP',
+          'Cunningham GR',
+          'Hayes FJ',
+          'Hodis HN',
+          'Matsumoto AM',
+          'Snyder PJ',
+          'Swerdloff RS',
+          'Wu FC',
+          'Yialamas MA',
+        ],
+        datePublished: '2018-05-01',
+        url: 'https://academic.oup.com/jcem/article/103/5/1715/4939465',
+        publisher: 'Journal of Clinical Endocrinology & Metabolism',
+        publicationType: 'Guideline',
+      },
+    ],
   },
   {
     slug: 'signs-of-low-testosterone-35-55',

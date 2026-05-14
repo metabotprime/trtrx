@@ -6,6 +6,7 @@ import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { BlogPostingSchema } from '@/components/seo/schemas/BlogPostingSchema';
 import { MedicalWebPageSchema } from '@/components/seo/schemas/MedicalWebPageSchema';
 import { SpeakableSchema } from '@/components/seo/schemas/SpeakableSchema';
+import { CitationSchema, type Citation } from '@/components/seo/schemas/CitationSchema';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { QuickAnswerBox } from '@/components/blog/QuickAnswerBox';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
@@ -66,6 +67,20 @@ export default function BlogPostPage({ post, lastReviewedDisplay }: Props) {
         url={toAbsoluteUrl(`/blog/${post.slug}`)}
         speakableSelectors={['.speakable-answer']}
       />
+      {post.citations && post.citations.length > 0 && (
+        <CitationSchema
+          pageUrl={`/blog/${post.slug}`}
+          citations={post.citations.map<Citation>((c) => ({
+            '@type': c.type,
+            headline: c.headline,
+            ...(c.author ? { author: c.author } : {}),
+            ...(c.datePublished ? { datePublished: c.datePublished } : {}),
+            ...(c.url ? { url: c.url } : {}),
+            ...(c.publisher ? { publisher: { name: c.publisher } } : {}),
+            ...(c.publicationType ? { publicationType: c.publicationType } : {}),
+          }))}
+        />
+      )}
 
       <PageShell>
         <Breadcrumbs
