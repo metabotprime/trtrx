@@ -112,6 +112,29 @@ export const BLOG_POSTS: BlogPost[] = [
     readMinutes: 9,
     featured: true,
     onHomePage: true,
+    citations: [
+      {
+        type: 'MedicalScholarlyArticle',
+        headline:
+          'Testosterone Therapy in Men With Hypogonadism: An Endocrine Society Clinical Practice Guideline',
+        author: [
+          'Bhasin S',
+          'Brito JP',
+          'Cunningham GR',
+          'Hayes FJ',
+          'Hodis HN',
+          'Matsumoto AM',
+          'Snyder PJ',
+          'Swerdloff RS',
+          'Wu FC',
+          'Yialamas MA',
+        ],
+        datePublished: '2018-05-01',
+        url: 'https://academic.oup.com/jcem/article/103/5/1715/4939465',
+        publisher: 'Journal of Clinical Endocrinology & Metabolism',
+        publicationType: 'Guideline',
+      },
+    ],
   },
   {
     slug: 'trt-and-fertility',
@@ -130,6 +153,28 @@ export const BLOG_POSTS: BlogPost[] = [
     readMinutes: 11,
     featured: true,
     onHomePage: true,
+    citations: [
+      {
+        type: 'MedicalScholarlyArticle',
+        headline:
+          'The use of HCG-based combination therapy for recovery of spermatogenesis after testosterone use',
+        author: ['Wenker EP', 'Dupree JM', 'Langille GM', 'Kovac J', 'Ramasamy R', 'Lamb D', 'Mills JN', 'Lipshultz LI'],
+        datePublished: '2015-06-01',
+        url: 'https://www.jsm.jsexmed.org/article/S1743-6095(15)33567-3/fulltext',
+        publisher: 'The Journal of Sexual Medicine',
+        publicationType: 'JournalArticle',
+      },
+      {
+        type: 'MedicalScholarlyArticle',
+        headline:
+          'Enclomiphene citrate stimulates testosterone production while preventing oligospermia: a randomized phase II clinical trial comparing topical testosterone',
+        author: ['Wiehle RD', 'Fontenot GK', 'Wike J', 'Hsu K', 'Nydell J', 'Lipshultz L'],
+        datePublished: '2014-08-01',
+        url: 'https://www.fertstert.org/article/S0015-0282(14)00427-7/fulltext',
+        publisher: 'Fertility and Sterility',
+        publicationType: 'ClinicalTrial',
+      },
+    ],
   },
   {
     slug: 'trt-and-hematocrit',
@@ -225,6 +270,29 @@ export const BLOG_POSTS: BlogPost[] = [
     readMinutes: 8,
     featured: true,
     onHomePage: false,
+    citations: [
+      {
+        type: 'MedicalScholarlyArticle',
+        headline:
+          'Testosterone Therapy in Men With Hypogonadism: An Endocrine Society Clinical Practice Guideline',
+        author: [
+          'Bhasin S',
+          'Brito JP',
+          'Cunningham GR',
+          'Hayes FJ',
+          'Hodis HN',
+          'Matsumoto AM',
+          'Snyder PJ',
+          'Swerdloff RS',
+          'Wu FC',
+          'Yialamas MA',
+        ],
+        datePublished: '2018-05-01',
+        url: 'https://academic.oup.com/jcem/article/103/5/1715/4939465',
+        publisher: 'Journal of Clinical Endocrinology & Metabolism',
+        publicationType: 'Guideline',
+      },
+    ],
   },
   {
     slug: 'how-trt-pricing-works',
