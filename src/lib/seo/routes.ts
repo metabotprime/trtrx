@@ -51,6 +51,8 @@ export const ROUTES: RouteEntry[] = [
   { path: '/terms', changeFreq: 'yearly', priority: 0.3, inSitemap: true },
   { path: '/accessibility', changeFreq: 'yearly', priority: 0.3, inSitemap: true },
   { path: '/medical-disclaimer', changeFreq: 'yearly', priority: 0.3, inSitemap: true },
+  { path: '/editorial-policy', changeFreq: 'yearly', priority: 0.4, inSitemap: true },
+  { path: '/medical-review-policy', changeFreq: 'yearly', priority: 0.4, inSitemap: true },
 ];
 
 export const NAV_ITEMS: { label: string; href: string }[] = [
