@@ -1,6 +1,5 @@
 import type { AppProps } from 'next/app';
 import { Fraunces, Inter, JetBrains_Mono } from 'next/font/google';
-import { HelmetProvider } from 'react-helmet-async';
 import { usePagePerformance } from '@/hooks/usePagePerformance';
 import '@/styles/globals.css';
 
@@ -30,12 +29,10 @@ export default function App({ Component, pageProps }: AppProps) {
   usePagePerformance();
 
   return (
-    <HelmetProvider>
-      <div
-        className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable} font-sans`}
-      >
-        <Component {...pageProps} />
-      </div>
-    </HelmetProvider>
+    <div
+      className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable} font-sans`}
+    >
+      <Component {...pageProps} />
+    </div>
   );
 }

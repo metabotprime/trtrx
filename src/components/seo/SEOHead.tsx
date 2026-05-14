@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import { SITE_NAME, SITE_URL } from '@/lib/utils';
 
 type SEOHeadProps = {
@@ -9,6 +9,14 @@ type SEOHeadProps = {
   noindex?: boolean;
 };
 
+/**
+ * Per-page SEO head tags. Uses next/head so tags are SSR'd into the static
+ * HTML — required for crawlers, social-share previewers, and AI engines that
+ * don't execute JavaScript.
+ *
+ * JSON-LD schemas live in their own components (OrganizationSchema,
+ * BlogPostingSchema, EntityGraphSchema, etc.) — NEVER in this file.
+ */
 export function SEOHead({
   title,
   description,
@@ -17,11 +25,12 @@ export function SEOHead({
   noindex = false,
 }: SEOHeadProps) {
   const url = `${SITE_URL}${path}`;
-  const fullTitle = path === '/' ? `${SITE_NAME} — ${title}` : `${title} | ${SITE_NAME}`;
+  const fullTitle =
+    path === '/' ? `${SITE_NAME} — ${title}` : `${title} | ${SITE_NAME}`;
   const ogUrl = ogImage.startsWith('http') ? ogImage : `${SITE_URL}${ogImage}`;
 
   return (
-    <Helmet>
+    <Head>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
@@ -42,6 +51,6 @@ export function SEOHead({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogUrl} />
-    </Helmet>
+    </Head>
   );
 }
