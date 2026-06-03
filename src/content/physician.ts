@@ -11,6 +11,32 @@ export type Physician = {
   pullQuote: string;
 };
 
+/**
+ * Person-agnostic medical credibility for the homepage section.
+ *
+ * Every line here is true at pre-launch without naming a specific
+ * individual — so the homepage carries real E-E-A-T weight without
+ * exposing "[Name Placeholder]". When the named medical director is
+ * locked, swap the homepage section back to a named-physician layout
+ * (and emit the Person schema then, not before).
+ */
+export const MEDICAL_STANDARD = {
+  eyebrow: 'Medical Direction',
+  body: [
+    'Every trtrx protocol is set by a board-certified physician — not a quiz, not an algorithm. The clinical standards, the dosing playbook, and the lab thresholds that decide who is and isn’t a candidate are all written and signed off by a doctor.',
+    'The model is deliberately old-fashioned. A licensed physician reviews your intake and labs, sets your protocol, and stays accountable for it — from your first consult through every refill. No outsourced call center, no scripted visits. When a case falls outside the standard ranges, a physician reviews it personally.',
+    'Transparency comes first. You’ll know what you’re taking, why the dose is what it is, and what to expect over the next six months. If TRT isn’t right for you, that conversation happens before you pay — not after.',
+  ],
+  standards: [
+    'Board-certified physicians, licensed across 47 states',
+    'Protocols aligned to Endocrine Society guidelines',
+    'Every prescription individually reviewed — no auto-approvals',
+    'Physician oversight from intake through every refill',
+  ],
+  principle:
+    'Hormone health isn’t a subscription. It’s a relationship between a patient and their physician.',
+} as const;
+
 export const MEDICAL_DIRECTOR: Physician = {
   // PRELAUNCH: replace with named medical director.
   name: 'Dr. [Name Placeholder]',
