@@ -14,7 +14,9 @@ import {
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const MEDICAL_BUSINESS_ID = `${SITE_URL}/#medicalbusiness`;
-export const MEDICAL_DIRECTOR_ID = `${SITE_URL}/#medicaldirector`;
+// No #medicaldirector entity by design — no named physician is emitted until a real
+// medical director exists (see src/content/physician.ts). A Person/Provider node with
+// a placeholder identity is an E-E-A-T liability, so it stays out of the entity graph.
 export const LOW_TESTOSTERONE_CONDITION_ID = `${SITE_URL}/#low-testosterone`;
 
 export type TreatmentEntity = {

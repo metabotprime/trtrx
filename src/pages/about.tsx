@@ -2,13 +2,11 @@ import type { GetStaticProps } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
-import { PersonSchema } from '@/components/seo/schemas/PersonSchema';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { MedicalDirector } from '@/components/sections/MedicalDirector';
 import { CompanyNarrative } from '@/components/sections/CompanyNarrative';
 import { PhysicianNetwork } from '@/components/sections/PhysicianNetwork';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
-import { MEDICAL_DIRECTOR } from '@/content/physician';
 
 export default function AboutPage() {
   return (
@@ -25,12 +23,16 @@ export default function AboutPage() {
         url="/about"
         pageType="AboutPage"
       />
-      <PersonSchema
-        name={MEDICAL_DIRECTOR.name}
-        jobTitle={MEDICAL_DIRECTOR.title}
-        credentials={MEDICAL_DIRECTOR.credentials}
-        image={MEDICAL_DIRECTOR.photo}
-      />
+      {/*
+        No Person / HealthcareProvider JSON-LD here by design. Emitting structured
+        data for a placeholder medical director ("Dr. [Name Placeholder]") is a Google
+        E-E-A-T red flag — a machine-readable claim about a person who doesn't exist,
+        which raters penalize harder than a visible placeholder. Org-level medical
+        credibility (MedicalOrganization + MedicalBusiness) is already emitted by
+        <EntityGraphSchema> above. When a real, named medical director is locked in,
+        re-mount <PersonSchema> here with the vetted record from src/content/physician.ts
+        (component kept ready at components/seo/schemas/PersonSchema.tsx).
+      */}
 
       <PageShell>
         <Breadcrumbs
