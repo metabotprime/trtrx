@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { TREATMENTS } from '@/content/treatments';
 import { formatUSD } from '@/lib/utils';
 import { SectionHeader } from './SectionHeader';
+import { TreatmentVisual } from '@/components/treatments/TreatmentVisual';
 
 const FDA_LABEL: Record<string, string> = {
   'FDA-approved': 'FDA Approved',
@@ -34,19 +35,17 @@ export function TreatmentGrid({ showHeader = true }: Props = {}) {
                 href={`/treatments/${t.slug}`}
                 className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-all duration-200 hover:-translate-y-px hover:border-accent/40 hover:shadow-md"
               >
-                {/* Product macro placeholder */}
-                <div className="relative aspect-[4/3] w-full bg-surface-alt">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-serif text-2xl text-muted/40">
-                      {t.shortName}
-                    </span>
-                  </div>
-                </div>
+                {/* Per-form-factor product illustration */}
+                <TreatmentVisual
+                  formFactor={t.formFactor}
+                  label={t.formFactor}
+                  className="aspect-[4/3] w-full"
+                />
 
                 <div className="flex flex-1 flex-col p-6">
-                  {/* Eyebrow badges */}
+                  {/* Eyebrow badge — form factor is shown on the visual chip above */}
                   <p className="mb-3 font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
-                    {t.formFactor} · {FDA_LABEL[t.fdaStatus] ?? t.fdaStatus}
+                    {FDA_LABEL[t.fdaStatus] ?? t.fdaStatus}
                   </p>
 
                   {/* Name */}
