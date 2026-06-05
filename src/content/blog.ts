@@ -332,6 +332,29 @@ export const BLOG_POSTS: BlogPost[] = [
     readMinutes: 9,
     featured: false,
     onHomePage: false,
+    citations: [
+      {
+        type: 'MedicalScholarlyArticle',
+        headline:
+          'Testosterone Therapy in Men With Hypogonadism: An Endocrine Society Clinical Practice Guideline',
+        author: [
+          'Bhasin S',
+          'Brito JP',
+          'Cunningham GR',
+          'Hayes FJ',
+          'Hodis HN',
+          'Matsumoto AM',
+          'Snyder PJ',
+          'Swerdloff RS',
+          'Wu FC',
+          'Yialamas MA',
+        ],
+        datePublished: '2018-05-01',
+        url: 'https://academic.oup.com/jcem/article/103/5/1715/4939465',
+        publisher: 'Journal of Clinical Endocrinology & Metabolism',
+        publicationType: 'Guideline',
+      },
+    ],
   },
 ];
 

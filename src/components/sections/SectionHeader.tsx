@@ -8,6 +8,9 @@ type Props = {
   subtitle?: string;
   align?: 'left' | 'center';
   size?: 'md' | 'lg';
+  /** Heading level. Use 'h1' when this is the page's primary heading
+   * (e.g. on a hub page whose top heading is a SectionHeader). Defaults 'h2'. */
+  as?: 'h1' | 'h2';
   children?: ReactNode;
   className?: string;
 };
@@ -18,6 +21,7 @@ export function SectionHeader({
   subtitle,
   align = 'center',
   size = 'lg',
+  as: Heading = 'h2',
   children,
   className,
 }: Props) {
@@ -36,7 +40,7 @@ export function SectionHeader({
         <span className="eyebrow inline-flex flex-wrap gap-x-2">{eyebrow}</span>
       )}
 
-      <h2
+      <Heading
         className={cn(
           'font-serif font-medium text-primary',
           size === 'lg' ? 'text-display-lg' : 'text-display-md',
@@ -52,7 +56,7 @@ export function SectionHeader({
             <span key={i}>{part}</span>
           ),
         )}
-      </h2>
+      </Heading>
 
       {subtitle && (
         <p className="max-w-prose text-base leading-[1.6] text-muted md:text-lg">

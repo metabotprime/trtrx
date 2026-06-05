@@ -10,7 +10,7 @@ export function ProductFitSplit({ treatment }: Props) {
       <div className="container py-16 md:py-20">
         <SectionHeader
           eyebrow="The Fit"
-          title="Best for *some men.* Not for others."
+          title="Who it's *built for.*"
           align="center"
           size="md"
         />

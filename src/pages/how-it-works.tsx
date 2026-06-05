@@ -67,6 +67,10 @@ export default function HowItWorksPage() {
                 </Button>
               </Link>
             </div>
+
+            <p className="mt-8 text-eyebrow uppercase tracking-tracked text-muted">
+              Adults 18+ · Available in 47 states · Not yet in HI, AK, PR
+            </p>
           </div>
         </section>
 

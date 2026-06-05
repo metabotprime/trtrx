@@ -50,7 +50,8 @@ export default function FAQPage() {
             </h1>
 
             <p className="mx-auto mt-6 max-w-xl text-lg leading-[1.55] text-muted md:text-xl">
-              Twenty-five questions, ten categories. Use the jumps below or just scroll.
+              Every question men actually ask, sorted into clear categories. Use
+              the jumps below or just scroll.
             </p>
           </div>
         </section>

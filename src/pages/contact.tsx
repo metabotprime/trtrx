@@ -1,7 +1,7 @@
 import type { GetStaticProps } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
+import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { SectionHeader } from '@/components/sections/SectionHeader';
 
@@ -20,7 +20,12 @@ export default function ContactPage() {
         path="/contact"
         ogImage="/og/contact.png"
       />
-      <OrganizationSchema />
+      <EntityGraphSchema
+        title="Contact"
+        description="General inquiries: hello@trtrx.com. For medical questions, please get started with a consult."
+        url="/contact"
+        pageType="ContactPage"
+      />
       <PageShell hideMobileCTA>
         <Breadcrumbs
           items={[
@@ -31,6 +36,7 @@ export default function ContactPage() {
         <section className="bg-surface">
           <div className="container py-24 md:py-32">
             <SectionHeader
+              as="h1"
               eyebrow="Get In Touch"
               title="Talk to *us.*"
               subtitle="General inquiries only. For medical questions, please start a consult through the Get Started flow."

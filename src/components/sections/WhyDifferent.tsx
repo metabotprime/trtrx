@@ -36,7 +36,7 @@ export function WhyDifferent() {
         <SectionHeader
           eyebrow="Why trtrx"
           title="Four ways we're *different.*"
-          subtitle="The category got built on hidden minimums, split bills, NP-only care, and async chat. We didn't want any of that."
+          subtitle="The category was built on hidden minimums, split bills, NP-only care, and async chat. We built the opposite."
           align="center"
         />
 

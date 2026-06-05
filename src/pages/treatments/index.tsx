@@ -47,6 +47,7 @@ export default function TreatmentsHubPage() {
         <section className="bg-surface">
           <div className="container max-w-hero pb-12 pt-20 text-center md:pb-16 md:pt-28 lg:pt-32">
             <SectionHeader
+              as="h1"
               eyebrow="Five Evidence-Based Options"
               title="The right treatment, *the right way.*"
               subtitle="Choose by lifestyle, fertility goals, and how you want to dose. Every protocol is set by a board-certified physician — not a quiz."

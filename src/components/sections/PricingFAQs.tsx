@@ -19,7 +19,7 @@ export function PricingFAQs() {
       <div className="container py-20 md:py-28">
         <SectionHeader
           eyebrow="Pricing Questions"
-          title="What men ask about *the bill.*"
+          title="Straight answers on *cost.*"
           align="center"
         />
 

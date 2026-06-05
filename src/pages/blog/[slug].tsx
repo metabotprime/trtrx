@@ -1,5 +1,6 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
@@ -21,6 +22,38 @@ import {
   getRelatedBlogPosts,
   type BlogPost,
 } from '@/content/blog';
+
+/**
+ * Contextual links from each article into the relevant treatment / money
+ * pages — flows topical authority from content to commercial pages and
+ * keeps articles from being a dead end.
+ */
+const RELATED_LINKS: Record<string, { label: string; href: string }[]> = {
+  'cypionate-vs-enanthate': [
+    { label: 'Testosterone Cypionate', href: '/treatments/cypionate' },
+    { label: 'Testosterone Enanthate', href: '/treatments/enanthate' },
+  ],
+  'trt-and-fertility': [
+    { label: 'Enclomiphene', href: '/treatments/enclomiphene' },
+    { label: 'HCG therapy', href: '/treatments/hcg' },
+  ],
+  'trt-and-hematocrit': [
+    { label: 'Testosterone Cypionate', href: '/treatments/cypionate' },
+    { label: 'Safety & monitoring FAQ', href: '/faq' },
+  ],
+  'signs-of-low-testosterone-35-55': [
+    { label: 'Compare treatments', href: '/treatments' },
+    { label: 'How it works', href: '/how-it-works' },
+  ],
+  'how-trt-pricing-works': [
+    { label: 'See pricing', href: '/pricing' },
+    { label: 'Compare treatments', href: '/treatments' },
+  ],
+  'weekly-vs-twice-weekly-cypionate': [
+    { label: 'Testosterone Cypionate', href: '/treatments/cypionate' },
+    { label: 'How it works', href: '/how-it-works' },
+  ],
+};
 
 type Props = {
   post: BlogPost;
@@ -130,6 +163,31 @@ export default function BlogPostPage({ post, lastReviewedDisplay }: Props) {
                 <p key={i}>{paragraph}</p>
               ))}
             </div>
+
+            {/* Contextual links into treatment / commercial pages */}
+            {RELATED_LINKS[post.slug] && (
+              <div className="mt-12 rounded-2xl border border-border bg-surface-alt p-6 md:p-7">
+                <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
+                  Explore on trtrx
+                </p>
+                <ul className="mt-4 flex flex-wrap gap-3">
+                  {RELATED_LINKS[post.slug]!.map((l) => (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        className="group inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium text-primary transition-colors hover:border-accent/40 hover:text-accent-strong"
+                      >
+                        {l.label}
+                        <ArrowRight
+                          size={13}
+                          className="transition-transform duration-150 group-hover:translate-x-0.5"
+                        />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Author + reviewer block */}
             {(author || reviewer) && (
