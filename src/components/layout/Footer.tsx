@@ -20,6 +20,7 @@ const FOOTER_GROUPS = [
       { label: 'How It Works', href: '/how-it-works' },
       { label: 'Pricing', href: '/pricing' },
       { label: 'FAQ', href: '/faq' },
+      { label: 'Blog', href: '/blog' },
     ],
   },
   {
@@ -36,6 +37,8 @@ const FOOTER_GROUPS = [
       { label: 'Terms', href: '/terms' },
       { label: 'Accessibility', href: '/accessibility' },
       { label: 'Medical disclaimer', href: '/medical-disclaimer' },
+      { label: 'Editorial policy', href: '/editorial-policy' },
+      { label: 'Medical review', href: '/medical-review-policy' },
     ],
   },
 ];
