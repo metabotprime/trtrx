@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { type Treatment } from '@/content/treatments';
 import { formatUSD } from '@/lib/utils';
+import { TreatmentVisual } from '@/components/treatments/TreatmentVisual';
 
 type Props = { treatment: Treatment };
 
@@ -74,25 +75,19 @@ export function ProductHero({ treatment }: Props) {
               </Link>
               <Link href="/pricing">
                 <Button size="md" variant="outline">
-                  See pricing
+                  See Pricing
                 </Button>
               </Link>
             </div>
           </div>
 
-          {/* Product macro placeholder */}
+          {/* Per-form-factor product illustration */}
           <div className="lg:col-span-5">
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-surface-alt">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span
-                  className="font-serif text-4xl text-muted/40"
-                  style={{ fontVariationSettings: "'opsz' 144" }}
-                >
-                  {treatment.shortName}
-                </span>
-              </div>
-              {/* Replace with <Image> in Phase 8 once product photography lands */}
-            </div>
+            <TreatmentVisual
+              formFactor={treatment.formFactor}
+              label={treatment.formFactor}
+              className="aspect-[4/5] w-full rounded-2xl border border-border"
+            />
           </div>
         </div>
       </div>
