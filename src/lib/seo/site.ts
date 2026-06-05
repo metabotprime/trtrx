@@ -3,7 +3,7 @@ export const SITE_NAME = 'trtrx';
 export const SITE_TAGLINE = 'Doctor-supervised testosterone therapy.';
 export const SITE_DESCRIPTION =
   'Doctor-supervised testosterone replacement therapy with transparent pricing and same-day shipping. Five evidence-based options, flat $219/mo all-inclusive, MD-led care, 60-day satisfaction guarantee.';
-export const DEFAULT_OG_IMAGE = `${SITE_URL}/og/default.png`;
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/api/og`;
 export const TITLE_SUFFIX = ` | ${SITE_NAME}`;
 
 export const SITE_CONTACT_EMAIL = 'hello@trtrx.com';

@@ -27,7 +27,14 @@ export function SEOHead({
   const url = `${SITE_URL}${path}`;
   const fullTitle =
     path === '/' ? `${SITE_NAME} — ${title}` : `${title} | ${SITE_NAME}`;
-  const ogUrl = ogImage.startsWith('http') ? ogImage : `${SITE_URL}${ogImage}`;
+  // Open Graph images are generated on the fly from the page title by
+  // /api/og (branded 1200×630). An absolute http(s) ogImage still wins, so a
+  // real static asset can override later; the legacy /og/*.png paths (which
+  // don't exist) fall through to the dynamic route.
+  const ogUrl =
+    ogImage && ogImage.startsWith('http')
+      ? ogImage
+      : `${SITE_URL}/api/og?title=${encodeURIComponent(title)}`;
 
   return (
     <Head>

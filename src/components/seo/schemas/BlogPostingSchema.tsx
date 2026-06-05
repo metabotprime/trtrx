@@ -29,11 +29,10 @@ export function BlogPostingSchema({ post }: Props) {
   const author = getAuthor(post.authorId);
   const reviewer = getReviewer(post.reviewerId);
   const url = `${SITE_URL}/blog/${post.slug}`;
-  const imageUrl = post.ogImage
-    ? post.ogImage.startsWith('http')
+  const imageUrl =
+    post.ogImage && post.ogImage.startsWith('http')
       ? post.ogImage
-      : `${SITE_URL}${post.ogImage}`
-    : `${SITE_URL}/og/blog-default.png`;
+      : `${SITE_URL}/api/og?title=${encodeURIComponent(post.title)}`;
 
   // Body is plain text with \n\n paragraph breaks. Word count is parsed
   // by Google as a content-depth signal.
@@ -59,9 +58,9 @@ export function BlogPostingSchema({ post }: Props) {
       url: SITE_URL,
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/og/logo.png`,
+        url: `${SITE_URL}/api/og?variant=logo`,
         width: 1200,
-        height: 1200,
+        height: 630,
       },
     },
   };

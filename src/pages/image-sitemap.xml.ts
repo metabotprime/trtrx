@@ -2,44 +2,42 @@ import type { GetServerSideProps } from 'next';
 import { SITE_URL } from '@/lib/utils';
 import { TREATMENTS } from '@/content/treatments';
 
+const escapeXml = (s: string) =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+// Branded share images are generated on the fly by /api/og — these are the
+// only real, crawlable images the site exposes (the rest of the visual
+// system is inline SVG), so the image sitemap points at them.
+const ogFor = (title: string) =>
+  `${SITE_URL}/api/og?title=${encodeURIComponent(title)}`;
+
 function buildImageSitemap(): string {
-  // Each <url> entry can include multiple <image:image> children.
-  // For v1 we list product macros + physician portrait + OG default.
   const entries = [
     {
       pageUrl: `${SITE_URL}/`,
       images: [
-        { loc: `${SITE_URL}/og/default.png`, title: 'trtrx — Doctor-supervised testosterone therapy' },
-      ],
-    },
-    {
-      pageUrl: `${SITE_URL}/about`,
-      images: [
-        { loc: `${SITE_URL}/images/physician/director.jpg`, title: 'trtrx Medical Director' },
+        { loc: ogFor('Doctor-supervised testosterone therapy'), title: 'trtrx — Doctor-supervised testosterone therapy' },
       ],
     },
     {
       pageUrl: `${SITE_URL}/treatments`,
-      images: TREATMENTS.map((t) => ({
-        loc: `${SITE_URL}/images/products/${t.slug}.jpg`,
-        title: t.name,
-        caption: t.summary,
-      })),
+      images: [{ loc: ogFor('Treatments'), title: 'trtrx Treatments' }],
+    },
+    {
+      pageUrl: `${SITE_URL}/pricing`,
+      images: [{ loc: ogFor('Pricing'), title: 'trtrx Pricing' }],
     },
     ...TREATMENTS.map((t) => ({
       pageUrl: `${SITE_URL}/treatments/${t.slug}`,
       images: [
         {
-          loc: `${SITE_URL}/images/products/${t.slug}.jpg`,
+          loc: ogFor(t.name),
           title: t.name,
           caption: t.summary,
         },
       ],
     })),
   ];
-
-  const escapeXml = (s: string) =>
-    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
   const urlBlocks = entries.map((entry) => {
     const imageBlocks = entry.images
@@ -48,7 +46,7 @@ function buildImageSitemap(): string {
           ? `\n      <image:caption>${escapeXml(img.caption)}</image:caption>`
           : '';
         return `    <image:image>
-      <image:loc>${img.loc}</image:loc>
+      <image:loc>${escapeXml(img.loc)}</image:loc>
       <image:title>${escapeXml(img.title)}</image:title>${captionPart}
     </image:image>`;
       })

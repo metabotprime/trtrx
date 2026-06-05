@@ -13,7 +13,7 @@ export function OrganizationSchema() {
     url: SITE_URL,
     description:
       'Doctor-supervised testosterone replacement therapy with transparent pricing and same-day shipping.',
-    logo: `${SITE_URL}/og/logo.png`,
+    logo: `${SITE_URL}/api/og?variant=logo`,
     sameAs: [],
     contactPoint: {
       '@type': 'ContactPoint',
