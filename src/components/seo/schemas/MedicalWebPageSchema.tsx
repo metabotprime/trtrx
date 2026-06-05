@@ -28,15 +28,20 @@ export function MedicalWebPageSchema({
     audience: { '@type': 'MedicalAudience', audienceType: 'Patients' },
   };
   if (lastReviewed) data.lastReviewed = lastReviewed;
-  if (reviewedBy) {
-    data.reviewedBy = {
-      '@type': 'Person',
-      name: reviewedBy.name,
-      jobTitle: reviewedBy.jobTitle,
-      ...(reviewedBy.honorificSuffix
-        ? { honorificSuffix: reviewedBy.honorificSuffix }
-        : {}),
-    };
+  // Never emit a placeholder identity; type org-style reviewers (e.g.
+  // "trtrx Medical Team") as Organization, not Person.
+  if (reviewedBy && !/\[|placeholder/i.test(reviewedBy.name)) {
+    const isOrg = /team|editorial|content|staff|trtrx/i.test(reviewedBy.name);
+    data.reviewedBy = isOrg
+      ? { '@type': 'Organization', name: reviewedBy.name }
+      : {
+          '@type': 'Person',
+          name: reviewedBy.name,
+          jobTitle: reviewedBy.jobTitle,
+          ...(reviewedBy.honorificSuffix
+            ? { honorificSuffix: reviewedBy.honorificSuffix }
+            : {}),
+        };
   }
   return (
     <script

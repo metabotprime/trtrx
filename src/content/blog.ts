@@ -70,26 +70,29 @@ export const CATEGORY_LABELS: Record<BlogCategory, string> = {
   'state-guides': 'State Guides',
 };
 
-// PRELAUNCH: replaced with real bios + headshots before launch.
+// Person-agnostic by design pre-launch. We do not publish a named author or
+// reviewer (or emit Person JSON-LD for one) until a real, vetted identity is
+// locked — a fabricated byline is an E-E-A-T and compliance liability. The
+// editorial team and the board-certified medical review are both real, true
+// credits today; they're typed as Organization in schema, never Person.
 export const AUTHORS: BlogAuthor[] = [
   {
     id: 'editorial-team',
     name: 'trtrx Editorial Team',
     title: 'Clinical Content',
     credentials: '',
-    bio: 'PRELAUNCH: clinical content team bio replaced with real named authors as posts are written.',
-    photo: '/images/authors/editorial-team.jpg',
+    bio: 'The trtrx editorial team writes plain-English explainers on testosterone therapy — every one reviewed by a board-certified physician before it publishes.',
+    photo: '',
   },
 ];
 
-// PRELAUNCH: replaced with the actual medical director bio + photo before launch.
 export const REVIEWERS: BlogReviewer[] = [
   {
     id: 'medical-director',
-    name: 'Dr. [Name Placeholder]',
-    title: 'Medical Director',
-    credentials: 'MD, Board-Certified',
-    photo: '/images/authors/medical-director.jpg',
+    name: 'trtrx Medical Team',
+    title: 'Medical Review',
+    credentials: 'Board-certified physicians',
+    photo: '',
   },
 ];
 

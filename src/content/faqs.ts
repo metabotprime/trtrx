@@ -49,7 +49,7 @@ export const FAQS: FAQ[] = [
     category: 'insurance',
     question: 'Do you accept insurance?',
     answer:
-      'No. We are direct-pay so we can keep prices flat and avoid prior-authorization theatre. Most patients pay less out of pocket with us than they would in copays and clinic fees through insurance. We provide an itemized superbill if you want to file for reimbursement.',
+      'No. We are direct-pay so we can keep prices flat and avoid the prior-authorization runaround. Most patients pay less out of pocket with us than they would in copays and clinic fees through insurance. We provide an itemized superbill if you want to file for reimbursement.',
     onHomePage: true,
   },
   {
@@ -167,7 +167,7 @@ export const FAQS: FAQ[] = [
     category: 'products',
     question: 'What does "compounded" mean?',
     answer:
-      'A compounded medication is mixed by a licensed pharmacy to a specific prescription rather than mass-produced and FDA-approved as a finished product. Our compounded options come from FDA-registered 503B outsourcing facilities that follow the same sterility and potency standards as commercial manufacturers.',
+      'A compounded medication is prepared by a licensed pharmacy to your specific prescription rather than mass-produced and FDA-approved as a finished product. Our compounded options are prepared by licensed 503A compounding pharmacies — state-licensed, inspected, and operating under USP compounding standards. Compounded preparations are not themselves FDA-approved as finished drugs.',
     onHomePage: false,
   },
 

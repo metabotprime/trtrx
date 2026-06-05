@@ -7,6 +7,10 @@ export type Treatment = {
   frequency: string;
   fertilityPreserving: boolean;
   fdaStatus: 'FDA-approved' | 'Compounded' | 'Both available';
+  /** True when using this product for testosterone support is an off-label use
+   * (e.g. enclomiphene for low-T, HCG as a TRT adjunct). Drives the off-label
+   * disclosure on the treatment page. */
+  offLabel?: boolean;
   monthlyPriceFrom: number;
   headline?: string;
   eyebrow: string;
@@ -27,7 +31,7 @@ export const TREATMENTS: Treatment[] = [
     fertilityPreserving: false,
     fdaStatus: 'Both available',
     monthlyPriceFrom: 219,
-    eyebrow: 'INJECTABLE · 1× WEEKLY · FDA-APPROVED',
+    eyebrow: 'INJECTABLE · 1× WEEKLY · FDA + COMPOUNDED',
     summary:
       'The most-prescribed form of testosterone in the United States. A single weekly injection delivers steady serum levels with a predictable half-life of around eight days. Most men feel noticeable changes in energy and drive within the first three to six weeks. Subcutaneous works for most patients. Intramuscular is an option if you prefer it.',
     bullets: [
@@ -59,7 +63,7 @@ export const TREATMENTS: Treatment[] = [
     fertilityPreserving: false,
     fdaStatus: 'Both available',
     monthlyPriceFrom: 219,
-    eyebrow: 'INJECTABLE · 1× WEEKLY · FDA-APPROVED',
+    eyebrow: 'INJECTABLE · 1× WEEKLY · FDA + COMPOUNDED',
     summary:
       'A close cousin of cypionate with a slightly shorter half-life of about seven days. Identical dosing schedule, near-identical results. Some patients tolerate enanthate better; others prefer cypionate. Your physician helps you choose, and switching between the two is straightforward if your first pick is not the right fit.',
     bullets: [
@@ -90,6 +94,7 @@ export const TREATMENTS: Treatment[] = [
     frequency: 'Daily',
     fertilityPreserving: true,
     fdaStatus: 'Compounded',
+    offLabel: true,
     monthlyPriceFrom: 179,
     eyebrow: 'ORAL · DAILY · FERTILITY-PRESERVING',
     summary:
@@ -122,6 +127,7 @@ export const TREATMENTS: Treatment[] = [
     frequency: '2–3× per week',
     fertilityPreserving: true,
     fdaStatus: 'Compounded',
+    offLabel: true,
     monthlyPriceFrom: 89,
     eyebrow: 'ADJUNCT · 2–3× WEEKLY · FERTILITY SUPPORT',
     summary:

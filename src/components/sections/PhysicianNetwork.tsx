@@ -1,27 +1,30 @@
+import { ShieldCheck, MapPin, Stethoscope } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
 
-type NetworkPhysician = {
-  name: string;
-  credentials: string;
-  states: string;
+type Credential = {
+  icon: typeof ShieldCheck;
+  title: string;
+  body: string;
 };
 
-// PRELAUNCH: replace with real network roster before launch.
-const NETWORK: NetworkPhysician[] = [
+// Person-agnostic by design. We do not show named/placeholder physicians
+// (an E-E-A-T red flag); every line below is true at pre-launch. When a real,
+// vetted roster is locked, this can become a named-physician layout.
+const CREDENTIALS: Credential[] = [
   {
-    name: 'Dr. [Network Physician 1]',
-    credentials: 'MD · Board-Certified',
-    states: 'Licensed in CA, NY, TX, FL, IL',
+    icon: ShieldCheck,
+    title: 'Board-certified',
+    body: 'Every prescribing physician is board-certified — MD or DO. Protocols are set by a doctor, not a nurse practitioner routed to you for cost reasons.',
   },
   {
-    name: 'Dr. [Network Physician 2]',
-    credentials: 'DO · Men’s Hormone Health',
-    states: 'Licensed in WA, OR, AZ, CO, NV',
+    icon: MapPin,
+    title: 'Licensed in 47 states',
+    body: 'Care available across the country, with new states added as licensing clears. Not yet available in Hawaii, Alaska, or Puerto Rico.',
   },
   {
-    name: 'Dr. [Network Physician 3]',
-    credentials: 'MD · Endocrinology',
-    states: 'Licensed in MA, PA, OH, GA, NC',
+    icon: Stethoscope,
+    title: 'Hormone-health focused',
+    body: 'Physicians who concentrate on men’s testosterone and endocrine care — not a general-practice call center handling everything at once.',
   },
 ];
 
@@ -31,47 +34,34 @@ export function PhysicianNetwork() {
       <div className="container py-20 md:py-28">
         <SectionHeader
           eyebrow="Physician Network"
-          title="Multi-state. *Board-certified.*"
-          subtitle="Every physician in our network is board-certified, multi-state licensed, and specializes in men's hormone health."
+          title="Board-certified, *coast to coast.*"
+          subtitle="Care is delivered by a network of board-certified physicians, licensed across 47 states and focused on men's hormone health."
           align="center"
         />
 
         <ul className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {NETWORK.map((doc) => (
+          {CREDENTIALS.map(({ icon: Icon, title, body }) => (
             <li
-              key={doc.name}
-              className="flex flex-col rounded-2xl border border-border bg-surface p-6"
+              key={title}
+              className="flex flex-col rounded-2xl border border-border bg-surface p-7"
             >
-              {/* Portrait placeholder */}
-              <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-surface-alt">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span
-                    className="font-serif text-3xl font-medium text-muted/40"
-                    style={{ fontVariationSettings: "'opsz' 144" }}
-                  >
-                    {doc.name.replace('Dr. ', '').charAt(0)}
-                  </span>
-                </div>
+              <div className="flex h-14 w-14 items-center justify-center rounded-full border border-accent/30 bg-surface-alt">
+                <Icon size={24} strokeWidth={1.75} className="text-accent-strong" aria-hidden />
               </div>
-
               <p
                 className="mt-5 font-serif text-lg font-medium text-primary"
                 style={{ fontVariationSettings: "'opsz' 144" }}
               >
-                {doc.name}
+                {title}
               </p>
-              <p className="mt-1 font-mono text-[11px] uppercase tracking-tracked text-muted">
-                {doc.credentials}
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-text">
-                {doc.states}
-              </p>
+              <p className="mt-2 text-sm leading-relaxed text-text">{body}</p>
             </li>
           ))}
         </ul>
 
-        <p className="mx-auto mt-10 max-w-md text-center text-sm leading-relaxed text-muted">
-          Network roster expands pre-launch. Names and licensing details above are placeholders.
+        <p className="mx-auto mt-10 max-w-lg text-center text-sm leading-relaxed text-muted">
+          Individual physician profiles publish as the network roster is
+          finalized ahead of launch.
         </p>
       </div>
     </section>

@@ -18,6 +18,13 @@ function isOrganizationName(name?: string): boolean {
   return !!name && /team|editorial|content|staff|trtrx/i.test(name);
 }
 
+/** Never serialize a bracketed/placeholder identity into JSON-LD — a
+ * machine-readable claim about a person who doesn't exist is an E-E-A-T
+ * and compliance liability. */
+function isPlaceholderName(name?: string): boolean {
+  return !!name && /\[|placeholder/i.test(name);
+}
+
 export function BlogPostingSchema({ post }: Props) {
   const author = getAuthor(post.authorId);
   const reviewer = getReviewer(post.reviewerId);
@@ -59,7 +66,7 @@ export function BlogPostingSchema({ post }: Props) {
     },
   };
 
-  if (author) {
+  if (author && !isPlaceholderName(author.name)) {
     const authorIsOrg = isOrganizationName(author.name);
     data.author = {
       '@type': authorIsOrg ? 'Organization' : 'Person',
@@ -74,7 +81,7 @@ export function BlogPostingSchema({ post }: Props) {
     };
   }
 
-  if (reviewer) {
+  if (reviewer && !isPlaceholderName(reviewer.name)) {
     const reviewerIsOrg = isOrganizationName(reviewer.name);
     data.reviewedBy = {
       '@type': reviewerIsOrg ? 'Organization' : 'Person',

@@ -9,6 +9,7 @@ import { ProductHero } from '@/components/sections/ProductHero';
 import { ProductOverview } from '@/components/sections/ProductOverview';
 import { DosingProtocol } from '@/components/sections/DosingProtocol';
 import { ProductFitSplit } from '@/components/sections/ProductFitSplit';
+import { TreatmentDisclosures } from '@/components/sections/TreatmentDisclosures';
 import { RelatedTreatments } from '@/components/sections/RelatedTreatments';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 import { TREATMENTS, getTreatmentBySlug, type Treatment } from '@/content/treatments';
@@ -46,6 +47,7 @@ export default function TreatmentDetailPage({ treatment }: Props) {
         <ProductOverview treatment={treatment} />
         <DosingProtocol treatment={treatment} />
         <ProductFitSplit treatment={treatment} />
+        <TreatmentDisclosures treatment={treatment} />
         <RelatedTreatments currentSlug={treatment.slug} />
         <FooterCTABand
           headline="Start with"
