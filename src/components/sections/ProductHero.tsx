@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { type Treatment } from '@/content/treatments';
 import { formatUSD } from '@/lib/utils';
@@ -81,13 +82,29 @@ export function ProductHero({ treatment }: Props) {
             </div>
           </div>
 
-          {/* Per-form-factor product illustration */}
+          {/* Product photograph (falls back to the SVG illustration) */}
           <div className="lg:col-span-5">
-            <TreatmentVisual
-              formFactor={treatment.formFactor}
-              label={treatment.formFactor}
-              className="aspect-[4/5] w-full rounded-2xl border border-border"
-            />
+            {treatment.heroImage ? (
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-border bg-surface-alt">
+                <Image
+                  src={treatment.heroImage}
+                  alt={`${treatment.name} — representative product photograph`}
+                  fill
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="object-cover"
+                  priority
+                />
+                <span className="absolute bottom-3 left-3 rounded-full border border-border bg-surface/80 px-2.5 py-1 font-mono text-[10px] uppercase tracking-tracked text-accent-strong backdrop-blur-sm">
+                  {treatment.formFactor}
+                </span>
+              </div>
+            ) : (
+              <TreatmentVisual
+                formFactor={treatment.formFactor}
+                label={treatment.formFactor}
+                className="aspect-[4/5] w-full rounded-2xl border border-border"
+              />
+            )}
           </div>
         </div>
       </div>

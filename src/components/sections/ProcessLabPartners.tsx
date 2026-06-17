@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { FlaskConical, MapPin, Clock } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
 
@@ -28,6 +29,18 @@ export function ProcessLabPartners() {
           subtitle="We work with Quest and Labcorp because that's where the diagnostic-grade data is. No mail-in fingerstick that misses estradiol."
           align="center"
         />
+
+        <div className="mx-auto mt-12 max-w-4xl overflow-hidden rounded-2xl border border-border">
+          <div className="relative aspect-[16/9] w-full">
+            <Image
+              src="/images/products/lab-panels.jpg"
+              alt="Diagnostic blood-panel collection tubes in a laboratory rack"
+              fill
+              sizes="(min-width: 1024px) 56rem, 100vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
 
         <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
           {STATS.map(({ Icon, value, label }) => (
