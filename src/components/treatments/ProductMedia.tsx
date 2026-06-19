@@ -9,18 +9,25 @@ type Props = {
   /** next/image sizes hint (used for the static / poster image). */
   sizes?: string;
   priority?: boolean;
+  /** Container classes (aspect + radius/border). Defaults to the 4:5 hero frame. */
   className?: string;
+  /** Add a subtle hover zoom (used inside `group` card links). */
+  hoverZoom?: boolean;
 };
 
 /**
- * Product hero media: a looping, muted, ambient product video with the static
- * branded photograph as its poster. The photo shows instantly (and is the
- * fallback if the video can't play); the video then loops subtly on top.
+ * Branded product media: a looping, muted, ambient product video (which carries
+ * the trtrx label) with the static branded photograph as its poster. The photo
+ * paints instantly and is the fallback if the video can't play; the video then
+ * loops subtly on top.
  *
- * Accessibility: pauses on `prefers-reduced-motion: reduce`, leaving the poster
- * frame visible. Markup is identical on server and client (the <video> always
- * renders) so there's no hydration mismatch — reduced-motion is handled by
- * pausing after mount.
+ * Performance: the video has no `autoplay` attribute. An IntersectionObserver
+ * plays it only while it's on screen and pauses it when scrolled away, so a
+ * grid of these never runs more than the visible few at once. preload="metadata"
+ * keeps off-screen cards from fetching the full clip.
+ *
+ * Accessibility: respects `prefers-reduced-motion: reduce` (stays on the poster
+ * frame). Markup is identical server/client, so no hydration mismatch.
  */
 export function ProductMedia({
   image,
@@ -30,6 +37,7 @@ export function ProductMedia({
   sizes = '(min-width: 1024px) 40vw, 100vw',
   priority,
   className,
+  hoverZoom = false,
 }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
 
@@ -40,29 +48,43 @@ export function ProductMedia({
       v.pause();
       return;
     }
-    // Some browsers defer muted autoplay until the element is interacted with
-    // or visible; nudge it.
-    const play = () => v.play().catch(() => {});
-    if (v.readyState >= 2) play();
-    else v.addEventListener('loadeddata', play, { once: true });
+    if (typeof IntersectionObserver === 'undefined') {
+      v.play().catch(() => {});
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) v.play().catch(() => {});
+          else v.pause();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    io.observe(v);
+    return () => io.disconnect();
   }, []);
+
+  const mediaClass = `absolute inset-0 h-full w-full object-cover${
+    hoverZoom ? ' transition-transform duration-300 group-hover:scale-[1.03]' : ''
+  }`;
 
   return (
     <div
-      className={`relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-border bg-surface-alt ${className ?? ''}`}
+      className={`relative w-full overflow-hidden bg-surface-alt ${
+        className ?? 'aspect-[4/5] rounded-2xl border border-border'
+      }`}
     >
       {video ? (
         <video
           ref={ref}
-          // poster shows immediately and remains the reduced-motion fallback
           poster={image}
-          autoPlay
           loop
           muted
           playsInline
           preload="metadata"
           aria-label={alt}
-          className="absolute inset-0 h-full w-full object-cover"
+          className={mediaClass}
         >
           <source src={video} type="video/mp4" />
         </video>
@@ -72,7 +94,7 @@ export function ProductMedia({
           alt={alt}
           fill
           sizes={sizes}
-          className="object-cover"
+          className={mediaClass}
           priority={priority}
         />
       )}

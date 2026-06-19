@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { TREATMENTS } from '@/content/treatments';
 import { formatUSD } from '@/lib/utils';
 import { SectionHeader } from './SectionHeader';
 import { TreatmentVisual } from '@/components/treatments/TreatmentVisual';
+import { ProductMedia } from '@/components/treatments/ProductMedia';
 
 const FDA_LABEL: Record<string, string> = {
   'FDA-approved': 'FDA Approved',
@@ -36,20 +36,18 @@ export function TreatmentGrid({ showHeader = true }: Props = {}) {
                 href={`/treatments/${t.slug}`}
                 className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-all duration-200 hover:-translate-y-px hover:border-accent/40 hover:shadow-md"
               >
-                {/* Product photograph (falls back to the SVG illustration) */}
+                {/* Animated product media (video w/ trtrx label + branded
+                    poster); falls back to the SVG illustration */}
                 {t.heroImage ? (
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-alt">
-                    <Image
-                      src={t.heroImage}
-                      alt={`${t.name} — representative product photograph`}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                    />
-                    <span className="absolute bottom-3 left-3 rounded-full border border-border bg-surface/80 px-2.5 py-1 font-mono text-[10px] uppercase tracking-tracked text-accent-strong backdrop-blur-sm">
-                      {t.formFactor}
-                    </span>
-                  </div>
+                  <ProductMedia
+                    image={t.heroImage}
+                    video={t.heroVideo}
+                    alt={`${t.name} — representative product photograph`}
+                    label={t.formFactor}
+                    className="aspect-[4/3]"
+                    hoverZoom
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  />
                 ) : (
                   <TreatmentVisual
                     formFactor={t.formFactor}

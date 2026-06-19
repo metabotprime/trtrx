@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { TREATMENTS } from '@/content/treatments';
 import { formatUSD } from '@/lib/utils';
 import { SectionHeader } from './SectionHeader';
 import { TreatmentVisual } from '@/components/treatments/TreatmentVisual';
+import { ProductMedia } from '@/components/treatments/ProductMedia';
 
 type Props = { currentSlug: string };
 
@@ -29,15 +29,14 @@ export function RelatedTreatments({ currentSlug }: Props) {
                 className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-all duration-200 hover:-translate-y-px hover:border-accent/40 hover:shadow-md"
               >
                 {t.heroImage ? (
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-alt">
-                    <Image
-                      src={t.heroImage}
-                      alt={`${t.name} — representative product photograph`}
-                      fill
-                      sizes="(min-width: 640px) 33vw, 100vw"
-                      className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                    />
-                  </div>
+                  <ProductMedia
+                    image={t.heroImage}
+                    video={t.heroVideo}
+                    alt={`${t.name} — representative product photograph`}
+                    className="aspect-[4/3]"
+                    hoverZoom
+                    sizes="(min-width: 640px) 33vw, 100vw"
+                  />
                 ) : (
                   <TreatmentVisual formFactor={t.formFactor} className="aspect-[5/2] w-full" />
                 )}
