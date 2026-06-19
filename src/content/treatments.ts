@@ -14,6 +14,9 @@ export type Treatment = {
   monthlyPriceFrom: number;
   /** Premium product photograph for the detail-page hero (public/images/products/<slug>.jpg). */
   heroImage?: string;
+  /** Looping ambient product video for the detail-page hero (public/videos/products/<slug>.mp4).
+   * The heroImage doubles as its poster / reduced-motion fallback. */
+  heroVideo?: string;
   headline?: string;
   eyebrow: string;
   summary: string;
@@ -26,6 +29,7 @@ export const TREATMENTS: Treatment[] = [
   {
     slug: 'cypionate',
     heroImage: '/images/products/cypionate.jpg',
+    heroVideo: '/videos/products/cypionate.mp4',
     name: 'Testosterone Cypionate',
     shortName: 'Cypionate',
     formFactor: 'Injectable',
@@ -59,6 +63,7 @@ export const TREATMENTS: Treatment[] = [
   {
     slug: 'enanthate',
     heroImage: '/images/products/enanthate.jpg',
+    heroVideo: '/videos/products/enanthate.mp4',
     name: 'Testosterone Enanthate',
     shortName: 'Enanthate',
     formFactor: 'Injectable',
@@ -92,6 +97,7 @@ export const TREATMENTS: Treatment[] = [
   {
     slug: 'enclomiphene',
     heroImage: '/images/products/enclomiphene.jpg',
+    heroVideo: '/videos/products/enclomiphene.mp4',
     name: 'Enclomiphene',
     shortName: 'Enclomiphene',
     formFactor: 'Oral',
@@ -126,6 +132,7 @@ export const TREATMENTS: Treatment[] = [
   {
     slug: 'hcg',
     heroImage: '/images/products/hcg.jpg',
+    heroVideo: '/videos/products/hcg.mp4',
     name: 'HCG Therapy',
     shortName: 'HCG',
     formFactor: 'Adjunct',
@@ -159,6 +166,7 @@ export const TREATMENTS: Treatment[] = [
   {
     slug: 'cream',
     heroImage: '/images/products/cream.jpg',
+    heroVideo: '/videos/products/cream.mp4',
     name: 'Topical Cream',
     shortName: 'Cream',
     formFactor: 'Topical',

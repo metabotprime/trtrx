@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { type Treatment } from '@/content/treatments';
 import { formatUSD } from '@/lib/utils';
 import { TreatmentVisual } from '@/components/treatments/TreatmentVisual';
+import { ProductMedia } from '@/components/treatments/ProductMedia';
 
 type Props = { treatment: Treatment };
 
@@ -82,22 +82,18 @@ export function ProductHero({ treatment }: Props) {
             </div>
           </div>
 
-          {/* Product photograph (falls back to the SVG illustration) */}
+          {/* Product hero: looping ambient video + branded poster (falls back
+              to the static photo, then to the SVG illustration) */}
           <div className="lg:col-span-5">
             {treatment.heroImage ? (
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-border bg-surface-alt">
-                <Image
-                  src={treatment.heroImage}
-                  alt={`${treatment.name} — representative product photograph`}
-                  fill
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="object-cover"
-                  priority
-                />
-                <span className="absolute bottom-3 left-3 rounded-full border border-border bg-surface/80 px-2.5 py-1 font-mono text-[10px] uppercase tracking-tracked text-accent-strong backdrop-blur-sm">
-                  {treatment.formFactor}
-                </span>
-              </div>
+              <ProductMedia
+                image={treatment.heroImage}
+                video={treatment.heroVideo}
+                alt={`${treatment.name} — representative product photograph`}
+                label={treatment.formFactor}
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                priority
+              />
             ) : (
               <TreatmentVisual
                 formFactor={treatment.formFactor}
