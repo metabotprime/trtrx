@@ -9,7 +9,7 @@
     "type": "openapi",
     "url": "https://trtrx.com/llms.txt"
   },
-  "logo_url": "https://trtrx.com/og/logo.png",
+  "logo_url": "https://trtrx.com/api/og?variant=logo",
   "contact_email": "hello@trtrx.com",
   "legal_info_url": "https://trtrx.com/terms"
 }

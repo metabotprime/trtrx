@@ -17,7 +17,14 @@ export function Wordmark({ tone = 'on-light', height = 32 }: Props) {
       focusable="false"
     >
       <path fill={tone === 'on-dark' ? '#FBFCFD' : '#1D4173'} d={WORDMARK.trt} />
-      <rect x="50.2" y="0" width="49.2" height="31.6" rx="3.2" fill="#F9C31F" />
+      <rect
+        x={WORDMARK.tile.x}
+        y={WORDMARK.tile.y}
+        width={WORDMARK.tile.width}
+        height={WORDMARK.tile.height}
+        rx={WORDMARK.tile.radius}
+        fill="#F9C31F"
+      />
       <path fill="#1D4173" d={WORDMARK.rx} />
     </svg>
   );
