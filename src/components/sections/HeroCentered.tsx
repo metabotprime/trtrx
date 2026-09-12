@@ -1,129 +1,125 @@
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { EmailCapture } from '@/components/forms/EmailCapture';
+import { ArrowRight, ClipboardList, FlaskConical, HeartPulse } from 'lucide-react';
+import { buttonVariants } from '@/components/ui/button';
+import { PRICING_STRUCTURE } from '@/content/pricing';
+import { cn, formatUSD } from '@/lib/utils';
+
+const CARE_STEPS = [
+  {
+    number: '01',
+    icon: ClipboardList,
+    title: 'Start with your story.',
+    description: 'Your symptoms, health history and goals come first.',
+  },
+  {
+    number: '02',
+    icon: FlaskConical,
+    title: 'Labs. Then a physician.',
+    description: 'A physician reviews your results and whether treatment is appropriate.',
+  },
+  {
+    number: '03',
+    icon: HeartPulse,
+    title: 'A plan, with follow-through.',
+    description: 'If prescribed, care includes medication, follow-up and monitoring.',
+  },
+] as const;
 
 export function HeroCentered() {
   return (
-    <section className="relative overflow-hidden bg-surface">
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent"
-      />
-      {/* Warm glow anchored behind the lab card */}
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div
-          className="absolute right-[6%] top-1/2 -translate-y-1/2"
-          style={{
-            width: 640,
-            height: 640,
-            background:
-              'radial-gradient(closest-side, hsl(45 95% 55% / 0.10), transparent 70%)',
-          }}
-        />
-      </div>
-
-      <div className="container max-w-6xl px-5 py-20 md:py-24 lg:py-28">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* LEFT — copy */}
-          <div className="text-center lg:text-left">
-            <div className="mb-7 flex justify-center lg:justify-start animate-fade-up">
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/70 px-3.5 py-1.5 text-eyebrow uppercase tracking-tracked text-accent-strong backdrop-blur-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                Physician-led TRT
+    <section aria-labelledby="home-hero-title" className="overflow-hidden border-b border-border bg-surface">
+      <div className="container py-10 sm:py-14 lg:py-20">
+        <div className="grid items-center gap-9 lg:grid-cols-[1.15fr_1fr] lg:gap-14">
+          <div>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] font-medium uppercase tracking-tracked">
+              <span className="text-primary">Physician-led TRT</span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-accent/15 px-3 py-1.5 text-accent-strong">
+                <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent-strong" />
+                Pre-launch
               </span>
             </div>
 
             <h1
-              className="font-serif text-display-xl font-medium leading-[1.02] text-primary animate-fade-up [animation-delay:80ms]"
-              style={{ fontVariationSettings: "'opsz' 144" }}
+              id="home-hero-title"
+              className="mt-6 font-serif text-[clamp(3.1rem,7vw,5.5rem)] font-medium leading-[1.04] tracking-[-0.03em] text-primary"
             >
-              TRT, <span className="display-italic text-primary">finally.</span>
+              TRT, <span className="display-italic">finally.</span>
             </h1>
 
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-[1.55] text-muted md:text-xl lg:mx-0 animate-fade-up [animation-delay:140ms]">
-              Doctor-supervised testosterone therapy with transparent pricing
-              and same-day shipping. No memberships you can&apos;t cancel. No
-              hidden math.
+            <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted sm:text-xl">
+              A clearer path to testosterone care. Physician oversight,
+              medication and lab testing in one monthly plan.
             </p>
 
-            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 lg:justify-start animate-fade-up [animation-delay:200ms]">
-              <Link href="/how-it-works">
-                <Button size="md">Get Started</Button>
-              </Link>
-              <Link href="/pricing">
-                <Button size="md" variant="outline">
-                  See Pricing
-                </Button>
-              </Link>
-            </div>
-
-            <p className="mt-7 text-eyebrow uppercase tracking-tracked text-muted animate-fade-up [animation-delay:260ms]">
-              Quest &amp; Labcorp partners · FSA-eligible · 60-day guarantee
-            </p>
-          </div>
-
-          {/* RIGHT — lab-result visual anchor */}
-          <div className="relative animate-fade-up [animation-delay:160ms]">
-            <div className="mx-auto max-w-md rounded-3xl border border-border bg-surface p-7 shadow-[0_24px_70px_-24px_hsl(215_60%_28%/0.22)] md:p-8">
-              <div className="flex items-center justify-between">
-                <p className="font-mono text-[11px] uppercase tracking-tracked text-muted">
-                  Total Testosterone
-                </p>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/15 px-2.5 py-1 text-[10px] font-medium uppercase tracking-tracked text-accent-strong">
-                  Restored
+            <div className="mt-7 border-l-[3px] border-accent pl-4 sm:mt-8 sm:pl-5">
+              <p className="text-[11px] font-medium uppercase tracking-tracked text-muted">
+                Planned standard injectable TRT
+              </p>
+              <p className="mt-1.5 flex flex-wrap items-baseline gap-x-2 text-primary">
+                <span className="font-serif text-[2.5rem] font-medium leading-none sm:text-5xl">
+                  {formatUSD(PRICING_STRUCTURE.headlineMonthly)}
                 </span>
-              </div>
-
-              <div className="mt-5 flex items-end gap-3">
-                <span
-                  className="font-serif text-[64px] leading-none text-primary"
-                  style={{ fontVariationSettings: "'opsz' 144" }}
-                >
-                  842
-                </span>
-                <span className="mb-2 font-mono text-xs uppercase tracking-tracked text-muted">
-                  ng/dL
-                </span>
-              </div>
-
-              <div className="mt-6">
-                <div className="relative h-2 rounded-full bg-surface-alt">
-                  <div className="absolute inset-y-0 left-[12%] right-[20%] rounded-full bg-accent/35" />
-                  <div className="absolute left-[76%] top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-surface bg-primary shadow-[0_2px_6px_hsl(215_60%_28%/0.4)]" />
-                </div>
-                <div className="mt-2 flex justify-between font-mono text-[10px] uppercase tracking-tracked text-muted">
-                  <span>Low</span>
-                  <span className="text-accent-strong">Optimal</span>
-                  <span>High</span>
-                </div>
-              </div>
-
-              <div className="mt-7 flex items-center justify-between border-t border-border pt-5">
-                <div>
-                  <p className="font-mono text-[10px] uppercase tracking-tracked text-muted">
-                    Baseline
-                  </p>
-                  <p className="mt-1 font-serif text-xl text-muted">231</p>
-                </div>
-                <ArrowRight size={18} className="text-accent-strong" />
-                <div className="text-right">
-                  <p className="font-mono text-[10px] uppercase tracking-tracked text-muted">
-                    Week 12
-                  </p>
-                  <p className="mt-1 font-serif text-xl text-primary">842</p>
-                </div>
-              </div>
-
-              <p className="mt-5 font-mono text-[10px] uppercase tracking-tracked text-muted/70">
-                Illustrative — individual results vary
+                <span className="text-base">/ month</span>
+                <span className="ml-1 text-sm font-medium">All in.</span>
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-muted">
+                No setup fee. Cancel anytime.
               </p>
             </div>
-          </div>
-        </div>
 
-        <div className="mt-12 flex justify-center animate-fade-up [animation-delay:320ms]">
-          <EmailCapture />
+            <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:gap-6">
+              <Link
+                href="/treatments"
+                className={cn(
+                  buttonVariants({ size: 'lg' }),
+                  'group gap-3 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-surface',
+                )}
+              >
+                Explore treatments
+                <ArrowRight size={18} aria-hidden className="transition-transform group-hover:translate-x-1 motion-reduce:transform-none" />
+              </Link>
+              <Link
+                href="/how-it-works"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-sm text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-primary"
+              >
+                How care works
+                <ArrowRight size={15} aria-hidden />
+              </Link>
+            </div>
+            <p className="mt-3 text-xs leading-relaxed text-muted">
+              Intake is not open yet. Explore your options before launch.
+            </p>
+          </div>
+
+          <div className="relative rounded-[1.75rem] bg-primary p-6 text-surface sm:p-8 lg:p-9">
+            <p className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+              How care will work
+            </p>
+            <h2 className="mt-3 max-w-sm font-serif text-[1.85rem] font-medium leading-tight sm:text-[2.25rem]">
+              A clear plan.<br />
+              <span className="display-italic text-accent">At every step.</span>
+            </h2>
+
+            <ol className="mt-7 space-y-0 sm:mt-8">
+              {CARE_STEPS.map(({ number, icon: Icon, title, description }, index) => (
+                <li key={number} className="relative flex gap-4 pb-6 last:pb-0 sm:gap-5">
+                  {index < CARE_STEPS.length - 1 && (
+                    <span aria-hidden className="absolute bottom-0 left-5 top-10 w-px bg-surface/20" />
+                  )}
+                  <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-surface/20 bg-surface/5 text-accent">
+                    <Icon size={19} strokeWidth={1.6} aria-hidden />
+                  </div>
+                  <div className="pt-0.5">
+                    <h3 className="text-[15px] font-medium leading-snug">{title}</h3>
+                    <p className="mt-1.5 max-w-xs text-sm leading-relaxed text-surface/85">
+                      {description}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+          </div>
         </div>
       </div>
     </section>
