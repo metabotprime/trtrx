@@ -5,6 +5,8 @@ import { SectionHeader } from './SectionHeader';
 export function TestimonialCards() {
   const testimonials = getHomepageTestimonials();
 
+  if (testimonials.length === 0) return null;
+
   return (
     <section className="bg-surface">
       <div className="container py-20 md:py-28">
@@ -86,9 +88,6 @@ export function TestimonialCards() {
           ))}
         </ul>
 
-        <p className="mx-auto mt-10 max-w-md text-center text-sm leading-relaxed text-muted">
-          Real members. Real outcomes. Stories coming as our pilot completes. Names and stats above are illustrative until the first cohort wraps.
-        </p>
       </div>
     </section>
   );

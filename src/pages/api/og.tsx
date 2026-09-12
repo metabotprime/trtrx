@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
+import { Wordmark } from '@/components/layout/Wordmark';
 
 export const config = { runtime: 'edge' };
 
@@ -37,9 +38,8 @@ export default function handler(req: NextRequest) {
             background: NAVY,
           }}
         >
-          <div style={{ display: 'flex', fontSize: 180, fontWeight: 800 }}>
-            <span style={{ color: CREAM }}>trt</span>
-            <span style={{ color: GOLD, fontStyle: 'italic' }}>rx</span>
+          <div style={{ display: 'flex' }}>
+            <Wordmark tone="on-dark" height={180} />
           </div>
         </div>
       ),
@@ -61,9 +61,8 @@ export default function handler(req: NextRequest) {
         }}
       >
         {/* wordmark */}
-        <div style={{ display: 'flex', fontSize: 46, fontWeight: 800 }}>
-          <span style={{ color: CREAM }}>trt</span>
-          <span style={{ color: GOLD, fontStyle: 'italic' }}>rx</span>
+        <div style={{ display: 'flex' }}>
+          <Wordmark tone="on-dark" height={46} />
         </div>
 
         {/* title block */}
