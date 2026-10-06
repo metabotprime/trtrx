@@ -1,3 +1,5 @@
+import { CLINICAL_CONTENT_RELEASED } from "@/content/launch";
+import { OperationalPage } from "@/components/availability/OperationalContent";
 import type { GetStaticProps } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { SEOHead } from "@/components/seo/SEOHead";
@@ -9,6 +11,7 @@ import { PhysicianNetwork } from "@/components/sections/PhysicianNetwork";
 import { FooterCTABand } from "@/components/sections/FooterCTABand";
 
 export default function AboutPage() {
+  if (!CLINICAL_CONTENT_RELEASED) return <OperationalPage kind="about" />;
   return (
     <>
       <SEOHead

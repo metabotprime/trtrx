@@ -11,6 +11,13 @@ export function ReviewNotice() {
   );
 }
 
+export function PublicationNotice() {
+  return <aside className="rounded-xl border border-border bg-surface-alt px-5 py-4 text-sm leading-relaxed text-muted" aria-label="Publication status">
+    <p className="font-medium text-primary">Clinical guides are awaiting review</p>
+    <p className="mt-1">Published resources currently cover costs and service planning. Clinical guidance remains unavailable until its review and release are complete. <Link href="/medical-review-policy" className="underline underline-offset-4">Read the review policy</Link>.</p>
+  </aside>;
+}
+
 export function CategoryNavigation({ current, categories }: { current?: BlogCategory; categories: BlogCategory[] }) {
   return (
     <nav aria-label="Article topics" className="flex flex-wrap gap-2">

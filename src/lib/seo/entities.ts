@@ -1,4 +1,5 @@
 import { TREATMENTS } from "@/content/treatments";
+import { CLINICAL_CONTENT_RELEASED } from "@/content/launch";
 import {
   DEFAULT_OG_IMAGE,
   EDITORIAL_POLICY_URL,
@@ -64,14 +65,14 @@ export function getBaseEntityGraph(): Record<string, unknown>[] {
       image: DEFAULT_OG_IMAGE,
       description: SITE_DESCRIPTION,
       sameAs: SITE_SOCIAL_PROFILES,
-      contactPoint: {
+      ...(SITE_CONTACT_EMAIL || SITE_CONTACT_PHONE ? { contactPoint: {
         "@type": "ContactPoint",
         contactType: "General inquiries",
         url: `${SITE_URL}/contact`,
-        email: SITE_CONTACT_EMAIL,
+        ...(SITE_CONTACT_EMAIL ? { email: SITE_CONTACT_EMAIL } : {}),
         ...(SITE_CONTACT_PHONE ? { telephone: SITE_CONTACT_PHONE } : {}),
         availableLanguage: "English",
-      },
+      } } : {}),
     },
     {
       "@type": "WebSite",
@@ -83,17 +84,17 @@ export function getBaseEntityGraph(): Record<string, unknown>[] {
       publisher: { "@id": ORGANIZATION_ID },
       inLanguage: "en-US",
     },
-    ...Object.values(TREATMENT_ENTITIES).map((t) => ({
+    ...(CLINICAL_CONTENT_RELEASED ? Object.values(TREATMENT_ENTITIES).map((t) => ({
       "@type": "Thing",
       "@id": t.id,
       name: t.name,
       url: t.url,
       description: t.description,
-    })),
-    {
+    })) : []),
+    ...(CLINICAL_CONTENT_RELEASED ? [{
       "@type": "Thing",
       "@id": LOW_TESTOSTERONE_CONDITION_ID,
       name: "Low testosterone",
-    },
+    }] : []),
   ];
 }

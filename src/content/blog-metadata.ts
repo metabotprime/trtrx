@@ -1,5 +1,12 @@
 import type { BlogCategory, BlogAuthor, BlogReviewer } from './blog';
 
+/** Only this operational guide is approved for publication without a
+ * clinical-content release. New articles default to the clinical hold. */
+export const OPERATIONAL_BLOG_SLUGS = ['how-trt-pricing-works'] as const;
+export function isClinicalBlogSlug(slug: string): boolean {
+  return !OPERATIONAL_BLOG_SLUGS.some((operationalSlug) => operationalSlug === slug);
+}
+
 export const CATEGORY_LABELS: Record<BlogCategory, string> = {
   'getting-started': 'Getting Started', protocols: 'Treatment Planning',
   comparisons: 'Treatment Comparisons', 'side-effects': 'Safety & Monitoring',

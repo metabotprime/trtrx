@@ -30,7 +30,7 @@ export default function AccessibilityPage() {
         <PolicyContent
           eyebrow="Trust"
           title="Accessibility"
-          lastUpdated="June 2026"
+          lastUpdated="October 6, 2026"
           intro={[
             'Good healthcare should be reachable by everyone. We are committed to making trtrx usable for all visitors, including people who rely on assistive technology, and we treat accessibility as an ongoing responsibility rather than a one-time checkbox.',
           ]}
@@ -39,12 +39,12 @@ export default function AccessibilityPage() {
               heading: 'Our standard',
               blocks: [
                 {
-                  p: 'We design and build trtrx to conform with the Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA, the widely recognized standard for accessible web experiences.',
+                  p: 'Our target is the Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA. This is a design goal, not a claim that the full website has received an independent accessibility audit or certification.',
                 },
               ],
             },
             {
-              heading: 'What we do',
+              heading: 'What we build for',
               blocks: [
                 {
                   list: [
@@ -62,29 +62,29 @@ export default function AccessibilityPage() {
               heading: 'Ongoing work and known limitations',
               blocks: [
                 {
-                  p: 'Accessibility is never finished. We test as we build and fix issues as we find them. Some third-party or embedded content may not yet fully conform; where that is the case, we work with our providers toward a fix or an accessible alternative.',
+                  p: 'We test as we build and address issues as we find them. A complete audit across assistive technologies and browser combinations has not been completed. The public support channel is also not yet available, so the website cannot currently receive accessibility reports.',
                 },
               ],
             },
             {
-              heading: 'Tell us if something isn’t working',
+              heading: 'Accessibility contact status',
               blocks: [
                 {
-                  p: 'If you encounter a barrier on this site or need information in a different format, we want to hear from you. We treat accessibility feedback as a priority and aim to respond and remediate promptly.',
+                  p: 'Support contact details, including a route for accessibility feedback, will be published before intake opens. There is no active support mailbox or feedback form on this website. We are not promising a response time before that channel is available.',
                 },
               ],
             },
           ]}
           footnote={
             <>
-              Report an accessibility issue at{' '}
+              Check our{' '}
               <Link
-                href="mailto:hello@trtrx.com"
+                href="/contact"
                 className="text-primary underline-offset-4 hover:text-accent-strong"
               >
-                hello@trtrx.com
+                contact status
               </Link>
-              .
+              {' '}for support availability.
             </>
           }
         />

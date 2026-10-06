@@ -5,6 +5,7 @@ import concurrent.futures
 from datetime import datetime, timezone
 from html.parser import HTMLParser
 import json
+import subprocess
 from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import urljoin, urlsplit
@@ -25,9 +26,12 @@ class Page(HTMLParser):
         self.ld = []
         self.in_ld = False
         self.buffer = ""
+        self.clinical_hold = False
 
     def handle_starttag(self, tag, attributes):
         attrs = dict(attributes)
+        if attrs.get("data-publication-status") == "clinical-review-pending":
+            self.clinical_hold = True
         if attrs.get("id"):
             self.ids.add(attrs["id"])
         if tag == "h1":
@@ -62,14 +66,42 @@ def main():
     parser.add_argument("base", help="Served origin, such as http://localhost:3108")
     parser.add_argument("--canonical", default="https://trtrx.com")
     parser.add_argument("--public", action="store_true", help="Expect indexable canonical pages")
+    parser.add_argument("--preview", action="store_true", help="Expect preview-host noindex headers on a public release")
+    parser.add_argument("--request-host", help="Canonical Host header for a local release check")
+    parser.add_argument("--resolve-ip", help="Fresh authoritative DNS IP when the local resolver is still cached; TLS validation stays enabled")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     base = args.base.rstrip("/")
     errors = []
+    clinical_articles = {
+        "testosterone-replacement-therapy-guide", "testosterone-blood-tests",
+        "trt-side-effects-and-monitoring", "choosing-online-trt-provider",
+        "signs-of-low-testosterone-35-55", "trt-and-fertility",
+        "trt-and-hematocrit", "cypionate-vs-enanthate",
+        "weekly-vs-twice-weekly-cypionate",
+    }
+    held_paths = {f"/blog/{slug}" for slug in clinical_articles} | {
+        "/treatments", *{f"/treatments/{slug}" for slug in ("cypionate", "enanthate", "enclomiphene", "hcg", "cream")},
+        *{f"/blog/category/{category}" for category in ("getting-started", "protocols", "comparisons", "side-effects", "fertility")},
+    }
 
     def fetch(path):
+        if args.resolve_ip:
+            host = urlsplit(base).hostname
+            response = subprocess.check_output([
+                "curl", "--silent", "--show-error", "--include", "--max-time", "30",
+                "--resolve", f"{host}:443:{args.resolve_ip}",
+                "--user-agent", "TRTrx-release-check/1.0", base + path,
+            ])
+            header, body = response.split(b"\r\n\r\n", 1)
+            lines = header.decode("utf-8").splitlines()
+            headers = dict(line.split(":", 1) for line in lines[1:] if ":" in line)
+            return int(lines[0].split()[1]), {key: value.strip() for key, value in headers.items()}, body
         try:
-            with urlopen(Request(base + path, headers={"User-Agent": "TRTrx-release-check/1.0"}), timeout=30) as response:
+            request_headers = {"User-Agent": "TRTrx-release-check/1.0"}
+            if args.request_host:
+                request_headers["Host"] = args.request_host
+            with urlopen(Request(base + path, headers=request_headers), timeout=30) as response:
                 return response.status, dict(response.headers), response.read()
         except HTTPError as error:
             return error.code, dict(error.headers), error.read()
@@ -79,7 +111,10 @@ def main():
     locs = [node.text for node in ET.fromstring(xml).findall("{*}url/{*}loc")]
     assert len(locs) == len(set(locs)), "Duplicate sitemap URLs"
     assert all(urlsplit(url).netloc == urlsplit(args.canonical).netloc for url in locs), "Mixed sitemap hosts"
-    paths = sorted({urlsplit(url).path or "/" for url in locs} | {"/launch", "/sign-in"})
+    sitemap_paths = {urlsplit(url).path or "/" for url in locs}
+    if sitemap_paths & held_paths:
+        errors.append("Held clinical routes appear in the public sitemap")
+    paths = sorted(sitemap_paths | held_paths | {"/launch", "/sign-in"})
     pages = {}
 
     def inspect(path):
@@ -99,12 +134,14 @@ def main():
                 errors.append(f"{path}: missing title/description")
             if page.canonicals != [args.canonical.rstrip("/") + path]:
                 errors.append(f"{path}: unexpected canonical {page.canonicals}")
-            held = not args.public or path in {"/launch", "/sign-in"}
+            held = not args.public or args.preview or path in held_paths | {"/launch", "/sign-in"}
             has_noindex = "noindex" in page.meta.get("robots", "") or "noindex" in headers.get("x-robots-tag", "")
             if held != has_noindex:
                 errors.append(f"{path}: indexing state does not match release")
             if not args.public and "noindex" not in page.meta.get("robots", ""):
                 errors.append(f"{path}: noindex missing from HTML")
+            if path in held_paths and not page.clinical_hold:
+                errors.append(f"{path}: clinical publication hold marker missing")
 
     for path, page in pages.items():
         for href in page.links:
@@ -121,12 +158,16 @@ def main():
         status, _, _ = fetch(path)
         if status != 404:
             errors.append(f"{path}: expected 404, got {status}")
-    for path in ("/robots.txt", "/llms.txt", "/llms-full.txt", "/pricing.md", "/favicon.svg", "/favicon.ico", "/api/og?variant=logo"):
+    for path in ("/robots.txt", "/llms.txt", "/llms-full.txt", "/pricing.md", "/image-sitemap.xml", "/favicon.svg", "/favicon.ico", "/api/og?variant=logo"):
         status, _, body = fetch(path)
         if status != 200 or not body:
             errors.append(f"{path}: missing/empty, HTTP {status}")
+        if path in {"/llms.txt", "/llms-full.txt", "/image-sitemap.xml"}:
+            document = body.decode("utf-8")
+            if any(args.canonical + route in document for route in held_paths):
+                errors.append(f"{path}: exposes held clinical route")
 
-    result = {"observedAt": datetime.now(timezone.utc).isoformat(), "base": base, "expectedPublic": args.public, "sitemapURLs": len(locs), "pagesChecked": len(pages), "jsonLdParsed": sum(len(page.ld) for page in pages.values()), "errors": sorted(set(errors))}
+    result = {"observedAt": datetime.now(timezone.utc).isoformat(), "base": base, "expectedPublic": args.public, "previewHost": args.preview, "authoritativeIPOverride": args.resolve_ip, "sitemapURLs": len(locs), "pagesChecked": len(pages), "heldClinicalRoutesChecked": len(held_paths), "jsonLdParsed": sum(len(page.ld) for page in pages.values()), "errors": sorted(set(errors))}
     if args.output:
         args.output.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result, indent=2))

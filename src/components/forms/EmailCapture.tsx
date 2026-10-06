@@ -1,5 +1,5 @@
+import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { SITE_CONTACT_EMAIL } from "@/lib/seo/site";
 
 type Props = { className?: string; variant?: "inline" | "card" };
 export function EmailCapture({ className, variant = "inline" }: Props) {
@@ -14,14 +14,15 @@ export function EmailCapture({ className, variant = "inline" }: Props) {
         Email updates are not available yet.
       </p>
       <p className="mt-2 text-sm leading-relaxed text-muted">
-        There is no waitlist signup on this site. For general questions,{" "}
-        <a
+        There is no waitlist signup on this site. Support contact details will
+        be published before intake opens. See the{" "}
+        <Link
           className="font-medium text-primary underline underline-offset-4"
-          href={`mailto:${SITE_CONTACT_EMAIL}`}
+          href="/contact"
         >
-          email {SITE_CONTACT_EMAIL}
-        </a>
-        . Do not include medical records or other sensitive health information.
+          contact status
+        </Link>
+        . No email address or medical information is collected here.
       </p>
     </div>
   );

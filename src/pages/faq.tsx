@@ -1,14 +1,17 @@
-import type { GetStaticProps } from 'next';
-import { PageShell } from '@/components/layout/PageShell';
-import { SEOHead } from '@/components/seo/SEOHead';
-import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
-import { FAQSchema } from '@/components/seo/schemas/FAQSchema';
-import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
-import { FooterCTABand } from '@/components/sections/FooterCTABand';
-import { FAQByCategory } from '@/components/sections/FAQByCategory';
-import { FAQS } from '@/content/faqs';
+import { CLINICAL_CONTENT_RELEASED } from "@/content/launch";
+import { OperationalPage } from "@/components/availability/OperationalContent";
+import type { GetStaticProps } from "next";
+import { PageShell } from "@/components/layout/PageShell";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { EntityGraphSchema } from "@/components/seo/schemas/EntityGraphSchema";
+import { FAQSchema } from "@/components/seo/schemas/FAQSchema";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { FooterCTABand } from "@/components/sections/FooterCTABand";
+import { FAQByCategory } from "@/components/sections/FAQByCategory";
+import { FAQS } from "@/content/faqs";
 
 export default function FAQPage() {
+  if (!CLINICAL_CONTENT_RELEASED) return <OperationalPage kind="faq" />;
   return (
     <>
       <SEOHead
@@ -28,8 +31,8 @@ export default function FAQPage() {
       <PageShell>
         <Breadcrumbs
           items={[
-            { name: 'Home', href: '/' },
-            { name: 'FAQ', href: '/faq' },
+            { name: "Home", href: "/" },
+            { name: "FAQ", href: "/faq" },
           ]}
         />
         {/* Hero */}
@@ -37,7 +40,9 @@ export default function FAQPage() {
           <div className="container max-w-hero px-5 pb-12 pt-20 text-center md:pb-16 md:pt-28 lg:pt-32">
             <p className="eyebrow mb-7 inline-flex flex-wrap justify-center gap-x-3 gap-y-1">
               <span>Questions Men Ask</span>
-              <span aria-hidden className="text-muted/60">·</span>
+              <span aria-hidden className="text-muted/60">
+                ·
+              </span>
               <span>Plain Answers</span>
             </p>
 
@@ -45,7 +50,7 @@ export default function FAQPage() {
               className="font-serif text-display-xl font-medium text-primary"
               style={{ fontVariationSettings: "'opsz' 144" }}
             >
-              No medical{' '}
+              No medical{" "}
               <span className="display-italic text-primary">hand-waving.</span>
             </h1>
 
@@ -61,7 +66,6 @@ export default function FAQPage() {
         <FooterCTABand
           headline="More questions?"
           italic="We're here."
-          caption="hello@trtrx.com · Or get started below"
         />
       </PageShell>
     </>

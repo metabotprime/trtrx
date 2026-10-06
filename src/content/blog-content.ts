@@ -198,7 +198,7 @@ export const ARTICLE_CONTENT: ArticleInput[] = [
     title: 'How much does TRT cost? Compare the complete care bill',
     excerpt: 'Compare medication, testing, appointments, supplies, and cancellation terms without relying on headline prices.',
     quickAnswer: 'TRT costs depend on medication, clinical care, testing, supplies, and the payment arrangement. Compare the expected first-year total and what happens if additional care is needed. Monthly prices are comparable only when included services and billing periods are clear.',
-    featured: true,
+    featured: true, onHomePage: true,
     sections: [
       { id: 'cost-components', title: 'Start with the services you would receive', paragraphs: [
         'TRT is medical care, not just a vial or a subscription. A useful estimate distinguishes the evaluation, any prescribed medication, follow-up appointments, laboratory work, and supplies. Shipping, dispensing, or administrative charges may be separate. Ask the provider to identify every party that can send a bill.',
@@ -222,15 +222,15 @@ export const ARTICLE_CONTENT: ArticleInput[] = [
         'Ask the provider and insurer which services, if any, would be billed to insurance and what network or authorization requirements apply. A medication discount, a receipt for reimbursement, and insurance coverage are different arrangements. An advertised price does not settle your final out-of-pocket cost.',
         'CMS explains that people not using insurance usually qualify for a good faith estimate when requested or when care is scheduled sufficiently in advance. Rules and exceptions apply, and an estimate may cover only one provider or facility. The linked CMS guide explains when an estimate applies; ask other billing parties for their own details.',
       ], sourceIds: ['good-faith-estimate'] },
-      { id: 'care-quality', title: 'Price does not answer the clinical questions', paragraphs: [
-        'Compare access to follow-up, how results are reviewed, and how medication questions are handled alongside the bill. Ask who makes treatment decisions and what prompts reassessment. No price should come with a promise that an evaluation will lead to a prescription.',
-        'If a compounded product is proposed, ask why and which pharmacy supplies it. Compounded drugs are not FDA-approved; FDA does not review their safety, effectiveness, or quality before marketing. Identify the actual product in a comparison instead of treating all preparations as interchangeable.',
-      ], sourceIds: ['compounded-drugs'] },
+      { id: 'service-terms', title: 'Understand the service behind the price', paragraphs: [
+        'Compare access to appointments, how billing questions are handled, and which contact channels are included. Ask who is responsible for an invoice from another company and whether the quoted fee covers communication between scheduled appointments. Record important answers with the estimate.',
+        'A payment purchases only the services described in the written terms. Ask which charges apply if an evaluation does not lead to ongoing care, if you cancel, or if the provider cannot serve your location. A billing arrangement should not be presented as a guarantee that you will receive a prescription.',
+      ] },
       { id: 'trtrx-pricing', title: 'How to use TRTrx pricing before launch', paragraphs: [
         'TRTrx is preparing to launch. Prices and inclusions on this site describe plans being finalized, not an active offer of clinical care. Intake is closed. Final terms, availability, and any treatment decision need confirmation when services become available.',
         'Keep copies of written estimates and terms. Comparing the same care components is more useful than choosing solely because one headline number is smaller. You can use this checklist with any provider, including your existing clinician.',
       ] },
-    ], citations: [S.estimate, S.compounding],
+    ], citations: [S.estimate],
     relatedSlugs: ['choosing-online-trt-provider', 'testosterone-replacement-therapy-guide', 'trt-side-effects-and-monitoring'],
     relatedLinks: [{ label: 'Planned TRTrx pricing', href: '/pricing' }, { label: 'Launch status', href: '/launch' }],
   },

@@ -1,17 +1,20 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
-import { LAUNCH_MESSAGE } from "@/content/launch";
+import { CLINICAL_CONTENT_RELEASED, LAUNCH_MESSAGE } from "@/content/launch";
 
 const FOOTER_GROUPS = [
   {
-    label: "Treatments",
+    label: CLINICAL_CONTENT_RELEASED ? "Treatments" : "Treatment status",
     links: [
       { label: "Cypionate", href: "/treatments/cypionate" },
       { label: "Enanthate", href: "/treatments/enanthate" },
       { label: "Enclomiphene", href: "/treatments/enclomiphene" },
       { label: "HCG", href: "/treatments/hcg" },
       { label: "Cream", href: "/treatments/cream" },
-      { label: "Compare all", href: "/treatments" },
+      {
+        label: CLINICAL_CONTENT_RELEASED ? "Compare all" : "Publication status",
+        href: "/treatments",
+      },
     ],
   },
   {
@@ -20,7 +23,10 @@ const FOOTER_GROUPS = [
       { label: "How It Works", href: "/how-it-works" },
       { label: "Pricing", href: "/pricing" },
       { label: "FAQ", href: "/faq" },
-      { label: "TRT guides", href: "/blog" },
+      {
+        label: CLINICAL_CONTENT_RELEASED ? "TRT guides" : "Guide review status",
+        href: "/blog",
+      },
       { label: "Your state", href: "/trt-in-your-state" },
       { label: "Launch status", href: "/launch" },
     ],

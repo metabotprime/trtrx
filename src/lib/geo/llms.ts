@@ -1,7 +1,7 @@
 import {
-  BLOG_POSTS,
+  getPublicBlogPosts,
   CATEGORY_LABELS,
-  getPopulatedBlogCategories,
+  getPublicBlogCategories,
 } from "@/content/blog";
 import { FAQS } from "@/content/faqs";
 import { TREATMENTS } from "@/content/treatments";
@@ -10,13 +10,14 @@ import {
   PLANNED_CARE_NOTICE,
   PUBLIC_LAUNCH_ENABLED,
   INTAKE_ENABLED,
+  CLINICAL_CONTENT_RELEASED,
 } from "@/content/launch";
 import { SITE_URL, toAbsoluteUrl } from "@/lib/seo/site";
 import { buildPricingMd } from "./pricing-md";
 import { isNoindexBlogSlug } from "@/lib/seo/noindex-slugs";
 
 const publicPosts = () =>
-  BLOG_POSTS.filter((post) => !isNoindexBlogSlug(post.slug));
+  getPublicBlogPosts().filter((post) => !isNoindexBlogSlug(post.slug));
 
 export function buildLlmsTxt(): string {
   return [
@@ -31,8 +32,8 @@ export function buildLlmsTxt(): string {
     "",
     "## Content status",
     "",
-    "Articles use linked primary sources. Clinical review has not been completed. Editorial update dates are not physician review dates. No named clinicians, credentials, testimonials, state coverage, certification or clinical outcomes should be inferred.",
-    "This is general education, not personalized medical advice. Pricing is planned, not a purchasable offer. Compounded drugs are not FDA-approved and should not be assumed equivalent to approved products.",
+    "Operational guides use linked primary sources. Clinical guidance is withheld pending a completed clinical review. Editorial update dates are not physician review dates. No named clinicians, credentials, testimonials, state coverage, certification or clinical outcomes should be inferred.",
+    "This is general information, not personalized medical advice. Pricing is planned, not a purchasable offer.",
     "",
     "## Website information",
     "",
@@ -46,7 +47,7 @@ export function buildLlmsTxt(): string {
     "",
     "## Educational topics",
     "",
-    ...getPopulatedBlogCategories().map(
+    ...getPublicBlogCategories().map(
       (category) =>
         `- [${CATEGORY_LABELS[category]}](${toAbsoluteUrl(`/blog/category/${category}`)})`,
     ),
@@ -55,7 +56,7 @@ export function buildLlmsTxt(): string {
     "",
     ...publicPosts().map(
       (post) =>
-        `- [${post.title}](${toAbsoluteUrl(`/blog/${post.slug}`)}): ${post.excerpt} Editorial update: ${post.updatedAt}; clinical review pending.`,
+        `- [${post.title}](${toAbsoluteUrl(`/blog/${post.slug}`)}): ${post.excerpt} Editorial update: ${post.updatedAt}.`,
     ),
     "",
     "## Reference formats",
@@ -73,23 +74,23 @@ export function buildLlmsFullTxt(): string {
     buildPricingMd(),
     "# Treatment education",
     "",
-    ...TREATMENTS.flatMap((t) => [
+    ...(CLINICAL_CONTENT_RELEASED ? TREATMENTS.flatMap((t) => [
       `## ${t.name}`,
       toAbsoluteUrl(`/treatments/${t.slug}`),
       t.summary,
       `Form: ${t.formFactor}. Administration: individual prescription. Regulatory context: ${t.fdaStatus}.`,
       `Fertility: ${t.fertilityNote}. No fertility outcome is guaranteed.`,
       "",
-    ]),
+    ]) : ["Clinical treatment guidance is withheld pending review.", ""]),
     "# Frequently asked questions",
     "",
-    ...FAQS.flatMap((faq) => [`## ${faq.question}`, faq.answer, ""]),
+    ...(CLINICAL_CONTENT_RELEASED ? FAQS.flatMap((faq) => [`## ${faq.question}`, faq.answer, ""]) : ["Patient intake is closed. State coverage, final services and support contacts are not confirmed.", ""]),
     "# Educational articles",
     "",
     ...publicPosts().flatMap((post) => [
       `## ${post.title}`,
       toAbsoluteUrl(`/blog/${post.slug}`),
-      `Editorial update: ${post.updatedAt}. Clinical review has not been completed.`,
+      `Editorial update: ${post.updatedAt}. This is an operational guide.`,
       "",
       post.body,
       "",

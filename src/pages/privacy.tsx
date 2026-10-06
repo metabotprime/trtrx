@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PageShell } from "@/components/layout/PageShell";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { PolicyContent } from "@/components/sections/PolicyContent";
@@ -8,7 +9,7 @@ export default function PolicyPage() {
       <SEOHead
         title={"Privacy policy"}
         description={
-          "Privacy information for the prelaunch TRTrx educational website. Intake, payments, accounts and email signup are not available."
+          "Privacy information for the TRTrx educational website. Intake, payments, accounts, support messages and email signup are not available."
         }
         path={"/privacy"}
       />
@@ -17,14 +18,14 @@ export default function PolicyPage() {
         title={"Privacy policy"}
         lastUpdated="October 6, 2026"
         intro={[
-          "TRTrx is a prelaunch educational website. There is no patient intake form, active account system, payment checkout or email waitlist signup on this site. This notice describes the current website, not a future clinical service.",
+          "TRTrx provides educational and planned-service information. There is no patient intake form, active account system, payment checkout, support messaging or email waitlist signup on this site. This notice describes the current website, not a future clinical service.",
         ]}
         sections={[
           {
-            heading: "Information you choose to send",
+            heading: "Forms and contact information",
             blocks: [
               {
-                p: "Contact links open your own email application. Sending an email is your choice; the website does not submit it for you. General email may include the address and information you provide. Do not send medical records, laboratory results, identification documents or other sensitive health information.",
+                p: "The website does not provide a form or active support mailbox for sending personal information. Support contact details will be published before intake opens. Do not send medical records, laboratory results, identification documents or other sensitive health information to an unverified address.",
               },
             ],
           },
@@ -53,7 +54,7 @@ export default function PolicyPage() {
             heading: "Your choices",
             blocks: [
               {
-                p: "You can browse without creating an account or joining a mailing list. You can control cookies and similar storage through your browser settings. For questions about information you voluntarily emailed, contact hello@trtrx.com without including additional sensitive information.",
+                p: "You can browse without creating an account or joining a mailing list. You can control cookies and similar storage through your browser settings. An active support channel and instructions for privacy requests will be published before intake opens; this website does not currently receive those requests.",
               },
             ],
           },
@@ -67,16 +68,16 @@ export default function PolicyPage() {
           },
         ]}
         footnote={
-          <p>
-            General questions:{" "}
-            <a
+          <>
+            Support contact details will be published before intake opens. Check our{" "}
+            <Link
               className="text-primary underline underline-offset-4"
-              href="mailto:hello@trtrx.com"
+              href="/contact"
             >
-              hello@trtrx.com
-            </a>
-            . Do not send sensitive medical information.
-          </p>
+              contact status
+            </Link>
+            .
+          </>
         }
       />
     </PageShell>

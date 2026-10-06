@@ -32,7 +32,7 @@ export default function EditorialPolicyPage() {
           title="Editorial policy"
           lastUpdated="October 6, 2026"
           intro={[
-            'Men make real health decisions based on what they read about testosterone. We treat that responsibility seriously. This policy describes how trtrx content is researched, sourced, reviewed, and corrected.',
+            'This policy describes how TRTrx content is researched, sourced, reviewed, and corrected. The public website provides operational information and cost-comparison education. Clinical guidance remains subject to completed review before publication.',
           ]}
           sections={[
             {
@@ -67,8 +67,8 @@ export default function EditorialPolicyPage() {
                 {
                   p: (
                     <>
-                      TRTrx is preparing to launch. Clinical review of the current
-                      articles has not yet been completed. Source checking and
+                      Patient intake is closed. Clinical review of the prepared
+                      drafts has not yet been completed. Source checking and
                       editorial updates do not constitute physician review. Our
                       intended clinical review process is described in the{' '}
                       <Link
@@ -87,7 +87,7 @@ export default function EditorialPolicyPage() {
               heading: 'Independence',
               blocks: [
                 {
-                  p: 'TRTrx is a commercial health brand preparing to launch. Our articles should help readers understand a question, including limitations, alternatives, and reasons treatment may not be appropriate. Planned offerings do not determine the evidence we include. We do not accept payment for favorable conclusions or present promotional content as independent medical advice.',
+                  p: 'TRTrx is a commercial health brand preparing its clinical service. Educational material should help readers understand a question and its limitations. Planned offerings do not determine the evidence we include. We do not accept payment for favorable conclusions or present promotional content as independent medical advice.',
                 },
               ],
             },
@@ -103,14 +103,14 @@ export default function EditorialPolicyPage() {
               heading: 'Authorship',
               blocks: [
                 {
-                  p: 'Current articles are credited to the TRTrx Editorial Team. They are source-based editorial materials, not first-person clinician accounts or patient stories. We do not claim clinical authorship, invent identities, or add reviewer credentials before the identity and completed review are verified.',
+                  p: 'Public editorial material is credited to the TRTrx Editorial Team. It is not a first-person clinician account or patient story. We do not claim clinical authorship, invent identities, or add reviewer credentials before the identity and completed review are verified.',
                 },
               ],
             },
           ]}
           footnote={
             <>
-              For current contact information and launch status, see our{' '}
+              Support contact details will be published before intake opens. See our{' '}
               <Link
                 href="/contact"
                 className="text-primary underline-offset-4 hover:text-accent-strong"

@@ -2,6 +2,14 @@
 
 Observed October 6, 2026. This document supersedes the May 2026 SEO roadmap and handoff wherever they describe current operations, publication, indexing, or launch readiness.
 
+## Public domain release, October 6
+
+The user authorized connecting the GoDaddy domain and making the site live. GoDaddy nameservers now point to Vercel, with the existing null MX and restrictive SPF retained. The Vercel project owns apex `trtrx.com` and redirects `www.trtrx.com` to the apex with HTTP 308. Domain configuration was verified by the authenticated Vercel CLI. Registration remains at GoDaddy.
+
+The release configuration is `PUBLIC_LAUNCH_ENABLED=true`, `CLINICAL_CONTENT_RELEASED=false`, `INTAKE_ENABLED=false`. Public content includes brand/operational information, planning prices, policies, the state-availability guide, the cost article and its pricing category. Nine clinical articles, five treatment details, their hub and five clinical category hubs serve status-only pages, with no clinical body in HTML or page props, noindex and exclusion from sitemaps/machine references. The clinical source is preserved for qualified review. No reviewer identity or completed review is invented. An unavailable mailbox is not an active support channel; mailto links and email schema have been removed.
+
+This section supersedes the older checklist's global noindex review-release configuration below. Production deployment, canonical served checks and Search Console submission receipts are recorded separately after the release; domain setup alone does not establish indexing or traffic.
+
 ## Recommendation
 
 Launch a useful, transparent education site before patient intake opens. Keep public indexing and clinical intake as separate releases. Build depth around testing, safety, cost and choosing care, then add state pages when there are verified differences that help the reader. Volume alone is not the goal.
@@ -50,13 +58,13 @@ Do not publish a second article for a close keyword variant when the existing pa
 
 ## Public-launch checklist, intake remains closed
 
-Both flags in `src/content/launch.ts` are **false** in this review release. Turning on public indexing does not turn on intake.
+Public indexing is enabled for the operational release. Clinical guidance and patient intake remain separately disabled in `src/content/launch.ts`.
 
 | Gate | Evidence needed immediately before release |
 |---|---|
 | Domain | Confirm control of `trtrx.com`, connect it to this Vercel project, HTTPS ready, chosen apex host serves this exact release and www redirects to it. The audit saw a parked domain, not the site. Vercel CLI also reported that this domain was not found under the `trimi1` team on October 6. That is not proof that the user does not own it; its current account/registrar connection must be established. |
-| Identity and contact | Confirm the legal operating name and usable contact mailbox. Mailto links open an email composer; they do not prove delivery or a monitored inbox. |
-| Publication review | Review the exact clinical article versions and patient-facing copy against the compliance canon. Clinical review is not completed by an AI/source check. Record real reviewer identity, credentials, version and date only after completed review. Keep any unfinished page individually noindex and out of sitemap. |
+| Identity and contact | Confirm the legal operating name and usable contact mailbox before intake. The operational release does not claim a working mailbox. |
+| Publication review | Review exact clinical versions against the compliance canon and complete qualified review. Record real reviewer identity, credentials, version and date only after completed review. Unfinished clinical routes serve status only, remain noindex and are excluded from sitemaps/machine feeds. Noindex alone is not a publication hold. |
 | Policies | Confirm privacy/terms/contact accurately describe the public site's actual data use and operating entity. Do not claim a clinical HIPAA relationship before it exists. |
 | Indexable URL set | Finalize intentionally publishable pages; remove utility or unfinished routes from sitemap. Check HTTP status, one H1, title/description, self-canonical, visible content and JSON-LD truth on the served production build. |
 | Public switch | Set `PUBLIC_LAUNCH_ENABLED=true`, leave `INTAKE_ENABLED=false`. Confirm public HTML has index/follow and no noindex header; preview URLs remain noindex. |

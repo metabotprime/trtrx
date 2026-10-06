@@ -11,12 +11,12 @@ export default function MedicalDisclaimerPage() {
     <>
       <SEOHead
         title="Medical Disclaimer"
-        description="trtrx provides general educational information about testosterone therapy. It is not medical advice and does not replace consultation with a licensed clinician."
+        description="TRTrx provides educational and planned-service information. Patient intake is closed. This website does not provide medical advice or clinical care."
         path="/medical-disclaimer"
       />
       <EntityGraphSchema
         title="Medical Disclaimer"
-        description="trtrx provides general educational information about testosterone therapy. It is not medical advice and does not replace consultation with a licensed clinician."
+        description="TRTrx provides educational and planned-service information. Patient intake is closed. This website does not provide medical advice or clinical care."
         url="/medical-disclaimer"
         pageType="WebPage"
       />
@@ -32,7 +32,7 @@ export default function MedicalDisclaimerPage() {
           title="Medical disclaimer"
           lastUpdated="October 6, 2026"
           intro={[
-            "trtrx publishes general educational information about testosterone and men’s hormone health. Patient intake is not open, and this information is not a substitute for professional medical care.",
+            "TRTrx publishes educational and planned-service information. Patient intake is not open, and this information is not a substitute for professional medical care.",
           ]}
           sections={[
             {
@@ -48,7 +48,7 @@ export default function MedicalDisclaimerPage() {
                 "Using this site does not create a doctor–patient relationship",
               blocks: [
                 {
-                  p: "Reading this website, browsing treatment pages or sending a general inquiry does not create a clinician-patient relationship. TRTrx does not currently provide intake, appointments, prescriptions or clinical care.",
+                  p: "Reading this website does not create a clinician-patient relationship. TRTrx does not currently provide intake, appointments, prescriptions or clinical care.",
                 },
               ],
             },
@@ -56,10 +56,10 @@ export default function MedicalDisclaimerPage() {
               heading: "Prescriptions and clinical decisions",
               blocks: [
                 {
-                  p: "Any prescription is at the sole discretion of a licensed physician based on your individual evaluation. Completing an intake does not guarantee that you will be prescribed any medication. Testosterone is a Schedule III controlled substance and is prescribed only after a physician reviews your labs and history.",
+                  p: "No prescription or clinical decision is available through this website. Any future treatment would require an individual assessment by an appropriately licensed clinician. Interest in the service, a displayed price or reading an article does not establish eligibility for care.",
                 },
                 {
-                  p: "Some treatments discussed on this site are compounded preparations. Compounded drugs are not FDA-approved, and FDA does not review them for safety, effectiveness or quality before marketing. Enclomiphene is not an FDA-approved drug; it is not simply an approved medicine used for another indication. Off-label use refers to an approved drug used outside its approved labeling. HCG has approved products with specific indications, but a proposed adjunct use and the exact product require individual clinical and regulatory assessment.",
+                  p: "Clinical guidance and treatment details remain subject to completed clinical review before publication. Source checking is not a substitute for that review. The medical review policy explains how verified reviewer credits will be recorded; no completed clinical review is claimed for the prepared drafts.",
                 },
               ],
             },
@@ -90,12 +90,12 @@ export default function MedicalDisclaimerPage() {
           ]}
           footnote={
             <>
-              Questions about this disclaimer? Email{" "}
+              Support contact details will be published before intake opens. Check our{" "}
               <Link
-                href="mailto:hello@trtrx.com"
+                href="/contact"
                 className="text-primary underline-offset-4 hover:text-accent-strong"
               >
-                hello@trtrx.com
+                contact status
               </Link>
               . See also our{" "}
               <Link

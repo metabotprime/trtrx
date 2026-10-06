@@ -1,3 +1,5 @@
+import { CLINICAL_CONTENT_RELEASED } from "@/content/launch";
+import { OperationalPage } from "@/components/availability/OperationalContent";
 import type { GetStaticProps } from "next";
 import Link from "next/link";
 import { PageShell } from "@/components/layout/PageShell";
@@ -13,6 +15,8 @@ import { FooterCTABand } from "@/components/sections/FooterCTABand";
 import { buttonVariants } from "@/components/ui/button";
 
 export default function HowItWorksPage() {
+  if (!CLINICAL_CONTENT_RELEASED)
+    return <OperationalPage kind="how-it-works" />;
   return (
     <>
       <SEOHead

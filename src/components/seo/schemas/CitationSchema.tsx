@@ -24,6 +24,7 @@ type Props = {
    * attribute the citations to the right MedicalWebPage entity.
    */
   pageUrl: string;
+  pageType?: 'WebPage' | 'MedicalWebPage';
   citations: Citation[];
 };
 
@@ -37,14 +38,14 @@ type Props = {
  * Inline JSON-LD (NOT via react-helmet-async) per the project's schema
  * discipline.
  */
-export function CitationSchema({ pageUrl, citations }: Props) {
+export function CitationSchema({ pageUrl, citations, pageType = 'MedicalWebPage' }: Props) {
   if (!citations || citations.length === 0) return null;
 
   const absoluteUrl = pageUrl.startsWith('http') ? pageUrl : `${SITE_URL}${pageUrl}`;
 
   const data = {
     '@context': 'https://schema.org',
-    '@type': 'MedicalWebPage',
+    '@type': pageType,
     '@id': `${absoluteUrl}#webpage`,
     url: absoluteUrl,
     citation: citations.map((c) => ({

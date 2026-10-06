@@ -1,3 +1,5 @@
+import { CLINICAL_CONTENT_RELEASED } from "@/content/launch";
+import { OperationalPage } from "@/components/availability/OperationalContent";
 import type { GetStaticProps } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { SEOHead } from "@/components/seo/SEOHead";
@@ -16,6 +18,7 @@ const PRICING_CATEGORIES = new Set(["insurance", "refund", "legality"]);
 const pricingFaqs = FAQS.filter((f) => PRICING_CATEGORIES.has(f.category));
 
 export default function PricingPage() {
+  if (!CLINICAL_CONTENT_RELEASED) return <OperationalPage kind="pricing" />;
   return (
     <>
       <SEOHead

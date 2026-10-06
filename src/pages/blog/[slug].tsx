@@ -11,20 +11,24 @@ import { FooterCTABand } from '@/components/sections/FooterCTABand';
 import { ArticleBody, ArticleCard, ReviewNotice } from '@/components/blog/ArticleParts';
 import { QuickAnswerBox } from '@/components/blog/QuickAnswerBox';
 import { isNoindexBlogSlug } from '@/lib/seo/noindex-slugs';
-import { BLOG_POSTS, getBlogPostBySlug, getRelatedBlogPosts, summarizeBlogPost, type BlogPost, type BlogPostSummary } from '@/content/blog';
-import { CATEGORY_LABELS, formatEditorialDate, getAuthor, getReviewer } from '@/content/blog-metadata';
+import { ClinicalContentHold } from '@/components/availability/ClinicalContentHold';
+import { BLOG_POSTS, getBlogPostBySlug, isBlogPostPublic, getRelatedBlogPosts, summarizeBlogPost, type BlogPost, type BlogPostSummary } from '@/content/blog';
+import { CATEGORY_LABELS, formatEditorialDate, getAuthor, getReviewer, isClinicalBlogSlug } from '@/content/blog-metadata';
 
-type Props = { post: BlogPost; related: BlogPostSummary[] };
-export default function BlogPostPage({ post, related }: Props) {
+type Props = { held: true; slug: string; title: string } | { held: false; post: BlogPost; related: BlogPostSummary[] };
+export default function BlogPostPage(props: Props) {
+  if (props.held) return <ClinicalContentHold title={props.title} path={`/blog/${props.slug}`} />;
+  const { post, related } = props;
+  const isClinical = isClinicalBlogSlug(post.slug);
   const author = getAuthor(post.authorId);
   const reviewer = post.lastReviewedAt ? getReviewer(post.reviewerId) : undefined;
   const path = `/blog/${post.slug}`;
   return <>
     <SEOHead title={post.title} description={post.excerpt} path={path} ogImage={post.ogImage ?? `/api/og?title=${encodeURIComponent(post.title)}`} noindex={isNoindexBlogSlug(post.slug)} />
-    <EntityGraphSchema title={post.title} description={post.excerpt} url={path} pageType="MedicalWebPage" />
+    <EntityGraphSchema title={post.title} description={post.excerpt} url={path} pageType={isClinical ? 'MedicalWebPage' : 'WebPage'} />
     <BlogPostingSchema post={post} />
-    <MedicalWebPageSchema name={post.title} description={post.excerpt} path={path} lastReviewed={reviewer ? post.lastReviewedAt : undefined} reviewedBy={reviewer ? { name: reviewer.name, jobTitle: reviewer.title, honorificSuffix: reviewer.credentials } : undefined} />
-    <CitationSchema pageUrl={path} citations={post.citations.map((source) => ({ '@type': source.type, headline: source.headline, url: source.url, publisher: { name: source.publisher }, ...(source.author ? { author: source.author } : {}), ...(source.datePublished ? { datePublished: source.datePublished } : {}) }))} />
+    {isClinical ? <MedicalWebPageSchema name={post.title} description={post.excerpt} path={path} lastReviewed={reviewer ? post.lastReviewedAt : undefined} reviewedBy={reviewer ? { name: reviewer.name, jobTitle: reviewer.title, honorificSuffix: reviewer.credentials } : undefined} /> : null}
+    <CitationSchema pageUrl={path} pageType={isClinical ? 'MedicalWebPage' : 'WebPage'} citations={post.citations.map((source) => ({ '@type': source.type, headline: source.headline, url: source.url, publisher: { name: source.publisher }, ...(source.author ? { author: source.author } : {}), ...(source.datePublished ? { datePublished: source.datePublished } : {}) }))} />
     <PageShell>
       <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'TRT guides', href: '/blog' }, { name: CATEGORY_LABELS[post.category], href: `/blog/category/${post.category}` }, { name: post.title, href: path }]} />
       <article className="container max-w-4xl py-10 md:py-16">
@@ -33,7 +37,7 @@ export default function BlogPostPage({ post, related }: Props) {
           <h1 className="mt-5 font-serif text-4xl font-medium leading-tight text-primary md:text-5xl">{post.title}</h1>
           <p className="mt-5 text-lg leading-relaxed text-muted">{post.excerpt}</p>
           <p className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted"><span>By {author?.name ?? 'TRTrx Editorial Team'}</span><span>Editorial update <time dateTime={post.updatedAt}>{formatEditorialDate(post.updatedAt)}</time></span><span>{post.readMinutes} min read</span></p>
-          <div className="mt-6">{reviewer && post.lastReviewedAt ? <p className="text-sm text-muted">Medically reviewed by {reviewer.name}, {reviewer.credentials}, on {formatEditorialDate(post.lastReviewedAt)}.</p> : <ReviewNotice />}</div>
+          <div className="mt-6">{isClinical ? reviewer && post.lastReviewedAt ? <p className="text-sm text-muted">Medically reviewed by {reviewer.name}, {reviewer.credentials}, on {formatEditorialDate(post.lastReviewedAt)}.</p> : <ReviewNotice /> : <p className="text-sm text-muted">Operational guide to costs and service terms. This article does not provide medical advice.</p>}</div>
         </header>
         <div className="my-8"><QuickAnswerBox answer={post.quickAnswer} /></div>
         <nav aria-label="On this page" className="mb-10 rounded-xl border border-border p-5 md:p-6">
@@ -43,7 +47,7 @@ export default function BlogPostPage({ post, related }: Props) {
         <ArticleBody post={post} />
         <section aria-labelledby="sources" className="mt-12 border-t border-border pt-8">
           <h2 id="sources" className="scroll-mt-28 font-serif text-2xl text-primary">Sources and references</h2>
-          <p className="mt-3 text-sm leading-relaxed text-muted">Sources checked for this editorial update on {formatEditorialDate(post.updatedAt)}. Older guidance may differ from newer agency statements. Product-specific decisions require the current label and clinical review.</p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">Sources checked for this editorial update on {formatEditorialDate(post.updatedAt)}. {isClinical ? 'Older guidance may differ from newer agency statements. Product-specific decisions require the current label and clinical review.' : 'Check current provider terms and the source guidance for exceptions and requirements.'}</p>
           <ol className="mt-5 list-decimal space-y-4 pl-5 text-sm leading-relaxed text-muted">{post.citations.map((source) => <li id={`source-${source.id}`} key={source.id} className="scroll-mt-28 pl-1"><a href={source.url} className="text-primary underline underline-offset-4">{source.headline}</a><span className="block">{source.publisher}</span></li>)}</ol>
         </section>
         <aside className="mt-10 rounded-xl border border-border bg-surface-alt p-5 text-sm leading-relaxed text-muted">
@@ -51,7 +55,7 @@ export default function BlogPostPage({ post, related }: Props) {
         </aside>
         {post.relatedLinks.length ? <nav aria-label="Related TRTrx information" className="mt-8 flex flex-wrap gap-3">{post.relatedLinks.map((link) => <Link key={link.href} href={link.href} className="rounded-full border border-border px-4 py-2 text-sm text-primary hover:bg-surface-alt">{link.label}</Link>)}</nav> : null}
       </article>
-      <section className="bg-surface-alt" aria-labelledby="related-reading"><div className="container py-12"><h2 id="related-reading" className="font-serif text-3xl text-primary">Keep learning</h2><ul className="mt-7 grid gap-5 md:grid-cols-3">{related.map((entry) => <li key={entry.slug}><ArticleCard post={entry} headingLevel={3} /></li>)}</ul></div></section>
+      {related.length ? <section className="bg-surface-alt" aria-labelledby="related-reading"><div className="container py-12"><h2 id="related-reading" className="font-serif text-3xl text-primary">Keep learning</h2><ul className="mt-7 grid gap-5 md:grid-cols-3">{related.map((entry) => <li key={entry.slug}><ArticleCard post={entry} headingLevel={3} /></li>)}</ul></div></section> : null}
       <FooterCTABand headline="Know what comes" italic="next." caption="TRTrx is preparing to launch. Patient intake is not open yet." />
     </PageShell>
   </>;
@@ -60,5 +64,6 @@ export const getStaticPaths: GetStaticPaths = async () => ({ paths: BLOG_POSTS.m
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const post = getBlogPostBySlug(String(params?.slug ?? ''));
   if (!post) return { notFound: true };
-  return { props: { post, related: getRelatedBlogPosts(post.slug).map(summarizeBlogPost) }, revalidate: 86400 };
+  if (!isBlogPostPublic(post)) return { props: { held: true, slug: post.slug, title: post.title }, revalidate: 86400 };
+  return { props: { held: false, post, related: getRelatedBlogPosts(post.slug).map(summarizeBlogPost) }, revalidate: 86400 };
 };

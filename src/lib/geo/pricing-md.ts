@@ -1,10 +1,19 @@
 import { PRICING_STRUCTURE } from "@/content/pricing";
 import { TREATMENTS } from "@/content/treatments";
-import { LAUNCH_MESSAGE, PLANNED_CARE_NOTICE } from "@/content/launch";
+import { LAUNCH_MESSAGE, PLANNED_CARE_NOTICE, CLINICAL_CONTENT_RELEASED } from "@/content/launch";
 import { toAbsoluteUrl } from "@/lib/seo/site";
 
 /** Generated from the same planned price records as the visible pages. */
 export function buildPricingMd(): string {
+  if (!CLINICAL_CONTENT_RELEASED) return [
+    "# TRTrx planned pricing", "", `> ${LAUNCH_MESSAGE} ${PLANNED_CARE_NOTICE}`, "",
+    "Standalone plans are being planned at $179 to $219 per month. A separately billed adjunct is planned at an additional $89 per month. Final services, product availability, lab arrangements and payment terms are not confirmed.", "",
+    "These figures are planning information, not an active offer. No purchases, subscriptions, prescriptions or payments are available. Patient intake is closed and no state coverage is confirmed.", "",
+    "Read the final written estimate, inclusions, extra charges and cancellation terms before purchasing any future service.", "",
+    `Visible pricing page: ${toAbsoluteUrl("/pricing")}`,
+    `Cost comparison guide: ${toAbsoluteUrl("/blog/how-trt-pricing-works")}`,
+    `Current status: ${toAbsoluteUrl("/launch")}`, "",
+  ].join("\n");
   return [
     "# TRTrx planned pricing",
     "",

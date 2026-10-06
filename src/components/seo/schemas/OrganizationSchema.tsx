@@ -10,17 +10,11 @@ export function OrganizationSchema() {
   const data = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "trtrx",
+    name: "TRTrx",
     url: SITE_URL,
     description: SITE_DESCRIPTION,
     logo: `${SITE_URL}/api/og?variant=logo`,
     sameAs: [],
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "customer support",
-      email: "hello@trtrx.com",
-      availableLanguage: ["en"],
-    },
   };
 
   return (

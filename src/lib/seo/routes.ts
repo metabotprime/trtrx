@@ -3,7 +3,8 @@
  * Adding/removing a route here updates sitemap.xml automatically.
  */
 
-import { BLOG_POSTS, getPopulatedBlogCategories } from "@/content/blog";
+import { BLOG_POSTS, getPublicBlogCategories } from "@/content/blog";
+import { CLINICAL_CONTENT_RELEASED } from "@/content/launch";
 import { isNoindexBlogSlug } from "./noindex-slugs";
 
 export type RouteEntry = {
@@ -30,13 +31,13 @@ export const ROUTES: RouteEntry[] = [
     path: "/treatments",
     changeFreq: "weekly",
     priority: 0.95,
-    inSitemap: true,
+    inSitemap: CLINICAL_CONTENT_RELEASED,
   },
   ...TREATMENT_SLUGS.map((slug) => ({
     path: `/treatments/${slug}`,
     changeFreq: "monthly" as const,
     priority: 0.9,
-    inSitemap: true,
+    inSitemap: CLINICAL_CONTENT_RELEASED,
   })),
   {
     path: "/how-it-works",
@@ -55,7 +56,7 @@ export const ROUTES: RouteEntry[] = [
     priority: 0.7,
     inSitemap: true,
   },
-  ...getPopulatedBlogCategories().map((category) => ({
+  ...getPublicBlogCategories().map((category) => ({
     path: `/blog/category/${category}`,
     changeFreq: "monthly" as const,
     priority: 0.6,
@@ -66,9 +67,7 @@ export const ROUTES: RouteEntry[] = [
     changeFreq: "monthly" as const,
     priority: 0.7,
     lastModified: p.updatedAt,
-    // Slugs in noindex-slugs.ts are excluded from the sitemap. They still
-    // render (PPC / direct nav can reach them) but Google won't crawl them
-    // via the sitemap and the page emits noindex meta.
+    // Held articles render a status page, never their clinical source.
     inSitemap: !isNoindexBlogSlug(p.slug),
   })),
   { path: "/contact", changeFreq: "yearly", priority: 0.5, inSitemap: true },

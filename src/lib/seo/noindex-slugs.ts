@@ -1,8 +1,7 @@
-/** Individually withheld routes are excluded from sitemap and emit noindex,follow.
- * Global prelaunch noindex is controlled separately in content/launch.ts.
- * Substantive educational articles remain served and in the review sitemap.
- */
-export const NOINDEX_BLOG_SLUGS: ReadonlySet<string> = new Set();
+import { CLINICAL_CONTENT_RELEASED } from "@/content/launch";
+import { isClinicalBlogSlug } from "@/content/blog-metadata";
+
+/** Clinical publication and public indexing are independent release gates. */
 export function isNoindexBlogSlug(slug: string): boolean {
-  return NOINDEX_BLOG_SLUGS.has(slug);
+  return !CLINICAL_CONTENT_RELEASED && isClinicalBlogSlug(slug);
 }

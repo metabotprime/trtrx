@@ -6,24 +6,16 @@ import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { StateReadiness } from '@/components/availability/StateReadiness';
 
-const TITLE = 'Online TRT by State: Availability and Provider Checks';
-const DESCRIPTION = 'Check TRTrx launch availability and learn what to verify about clinician licensing, pharmacy access, lab testing and online testosterone care in your state.';
+const TITLE = 'TRTrx State Availability and Launch Planning';
+const DESCRIPTION = 'Check TRTrx state availability, launch status and planning information. Intake is closed in every state and future coverage is not confirmed.';
 const CHECKS = [
   {
-    title: 'Confirm the clinician can treat you where you are',
-    body: 'Ask for the treating clinician’s full name and license information before choosing care. Verify that information with the appropriate state licensing board. A website advertising nationwide care does not establish that a particular clinician can treat you during a visit in your location.',
+    title: 'Check current availability with the provider',
+    body: 'Ask whether the service is currently accepting people in your state and request the answer in writing. Distinguish a planned service area from an open program. TRTrx has not confirmed future state coverage and is not accepting patients in any state.',
   },
   {
-    title: 'Ask which pharmacy would dispense your prescription',
-    body: 'Get the dispensing pharmacy’s name, contact information and relevant license details. Ask whether it can serve your state and whether the proposed medication is FDA-approved or compounded. Compounded medications are not FDA-approved, and availability cannot be inferred from a list of treatment options.',
-  },
-  {
-    title: 'Understand the visit and prescribing requirements',
-    body: 'Ask the provider which visits and examinations are required for the medication under discussion, including whether an in-person visit is necessary. Requirements can change. An online questionnaire, symptoms or a single laboratory result do not establish a diagnosis or guarantee a prescription.',
-  },
-  {
-    title: 'Plan for local testing and follow-up',
-    body: 'Confirm where blood tests can be performed, which tests the clinician requests, how results are reviewed and who arranges follow-up. Check the actual laboratory’s appointment options rather than assuming every location offers the same service. Ask how clinical concerns and urgent symptoms are handled.',
+    title: 'Identify the organizations behind the service',
+    body: 'Ask for the names, public contact details and applicable license information of the organizations involved. The official state-board resources below provide places to check those details. A logo or a list of service options is not proof of a partnership or state availability.',
   },
   {
     title: 'Compare the full cost and cancellation terms',
@@ -46,7 +38,7 @@ export default function StateAvailabilityPage() {
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted">
             TRTrx is preparing to launch. Intake is not open, and we have not confirmed a list
             of states where care will be available. We will publish that information before
-            accepting patients. In the meantime, these questions can help you evaluate any online TRT provider.
+            accepting patients. In the meantime, these operational questions can help you check a provider’s availability and service terms.
           </p>
           <div className="mt-10 max-w-2xl"><StateReadiness /></div>
         </section>
@@ -79,17 +71,16 @@ export default function StateAvailabilityPage() {
             <li><a href="https://www.fsmb.org/contact-a-state-medical-board/" target="_blank" rel="noopener noreferrer">Find your state medical board through FSMB</a></li>
             <li><a href="https://www.fda.gov/drugs/besaferx-your-source-online-pharmacy-information/locate-state-licensed-online-pharmacy" target="_blank" rel="noopener noreferrer">FDA BeSafeRx: check an online pharmacy</a></li>
           </ul>
-          <h2 className="mt-12 font-serif text-3xl font-medium text-primary">Prepare for a conversation about TRT</h2>
+          <h2 className="mt-12 font-serif text-3xl font-medium text-primary">Explore the current public information</h2>
           <p className="mt-4 max-w-3xl leading-relaxed text-muted">
-            A licensed clinician determines whether testing or treatment is appropriate.
-            Gather your medication list, symptoms, previous lab reports and questions about fertility or future family plans.
-            Our educational guides explain the questions to discuss without diagnosing you or recommending a dose.
+            Compare service estimates and planning prices, or check launch status.
+            Clinical articles and treatment guidance remain unpublished while qualified review is pending.
           </p>
           <ul className="mt-6 flex flex-wrap gap-3">
             {[
-              ['Understanding TRT', '/blog/testosterone-replacement-therapy-guide'],
-              ['Testosterone blood tests', '/blog/testosterone-blood-tests'],
-              ['Choosing an online provider', '/blog/choosing-online-trt-provider'],
+              ['Compare the complete care bill', '/blog/how-trt-pricing-works'],
+              ['Planned TRTrx pricing', '/pricing'],
+              ['Publication review policy', '/medical-review-policy'],
               ['TRTrx launch status', '/launch'],
             ].map(([label, href]) => (
               <li key={href}><Link href={href!} className="inline-flex rounded-full border border-border px-5 py-3 text-sm font-medium text-primary hover:border-primary">{label}</Link></li>

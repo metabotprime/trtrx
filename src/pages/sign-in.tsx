@@ -42,7 +42,7 @@ export default function SignInPage() {
                 >
                   The portal{" "}
                   <span className="display-italic text-primary">
-                    opens with us.
+                    is not open yet.
                   </span>
                 </h1>
 

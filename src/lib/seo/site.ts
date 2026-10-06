@@ -2,11 +2,12 @@ export const SITE_URL = "https://trtrx.com";
 export const SITE_NAME = "TRTrx";
 export const SITE_TAGLINE = "TRT education and planned physician-led care.";
 export const SITE_DESCRIPTION =
-  "Explore testosterone therapy guides and planned TRTrx pricing. TRTrx is preparing to launch; patient intake, clinical services and prescriptions are not available yet.";
+  "Compare planned TRTrx pricing and check launch status and state availability. Patient intake, clinical services and prescriptions are not available yet.";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/api/og`;
 export const TITLE_SUFFIX = ` | ${SITE_NAME}`;
 
-export const SITE_CONTACT_EMAIL = "hello@trtrx.com";
+// No support mailbox is provisioned. Never publish an unverified address.
+export const SITE_CONTACT_EMAIL = "";
 // PRELAUNCH: real support phone provisioned with the contact mailbox.
 export const SITE_CONTACT_PHONE = "";
 export const SITE_CONTACT_PHONE_DISPLAY = "";

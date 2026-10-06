@@ -1,25 +1,28 @@
-import type { GetStaticProps } from 'next';
-import { PageShell } from '@/components/layout/PageShell';
-import { SEOHead } from '@/components/seo/SEOHead';
-import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
-import { FAQSchema } from '@/components/seo/schemas/FAQSchema';
-import { TREATMENT_ENTITIES } from '@/lib/seo/entities';
-import { getHomepageFAQs } from '@/content/faqs';
-import { HeroCentered } from '@/components/sections/HeroCentered';
-import { PricingTransparency } from '@/components/sections/PricingTransparency';
-import { TreatmentGrid } from '@/components/sections/TreatmentGrid';
-import { TreatmentTable } from '@/components/sections/TreatmentTable';
-import { WhyDifferent } from '@/components/sections/WhyDifferent';
-import { MedicalDirector } from '@/components/sections/MedicalDirector';
-import { HowItWorksSteps } from '@/components/sections/HowItWorksSteps';
-import { TestimonialCards } from '@/components/sections/TestimonialCards';
-import { CompoundedExplainer } from '@/components/sections/CompoundedExplainer';
-import { FAQAccordion } from '@/components/sections/FAQAccordion';
-import { HomeBlogSection } from '@/components/sections/HomeBlogSection';
-import { FooterCTABand } from '@/components/sections/FooterCTABand';
-import { getHomepageBlogPosts, type BlogPostSummary } from '@/content/blog';
+import { CLINICAL_CONTENT_RELEASED } from "@/content/launch";
+import { OperationalHome } from "@/components/availability/OperationalContent";
+import type { GetStaticProps } from "next";
+import { PageShell } from "@/components/layout/PageShell";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { EntityGraphSchema } from "@/components/seo/schemas/EntityGraphSchema";
+import { FAQSchema } from "@/components/seo/schemas/FAQSchema";
+import { TREATMENT_ENTITIES } from "@/lib/seo/entities";
+import { getHomepageFAQs } from "@/content/faqs";
+import { HeroCentered } from "@/components/sections/HeroCentered";
+import { PricingTransparency } from "@/components/sections/PricingTransparency";
+import { TreatmentGrid } from "@/components/sections/TreatmentGrid";
+import { TreatmentTable } from "@/components/sections/TreatmentTable";
+import { WhyDifferent } from "@/components/sections/WhyDifferent";
+import { MedicalDirector } from "@/components/sections/MedicalDirector";
+import { HowItWorksSteps } from "@/components/sections/HowItWorksSteps";
+import { TestimonialCards } from "@/components/sections/TestimonialCards";
+import { CompoundedExplainer } from "@/components/sections/CompoundedExplainer";
+import { FAQAccordion } from "@/components/sections/FAQAccordion";
+import { HomeBlogSection } from "@/components/sections/HomeBlogSection";
+import { FooterCTABand } from "@/components/sections/FooterCTABand";
+import { getHomepageBlogPosts, type BlogPostSummary } from "@/content/blog";
 
 export default function HomePage({ posts }: { posts: BlogPostSummary[] }) {
+  if (!CLINICAL_CONTENT_RELEASED) return <OperationalHome />;
   return (
     <>
       <SEOHead
@@ -53,6 +56,11 @@ export default function HomePage({ posts }: { posts: BlogPostSummary[] }) {
   );
 }
 
-export const getStaticProps: GetStaticProps<{ posts: BlogPostSummary[] }> = async () => {
-  return { props: { posts: getHomepageBlogPosts() }, revalidate: 3600 };
+export const getStaticProps: GetStaticProps<{
+  posts: BlogPostSummary[];
+}> = async () => {
+  return {
+    props: { posts: CLINICAL_CONTENT_RELEASED ? getHomepageBlogPosts() : [] },
+    revalidate: 3600,
+  };
 };

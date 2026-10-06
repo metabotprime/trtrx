@@ -32,14 +32,14 @@ export default function MedicalReviewPolicyPage() {
           title="Medical review policy"
           lastUpdated="October 6, 2026"
           intro={[
-            'Clinical review of the current TRTrx articles has not yet been completed. This policy describes the review required before the planned public launch and how completed reviews will be recorded. Source-based editorial work does not replace clinical review.',
+            'Clinical review of the prepared TRTrx drafts has not yet been completed. Clinical guidance and treatment details require completed review before publication. Operational website information and cost-comparison education can be published through a separate factual verification process. Source-based editorial work does not replace clinical review.',
           ]}
           sections={[
             {
               heading: 'What gets reviewed',
               blocks: [
                 {
-                  p: 'The review requirement covers patient-facing clinical claims in articles, treatment pages, FAQs, and related site content. Purely operational content has a separate factual verification process. A pricing article that also makes a medical claim still requires review of that claim.',
+                  p: 'The review requirement covers patient-facing clinical claims in articles, treatment pages, FAQs, and related site content. It applies to clinical material regardless of whether search engines can index it. Purely operational content has a separate factual verification process. A pricing article that also makes a medical claim still requires review of that claim.',
                 },
               ],
             },
@@ -47,7 +47,7 @@ export default function MedicalReviewPolicyPage() {
               heading: 'Who reviews it',
               blocks: [
                 {
-                  p: 'The planned process requires an appropriately qualified clinician with relevant experience. The reviewer’s identity and credentials must be verified, and the review must cover the specific content version. No reviewer has been credited for the current articles because completed clinical review has not been established.',
+                  p: 'The process requires an appropriately qualified clinician with relevant experience. The reviewer’s identity and credentials must be verified, and the review must cover the specific content version. No reviewer has been credited for the prepared clinical drafts because completed clinical review has not been established.',
                 },
               ],
             },
@@ -73,10 +73,10 @@ export default function MedicalReviewPolicyPage() {
               ],
             },
             {
-              heading: 'Pre-launch transparency',
+              heading: 'Current publication status',
               blocks: [
                 {
-                  p: 'TRTrx is preparing to launch and patient intake is closed. Current articles contain substantive, sourced educational material, but clinical review remains pending. The visible notice and absence of reviewer metadata reflect that status. Preparing an article or linking a guideline does not establish that a physician reviewed it.',
+                  p: 'Patient intake is closed. The public website provides operational information and source-based cost-comparison education. Clinical drafts and treatment guidance are held for review. Preparing an article or linking a guideline does not establish that a physician reviewed it, and no completed review is implied by the public website being available.',
                 },
               ],
             },
@@ -84,14 +84,14 @@ export default function MedicalReviewPolicyPage() {
               heading: 'Flagging a concern',
               blocks: [
                 {
-                  p: 'If content is found to be inaccurate or outdated, the affected claim must be corrected or removed and any previous clinical review reassessed. Current contact arrangements are described on the contact page; a correction channel is not a route for urgent medical care.',
+                  p: 'If content is found to be inaccurate or outdated, the affected claim must be corrected or removed and any previous clinical review reassessed. A public support channel is not currently available. Support contact details will be published before intake opens. A future correction channel will not be a route for urgent medical care.',
                 },
               ],
             },
           ]}
           footnote={
             <>
-              See current contact arrangements on our{' '}
+              See current support availability on our{' '}
               <Link
                 href="/contact"
                 className="text-primary underline-offset-4 hover:text-accent-strong"

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PageShell } from "@/components/layout/PageShell";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { PolicyContent } from "@/components/sections/PolicyContent";
@@ -7,7 +8,7 @@ export default function PolicyPage() {
       <SEOHead
         title={"Terms of service"}
         description={
-          "Terms for the prelaunch TRTrx educational website and planned pricing information."
+          "Terms for the TRTrx educational website and planned pricing information. Patient intake and purchases are not available."
         }
         path={"/terms"}
       />
@@ -16,7 +17,7 @@ export default function PolicyPage() {
         title={"Terms of service"}
         lastUpdated="October 6, 2026"
         intro={[
-          "These terms apply to this educational website. TRTrx is preparing to launch and is not providing clinical services, prescriptions or purchases through this site.",
+          "These terms apply to this educational website. TRTrx is preparing its clinical service and is not providing clinical services, prescriptions or purchases through this site.",
         ]}
         sections={[
           {
@@ -31,7 +32,7 @@ export default function PolicyPage() {
             heading: "Educational information",
             blocks: [
               {
-                p: "The information is general education and is not medical advice, diagnosis or treatment. Reading the site or sending a general inquiry does not establish a clinician-patient relationship. Decisions about care belong with an appropriately licensed clinician who can assess your individual circumstances.",
+                p: "The information is general education and is not medical advice, diagnosis or treatment. Reading the site does not establish a clinician-patient relationship. Decisions about care belong with an appropriately licensed clinician who can assess your individual circumstances.",
               },
             ],
           },
@@ -39,7 +40,7 @@ export default function PolicyPage() {
             heading: "Planned pricing and billing",
             blocks: [
               {
-                p: "Displayed prices describe the planned program and are not active purchase offers. The planned standard injectable price is $219 per month, enclomiphene is $179, cream is $199, and HCG is an additional $89 with a base TRT plan. Product and clinical availability are not confirmed.",
+                p: "Any displayed prices describe a planned program and are not active purchase offers. Product selection, clinical availability and final inclusions have not been confirmed. No purchase or prescription can be made through this website.",
               },
               {
                 p: "The planned model has no setup fee or separate membership and allows cancellation. Final billing, cancellation, testing and pharmacy terms must be published before clinical intake opens. No treatment-results or refund guarantee is currently offered.",
@@ -47,10 +48,10 @@ export default function PolicyPage() {
             ],
           },
           {
-            heading: "Clinical decisions and medication information",
+              heading: "Clinical decisions and review status",
             blocks: [
               {
-                p: "No prescription is issued through the current website. Any future treatment would require individual clinical assessment; interest in a product would not establish eligibility. Compounded drugs are not FDA-approved. Enclomiphene is not an FDA-approved drug, so describing it simply as an off-label use of an approved medicine would be inaccurate. See the medical disclaimer and treatment disclosures for further context.",
+                p: "No prescription is issued through the current website. Any future treatment would require individual clinical assessment; interest in the service does not establish eligibility. Clinical guidance requires completed review before publication. See the medical disclaimer and medical review policy for the current limits of this website.",
               },
             ],
           },
@@ -58,7 +59,7 @@ export default function PolicyPage() {
             heading: "Responsible use",
             blocks: [
               {
-                p: "Do not submit sensitive health information through general email. Do not rely on this site to change an existing prescription, select a dose or delay appropriate medical care. TRTrx is not an emergency service; call 911 for a medical emergency.",
+                p: "This website has no active support mailbox or form for sensitive health information. Do not rely on this site to change an existing prescription, select a dose or delay appropriate medical care. TRTrx is not an emergency service; call 911 for a medical emergency.",
               },
             ],
           },
@@ -80,16 +81,16 @@ export default function PolicyPage() {
           },
         ]}
         footnote={
-          <p>
-            General questions:{" "}
-            <a
+          <>
+            Support contact details will be published before intake opens. Check our{" "}
+            <Link
               className="text-primary underline underline-offset-4"
-              href="mailto:hello@trtrx.com"
+              href="/contact"
             >
-              hello@trtrx.com
-            </a>
-            . Do not send sensitive medical information.
-          </p>
+              contact status
+            </Link>
+            .
+          </>
         }
       />
     </PageShell>

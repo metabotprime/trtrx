@@ -2,7 +2,11 @@ import Link from "next/link";
 import { PageShell } from "@/components/layout/PageShell";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { EmailCapture } from "@/components/forms/EmailCapture";
-import { LAUNCH_MESSAGE, PLANNED_CARE_NOTICE } from "@/content/launch";
+import {
+  CLINICAL_CONTENT_RELEASED,
+  LAUNCH_MESSAGE,
+  PLANNED_CARE_NOTICE,
+} from "@/content/launch";
 
 export default function LaunchPage() {
   return (
@@ -36,9 +40,13 @@ export default function LaunchPage() {
                   className="text-primary underline underline-offset-4"
                   href="/blog"
                 >
-                  Read TRT guides
+                  {CLINICAL_CONTENT_RELEASED
+                    ? "Read TRT guides"
+                    : "See guide publication status"}
                 </Link>{" "}
-                and prepare questions for your own clinician.
+                {CLINICAL_CONTENT_RELEASED
+                  ? "and prepare questions for your own clinician."
+                  : "while clinical information awaits qualified review."}
               </li>
               <li>
                 <Link

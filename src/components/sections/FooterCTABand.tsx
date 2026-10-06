@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import {
+  CLINICAL_CONTENT_RELEASED,
   INTAKE_ENABLED,
   LAUNCH_MESSAGE,
   LAUNCH_PATH,
@@ -34,10 +35,10 @@ export function FooterCTABand({
             {PRIMARY_CTA_LABEL}
           </Link>
           <Link
-            href="/blog"
+            href={CLINICAL_CONTENT_RELEASED ? "/blog" : "/pricing"}
             className="ml-6 self-center text-sm font-medium underline underline-offset-4"
           >
-            Read TRT guides
+            {CLINICAL_CONTENT_RELEASED ? "Read TRT guides" : "Planned pricing"}
           </Link>
         </div>
 

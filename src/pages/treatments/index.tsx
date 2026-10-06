@@ -1,3 +1,5 @@
+import { CLINICAL_CONTENT_RELEASED } from "@/content/launch";
+import { ClinicalContentHold } from "@/components/availability/ClinicalContentHold";
 import type { GetStaticProps } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { SEOHead } from "@/components/seo/SEOHead";
@@ -13,6 +15,10 @@ import { SectionHeader } from "@/components/sections/SectionHeader";
 import { TREATMENTS } from "@/content/treatments";
 
 export default function TreatmentsHubPage() {
+  if (!CLINICAL_CONTENT_RELEASED)
+    return (
+      <ClinicalContentHold title="Treatment information" path="/treatments" />
+    );
   return (
     <>
       <SEOHead

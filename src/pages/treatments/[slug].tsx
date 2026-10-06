@@ -1,3 +1,5 @@
+import { CLINICAL_CONTENT_RELEASED } from "@/content/launch";
+import { ClinicalContentHold } from "@/components/availability/ClinicalContentHold";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { SEOHead } from "@/components/seo/SEOHead";
@@ -19,9 +21,25 @@ import {
 } from "@/content/treatments";
 import { type TreatmentSlug } from "@/lib/seo/routes";
 
-type Props = { treatment: Treatment };
+type Props =
+  { treatment: Treatment } | { held: true; title: string; slug: string };
 
-export default function TreatmentDetailPage({ treatment }: Props) {
+export default function TreatmentDetailPage(props: Props) {
+  if ("held" in props)
+    return (
+      <ClinicalContentHold
+        title={props.title}
+        path={`/treatments/${props.slug}`}
+      />
+    );
+  const { treatment } = props;
+  if (!CLINICAL_CONTENT_RELEASED)
+    return (
+      <ClinicalContentHold
+        title={treatment.name}
+        path={`/treatments/${treatment.slug}`}
+      />
+    );
   return (
     <>
       <SEOHead
@@ -74,6 +92,12 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const treatment = getTreatmentBySlug(slug);
   if (!treatment) {
     return { notFound: true };
+  }
+  if (!CLINICAL_CONTENT_RELEASED) {
+    return {
+      props: { held: true, title: treatment.name, slug: treatment.slug },
+      revalidate: 86400,
+    };
   }
   return { props: { treatment }, revalidate: 86400 };
 };

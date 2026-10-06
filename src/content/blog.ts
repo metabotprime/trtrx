@@ -1,5 +1,6 @@
 import { ARTICLE_CONTENT } from './blog-content';
-import { CATEGORY_LABELS } from './blog-metadata';
+import { CATEGORY_LABELS, isClinicalBlogSlug } from './blog-metadata';
+import { CLINICAL_CONTENT_RELEASED } from './launch';
 export { CATEGORY_LABELS, CATEGORY_DESCRIPTIONS, AUTHORS, REVIEWERS, getAuthor, getReviewer, formatEditorialDate } from './blog-metadata';
 
 export type BlogCategory = 'getting-started' | 'protocols' | 'comparisons' | 'side-effects' | 'fertility' | 'pricing' | 'science' | 'lifestyle' | 'state-guides';
@@ -35,8 +36,13 @@ export const BLOG_POSTS: BlogPost[] = ARTICLE_CONTENT.map((post) => {
   return { ...post, body, authorId: 'editorial-team', updatedAt: '2026-10-06', readMinutes: Math.max(1, Math.ceil(body.split(/\s+/).filter(Boolean).length / 200)) };
 });
 export function getBlogPostBySlug(slug: string) { return BLOG_POSTS.find((post) => post.slug === slug); }
-export function getHomepageBlogPosts() { return BLOG_POSTS.filter((post) => post.onHomePage).slice(0, 3).map(summarizeBlogPost); }
-export function getFeaturedBlogPosts() { return BLOG_POSTS.filter((post) => post.featured); }
+export function isBlogPostPublic(post: Pick<BlogPost, 'slug'>): boolean {
+  return CLINICAL_CONTENT_RELEASED || !isClinicalBlogSlug(post.slug);
+}
+/** These publication helpers must also drive sitemaps and machine feeds. */
+export function getPublicBlogPosts(): BlogPost[] { return BLOG_POSTS.filter(isBlogPostPublic); }
+export function getHomepageBlogPosts() { return getPublicBlogPosts().filter((post) => post.onHomePage).slice(0, 3).map(summarizeBlogPost); }
+export function getFeaturedBlogPosts() { return getPublicBlogPosts().filter((post) => post.featured); }
 export function getBlogPostsByCategory(): Record<BlogCategory, BlogPost[]> {
   const result = (Object.keys(CATEGORY_LABELS) as BlogCategory[]).reduce((groups, category) => { groups[category] = []; return groups; }, {} as Record<BlogCategory, BlogPost[]>);
   for (const post of BLOG_POSTS) result[post.category].push(post);
@@ -46,10 +52,19 @@ export function getPopulatedBlogCategories(): BlogCategory[] {
   const grouped = getBlogPostsByCategory();
   return (Object.keys(CATEGORY_LABELS) as BlogCategory[]).filter((category) => grouped[category].length > 0);
 }
+export function getPublicBlogPostsByCategory(): Record<BlogCategory, BlogPost[]> {
+  const grouped = getBlogPostsByCategory();
+  for (const category of Object.keys(grouped) as BlogCategory[]) grouped[category] = grouped[category].filter(isBlogPostPublic);
+  return grouped;
+}
+export function getPublicBlogCategories(): BlogCategory[] {
+  const grouped = getPublicBlogPostsByCategory();
+  return (Object.keys(CATEGORY_LABELS) as BlogCategory[]).filter((category) => grouped[category].length > 0);
+}
 export function getRelatedBlogPosts(slug: string, limit = 3): BlogPost[] {
   const post = getBlogPostBySlug(slug);
-  if (!post) return [];
-  const selected = post.relatedSlugs.map(getBlogPostBySlug).filter((entry): entry is BlogPost => !!entry);
-  const fallback = BLOG_POSTS.filter((entry) => entry.slug !== slug && !selected.some((item) => item.slug === entry.slug));
+  if (!post || !isBlogPostPublic(post)) return [];
+  const selected = post.relatedSlugs.map(getBlogPostBySlug).filter((entry): entry is BlogPost => !!entry && isBlogPostPublic(entry));
+  const fallback = getPublicBlogPosts().filter((entry) => entry.slug !== slug && !selected.some((item) => item.slug === entry.slug));
   return [...selected, ...fallback].slice(0, limit);
 }

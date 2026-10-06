@@ -1,6 +1,7 @@
 import type { GetServerSideProps } from "next";
 import { SITE_URL } from "@/lib/utils";
 import { TREATMENTS } from "@/content/treatments";
+import { CLINICAL_CONTENT_RELEASED } from "@/content/launch";
 
 const escapeXml = (s: string) =>
   s
@@ -26,15 +27,15 @@ function buildImageSitemap(): string {
         },
       ],
     },
-    {
+    ...(CLINICAL_CONTENT_RELEASED ? [{
       pageUrl: `${SITE_URL}/treatments`,
       images: [{ loc: ogFor("Treatments"), title: "trtrx Treatments" }],
-    },
+    }] : []),
     {
       pageUrl: `${SITE_URL}/pricing`,
       images: [{ loc: ogFor("Pricing"), title: "trtrx Pricing" }],
     },
-    ...TREATMENTS.map((t) => ({
+    ...(CLINICAL_CONTENT_RELEASED ? TREATMENTS.map((t) => ({
       pageUrl: `${SITE_URL}/treatments/${t.slug}`,
       images: [
         {
@@ -43,7 +44,7 @@ function buildImageSitemap(): string {
           caption: t.summary,
         },
       ],
-    })),
+    })) : []),
   ];
 
   const urlBlocks = entries.map((entry) => {

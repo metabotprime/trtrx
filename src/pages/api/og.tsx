@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
 import { Wordmark } from '@/components/layout/Wordmark';
-import { INTAKE_ENABLED } from '@/content/launch';
+import { INTAKE_ENABLED, CLINICAL_CONTENT_RELEASED } from '@/content/launch';
 
 export const config = { runtime: 'edge' };
 
@@ -22,7 +22,7 @@ export default function handler(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const variant = searchParams.get('variant');
   const title = (
-    searchParams.get('title') || (INTAKE_ENABLED ? 'Testosterone care with clear information' : 'TRT information. Care is coming.')
+    searchParams.get('title') || (INTAKE_ENABLED ? 'Testosterone care with clear information' : CLINICAL_CONTENT_RELEASED ? 'TRT information. Care is coming.' : 'Clear costs. Care is coming.')
   ).slice(0, 110);
   const eyebrow = (searchParams.get('eyebrow') || (INTAKE_ENABLED ? 'TRTrx' : 'Preparing to launch')).slice(0, 60);
 
