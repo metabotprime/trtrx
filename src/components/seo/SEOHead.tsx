@@ -1,5 +1,6 @@
-import Head from 'next/head';
-import { SITE_NAME, SITE_URL } from '@/lib/utils';
+import Head from "next/head";
+import { PUBLIC_LAUNCH_ENABLED } from "@/content/launch";
+import { SITE_NAME, SITE_URL } from "@/lib/utils";
 
 type SEOHeadProps = {
   title: string;
@@ -21,18 +22,18 @@ export function SEOHead({
   title,
   description,
   path,
-  ogImage = '/og/default.png',
+  ogImage = "/og/default.png",
   noindex = false,
 }: SEOHeadProps) {
   const url = `${SITE_URL}${path}`;
   const fullTitle =
-    path === '/' ? `${SITE_NAME} — ${title}` : `${title} | ${SITE_NAME}`;
+    path === "/" ? `${SITE_NAME}: ${title}` : `${title} | ${SITE_NAME}`;
   // Open Graph images are generated on the fly from the page title by
   // /api/og (branded 1200×630). An absolute http(s) ogImage still wins, so a
   // real static asset can override later; the legacy /og/*.png paths (which
   // don't exist) fall through to the dynamic route.
   const ogUrl =
-    ogImage && ogImage.startsWith('http')
+    ogImage && ogImage.startsWith("http")
       ? ogImage
       : `${SITE_URL}/api/og?title=${encodeURIComponent(title)}`;
 
@@ -41,7 +42,9 @@ export function SEOHead({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
-      {noindex && <meta name="robots" content="noindex, nofollow" />}
+      {(!PUBLIC_LAUNCH_ENABLED || noindex) && (
+        <meta name="robots" content="noindex, follow" />
+      )}
 
       {/* Open Graph */}
       <meta property="og:type" content="website" />

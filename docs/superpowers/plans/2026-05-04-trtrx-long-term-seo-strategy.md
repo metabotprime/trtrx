@@ -1,7 +1,7 @@
 # trtrx Long-Term SEO Strategy
 
 **Date:** 2026-05-04
-**Status:** Living strategy doc — review quarterly
+**Status:** Historical proposal, superseded for implementation by [the October 2026 launch audit](../../LAUNCH-SEO-2026-10-06.md). Do not execute its Google Indexing API article submissions, automatic state/city expansion, assumed LocalBusiness schema, unsupported reviewer credits or numerical traffic targets. Follow current verified content and launch gates.
 **Horizon:** 36 months
 **Audience:** founders, content lead, future SEO hires, agency partners
 

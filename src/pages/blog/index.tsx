@@ -1,179 +1,48 @@
 import type { GetStaticProps } from 'next';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
-import {
-  BLOG_POSTS,
-  CATEGORY_LABELS,
-  getFeaturedBlogPosts,
-} from '@/content/blog';
+import { ArticleCard, CategoryNavigation, ReviewNotice } from '@/components/blog/ArticleParts';
+import { BLOG_POSTS, getFeaturedBlogPosts, getPopulatedBlogCategories, summarizeBlogPost, type BlogPostSummary, type BlogCategory } from '@/content/blog';
 
-type Props = {
-  /** Pre-formatted on server so SSR/CSR don't diverge and hydrate-mismatch. */
-  publishedAtDisplay: Record<string, string>;
-};
+type Props = { posts: BlogPostSummary[]; featured: BlogPostSummary[]; categories: BlogCategory[] };
+const title = 'TRT guides: testing, treatment, safety, and cost';
+const description = 'Understand testosterone testing, treatment decisions, fertility, monitoring, and the questions to ask before choosing care. Sources and review status are visible.';
 
-export default function BlogIndexPage({ publishedAtDisplay }: Props) {
-  const totalPosts = BLOG_POSTS.length;
-  const featured = getFeaturedBlogPosts().slice(0, 3);
-  const sorted = [...BLOG_POSTS].sort((a, b) =>
-    b.publishedAt.localeCompare(a.publishedAt),
-  );
-
-  return (
-    <>
-      <SEOHead
-        title="The trtrx Blog"
-        description={`${totalPosts} plain-English articles on testosterone replacement therapy, written and reviewed by physicians who specialize in men's hormone health.`}
-        path="/blog"
-        ogImage="/og/blog.png"
-      />
-      <EntityGraphSchema
-        title="The trtrx Blog"
-        description={`${totalPosts} plain-English articles on testosterone replacement therapy, written and reviewed by physicians who specialize in men's hormone health.`}
-        url="/blog"
-        pageType="CollectionPage"
-      />
-
-      <PageShell>
-        <Breadcrumbs
-          items={[
-            { name: 'Home', href: '/' },
-            { name: 'Blog', href: '/blog' },
-          ]}
-        />
-
-        {/* Hero */}
-        <section className="bg-surface">
-          <div className="container max-w-hero px-5 pb-12 pt-12 text-center md:pb-16 md:pt-20">
-            <p className="eyebrow mb-7 inline-flex flex-wrap justify-center gap-x-3 gap-y-1">
-              <span>Resources</span>
-              <span aria-hidden className="text-muted/60">
-                ·
-              </span>
-              <span>Reviewed By Physicians</span>
-            </p>
-            <h1
-              className="font-serif text-display-xl font-medium text-primary"
-              style={{ fontVariationSettings: "'opsz' 144" }}
-            >
-              The trtrx <span className="display-italic text-primary">Blog.</span>
-            </h1>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-[1.55] text-muted md:text-xl">
-              {totalPosts} plain-English articles on testosterone replacement
-              therapy. Written by clinicians, reviewed by physicians.
-            </p>
-          </div>
-        </section>
-
-        {/* Featured strip */}
-        {featured.length > 0 && (
-          <section className="bg-surface">
-            <div className="container py-8 md:py-12">
-              <p className="eyebrow mb-6">Featured</p>
-              <ul className="grid grid-cols-1 gap-6 md:grid-cols-3">
-                {featured.map((post) => (
-                  <li key={post.slug}>
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="group flex h-full flex-col rounded-2xl border border-border bg-surface-alt p-7 transition-all duration-200 hover:-translate-y-px hover:border-accent/40 md:p-8"
-                    >
-                      <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
-                        {CATEGORY_LABELS[post.category]}
-                      </p>
-                      <h2
-                        className="mt-4 font-serif text-2xl font-medium leading-tight text-primary md:text-[26px]"
-                        style={{ fontVariationSettings: "'opsz' 144" }}
-                      >
-                        {post.title}
-                      </h2>
-                      <p className="mt-4 flex-1 text-[15px] leading-relaxed text-muted">
-                        {post.excerpt}
-                      </p>
-                      <div className="mt-6 flex items-baseline justify-between">
-                        <span className="font-mono text-[11px] uppercase tracking-tracked text-muted">
-                          {post.readMinutes} min read
-                        </span>
-                        <ArrowRight
-                          size={14}
-                          className="text-primary transition-all duration-150 group-hover:translate-x-0.5 group-hover:text-accent-strong"
-                          aria-hidden
-                        />
-                      </div>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        )}
-
-        {/* Main grid (all posts chronological) */}
-        <section className="bg-surface-alt">
-          <div className="container py-12 md:py-16">
-            <p className="eyebrow mb-6">All Articles</p>
-            <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {sorted.map((post) => (
-                <li key={post.slug}>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="group flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-all duration-200 hover:-translate-y-px hover:border-accent/40 hover:shadow-md"
-                  >
-                    <div className="mb-4 flex items-baseline justify-between">
-                      <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
-                        {CATEGORY_LABELS[post.category]}
-                      </p>
-                      <p className="font-mono text-[10px] uppercase tracking-tracked text-muted">
-                        {publishedAtDisplay[post.slug]}
-                      </p>
-                    </div>
-                    <h3
-                      className="font-serif text-xl font-medium leading-tight text-primary"
-                      style={{ fontVariationSettings: "'opsz' 144" }}
-                    >
-                      {post.title}
-                    </h3>
-                    <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">
-                      {post.excerpt}
-                    </p>
-                    <div className="mt-5 flex items-baseline justify-between">
-                      <span className="font-mono text-[11px] uppercase tracking-tracked text-muted">
-                        {post.readMinutes} min read
-                      </span>
-                      <ArrowRight
-                        size={14}
-                        className="text-primary transition-all duration-150 group-hover:translate-x-0.5 group-hover:text-accent-strong"
-                        aria-hidden
-                      />
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <FooterCTABand
-          headline="The standard"
-          italic="for TRT."
-          caption="Free shipping · 60-day guarantee · Cancel anytime"
-        />
-      </PageShell>
-    </>
-  );
+export default function BlogIndexPage({ posts, featured, categories }: Props) {
+  return <>
+    <SEOHead title={title} description={description} path="/blog" ogImage={`/api/og?title=${encodeURIComponent('TRT guides')}`} />
+    <EntityGraphSchema title={title} description={description} url="/blog" pageType="CollectionPage" />
+    <PageShell>
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'TRT guides', href: '/blog' }]} />
+      <section className="bg-surface">
+        <div className="container py-12 md:py-16">
+          <p className="eyebrow">TRTrx resources</p>
+          <h1 className="mt-5 max-w-3xl font-serif text-display-lg font-medium text-primary">Understand TRT.<br /><span className="display-italic">Ask better questions.</span></h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">Clear guides to testing, treatment choices, safety, fertility, and cost. Start with the question that brought you here.</p>
+          <div className="mt-8 max-w-3xl"><ReviewNotice /></div>
+          <div className="mt-8"><CategoryNavigation categories={categories} /></div>
+        </div>
+      </section>
+      <section className="bg-surface-alt" aria-labelledby="start-here">
+        <div className="container py-12">
+          <h2 id="start-here" className="font-serif text-3xl text-primary">Start here</h2>
+          <p className="mt-3 max-w-2xl leading-relaxed text-muted">New to testosterone care? These guides explain the evaluation and practical decisions before treatment.</p>
+          <ul className="mt-7 grid gap-5 md:grid-cols-3">{featured.map((post) => <li key={post.slug}><ArticleCard post={post} headingLevel={3} /></li>)}</ul>
+        </div>
+      </section>
+      <section className="bg-surface" aria-labelledby="all-articles">
+        <div className="container py-12 md:py-16">
+          <h2 id="all-articles" className="font-serif text-3xl text-primary">Explore the library</h2>
+          <p className="mt-3 max-w-2xl leading-relaxed text-muted">Each article links to its sources and related reading. Our <Link href="/editorial-policy" className="text-primary underline underline-offset-4">editorial policy</Link> explains how updates and review credits work.</p>
+          <ul className="mt-7 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{posts.map((post) => <li key={post.slug}><ArticleCard post={post} headingLevel={3} /></li>)}</ul>
+        </div>
+      </section>
+      <FooterCTABand headline="Know what comes" italic="next." caption="TRTrx is preparing to launch. Patient intake is not open yet." />
+    </PageShell>
+  </>;
 }
-
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const publishedAtDisplay: Record<string, string> = {};
-  for (const post of BLOG_POSTS) {
-    publishedAtDisplay[post.slug] = new Date(post.publishedAt).toLocaleDateString(
-      'en-US',
-      { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' },
-    );
-  }
-  return { props: { publishedAtDisplay }, revalidate: 3600 };
-};
+export const getStaticProps: GetStaticProps<Props> = async () => ({ props: { posts: [...BLOG_POSTS].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).map(summarizeBlogPost), featured: getFeaturedBlogPosts().slice(0, 3).map(summarizeBlogPost), categories: getPopulatedBlogCategories() }, revalidate: 3600 });

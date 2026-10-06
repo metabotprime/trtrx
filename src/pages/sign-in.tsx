@@ -1,17 +1,17 @@
-import type { GetStaticProps } from 'next';
-import Link from 'next/link';
-import { ArrowRight, Lock } from 'lucide-react';
-import { PageShell } from '@/components/layout/PageShell';
-import { SEOHead } from '@/components/seo/SEOHead';
-import { OrganizationSchema } from '@/components/seo/schemas/OrganizationSchema';
-import { EmailCapture } from '@/components/forms/EmailCapture';
+import type { GetStaticProps } from "next";
+import Link from "next/link";
+import { ArrowRight, Lock } from "lucide-react";
+import { PageShell } from "@/components/layout/PageShell";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { OrganizationSchema } from "@/components/seo/schemas/OrganizationSchema";
+import { EmailCapture } from "@/components/forms/EmailCapture";
 
 export default function SignInPage() {
   return (
     <>
       <SEOHead
         title="Sign in"
-        description="Sign in to your trtrx patient portal."
+        description="The TRTrx patient portal is not open. Read the current launch status."
         path="/sign-in"
         noindex
       />
@@ -40,17 +40,21 @@ export default function SignInPage() {
                   className="mt-6 font-serif text-3xl font-medium leading-tight text-primary md:text-4xl"
                   style={{ fontVariationSettings: "'opsz' 144" }}
                 >
-                  The portal{' '}
-                  <span className="display-italic text-primary">opens with us.</span>
+                  The portal{" "}
+                  <span className="display-italic text-primary">
+                    opens with us.
+                  </span>
                 </h1>
 
                 <p className="mt-4 text-[15px] leading-relaxed text-muted">
-                  Your 24/7 patient portal — physician messaging, lab history, prescription tracking, and refill control — launches when our clinic does. If you&apos;re in our pilot cohort, you&apos;ll receive credentials by email.
+                  The patient portal is in preparation. There are no active
+                  patient accounts, clinical messaging or prescription services
+                  on this website.
                 </p>
 
                 <div className="mt-8">
                   <p className="font-mono text-[11px] uppercase tracking-tracked text-muted">
-                    Get launch updates
+                    Current availability
                   </p>
                   <div className="mt-3">
                     <EmailCapture variant="card" />
@@ -60,10 +64,10 @@ export default function SignInPage() {
 
               <div className="mt-6 text-center">
                 <Link
-                  href="/how-it-works"
+                  href="/launch"
                   className="group inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent-strong"
                 >
-                  New here? See how trtrx works
+                  Read the launch status
                   <ArrowRight
                     size={14}
                     className="transition-transform duration-150 group-hover:translate-x-0.5"

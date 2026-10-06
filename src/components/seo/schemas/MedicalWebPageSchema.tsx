@@ -22,15 +22,16 @@ export function MedicalWebPageSchema({
   const data: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'MedicalWebPage',
+    '@id': `${SITE_URL}${path}#webpage`,
     name,
     description,
     url: `${SITE_URL}${path}`,
     audience: { '@type': 'MedicalAudience', audienceType: 'Patients' },
   };
-  if (lastReviewed) data.lastReviewed = lastReviewed;
+  if (lastReviewed && reviewedBy) data.lastReviewed = lastReviewed;
   // Never emit a placeholder identity; type org-style reviewers (e.g.
   // "trtrx Medical Team") as Organization, not Person.
-  if (reviewedBy && !/\[|placeholder/i.test(reviewedBy.name)) {
+  if (lastReviewed && reviewedBy && !/\[|placeholder/i.test(reviewedBy.name)) {
     const isOrg = /team|editorial|content|staff|trtrx/i.test(reviewedBy.name);
     data.reviewedBy = isOrg
       ? { '@type': 'Organization', name: reviewedBy.name }
@@ -46,7 +47,7 @@ export function MedicalWebPageSchema({
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
     />
   );
 }

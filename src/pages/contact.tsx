@@ -1,11 +1,12 @@
-import type { GetStaticProps } from 'next';
-import { PageShell } from '@/components/layout/PageShell';
-import { SEOHead } from '@/components/seo/SEOHead';
-import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
-import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
-import { SectionHeader } from '@/components/sections/SectionHeader';
+import type { GetStaticProps } from "next";
+import Link from "next/link";
+import { PageShell } from "@/components/layout/PageShell";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { EntityGraphSchema } from "@/components/seo/schemas/EntityGraphSchema";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { SectionHeader } from "@/components/sections/SectionHeader";
 
-const SUBJECT = encodeURIComponent('trtrx — general inquiry');
+const SUBJECT = encodeURIComponent("TRTrx general inquiry");
 const BODY = encodeURIComponent(
   "Hi trtrx team,\n\n[Your message here]\n\nThanks,\n",
 );
@@ -16,21 +17,21 @@ export default function ContactPage() {
     <>
       <SEOHead
         title="Contact"
-        description="General inquiries: hello@trtrx.com. For medical questions, please get started with a consult."
+        description="Contact hello@trtrx.com for general inquiries. Patient intake and consultations are not open. Do not send sensitive health information."
         path="/contact"
         ogImage="/og/contact.png"
       />
       <EntityGraphSchema
         title="Contact"
-        description="General inquiries: hello@trtrx.com. For medical questions, please get started with a consult."
+        description="Contact hello@trtrx.com for general inquiries. Patient intake and consultations are not open. Do not send sensitive health information."
         url="/contact"
         pageType="ContactPage"
       />
       <PageShell hideMobileCTA>
         <Breadcrumbs
           items={[
-            { name: 'Home', href: '/' },
-            { name: 'Contact', href: '/contact' },
+            { name: "Home", href: "/" },
+            { name: "Contact", href: "/contact" },
           ]}
         />
         <section className="bg-surface">
@@ -39,7 +40,7 @@ export default function ContactPage() {
               as="h1"
               eyebrow="Get In Touch"
               title="Talk to *us.*"
-              subtitle="General inquiries only. For medical questions, please start a consult through the Get Started flow."
+              subtitle="General inquiries only. Intake and consultations are not open. Please do not email medical records or other sensitive health information."
             />
 
             <div className="mx-auto mt-12 max-w-xl rounded-2xl border border-border bg-surface-alt p-8 text-center md:p-10">
@@ -53,8 +54,9 @@ export default function ContactPage() {
                 hello@trtrx.com
               </p>
               <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted">
-                Replies within one business day, often same-day. For medical
-                questions please get started with a consult instead.
+                This link opens your own email app; the website does not submit
+                a form. For medical concerns, contact your existing licensed
+                healthcare provider.
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
                 <a
@@ -63,12 +65,12 @@ export default function ContactPage() {
                 >
                   Compose email
                 </a>
-                <a
-                  href="/how-it-works"
+                <Link
+                  href="/launch"
                   className="inline-flex h-12 items-center justify-center rounded-full border border-primary bg-transparent px-7 text-[15px] font-medium text-primary transition-all hover:-translate-y-px hover:bg-primary hover:text-primary-foreground"
                 >
-                  Start a consult
-                </a>
+                  Launch status
+                </Link>
               </div>
             </div>
           </div>

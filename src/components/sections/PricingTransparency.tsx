@@ -1,27 +1,29 @@
-import Link from 'next/link';
-import { ArrowRight, Check } from 'lucide-react';
-import { PRICING_STRUCTURE } from '@/content/pricing';
-import { formatUSD } from '@/lib/utils';
+import Link from "next/link";
+import { ArrowRight, Check } from "lucide-react";
+import { PRICING_STRUCTURE } from "@/content/pricing";
+import { formatUSD } from "@/lib/utils";
 
 export function PricingTransparency() {
-  const { headlineMonthly, monthlyRange, flatPromise, whatsIncluded } = PRICING_STRUCTURE;
+  const { headlineMonthly, monthlyRange, flatPromise, whatsIncluded } =
+    PRICING_STRUCTURE;
 
   return (
     <section className="bg-surface-alt">
       <div className="container py-20 md:py-28">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow mb-5">Transparent Pricing</p>
+          <p className="eyebrow mb-5">Planned Pricing</p>
 
           <h2
             className="font-serif text-display-lg font-medium leading-[1.05] text-primary"
             style={{ fontVariationSettings: "'opsz' 144" }}
           >
-            Your monthly price,{' '}
+            The planned monthly price,{" "}
             <span className="display-italic text-primary">all in.</span>
           </h2>
 
           <p className="mx-auto mt-5 max-w-md text-base leading-[1.6] text-muted md:text-lg">
-            One flat number. The price you see is the price you pay — first month and every month after.
+            The planned standard injectable program bundles care into one
+            monthly number. Intake and purchases are not available yet.
           </p>
         </div>
 
@@ -39,11 +41,16 @@ export function PricingTransparency() {
           </div>
 
           <p className="mt-3 font-mono text-[11px] uppercase tracking-tracked text-muted">
-            From {formatUSD(monthlyRange.low)} (HCG adjunct) to {formatUSD(monthlyRange.high)} (standard TRT)
+            Standalone plans: {formatUSD(monthlyRange.low)} to{" "}
+            {formatUSD(monthlyRange.high)}. HCG adjunct: +$89 to a base TRT
+            plan.
           </p>
 
           <hr className="my-7 border-border" />
 
+          <p className="mb-4 text-left text-sm font-medium text-primary">
+            Planned inclusions, subject to finalized service terms:
+          </p>
           <ul className="space-y-3 text-left text-sm text-text">
             {whatsIncluded.map((item) => (
               <li key={item} className="flex items-start gap-3">
@@ -70,7 +77,7 @@ export function PricingTransparency() {
             href="/pricing"
             className="group inline-flex items-center gap-2 text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent-strong"
           >
-            See per-product pricing
+            See planned pricing
             <ArrowRight
               size={14}
               className="transition-transform duration-150 group-hover:translate-x-0.5"

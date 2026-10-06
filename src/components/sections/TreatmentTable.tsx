@@ -1,18 +1,11 @@
-import { TREATMENTS } from '@/content/treatments';
-import { formatUSD } from '@/lib/utils';
-import { Check, Minus } from 'lucide-react';
+import { TREATMENTS } from "@/content/treatments";
+import { formatUSD } from "@/lib/utils";
 
 const ROUTE_SHORT: Record<string, string> = {
-  'Subcutaneous or intramuscular injection': 'Subcutaneous',
-  'Daily oral tablet': 'Tablet',
-  'Subcutaneous injection (adjunct)': 'Subcutaneous',
-  'Daily topical application': 'Topical',
-};
-
-const FDA_SHORT: Record<string, string> = {
-  'FDA-approved': 'FDA',
-  Compounded: 'Compounded',
-  'Both available': 'FDA + Compounded',
+  "Subcutaneous or intramuscular injection": "Subcutaneous",
+  "Daily oral tablet": "Tablet",
+  "Subcutaneous injection (adjunct)": "Subcutaneous",
+  "Daily topical application": "Topical",
 };
 
 export function TreatmentTable() {
@@ -30,7 +23,10 @@ export function TreatmentTable() {
         </div>
 
         <div className="mx-auto mt-12 max-w-6xl overflow-x-auto">
-          <table className="min-w-[640px] border-separate border-spacing-0 text-sm">
+          <table
+            aria-label="Treatment information and planned monthly pricing"
+            className="min-w-[640px] border-separate border-spacing-0 text-sm"
+          >
             <thead>
               <tr>
                 <th
@@ -64,27 +60,21 @@ export function TreatmentTable() {
                   <Cell key={t.slug}>{ROUTE_SHORT[t.route] ?? t.route}</Cell>
                 ))}
               </Row>
-              <Row label="Fertility-preserving">
+              <Row label="Fertility discussion">
                 {TREATMENTS.map((t) => (
-                  <Cell key={t.slug}>
-                    {t.fertilityPreserving ? (
-                      <Check size={16} strokeWidth={2.5} className="text-accent-strong" />
-                    ) : (
-                      <Minus size={16} strokeWidth={2} className="text-muted/50" />
-                    )}
-                  </Cell>
+                  <Cell key={t.slug}>{t.fertilityNote}</Cell>
                 ))}
               </Row>
               <Row label="Regulatory">
                 {TREATMENTS.map((t) => (
-                  <Cell key={t.slug}>{FDA_SHORT[t.fdaStatus] ?? t.fdaStatus}</Cell>
+                  <Cell key={t.slug}>{t.fdaStatus}</Cell>
                 ))}
               </Row>
-              <Row label="Price / month">
+              <Row label="Planned price / month">
                 {TREATMENTS.map((t) => (
                   <Cell key={t.slug}>
                     <span className="text-text">
-                      {t.formFactor === 'Adjunct' ? '+' : ''}
+                      {t.formFactor === "Adjunct" ? "+" : ""}
                       {formatUSD(t.monthlyPriceFrom)}
                     </span>
                   </Cell>
@@ -98,7 +88,13 @@ export function TreatmentTable() {
   );
 }
 
-function Row({ label, children }: { label: string; children: React.ReactNode }) {
+function Row({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <tr>
       <th

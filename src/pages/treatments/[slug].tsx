@@ -1,19 +1,23 @@
-import type { GetStaticPaths, GetStaticProps } from 'next';
-import { PageShell } from '@/components/layout/PageShell';
-import { SEOHead } from '@/components/seo/SEOHead';
-import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
-import { MedicalTherapySchema } from '@/components/seo/schemas/MedicalTherapySchema';
-import { TREATMENT_ENTITIES } from '@/lib/seo/entities';
-import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
-import { ProductHero } from '@/components/sections/ProductHero';
-import { ProductOverview } from '@/components/sections/ProductOverview';
-import { DosingProtocol } from '@/components/sections/DosingProtocol';
-import { ProductFitSplit } from '@/components/sections/ProductFitSplit';
-import { TreatmentDisclosures } from '@/components/sections/TreatmentDisclosures';
-import { RelatedTreatments } from '@/components/sections/RelatedTreatments';
-import { FooterCTABand } from '@/components/sections/FooterCTABand';
-import { TREATMENTS, getTreatmentBySlug, type Treatment } from '@/content/treatments';
-import { type TreatmentSlug } from '@/lib/seo/routes';
+import type { GetStaticPaths, GetStaticProps } from "next";
+import { PageShell } from "@/components/layout/PageShell";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { EntityGraphSchema } from "@/components/seo/schemas/EntityGraphSchema";
+import { MedicalTherapySchema } from "@/components/seo/schemas/MedicalTherapySchema";
+import { TREATMENT_ENTITIES } from "@/lib/seo/entities";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { ProductHero } from "@/components/sections/ProductHero";
+import { ProductOverview } from "@/components/sections/ProductOverview";
+import { DosingProtocol } from "@/components/sections/DosingProtocol";
+import { ProductFitSplit } from "@/components/sections/ProductFitSplit";
+import { TreatmentDisclosures } from "@/components/sections/TreatmentDisclosures";
+import { RelatedTreatments } from "@/components/sections/RelatedTreatments";
+import { FooterCTABand } from "@/components/sections/FooterCTABand";
+import {
+  TREATMENTS,
+  getTreatmentBySlug,
+  type Treatment,
+} from "@/content/treatments";
+import { type TreatmentSlug } from "@/lib/seo/routes";
 
 type Props = { treatment: Treatment };
 
@@ -38,8 +42,8 @@ export default function TreatmentDetailPage({ treatment }: Props) {
       <PageShell>
         <Breadcrumbs
           items={[
-            { name: 'Home', href: '/' },
-            { name: 'Treatments', href: '/treatments' },
+            { name: "Home", href: "/" },
+            { name: "Treatments", href: "/treatments" },
             { name: treatment.name, href: `/treatments/${treatment.slug}` },
           ]}
         />
@@ -50,9 +54,8 @@ export default function TreatmentDetailPage({ treatment }: Props) {
         <TreatmentDisclosures treatment={treatment} />
         <RelatedTreatments currentSlug={treatment.slug} />
         <FooterCTABand
-          headline="Start with"
+          headline="Learn about"
           italic={`${treatment.shortName.toLowerCase()}.`}
-          caption="Doctor-supervised · Cancel anytime · 60-day guarantee"
         />
       </PageShell>
     </>

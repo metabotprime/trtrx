@@ -1,14 +1,11 @@
 import { SITE_URL } from '@/lib/seo/site';
 
 /**
- * Citation entry — typically a clinical trial, peer-reviewed paper, or
- * authoritative guideline. We use ScholarlyArticle for general academic
- * citations and MedicalScholarlyArticle for clinical-trial publications
- * (preferred when applicable — Google parses both, but the medical variant
- * is a stronger E-E-A-T signal for YMYL content).
+ * Preserve the real source type. An agency information page is a WebPage,
+ * not a scholarly article, and schema is not evidence of clinical review.
  */
 export type Citation = {
-  '@type': 'ScholarlyArticle' | 'MedicalScholarlyArticle';
+  '@type': 'ScholarlyArticle' | 'MedicalScholarlyArticle' | 'WebPage';
   headline: string;
   author?: string[];
   datePublished?: string;
@@ -48,7 +45,7 @@ export function CitationSchema({ pageUrl, citations }: Props) {
   const data = {
     '@context': 'https://schema.org',
     '@type': 'MedicalWebPage',
-    '@id': `${absoluteUrl}#citations`,
+    '@id': `${absoluteUrl}#webpage`,
     url: absoluteUrl,
     citation: citations.map((c) => ({
       '@type': c['@type'],
@@ -64,7 +61,7 @@ export function CitationSchema({ pageUrl, citations }: Props) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
     />
   );
 }

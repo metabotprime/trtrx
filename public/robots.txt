@@ -1,7 +1,9 @@
 User-agent: *
 Allow: /
 
-# AI engines explicitly welcomed for citation/training
+# Crawl access is allowed so crawlers can read staging noindex directives.
+# HTML metadata and X-Robots-Tag control indexing; this file does not enable launch.
+# Existing AI crawler access policy is retained.
 User-agent: GPTBot
 Allow: /
 

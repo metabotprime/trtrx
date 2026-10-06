@@ -1,37 +1,37 @@
-import type { GetStaticProps } from 'next';
-import Link from 'next/link';
-import { PageShell } from '@/components/layout/PageShell';
-import { SEOHead } from '@/components/seo/SEOHead';
-import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
-import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
-import { HowItWorksSteps } from '@/components/sections/HowItWorksSteps';
-import { ProcessLabPartners } from '@/components/sections/ProcessLabPartners';
-import { ProcessConsultDetail } from '@/components/sections/ProcessConsultDetail';
-import { ProcessShipping } from '@/components/sections/ProcessShipping';
-import { ProcessSupport } from '@/components/sections/ProcessSupport';
-import { FooterCTABand } from '@/components/sections/FooterCTABand';
-import { Button } from '@/components/ui/button';
+import type { GetStaticProps } from "next";
+import Link from "next/link";
+import { PageShell } from "@/components/layout/PageShell";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { EntityGraphSchema } from "@/components/seo/schemas/EntityGraphSchema";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { HowItWorksSteps } from "@/components/sections/HowItWorksSteps";
+import { ProcessLabPartners } from "@/components/sections/ProcessLabPartners";
+import { ProcessConsultDetail } from "@/components/sections/ProcessConsultDetail";
+import { ProcessShipping } from "@/components/sections/ProcessShipping";
+import { ProcessSupport } from "@/components/sections/ProcessSupport";
+import { FooterCTABand } from "@/components/sections/FooterCTABand";
+import { buttonVariants } from "@/components/ui/button";
 
 export default function HowItWorksPage() {
   return (
     <>
       <SEOHead
         title="How It Works"
-        description="From symptom assessment to your first vial in under 14 days. Doctor-supervised TRT delivered to your door."
+        description="Learn about the planned TRTrx assessment, testing, consultation and follow-up process. Patient intake is not open yet."
         path="/how-it-works"
         ogImage="/og/how-it-works.png"
       />
       <EntityGraphSchema
         title="How It Works"
-        description="From symptom assessment to your first vial in under 14 days. Doctor-supervised TRT delivered to your door."
+        description="Learn about the planned TRTrx assessment, testing, consultation and follow-up process. Patient intake is not open yet."
         url="/how-it-works"
       />
 
       <PageShell>
         <Breadcrumbs
           items={[
-            { name: 'Home', href: '/' },
-            { name: 'How It Works', href: '/how-it-works' },
+            { name: "Home", href: "/" },
+            { name: "How It Works", href: "/how-it-works" },
           ]}
         />
         {/* Hero */}
@@ -39,37 +39,46 @@ export default function HowItWorksPage() {
           <div className="container max-w-hero px-5 pb-12 pt-20 text-center md:pb-16 md:pt-28 lg:pt-32">
             <p className="eyebrow mb-7 inline-flex flex-wrap justify-center gap-x-3 gap-y-1">
               <span>The Process</span>
-              <span aria-hidden className="text-muted/60">·</span>
-              <span>Under 14 Days</span>
-              <span aria-hidden className="text-muted/60">·</span>
-              <span>No Office Visit</span>
+              <span aria-hidden className="text-muted/60">
+                ·
+              </span>
+              <span>Planned care</span>
+              <span aria-hidden className="text-muted/60">
+                ·
+              </span>
+              <span>Intake not open</span>
             </p>
 
             <h1
               className="font-serif text-display-xl font-medium text-primary"
               style={{ fontVariationSettings: "'opsz' 144" }}
             >
-              From symptoms to your first vial in{' '}
-              <span className="display-italic text-primary">under 14 days.</span>
+              Understand the path to{" "}
+              <span className="display-italic text-primary">
+                informed care.
+              </span>
             </h1>
 
             <p className="mx-auto mt-6 max-w-xl text-lg leading-[1.55] text-muted md:text-xl">
-              Symptom checklist, at-home labs, a 15-minute video consult, free shipping, and your own 24/7 patient portal. No office visits. No off-brand third-party tools. No insurance hassles.
+              The intended process brings medical history, appropriate testing
+              and physician-led assessment together. Clinical, pharmacy and lab
+              arrangements are still being finalized.
             </p>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-              <Link href="/pricing">
-                <Button size="md">See Pricing</Button>
+              <Link href="/pricing" className={buttonVariants({ size: "md" })}>
+                Planned pricing
               </Link>
-              <Link href="/treatments">
-                <Button size="md" variant="outline">
-                  Browse Treatments
-                </Button>
+              <Link
+                href="/treatments"
+                className={buttonVariants({ size: "md", variant: "outline" })}
+              >
+                Explore treatments
               </Link>
             </div>
 
             <p className="mt-8 text-eyebrow uppercase tracking-tracked text-muted">
-              Adults 18+ · Available in 47 states · Not yet in HI, AK, PR
+              Patient intake is not open in any state
             </p>
           </div>
         </section>
@@ -79,11 +88,7 @@ export default function HowItWorksPage() {
         <ProcessConsultDetail />
         <ProcessShipping />
         <ProcessSupport />
-        <FooterCTABand
-          headline="Ready when"
-          italic="you are."
-          caption="Doctor-supervised · Cancel anytime · 60-day guarantee"
-        />
+        <FooterCTABand headline="Know what" italic="comes next." />
       </PageShell>
     </>
   );

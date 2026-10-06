@@ -17,17 +17,18 @@ import { CompoundedExplainer } from '@/components/sections/CompoundedExplainer';
 import { FAQAccordion } from '@/components/sections/FAQAccordion';
 import { HomeBlogSection } from '@/components/sections/HomeBlogSection';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
+import { getHomepageBlogPosts, type BlogPostSummary } from '@/content/blog';
 
-export default function HomePage() {
+export default function HomePage({ posts }: { posts: BlogPostSummary[] }) {
   return (
     <>
       <SEOHead
-        title="Doctor-supervised testosterone therapy"
+        title="TRT education and planned physician-led care"
         description="Explore trtrx's planned physician-led testosterone care, monthly pricing and treatment options. Intake is not open yet."
         path="/"
       />
       <EntityGraphSchema
-        title="Doctor-supervised testosterone therapy"
+        title="TRT education and planned physician-led care"
         description="Explore trtrx's planned physician-led testosterone care, monthly pricing and treatment options. Intake is not open yet."
         url="/"
         aboutEntityIds={Object.values(TREATMENT_ENTITIES).map((t) => t.id)}
@@ -45,13 +46,13 @@ export default function HomePage() {
         <TestimonialCards />
         <CompoundedExplainer />
         <FAQAccordion />
-        <HomeBlogSection />
+        <HomeBlogSection posts={posts} />
         <FooterCTABand />
       </PageShell>
     </>
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  return { props: {}, revalidate: 3600 };
+export const getStaticProps: GetStaticProps<{ posts: BlogPostSummary[] }> = async () => {
+  return { props: { posts: getHomepageBlogPosts() }, revalidate: 3600 };
 };

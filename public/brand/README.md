@@ -1,23 +1,24 @@
 # trtrx wordmark
 
-Approved direction: the modern sans option with navy text and a yellow inset behind the oblique `rx`, selected on 2026-09-13.
+Approved direction: **Option 1, Crisp literary**, selected on October 6, 2026. Uppercase navy `TRT`, italic lowercase navy `rx` inside the yellow tile.
 
-The refined production artwork uses outlined Manrope at weight 650 with optical spacing and a gentle oblique `rx`. The softer yellow tile gives the letters more interior space. All paths are self-contained. There is no font download at runtime. `src/lib/brand/wordmark.ts` supplies both outlines and tile geometry to the shared `Wordmark` component in the navigation, footer and dynamic OG images. The standalone SVGs are matching exports. The centered yellow `rx` icon supplies the favicon family and stays inside the maskable safe circle.
+The production artwork preserves the approved Higgsfield glyph silhouettes as simplified, self-contained vector outlines. It does not substitute an installed font. `src/lib/brand/wordmark.ts` supplies the navigation, footer and dynamic social images. The standalone SVGs match that geometry. The centered yellow `rx` supplies the favicon family, within the maskable safe circle. Letter colors use the established palette without the generated texture.
 
 - Light: `wordmark.svg`
 - Dark: `wordmark-on-dark.svg`
-- Font source: https://github.com/google/fonts/tree/main/ofl/manrope
-- Font license: `Manrope-OFL.txt`
-- Approved Higgsfield concept job: `4ad22402-6ea3-4a70-ba7e-321bb0f5ed55`
-- Higgsfield refinement job: `ec476635-1aac-4283-bc0b-964f5d83402f` (13 September 2026, 1 credit). The generated direction softened the tile but retained heavy lettering; production vectors implement the intended lighter weight precisely.
+- Approved Higgsfield job: `37fa8e3b-de6a-4f8b-877e-29a767edcaf7`
+- Model: GPT Image 2.5 Flare, quality max, requested resolution 4K, actual 3504 × 2336.
+- Source SHA-256: `769cf672ff5c87f76a3f2b94b4426020e4c6c3f0c10ed21a6cb4182d68c674f9`
+- Source: https://d8j0ntlcm91z4.cloudfront.net/user_3EmhjwFcq1NsfVMmKt8hd5kvdxT/hf_20261005_030313_37fa8e3b-de6a-4f8b-877e-29a767edcaf7.png
+- The retained Manrope license and old generator describe the superseded September logo, not these custom outlines.
 
-Rebuild with the reviewed Manrope variable TTF (the script checks its SHA-256), Python with fontTools, and Node with Sharp available:
+Rebuild with the approved PNG (the script checks its SHA-256), Python with Pillow/NumPy, and Node with Sharp:
 
 ```bash
-python3 scripts/brand/generate-wordmark.py /path/to/Manrope.ttf
+python3 scripts/brand/trace-approved-wordmark.py /path/to/approved.png
 node scripts/brand/render-icons.mjs
 ```
 
-The first command updates the shared paths and SVG exports. The second updates the PNG family and the ICO with 16, 32, 48, 64, 128 and 256px entries. The existing `Manrope-OFL.txt` license applies to these outlines.
+The first command updates shared paths, SVG exports and the SVG icon. The second updates PNG icons and the ICO with 16, 32, 48, 64, 128 and 256px entries. The website ships no raster wordmark or font dependency.
 
 Existing generated product photographs and videos have their original wordmarks baked into the pixels. Refresh those assets separately when the packaging design is finalized.

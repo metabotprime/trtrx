@@ -1,5 +1,11 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import {
+  INTAKE_ENABLED,
+  LAUNCH_MESSAGE,
+  LAUNCH_PATH,
+  PRIMARY_CTA_LABEL,
+} from "@/content/launch";
 
 type Props = {
   headline?: string;
@@ -8,9 +14,9 @@ type Props = {
 };
 
 export function FooterCTABand({
-  headline = 'The standard',
-  italic = 'for TRT.',
-  caption = 'Free shipping · 60-day guarantee · Cancel anytime',
+  headline = "The standard",
+  italic = "for TRT.",
+  caption = LAUNCH_MESSAGE,
 }: Props) {
   return (
     <section className="bg-primary text-surface">
@@ -19,18 +25,24 @@ export function FooterCTABand({
           className="mx-auto max-w-3xl font-serif text-display-lg font-medium leading-[1.05]"
           style={{ fontVariationSettings: "'opsz' 144" }}
         >
-          {headline}{' '}
+          {headline}{" "}
           <span className="display-italic text-accent">{italic}</span>
         </h2>
 
         <div className="mt-9 flex justify-center">
-          <Link href="/how-it-works">
-            <Button size="lg">Get Started</Button>
+          <Link href={LAUNCH_PATH} className={buttonVariants({ size: "lg" })}>
+            {PRIMARY_CTA_LABEL}
+          </Link>
+          <Link
+            href="/blog"
+            className="ml-6 self-center text-sm font-medium underline underline-offset-4"
+          >
+            Read TRT guides
           </Link>
         </div>
 
         <p className="mt-6 text-eyebrow uppercase tracking-tracked text-surface/65">
-          {caption}
+          {INTAKE_ENABLED ? caption : LAUNCH_MESSAGE}
         </p>
       </div>
     </section>

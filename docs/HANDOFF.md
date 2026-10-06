@@ -1,5 +1,7 @@
 # trtrx — Handoff Brief
 
+> **Historical May 2026 snapshot.** Current launch readiness, approved logo, content/review status, indexing controls and operating facts are documented in [LAUNCH-SEO-2026-10-06.md](LAUNCH-SEO-2026-10-06.md). That document and current source supersede the claims below. The old placeholder logo, physician-reviewed blog claims, 47-state operations, lab partnerships and bundled/guaranteed service promises are not current verified facts. Patient intake is closed. SEOHead uses next/head, not react-helmet-async.
+
 > Paste the next session a link to this file (or the file contents). Everything below is what a fresh agent needs to know to continue the project without re-litigating decisions.
 
 **Date of handoff:** 2026-05-04

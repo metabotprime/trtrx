@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { isPublicIndexingAllowed } from './src/content/launch';
 import type { NextRequest } from 'next/server';
 
 /**
@@ -37,5 +38,9 @@ export function middleware(req: NextRequest) {
       return new NextResponse('Forbidden', { status: 403 });
     }
   }
-  return NextResponse.next();
+  const response = NextResponse.next();
+  if (!isPublicIndexingAllowed(req.nextUrl.hostname)) {
+    response.headers.set('X-Robots-Tag', 'noindex, follow');
+  }
+  return response;
 }

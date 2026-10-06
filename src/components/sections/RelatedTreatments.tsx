@@ -32,7 +32,7 @@ export function RelatedTreatments({ currentSlug }: Props) {
                   <ProductMedia
                     image={t.heroImage}
                     video={t.heroVideo}
-                    alt={`${t.name} — representative product photograph`}
+                    alt={`${t.name}, representative product photograph`}
                     className="aspect-[4/3]"
                     hoverZoom
                     sizes="(min-width: 640px) 33vw, 100vw"

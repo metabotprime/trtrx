@@ -1,35 +1,36 @@
+import { FAQSources } from "./FAQSources";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
-import { getFAQsByCategory, type FAQCategory } from '@/content/faqs';
+} from "@/components/ui/accordion";
+import { getFAQsByCategory, type FAQCategory } from "@/content/faqs";
 
 const CATEGORY_TITLES: Record<FAQCategory, string> = {
-  'results': 'Results',
-  'safety': 'Safety',
-  'fertility': 'Fertility',
-  'insurance': 'Insurance & FSA',
-  'legality': 'Legality',
-  'products': 'Treatments',
-  'side-effects': 'Side Effects',
-  'monitoring': 'Labs & Monitoring',
-  'lifestyle': 'Lifestyle',
-  'refund': 'Refund & Cancellation',
+  results: "Results",
+  safety: "Safety",
+  fertility: "Fertility",
+  insurance: "Insurance & FSA",
+  legality: "Legality",
+  products: "Treatments",
+  "side-effects": "Side Effects",
+  monitoring: "Labs & Monitoring",
+  lifestyle: "Lifestyle",
+  refund: "Refund & Cancellation",
 };
 
 const ORDER: FAQCategory[] = [
-  'results',
-  'safety',
-  'side-effects',
-  'monitoring',
-  'fertility',
-  'products',
-  'insurance',
-  'refund',
-  'legality',
-  'lifestyle',
+  "results",
+  "safety",
+  "side-effects",
+  "monitoring",
+  "fertility",
+  "products",
+  "insurance",
+  "refund",
+  "legality",
+  "lifestyle",
 ];
 
 export function FAQByCategory() {
@@ -96,6 +97,7 @@ export function FAQByCategory() {
             );
           })}
         </div>
+        <FAQSources />
       </div>
     </section>
   );

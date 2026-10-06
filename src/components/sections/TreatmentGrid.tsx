@@ -1,16 +1,10 @@
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { TREATMENTS } from '@/content/treatments';
-import { formatUSD } from '@/lib/utils';
-import { SectionHeader } from './SectionHeader';
-import { TreatmentVisual } from '@/components/treatments/TreatmentVisual';
-import { ProductMedia } from '@/components/treatments/ProductMedia';
-
-const FDA_LABEL: Record<string, string> = {
-  'FDA-approved': 'FDA Approved',
-  Compounded: 'Compounded',
-  'Both available': 'FDA + Compounded',
-};
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { TREATMENTS } from "@/content/treatments";
+import { formatUSD } from "@/lib/utils";
+import { SectionHeader } from "./SectionHeader";
+import { TreatmentVisual } from "@/components/treatments/TreatmentVisual";
+import { ProductMedia } from "@/components/treatments/ProductMedia";
 
 type Props = { showHeader?: boolean };
 
@@ -20,15 +14,15 @@ export function TreatmentGrid({ showHeader = true }: Props = {}) {
       <div className="container py-20 md:py-28">
         {showHeader && (
           <SectionHeader
-            eyebrow="Five Evidence-Based Options"
-            title="Find the right *treatment.*"
-            subtitle="Choose by lifestyle, fertility goals, and how you want to dose."
+            eyebrow="Treatment education"
+            title="Understand your *options.*"
+            subtitle="Explore the differences and questions to discuss with a clinician. TRTrx intake is not open; prices below are planned."
             align="center"
           />
         )}
 
         <ul
-          className={`mx-auto ${showHeader ? 'mt-14' : ''} grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3`}
+          className={`mx-auto ${showHeader ? "mt-14" : ""} grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3`}
         >
           {TREATMENTS.map((t) => (
             <li key={t.slug}>
@@ -42,7 +36,7 @@ export function TreatmentGrid({ showHeader = true }: Props = {}) {
                   <ProductMedia
                     image={t.heroImage}
                     video={t.heroVideo}
-                    alt={`${t.name} — representative product photograph`}
+                    alt={`${t.name}, representative product photograph`}
                     label={t.formFactor}
                     className="aspect-[4/3]"
                     hoverZoom
@@ -59,7 +53,7 @@ export function TreatmentGrid({ showHeader = true }: Props = {}) {
                 <div className="flex flex-1 flex-col p-6">
                   {/* Eyebrow badge — form factor is shown on the visual chip above */}
                   <p className="mb-3 font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
-                    {FDA_LABEL[t.fdaStatus] ?? t.fdaStatus}
+                    {t.fdaStatus}
                   </p>
 
                   {/* Name */}
@@ -78,13 +72,9 @@ export function TreatmentGrid({ showHeader = true }: Props = {}) {
                     <SpecRow label="Route" value={t.route} />
                     <SpecRow
                       label="Fertility"
-                      value={t.fertilityPreserving ? 'Preserving' : 'Not preserving'}
-                      valueClass={t.fertilityPreserving ? 'text-accent-strong' : ''}
+                      value={t.fertilityNote}
                     />
-                    <SpecRow
-                      label="Status"
-                      value={FDA_LABEL[t.fdaStatus] ?? t.fdaStatus}
-                    />
+                    <SpecRow label="Status" value={t.fdaStatus} />
                   </dl>
 
                   <hr className="my-5 border-border" />
@@ -95,11 +85,11 @@ export function TreatmentGrid({ showHeader = true }: Props = {}) {
                       className="font-serif text-3xl font-medium text-primary"
                       style={{ fontVariationSettings: "'opsz' 144" }}
                     >
-                      {t.formFactor === 'Adjunct' ? '+' : ''}
+                      {t.formFactor === "Adjunct" ? "+" : ""}
                       {formatUSD(t.monthlyPriceFrom)}
                     </span>
-                    <span className="text-sm text-muted">/mo</span>
-                    {t.formFactor === 'Adjunct' && (
+                    <span className="text-sm text-muted">/mo planned</span>
+                    {t.formFactor === "Adjunct" && (
                       <span className="ml-2 font-mono text-[11px] uppercase tracking-tracked text-muted">
                         adjunct
                       </span>
@@ -129,7 +119,7 @@ export function TreatmentGrid({ showHeader = true }: Props = {}) {
 function SpecRow({
   label,
   value,
-  valueClass = '',
+  valueClass = "",
 }: {
   label: string;
   value: string;
@@ -138,7 +128,9 @@ function SpecRow({
   return (
     <div className="flex items-baseline justify-between gap-3">
       <dt className="text-muted">{label}</dt>
-      <dd className={`text-right font-mono text-text ${valueClass}`}>{value}</dd>
+      <dd className={`text-right font-mono text-text ${valueClass}`}>
+        {value}
+      </dd>
     </div>
   );
 }

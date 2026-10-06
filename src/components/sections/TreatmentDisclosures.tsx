@@ -1,61 +1,60 @@
-import { type Treatment } from '@/content/treatments';
-
-type Props = { treatment: Treatment };
-
-/**
- * Per-treatment safety + regulatory disclosure block. Surfaces the compliance
- * statements a compounded-Rx telehealth page must carry, tailored to each
- * product: compounded "not FDA-approved as a finished drug," off-label framing
- * for enclomiphene/HCG, TRT risk + monitoring, controlled-substance status,
- * state availability, and the general not-medical-advice disclaimer.
- */
-export function TreatmentDisclosures({ treatment }: Props) {
-  const isCompounded = treatment.fdaStatus === 'Compounded';
-  const items: string[] = [];
-
-  if (isCompounded) {
-    items.push(
-      `${treatment.shortName} is compounded — it is not FDA-approved as a finished drug. It is prepared per individual prescription by a licensed 503A pharmacy to your physician’s specifications.`,
-    );
-  } else if (treatment.fdaStatus === 'Both available') {
-    items.push(
-      `${treatment.shortName} is dispensed either as an FDA-approved generic or as a compounded preparation. Compounded preparations are made per individual prescription by a licensed 503A pharmacy and are not FDA-approved as finished drugs.`,
-    );
-  }
-
-  if (treatment.offLabel) {
-    items.push(
-      `Using ${treatment.shortName} to support testosterone is an off-label use. Your licensed clinician may prescribe off-label at their clinical discretion based on your individual labs and history.`,
-    );
-  }
-
-  items.push(
-    'Testosterone replacement can raise red-blood-cell count (hematocrit), may suppress fertility, and is not appropriate for men trying to conceive or with untreated prostate or certain cardiovascular conditions. Your physician orders baseline and follow-up labs and reviews them with you.',
-  );
-  items.push(
-    'Testosterone is a Schedule III controlled substance and is prescribed only after a licensed physician reviews your labs and medical history.',
-  );
-  items.push(
-    'Available in 47 states. Not yet available in Hawaii, Alaska, or Puerto Rico.',
-  );
-  items.push(
-    `This page is general educational information, not medical advice. Talk with a licensed clinician about whether ${treatment.shortName} is right for you.`,
-  );
-
+import { type Treatment } from "@/content/treatments";
+import { PLANNED_CARE_NOTICE } from "@/content/launch";
+export function TreatmentDisclosures({ treatment }: { treatment: Treatment }) {
+  const items = [
+    PLANNED_CARE_NOTICE,
+    "Any clinical use requires assessment of the diagnosis, medical history, benefits, risks and alternatives. Do not use this page to select a dose or change an existing prescription.",
+    "Testosterone can suppress sperm production and requires appropriate screening and monitoring. Discuss fertility goals and relevant health conditions before treatment.",
+    treatment.slug === "enclomiphene"
+      ? "Enclomiphene is not FDA-approved. It is not an approved medicine being used for another indication; describing it simply as off-label would obscure that distinction."
+      : treatment.slug === "hcg"
+        ? "FDA-approved HCG products have specific indications. TRTrx has not confirmed the product or formulation for its planned adjunct. A price does not establish availability or clinical suitability."
+        : treatment.slug === "cream"
+          ? "Compounded testosterone cream is not FDA-approved. It should not be assumed equivalent to an approved gel. Ask about product-specific application and transfer precautions."
+          : "FDA-approved testosterone products exist. Approval does not extend to compounded preparations, which are not FDA-approved. The exact product for any future TRTrx service is not confirmed.",
+    "No clinical services are available in any state. This is general education, not medical advice or a clinician-patient relationship.",
+  ];
   return (
     <section className="bg-surface-alt">
       <div className="container py-14 md:py-16">
         <div className="mx-auto max-w-3xl rounded-2xl border border-border bg-surface p-7 md:p-9">
-          <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
-            Important safety &amp; regulatory information
-          </p>
-          <ul className="mt-5 space-y-3.5 text-sm leading-relaxed text-muted">
-            {items.map((item, i) => (
-              <li key={i} className="flex gap-3">
-                <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted/50" />
-                <span>{item}</span>
-              </li>
+          <h2 className="font-serif text-2xl text-primary">
+            Safety, regulation and current availability
+          </h2>
+          <ul className="mt-5 list-disc space-y-4 pl-5 text-sm leading-relaxed text-muted">
+            {items.map((item) => (
+              <li key={item}>{item}</li>
             ))}
+          </ul>
+          <p className="mt-6 text-sm text-muted">
+            Clinical review of this educational page has not been completed.
+            Sources for further reading:
+          </p>
+          <ul className="mt-3 space-y-2 text-sm text-primary underline underline-offset-4">
+            <li>
+              <a href="https://www.endocrine.org/clinical-practice-guidelines/testosterone-therapy">
+                Endocrine Society testosterone therapy guideline
+              </a>
+            </li>
+            <li>
+              <a href="https://www.fda.gov/drugs/human-drug-compounding/compounding-and-fda-questions-and-answers">
+                FDA compounding questions and answers
+              </a>
+            </li>
+            {treatment.slug === "enclomiphene" && (
+              <li>
+                <a href="https://www.fda.gov/media/158541/download">
+                  FDA advisory committee briefing on enclomiphene
+                </a>
+              </li>
+            )}
+            {treatment.slug === "hcg" && (
+              <li>
+                <a href="https://www.fda.gov/drugs/medication-health-fraud/questions-and-answers-hcg-products-weight-loss">
+                  FDA information on approved HCG products and uses
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>

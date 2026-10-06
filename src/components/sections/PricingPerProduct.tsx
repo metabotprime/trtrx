@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { PRICING_STRUCTURE } from '@/content/pricing';
-import { TREATMENTS } from '@/content/treatments';
-import { formatUSD } from '@/lib/utils';
-import { SectionHeader } from './SectionHeader';
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { PRICING_STRUCTURE } from "@/content/pricing";
+import { TREATMENTS } from "@/content/treatments";
+import { formatUSD } from "@/lib/utils";
+import { SectionHeader } from "./SectionHeader";
 
 export function PricingPerProduct() {
   const tiers = PRICING_STRUCTURE.monthlyTiers;
@@ -13,14 +13,16 @@ export function PricingPerProduct() {
       <div className="container py-20 md:py-28">
         <SectionHeader
           eyebrow="By Treatment"
-          title="What each *protocol costs.*"
-          subtitle="HCG is an adjunct — added on top of a base TRT subscription, not used alone."
+          title="Planned pricing, *by treatment.*"
+          subtitle="Prices are not available purchase offers. HCG is a planned additional charge with a base TRT plan; its product and availability are not confirmed."
           align="center"
         />
 
         <ul className="mx-auto mt-12 max-w-3xl divide-y divide-border border-y border-border">
           {tiers.map((tier) => {
-            const treatment = TREATMENTS.find((t) => t.slug === tier.productSlug);
+            const treatment = TREATMENTS.find(
+              (t) => t.slug === tier.productSlug,
+            );
             return (
               <li key={tier.productSlug}>
                 <Link
@@ -45,7 +47,8 @@ export function PricingPerProduct() {
                       className="font-serif text-2xl font-medium text-accent-strong tabular-nums"
                       style={{ fontVariationSettings: "'opsz' 144" }}
                     >
-                      {formatUSD(tier.monthlyPrice)}
+                      {tier.productSlug === "hcg" ? "+" : ""}
+                      {formatUSD(tier.monthlyPrice)}/mo
                     </span>
                     <ArrowRight
                       size={16}

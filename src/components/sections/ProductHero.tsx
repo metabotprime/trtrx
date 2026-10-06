@@ -1,23 +1,22 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { type Treatment } from '@/content/treatments';
-import { formatUSD } from '@/lib/utils';
-import { TreatmentVisual } from '@/components/treatments/TreatmentVisual';
-import { ProductMedia } from '@/components/treatments/ProductMedia';
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import {
+  LAUNCH_PATH,
+  PRIMARY_CTA_LABEL,
+  PLANNED_CARE_NOTICE,
+} from "@/content/launch";
+import { type Treatment } from "@/content/treatments";
+import { formatUSD } from "@/lib/utils";
+import { TreatmentVisual } from "@/components/treatments/TreatmentVisual";
+import { ProductMedia } from "@/components/treatments/ProductMedia";
 
 type Props = { treatment: Treatment };
 
-const FDA_LABEL: Record<string, string> = {
-  'FDA-approved': 'FDA-Approved',
-  'Compounded': 'Compounded',
-  'Both available': 'FDA + Compounded',
-};
-
 export function ProductHero({ treatment }: Props) {
   const heading = treatment.headline ?? treatment.name;
-  const headingParts = heading.split(' ');
+  const headingParts = heading.split(" ");
   const lastWord = headingParts.pop() ?? heading;
-  const leading = headingParts.join(' ');
+  const leading = headingParts.join(" ");
 
   return (
     <section className="bg-surface">
@@ -26,7 +25,8 @@ export function ProductHero({ treatment }: Props) {
           {/* Text */}
           <div className="lg:col-span-7">
             <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
-              {treatment.formFactor} · {treatment.frequency} · {FDA_LABEL[treatment.fdaStatus] ?? treatment.fdaStatus}
+              {treatment.formFactor} · {treatment.frequency} ·{" "}
+              {treatment.fdaStatus}
             </p>
 
             <h1
@@ -35,8 +35,10 @@ export function ProductHero({ treatment }: Props) {
             >
               {leading ? (
                 <>
-                  {leading}{' '}
-                  <span className="display-italic text-primary">{lastWord}</span>
+                  {leading}{" "}
+                  <span className="display-italic text-primary">
+                    {lastWord}
+                  </span>
                 </>
               ) : (
                 <span className="display-italic text-primary">{lastWord}</span>
@@ -53,31 +55,33 @@ export function ProductHero({ treatment }: Props) {
                   className="font-serif text-3xl font-medium text-primary"
                   style={{ fontVariationSettings: "'opsz' 144" }}
                 >
-                  {treatment.formFactor === 'Adjunct' ? '+' : ''}
+                  {treatment.formFactor === "Adjunct" ? "+" : ""}
                   {formatUSD(treatment.monthlyPriceFrom)}
                 </span>
-                <span className="text-sm text-muted">/mo</span>
-                {treatment.formFactor === 'Adjunct' && (
+                <span className="text-sm text-muted">/mo planned</span>
+                {treatment.formFactor === "Adjunct" && (
                   <span className="font-mono text-[11px] uppercase tracking-tracked text-muted">
                     adjunct to base TRT
                   </span>
                 )}
               </div>
-              {treatment.fertilityPreserving && (
-                <span className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
-                  Fertility-preserving
-                </span>
-              )}
             </div>
 
+            <p className="mt-5 text-sm leading-relaxed text-muted">
+              Planned pricing. {PLANNED_CARE_NOTICE}
+            </p>
             <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:gap-4">
-              <Link href="/how-it-works">
-                <Button size="md">Get Started</Button>
+              <Link
+                href={LAUNCH_PATH}
+                className={buttonVariants({ size: "md" })}
+              >
+                {PRIMARY_CTA_LABEL}
               </Link>
-              <Link href="/pricing">
-                <Button size="md" variant="outline">
-                  See Pricing
-                </Button>
+              <Link
+                href="/pricing"
+                className={buttonVariants({ size: "md", variant: "outline" })}
+              >
+                See Pricing
               </Link>
             </div>
           </div>
@@ -89,7 +93,7 @@ export function ProductHero({ treatment }: Props) {
               <ProductMedia
                 image={treatment.heroImage}
                 video={treatment.heroVideo}
-                alt={`${treatment.name} — representative product photograph`}
+                alt={`${treatment.name}, representative product photograph`}
                 label={treatment.formFactor}
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 priority

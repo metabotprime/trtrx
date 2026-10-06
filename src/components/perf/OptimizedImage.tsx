@@ -21,6 +21,6 @@ type Props = Omit<ImageProps, 'src' | 'alt' | 'width' | 'height'> & {
  * <div>s. Swap them to <OptimizedImage> when real product/portrait
  * JPGs land in public/images/.
  */
-export function OptimizedImage(props: Props) {
-  return <Image quality={88} {...props} />;
+export function OptimizedImage({ alt, ...props }: Props) {
+  return <Image quality={88} alt={alt} {...props} />;
 }

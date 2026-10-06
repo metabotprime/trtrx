@@ -5,8 +5,8 @@ import {
   Truck,
   MessageCircle,
   type LucideIcon,
-} from 'lucide-react';
-import { SectionHeader } from './SectionHeader';
+} from "lucide-react";
+import { SectionHeader } from "./SectionHeader";
 
 type Step = {
   number: string;
@@ -15,40 +15,40 @@ type Step = {
   body: string;
 };
 
+type Props = { showHeader?: boolean };
+
 const STEPS: Step[] = [
   {
-    number: '01',
+    number: "01",
     Icon: ClipboardList,
-    title: "Tell us what's off",
-    body: '2-minute symptom checklist. No upfront fees.',
+    title: "Review your history",
+    body: "The planned intake would gather symptoms, medications and health goals for clinical review.",
   },
   {
-    number: '02',
+    number: "02",
     Icon: FlaskConical,
-    title: 'Order at-home labs',
-    body: 'Quest & Labcorp partners — 4,400+ locations or fingerstick.',
+    title: "Confirm the evaluation",
+    body: "A clinician would decide which tests and additional assessment are appropriate.",
   },
   {
-    number: '03',
+    number: "03",
     Icon: Video,
-    title: 'Meet your physician',
-    body: '15-minute video consult to set your protocol.',
+    title: "Discuss your options",
+    body: "A physician would explain benefits, risks and alternatives. A prescription is not automatic.",
   },
   {
-    number: '04',
+    number: "04",
     Icon: Truck,
-    title: 'Receive your therapy',
-    body: 'Free, fast, discreet shipping. Refills automated.',
+    title: "Plan treatment, if appropriate",
+    body: "Only an approved prescription could proceed to a verified pharmacy. Product and delivery details remain unconfirmed.",
   },
   {
-    number: '05',
+    number: "05",
     Icon: MessageCircle,
-    title: 'Stay in touch, 24/7',
-    body: 'Message your doctor anytime in your patient portal.',
+    title: "Agree on follow-up",
+    body: "Monitoring and communication should be arranged before treatment starts. The TRTrx portal is not available yet.",
   },
 ];
-
-type Props = { showHeader?: boolean };
 
 export function HowItWorksSteps({ showHeader = true }: Props = {}) {
   return (
@@ -57,14 +57,14 @@ export function HowItWorksSteps({ showHeader = true }: Props = {}) {
         {showHeader && (
           <SectionHeader
             eyebrow="The Process"
-            title="How it *works.*"
-            subtitle="From symptoms to your first vial in under 14 days."
+            title="How care is *planned.*"
+            subtitle="The intended care journey, subject to individual clinical assessment. Intake is not open yet."
             align="center"
           />
         )}
 
         <ol
-          className={`mx-auto ${showHeader ? 'mt-16' : ''} grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-5 lg:gap-7`}
+          className={`mx-auto ${showHeader ? "mt-16" : ""} grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-5 lg:gap-7`}
         >
           {STEPS.map(({ number, Icon, title, body }) => (
             <li key={number} className="flex flex-col">

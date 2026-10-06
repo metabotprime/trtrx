@@ -1,21 +1,15 @@
-import { type Treatment } from '@/content/treatments';
-import { SectionHeader } from './SectionHeader';
+import { type Treatment } from "@/content/treatments";
+import { SectionHeader } from "./SectionHeader";
 
 type Props = { treatment: Treatment };
 
-const FDA_LABEL: Record<string, string> = {
-  'FDA-approved': 'FDA-Approved',
-  'Compounded': 'Compounded by 503A pharmacy',
-  'Both available': 'FDA-approved + Compounded options',
-};
-
 export function DosingProtocol({ treatment }: Props) {
   const rows = [
-    { label: 'Form factor', value: treatment.formFactor },
-    { label: 'Route', value: treatment.route },
-    { label: 'Frequency', value: treatment.frequency },
-    { label: 'Fertility', value: treatment.fertilityPreserving ? 'Preserving' : 'Not preserving' },
-    { label: 'Regulatory status', value: FDA_LABEL[treatment.fdaStatus] ?? treatment.fdaStatus },
+    { label: "Form factor", value: treatment.formFactor },
+    { label: "Route", value: treatment.route },
+    { label: "Frequency", value: treatment.frequency },
+    { label: "Fertility", value: treatment.fertilityNote },
+    { label: "Regulatory status", value: treatment.fdaStatus },
   ];
 
   return (
@@ -23,8 +17,8 @@ export function DosingProtocol({ treatment }: Props) {
       <div className="container py-16 md:py-20">
         <SectionHeader
           eyebrow="Protocol"
-          title="How it's *prescribed.*"
-          subtitle="Your physician sets your starting protocol during the intake consult based on your labs and goals."
+          title="Details to *discuss.*"
+          subtitle="These are general formulation details. Dosing and suitability require individual assessment. No treatment can currently be prescribed through TRTrx."
           align="center"
           size="md"
         />

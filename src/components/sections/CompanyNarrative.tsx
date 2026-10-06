@@ -1,9 +1,9 @@
-import { SectionHeader } from './SectionHeader';
+import { SectionHeader } from "./SectionHeader";
 
 const PARAGRAPHS = [
-  'trtrx exists because the modern men’s-health market still treats testosterone therapy like a side hustle. Inflated memberships stacked on top of medication costs. Patient portals on someone else’s domain. "$99/mo" hooks that quietly become $325 once the labs and consult fees land.',
-  'We started trtrx to do the obvious thing: charge one transparent number, ship the medication, and let a board-certified physician — not a quiz — set your protocol. No clever bundling. No "first 90 days are different." The number on the homepage is the number on your statement.',
-  'Behind every protocol is a doctor who actually reads your labs. Behind every package is a 503A pharmacy or FDA-registered manufacturer. Behind every refill is a follow-up. The boring parts are where trust gets built — so we made them the focus.',
+  "TRTrx is being developed for people who want clearer information about testosterone care and its costs. The site brings educational guides, treatment comparisons and planned pricing together before clinical intake opens.",
+  "The planned standard injectable program is $219 per month, with no setup fee or separate membership. Pricing is a plan for the service, not an available purchase. Final clinical, pharmacy, laboratory and billing arrangements still need to be confirmed.",
+  "Our priority before accepting patients is to make the essentials visible: verified clinician details, state availability, medication information and service terms. We will not present an unconfirmed roster or a patient story as proof.",
 ];
 
 export function CompanyNarrative() {
@@ -12,7 +12,7 @@ export function CompanyNarrative() {
       <div className="container py-20 md:py-28">
         <SectionHeader
           eyebrow="Our Story"
-          title="The market needed *adults.*"
+          title="Clear information. *Clear expectations.*"
           align="center"
         />
 

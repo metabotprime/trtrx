@@ -1,104 +1,56 @@
-import { Check } from 'lucide-react';
-import { SectionHeader } from './SectionHeader';
-
-type Side = {
-  eyebrow: string;
-  headline: string;
-  italicWord: string;
-  body: string;
-  bestFor: string[];
-  examples: string;
-};
-
-const SIDES: [Side, Side] = [
-  {
-    eyebrow: 'FDA-Approved',
-    headline: 'Standardized.',
-    italicWord: 'Reimbursable.',
-    body: 'Identical in every batch, made in registered manufacturing facilities, and FSA/HSA-friendly when applicable. The right call when predictability and standardization matter most.',
-    bestFor: [
-      'Predictable, repeatable baseline',
-      'FSA/HSA reimbursement',
-      'Brand-name continuity',
-    ],
-    examples: 'Testosterone Cypionate (brand) · Testosterone Enanthate (brand)',
-  },
-  {
-    eyebrow: 'Compounded',
-    headline: 'Tailored.',
-    italicWord: 'Flexible.',
-    body: 'Custom-formulated for you by licensed 503A pharmacies. Lower cost, more delivery options (cream, troche, alt-ester injectables), and dose flexibility that off-the-shelf products can’t match.',
-    bestFor: [
-      'Lifestyle fit (cream, troche, oral)',
-      'Lower out-of-pocket cost',
-      'Custom dosing or alt esters',
-    ],
-    examples: 'Topical cream · Enclomiphene · HCG · Compounded injectables',
-  },
-];
-
+import { SectionHeader } from "./SectionHeader";
 export function CompoundedExplainer() {
   return (
     <section className="bg-surface-alt">
       <div className="container py-20 md:py-28">
         <SectionHeader
           eyebrow="Education"
-          title="FDA-approved or *compounded?* Both have their place."
-          align="center"
+          title="Understand *the medication.*"
+          subtitle="FDA approval and compounding are different. Ask about the exact product before making a decision."
         />
-
-        <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-          {SIDES.map((side) => (
-            <article
-              key={side.eyebrow}
-              className="flex flex-col rounded-2xl border border-border bg-surface p-8 md:p-10"
-            >
-              <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
-                {side.eyebrow}
-              </p>
-
-              <h3
-                className="mt-4 font-serif text-[26px] font-medium leading-[1.15] text-primary"
-                style={{ fontVariationSettings: "'opsz' 144" }}
-              >
-                {side.headline}{' '}
-                <span className="display-italic text-primary">{side.italicWord}</span>
-              </h3>
-
-              <p className="mt-5 text-[15px] leading-[1.65] text-text md:text-base">
-                {side.body}
-              </p>
-
-              <hr className="my-7 border-border" />
-
-              <ul className="space-y-2.5 text-sm text-text">
-                {side.bestFor.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <Check
-                      size={16}
-                      strokeWidth={2.5}
-                      className="mt-[3px] shrink-0 text-accent-strong"
-                      aria-hidden
-                    />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <hr className="my-7 border-border" />
-
-              <p className="font-mono text-[11px] uppercase tracking-tracked text-muted">
-                Examples
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
-                {side.examples}
-              </p>
-            </article>
-          ))}
+        <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2">
+          <article className="rounded-2xl border border-border bg-surface p-8">
+            <h3 className="font-serif text-2xl text-primary">
+              FDA-approved products
+            </h3>
+            <p className="mt-5 leading-relaxed text-muted">
+              FDA reviews an approved drug for safety, effectiveness and quality
+              for its labeled uses. Approval belongs to a specific product. It
+              does not extend to every preparation containing the same active
+              ingredient.
+            </p>
+            <p className="mt-4 leading-relaxed text-muted">
+              Ask for the product name, labeled indication, administration
+              instructions and relevant risks. A clinician should explain any
+              proposed use outside the approved label.
+            </p>
+          </article>
+          <article className="rounded-2xl border border-border bg-surface p-8">
+            <h3 className="font-serif text-2xl text-primary">
+              Compounded preparations
+            </h3>
+            <p className="mt-5 leading-relaxed text-muted">
+              Compounded drugs are not FDA-approved. FDA does not review their
+              safety, effectiveness or quality before marketing. A clinician and
+              pharmacist should explain the individual medical need, risks and
+              approved alternatives.
+            </p>
+            <p className="mt-4 leading-relaxed text-muted">
+              A compounded preparation should not be assumed equivalent to an
+              approved product. TRTrx has not confirmed its dispensing products
+              or pharmacy arrangements.
+            </p>
+          </article>
         </div>
-
-        <p className="mx-auto mt-10 max-w-md text-center text-sm leading-relaxed text-muted">
-          Your physician helps you choose during the intake consult based on your goals, budget, and lifestyle.
+        <p className="mx-auto mt-8 max-w-3xl text-center text-sm text-muted">
+          Source:{" "}
+          <a
+            href="https://www.fda.gov/drugs/human-drug-compounding/compounding-and-fda-questions-and-answers"
+            className="text-primary underline underline-offset-4"
+          >
+            FDA: Compounding questions and answers
+          </a>
+          . General education, not a treatment recommendation.
         </p>
       </div>
     </section>

@@ -1,8 +1,9 @@
-import Link from 'next/link';
-import { Check } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { formatUSD } from '@/lib/utils';
-import { PRICING_STRUCTURE } from '@/content/pricing';
+import Link from "next/link";
+import { Check } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
+import { LAUNCH_PATH, PRIMARY_CTA_LABEL } from "@/content/launch";
+import { formatUSD } from "@/lib/utils";
+import { PRICING_STRUCTURE } from "@/content/pricing";
 
 const RECEIPT_LINES = PRICING_STRUCTURE.whatsIncluded.slice(0, 5);
 
@@ -20,7 +21,7 @@ export function PricingHero() {
             width: 580,
             height: 580,
             background:
-              'radial-gradient(closest-side, hsl(45 95% 55% / 0.10), transparent 70%)',
+              "radial-gradient(closest-side, hsl(45 95% 55% / 0.10), transparent 70%)",
           }}
         />
       </div>
@@ -30,34 +31,43 @@ export function PricingHero() {
           {/* LEFT — copy */}
           <div className="text-center lg:text-left">
             <p className="eyebrow mb-7 inline-flex flex-wrap justify-center gap-x-3 gap-y-1 lg:justify-start">
-              <span>Transparent Pricing</span>
-              <span aria-hidden className="text-muted/60">·</span>
-              <span>No Insurance Required</span>
-              <span aria-hidden className="text-muted/60">·</span>
-              <span>FSA-Eligible</span>
+              <span>Planned Pricing</span>
+              <span aria-hidden className="text-muted/60">
+                ·
+              </span>
+              <span>Direct-pay model</span>
+              <span aria-hidden className="text-muted/60">
+                ·
+              </span>
+              <span>Intake not open</span>
             </p>
 
             <h1
               className="font-serif text-display-xl font-medium leading-[1.02] text-primary"
               style={{ fontVariationSettings: "'opsz' 144" }}
             >
-              One price.{' '}
+              One price.{" "}
               <span className="display-italic text-primary">No surprises.</span>
             </h1>
 
             <p className="mx-auto mt-6 max-w-xl text-lg leading-[1.55] text-muted md:text-xl lg:mx-0">
-              Flat monthly billing. The number you see is the number you pay — no
-              hidden membership fees stacked on top of medication.
+              The planned standard injectable program is $219 per month, with no
+              setup fee or separate membership. No payments are accepted. Final
+              clinical availability and service terms are still being finalized.
             </p>
 
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 lg:justify-start">
-              <Link href="/how-it-works">
-                <Button size="md">Get Started</Button>
+              <Link
+                href={LAUNCH_PATH}
+                className={buttonVariants({ size: "md" })}
+              >
+                {PRIMARY_CTA_LABEL}
               </Link>
-              <Link href="/treatments">
-                <Button size="md" variant="outline">
-                  Compare Treatments
-                </Button>
+              <Link
+                href="/treatments"
+                className={buttonVariants({ size: "md", variant: "outline" })}
+              >
+                Compare Treatments
               </Link>
             </div>
           </div>
@@ -67,10 +77,10 @@ export function PricingHero() {
             <div className="mx-auto max-w-md rounded-3xl border border-border bg-surface p-7 shadow-[0_24px_70px_-24px_hsl(215_60%_28%/0.22)] md:p-8">
               <div className="flex items-center justify-between">
                 <p className="font-mono text-[11px] uppercase tracking-tracked text-muted">
-                  Standard TRT
+                  Planned standard injectable program
                 </p>
                 <span className="inline-flex items-center rounded-full bg-accent/15 px-2.5 py-1 text-[10px] font-medium uppercase tracking-tracked text-accent-strong">
-                  All-inclusive
+                  Planned
                 </span>
               </div>
 
@@ -88,13 +98,21 @@ export function PricingHero() {
 
               <ul className="mt-6 space-y-3 border-t border-border pt-5 text-sm">
                 {RECEIPT_LINES.map((line) => (
-                  <li key={line} className="flex items-center justify-between gap-4">
+                  <li
+                    key={line}
+                    className="flex items-center justify-between gap-4"
+                  >
                     <span className="flex items-center gap-2.5 text-text">
-                      <Check size={15} strokeWidth={2.5} className="shrink-0 text-accent-strong" aria-hidden />
-                      {line.split(' — ')[0]}
+                      <Check
+                        size={15}
+                        strokeWidth={2.5}
+                        className="shrink-0 text-accent-strong"
+                        aria-hidden
+                      />
+                      {line.split(" — ")[0]}
                     </span>
                     <span className="font-mono text-[11px] uppercase tracking-tracked text-muted">
-                      Included
+                      Planned
                     </span>
                   </li>
                 ))}

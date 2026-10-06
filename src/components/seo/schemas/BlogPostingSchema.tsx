@@ -1,5 +1,6 @@
 import { SITE_URL } from '@/lib/utils';
-import { type BlogPost, getAuthor, getReviewer } from '@/content/blog';
+import type { BlogPost } from '@/content/blog';
+import { getAuthor, getReviewer } from '@/content/blog-metadata';
 
 type Props = { post: BlogPost };
 
@@ -10,7 +11,7 @@ type Props = { post: BlogPost };
  * - Auto-detects Person vs Organization for author/reviewer. A name like
  *   "trtrx Editorial Team" is an Organization, not a Person — using Person
  *   for non-individuals is a Google quality-rater red flag.
- * - Computes wordCount from the body (Google parses for content depth).
+ * - Computes wordCount from the displayed body.
  * - Sets isAccessibleForFree + inLanguage for indexing clarity.
  * - reviewedBy with honorificSuffix when a real reviewer is set.
  */
@@ -27,27 +28,27 @@ function isPlaceholderName(name?: string): boolean {
 
 export function BlogPostingSchema({ post }: Props) {
   const author = getAuthor(post.authorId);
-  const reviewer = getReviewer(post.reviewerId);
+  const reviewer = post.lastReviewedAt ? getReviewer(post.reviewerId) : undefined;
   const url = `${SITE_URL}/blog/${post.slug}`;
   const imageUrl =
     post.ogImage && post.ogImage.startsWith('http')
       ? post.ogImage
       : `${SITE_URL}/api/og?title=${encodeURIComponent(post.title)}`;
 
-  // Body is plain text with \n\n paragraph breaks. Word count is parsed
-  // by Google as a content-depth signal.
+  // Plain text is derived from the same sections the reader sees.
   const wordCount = post.body.trim().split(/\s+/).filter(Boolean).length;
 
   const data: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
+    '@id': `${url}#article`,
     headline: post.title,
     description: post.excerpt,
     image: imageUrl,
-    datePublished: post.publishedAt,
-    dateModified: post.lastReviewedAt,
+    ...(post.publishedAt ? { datePublished: post.publishedAt } : {}),
+    dateModified: post.updatedAt,
     url,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${url}#webpage` },
     articleSection: post.category,
     wordCount,
     inLanguage: 'en-US',
@@ -97,7 +98,7 @@ export function BlogPostingSchema({ post }: Props) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
     />
   );
 }

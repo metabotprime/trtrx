@@ -1,5 +1,5 @@
-import { MessageCircle, FileText, Truck, BadgeCheck } from 'lucide-react';
-import { SectionHeader } from './SectionHeader';
+import { MessageCircle, FileText, Truck, BadgeCheck } from "lucide-react";
+import { SectionHeader } from "./SectionHeader";
 
 type Capability = {
   Icon: typeof MessageCircle;
@@ -10,23 +10,23 @@ type Capability = {
 const CAPABILITIES: Capability[] = [
   {
     Icon: MessageCircle,
-    title: 'Message your doctor',
-    body: 'Anytime, any reason. Most replies within one business day, often the same day.',
+    title: "Clinical communication",
+    body: "A secure way to contact the care team is planned. Response times and support arrangements are not yet confirmed.",
   },
   {
     Icon: FileText,
-    title: 'See your labs',
-    body: 'Every panel, every trend, every annotation from your physician — all in one place.',
+    title: "Lab history",
+    body: "Access to results and clinician explanations is part of the planned portal.",
   },
   {
     Icon: Truck,
-    title: 'Track your shipments',
-    body: 'Order status, tracking, and refill schedule. Pause or skip without a phone call.',
+    title: "Prescription information",
+    body: "The planned account would make prescription and shipment details available when services open.",
   },
   {
     Icon: BadgeCheck,
-    title: 'Manage your protocol',
-    body: 'Dose adjustments, prescription history, and intake records — all visible to you.',
+    title: "Ongoing review",
+    body: "Any dose change would require clinical direction. The portal will not replace urgent or emergency care.",
   },
 ];
 
@@ -35,16 +35,21 @@ export function ProcessSupport() {
     <section className="bg-surface-alt">
       <div className="container py-20 md:py-28">
         <SectionHeader
-          eyebrow="Step Five — Ongoing Care"
-          title="Your doctor, *one message away.*"
-          subtitle="Every patient gets a 24/7 portal — message your physician, view labs, manage shipments. No phone tag, no scheduling a visit just to ask a question."
+          eyebrow="Step Five: Ongoing Care"
+          title="A plan for *ongoing care.*"
+          subtitle="The patient portal is in preparation. Accounts, clinical messaging and prescription tracking are not available yet."
           align="center"
         />
 
         <ul className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {CAPABILITIES.map(({ Icon, title, body }) => (
             <li key={title} className="flex flex-col">
-              <Icon size={28} strokeWidth={1.5} className="text-accent-strong" aria-hidden />
+              <Icon
+                size={28}
+                strokeWidth={1.5}
+                className="text-accent-strong"
+                aria-hidden
+              />
               <h3
                 className="mt-5 font-serif text-lg font-medium leading-tight text-primary"
                 style={{ fontVariationSettings: "'opsz' 144" }}

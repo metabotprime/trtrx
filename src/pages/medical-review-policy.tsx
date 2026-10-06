@@ -11,12 +11,12 @@ export default function MedicalReviewPolicyPage() {
     <>
       <SEOHead
         title="Medical Review Policy"
-        description="How trtrx clinical content is reviewed: who reviews it, what the review covers, how often it happens, and the standards we hold it to."
+        description="TRTrx clinical review requirements, the current pending-review status, and how verified reviewer credits will be shown."
         path="/medical-review-policy"
       />
       <EntityGraphSchema
         title="Medical Review Policy"
-        description="How trtrx clinical content is reviewed: who reviews it, what the review covers, how often it happens, and the standards we hold it to."
+        description="TRTrx clinical review requirements, the current pending-review status, and how verified reviewer credits will be shown."
         url="/medical-review-policy"
         pageType="WebPage"
       />
@@ -30,16 +30,16 @@ export default function MedicalReviewPolicyPage() {
         <PolicyContent
           eyebrow="Trust"
           title="Medical review policy"
-          lastUpdated="June 2026"
+          lastUpdated="October 6, 2026"
           intro={[
-            'Clinical content carries weight, so it has to clear a clinical bar. This policy describes how trtrx reviews patient-facing medical content — who reviews it, what the review covers, and how often it happens.',
+            'Clinical review of the current TRTrx articles has not yet been completed. This policy describes the review required before the planned public launch and how completed reviews will be recorded. Source-based editorial work does not replace clinical review.',
           ]}
           sections={[
             {
               heading: 'What gets reviewed',
               blocks: [
                 {
-                  p: 'Our medical review standard applies to all patient-facing clinical content — blog posts, treatment pages, FAQs, and any page that makes a medical claim. Operational content that makes no clinical claim (such as pricing mechanics) does not require medical review.',
+                  p: 'The review requirement covers patient-facing clinical claims in articles, treatment pages, FAQs, and related site content. Purely operational content has a separate factual verification process. A pricing article that also makes a medical claim still requires review of that claim.',
                 },
               ],
             },
@@ -47,7 +47,7 @@ export default function MedicalReviewPolicyPage() {
               heading: 'Who reviews it',
               blocks: [
                 {
-                  p: 'Clinical content is reviewed by board-certified physicians with experience in men’s hormone health. Reviewers evaluate content independently of marketing goals; their job is accuracy and patient safety, not persuasion.',
+                  p: 'The planned process requires an appropriately qualified clinician with relevant experience. The reviewer’s identity and credentials must be verified, and the review must cover the specific content version. No reviewer has been credited for the current articles because completed clinical review has not been established.',
                 },
               ],
             },
@@ -56,8 +56,8 @@ export default function MedicalReviewPolicyPage() {
               blocks: [
                 {
                   list: [
-                    'Factual accuracy and alignment with current clinical guidelines and FDA labeling.',
-                    'A balanced presentation of benefits, risks, and alternatives — no overstated efficacy or minimized risk.',
+                    'Factual accuracy and the differences between current guidelines, agency announcements, and the applicable product labeling.',
+                    'A balanced presentation of benefits, risks, and alternatives, without overstated efficacy or minimized risk.',
                     'Correct framing of compounded and off-label treatments.',
                     'Appropriate sourcing, so specific clinical claims are backed by primary literature or guidelines.',
                   ],
@@ -68,7 +68,7 @@ export default function MedicalReviewPolicyPage() {
               heading: 'How often',
               blocks: [
                 {
-                  p: 'Content is reviewed before it is published for patients and re-reviewed on a regular cadence — at least annually, and sooner when the evidence or guidelines change. Each clinical article displays the date it was last reviewed.',
+                  p: 'Completed review will be recorded separately from an editorial update, with the reviewer and review date attached to the reviewed version. Substantive clinical changes require a new review. The planned review cadence is at least annually, with earlier reassessment when evidence, labeling, or guidelines materially change.',
                 },
               ],
             },
@@ -76,7 +76,7 @@ export default function MedicalReviewPolicyPage() {
               heading: 'Pre-launch transparency',
               blocks: [
                 {
-                  p: 'trtrx is preparing for launch. The articles currently shown are illustrative drafts written to this standard; every clinical page is brought through full physician review under this policy before public launch, and named reviewer attribution is added as our medical team is finalized.',
+                  p: 'TRTrx is preparing to launch and patient intake is closed. Current articles contain substantive, sourced educational material, but clinical review remains pending. The visible notice and absence of reviewer metadata reflect that status. Preparing an article or linking a guideline does not establish that a physician reviewed it.',
                 },
               ],
             },
@@ -84,19 +84,19 @@ export default function MedicalReviewPolicyPage() {
               heading: 'Flagging a concern',
               blocks: [
                 {
-                  p: 'If you believe something in our content is inaccurate or out of date, tell us. We investigate flagged concerns and correct confirmed errors promptly.',
+                  p: 'If content is found to be inaccurate or outdated, the affected claim must be corrected or removed and any previous clinical review reassessed. Current contact arrangements are described on the contact page; a correction channel is not a route for urgent medical care.',
                 },
               ],
             },
           ]}
           footnote={
             <>
-              Flag a medical-accuracy concern at{' '}
+              See current contact arrangements on our{' '}
               <Link
-                href="mailto:editorial@trtrx.com"
+                href="/contact"
                 className="text-primary underline-offset-4 hover:text-accent-strong"
               >
-                editorial@trtrx.com
+                contact page
               </Link>
               . See also our{' '}
               <Link

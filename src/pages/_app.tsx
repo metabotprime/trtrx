@@ -1,7 +1,17 @@
 import type { AppProps } from 'next/app';
 import { Fraunces, Inter, JetBrains_Mono } from 'next/font/google';
 import { usePagePerformance } from '@/hooks/usePagePerformance';
+import { Analytics, type BeforeSendEvent } from '@vercel/analytics/next';
+import { PUBLIC_LAUNCH_ENABLED, isPublicIndexingAllowed } from '@/content/launch';
 import '@/styles/globals.css';
+
+function publicPageView(event: BeforeSendEvent) {
+  const url = new URL(event.url);
+  if (!isPublicIndexingAllowed(url.hostname) || /^\/(api|sign-in|intake|portal|account)(\/|$)/.test(url.pathname)) return null;
+  url.search = '';
+  url.hash = '';
+  return { ...event, url: url.toString() };
+}
 
 const inter = Inter({
   subsets: ['latin'],
@@ -33,6 +43,7 @@ export default function App({ Component, pageProps }: AppProps) {
       className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable} font-sans`}
     >
       <Component {...pageProps} />
+      {PUBLIC_LAUNCH_ENABLED && <Analytics beforeSend={publicPageView} />}
     </div>
   );
 }

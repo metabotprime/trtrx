@@ -47,8 +47,8 @@ export function HeroCentered() {
             </h1>
 
             <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted sm:text-xl">
-              A clearer path to testosterone care. Physician oversight,
-              medication and lab testing in one monthly plan.
+              Explore testosterone testing, treatment options and the questions
+              to ask a clinician. TRTrx is preparing to launch.
             </p>
 
             <div className="mt-7 border-l-[3px] border-accent pl-4 sm:mt-8 sm:pl-5">
@@ -60,29 +60,29 @@ export function HeroCentered() {
                   {formatUSD(PRICING_STRUCTURE.headlineMonthly)}
                 </span>
                 <span className="text-base">/ month</span>
-                <span className="ml-1 text-sm font-medium">All in.</span>
+                <span className="ml-1 text-sm font-medium">Planned price.</span>
               </p>
               <p className="mt-2 text-sm leading-relaxed text-muted">
-                No setup fee. Cancel anytime.
+                Final inclusions and billing terms will be confirmed before intake opens.
               </p>
             </div>
 
             <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:gap-6">
               <Link
-                href="/treatments"
+                href="/blog/testosterone-replacement-therapy-guide"
                 className={cn(
                   buttonVariants({ size: 'lg' }),
                   'group gap-3 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-surface',
                 )}
               >
-                Explore treatments
+                Start with the TRT guide
                 <ArrowRight size={18} aria-hidden className="transition-transform group-hover:translate-x-1 motion-reduce:transform-none" />
               </Link>
               <Link
-                href="/how-it-works"
+                href="/pricing"
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-sm text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-primary"
               >
-                How care works
+                See planned pricing
                 <ArrowRight size={15} aria-hidden />
               </Link>
             </div>

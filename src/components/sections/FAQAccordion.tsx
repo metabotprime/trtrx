@@ -1,13 +1,14 @@
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { FAQSources } from "./FAQSources";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
-import { getHomepageFAQs } from '@/content/faqs';
-import { SectionHeader } from './SectionHeader';
+} from "@/components/ui/accordion";
+import { getHomepageFAQs } from "@/content/faqs";
+import { SectionHeader } from "./SectionHeader";
 
 export function FAQAccordion() {
   const faqs = getHomepageFAQs();
@@ -22,7 +23,11 @@ export function FAQAccordion() {
         />
 
         <div className="mx-auto mt-12 max-w-3xl">
-          <Accordion type="single" collapsible className="border-t border-border">
+          <Accordion
+            type="single"
+            collapsible
+            className="border-t border-border"
+          >
             {faqs.map((faq) => (
               <AccordionItem key={faq.id} value={faq.id}>
                 <AccordionTrigger>{faq.question}</AccordionTrigger>
@@ -46,6 +51,7 @@ export function FAQAccordion() {
             />
           </Link>
         </div>
+        <FAQSources />
       </div>
     </section>
   );

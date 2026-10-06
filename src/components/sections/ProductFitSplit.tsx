@@ -1,6 +1,6 @@
-import { Check, Minus } from 'lucide-react';
-import { type Treatment } from '@/content/treatments';
-import { SectionHeader } from './SectionHeader';
+import { Check, Minus } from "lucide-react";
+import { type Treatment } from "@/content/treatments";
+import { SectionHeader } from "./SectionHeader";
 
 type Props = { treatment: Treatment };
 
@@ -10,7 +10,7 @@ export function ProductFitSplit({ treatment }: Props) {
       <div className="container py-16 md:py-20">
         <SectionHeader
           eyebrow="The Fit"
-          title="Who it's *built for.*"
+          title="Prepare for *the discussion.*"
           align="center"
           size="md"
         />
@@ -18,7 +18,7 @@ export function ProductFitSplit({ treatment }: Props) {
         <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
           <article className="rounded-2xl border border-border bg-surface p-7 md:p-8">
             <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
-              Best fit if
+              Questions worth raising
             </p>
             <ul className="mt-5 space-y-3 text-sm text-text md:text-base">
               {treatment.whoIsThisFor.map((b) => (
@@ -37,7 +37,7 @@ export function ProductFitSplit({ treatment }: Props) {
 
           <article className="rounded-2xl border border-border bg-surface p-7 md:p-8">
             <p className="font-mono text-[11px] uppercase tracking-tracked text-muted">
-              Not the best fit if
+              Assumptions to avoid
             </p>
             <ul className="mt-5 space-y-3 text-sm text-text md:text-base">
               {treatment.whoIsThisNotFor.map((b) => (

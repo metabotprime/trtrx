@@ -1,13 +1,13 @@
 import {
   getBaseEntityGraph,
-  MEDICAL_BUSINESS_ID,
   ORGANIZATION_ID,
   TREATMENT_ENTITIES,
   WEBSITE_ID,
-} from '@/lib/seo/entities';
-import { DEFAULT_OG_IMAGE, toAbsoluteUrl } from '@/lib/seo/site';
+} from "@/lib/seo/entities";
+import { DEFAULT_OG_IMAGE, toAbsoluteUrl } from "@/lib/seo/site";
 
-type TreatmentEntityId = (typeof TREATMENT_ENTITIES)[keyof typeof TREATMENT_ENTITIES]['id'];
+type TreatmentEntityId =
+  (typeof TREATMENT_ENTITIES)[keyof typeof TREATMENT_ENTITIES]["id"];
 
 type EntityIdRef = string | TreatmentEntityId;
 
@@ -17,7 +17,13 @@ type EntityGraphSchemaProps = {
   title: string;
   description: string;
   url: string;
-  pageType?: 'WebPage' | 'CollectionPage' | 'MedicalWebPage' | 'AboutPage' | 'ContactPage' | 'FAQPage';
+  pageType?:
+    | "WebPage"
+    | "CollectionPage"
+    | "MedicalWebPage"
+    | "AboutPage"
+    | "ContactPage"
+    | "FAQPage";
   aboutEntityIds?: EntityIdRef[];
   breadcrumbItems?: BreadcrumbItem[];
   image?: string;
@@ -36,7 +42,7 @@ export function EntityGraphSchema({
   title,
   description,
   url,
-  pageType = 'WebPage',
+  pageType = "WebPage",
   aboutEntityIds = [],
   breadcrumbItems = [],
   image = DEFAULT_OG_IMAGE,
@@ -46,27 +52,26 @@ export function EntityGraphSchema({
   const breadcrumbId = `${fullUrl}#breadcrumb`;
 
   const pageEntity: Record<string, unknown> = {
-    '@type': pageType,
-    '@id': pageId,
+    "@type": pageType,
+    "@id": pageId,
     url: fullUrl,
     name: title,
     description,
-    isPartOf: { '@id': WEBSITE_ID },
-    publisher: { '@id': ORGANIZATION_ID },
-    provider: { '@id': MEDICAL_BUSINESS_ID },
-    inLanguage: 'en-US',
+    isPartOf: { "@id": WEBSITE_ID },
+    publisher: { "@id": ORGANIZATION_ID },
+    inLanguage: "en-US",
     primaryImageOfPage: {
-      '@type': 'ImageObject',
+      "@type": "ImageObject",
       url: toAbsoluteUrl(image),
     },
   };
 
   if (aboutEntityIds.length > 0) {
-    pageEntity.about = aboutEntityIds.map((id) => ({ '@id': id }));
+    pageEntity.about = aboutEntityIds.map((id) => ({ "@id": id }));
   }
 
   if (breadcrumbItems.length > 0) {
-    pageEntity.breadcrumb = { '@id': breadcrumbId };
+    pageEntity.breadcrumb = { "@id": breadcrumbId };
   }
 
   const graph: Record<string, unknown>[] = [
@@ -76,10 +81,10 @@ export function EntityGraphSchema({
 
   if (breadcrumbItems.length > 0) {
     graph.push({
-      '@type': 'BreadcrumbList',
-      '@id': breadcrumbId,
+      "@type": "BreadcrumbList",
+      "@id": breadcrumbId,
       itemListElement: breadcrumbItems.map((item, index) => ({
-        '@type': 'ListItem',
+        "@type": "ListItem",
         position: index + 1,
         name: item.name,
         item: toAbsoluteUrl(item.url),
@@ -88,8 +93,8 @@ export function EntityGraphSchema({
   }
 
   const data = {
-    '@context': 'https://schema.org',
-    '@graph': graph,
+    "@context": "https://schema.org",
+    "@graph": graph,
   };
 
   return (

@@ -1,11 +1,15 @@
-import { Check } from 'lucide-react';
-import { PRICING_STRUCTURE } from '@/content/pricing';
-import { formatUSD } from '@/lib/utils';
-import { SectionHeader } from './SectionHeader';
+import { Check } from "lucide-react";
+import { PRICING_STRUCTURE } from "@/content/pricing";
+import { formatUSD } from "@/lib/utils";
+import { SectionHeader } from "./SectionHeader";
 
 export function PricingBreakdown() {
   const { monthlyTiers, whatsIncluded, headlineMonthly } = PRICING_STRUCTURE;
-  const lowestTier = Math.min(...monthlyTiers.map((t) => t.monthlyPrice));
+  const lowestTier = Math.min(
+    ...monthlyTiers
+      .filter((t) => t.productSlug !== "hcg")
+      .map((t) => t.monthlyPrice),
+  );
   const highestTier = Math.max(...monthlyTiers.map((t) => t.monthlyPrice));
   const annualLow = lowestTier * 12;
   const annualHigh = highestTier * 12;
@@ -17,7 +21,7 @@ export function PricingBreakdown() {
         <SectionHeader
           eyebrow="The Math"
           title="One number. *Every month.*"
-          subtitle="Whether you're looking at month one or year one, the math is the same. No first-month surcharge. No setup fee."
+          subtitle="Planning figures only. Standalone plans are $179–$219 per month; HCG is an additional $89 with a base TRT plan. No service is available to purchase."
           align="center"
         />
 
@@ -25,7 +29,7 @@ export function PricingBreakdown() {
           {/* Monthly */}
           <article className="flex flex-col rounded-2xl border border-border bg-surface p-8">
             <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
-              Standard Monthly
+              Planned monthly
             </p>
             <p
               className="mt-3 font-serif text-5xl font-medium text-primary"
@@ -34,7 +38,8 @@ export function PricingBreakdown() {
               {formatUSD(lowestTier)}–{formatUSD(highestTier)}
             </p>
             <p className="mt-1 text-xs text-muted">
-              Depends on your protocol. Anchor: {formatUSD(headlineMonthly)}/mo for standard TRT.
+              Depends on your protocol. Anchor: {formatUSD(headlineMonthly)}/mo
+              for standard TRT.
             </p>
             <hr className="my-6 border-border" />
             <ul className="space-y-3 text-sm text-text">
@@ -52,10 +57,10 @@ export function PricingBreakdown() {
             </ul>
           </article>
 
-          {/* Year One */}
+          {/* Planned year one */}
           <article className="flex flex-col rounded-2xl border border-border bg-surface p-8">
             <p className="font-mono text-[11px] uppercase tracking-tracked text-accent-strong">
-              Year One
+              Planned year one
             </p>
             <p
               className="mt-3 font-serif text-5xl font-medium text-primary"
@@ -64,7 +69,8 @@ export function PricingBreakdown() {
               {formatUSD(annualLow)}–{formatUSD(annualHigh)}
             </p>
             <p className="mt-1 text-xs text-muted">
-              Twelve months × your monthly tier. Standard TRT: {formatUSD(headlineAnnual)}/yr.
+              Twelve months × your monthly tier. Standard TRT:{" "}
+              {formatUSD(headlineAnnual)}/yr.
             </p>
             <hr className="my-6 border-border" />
             <ul className="space-y-3 font-mono text-sm text-text">
@@ -75,6 +81,7 @@ export function PricingBreakdown() {
                 >
                   <span className="text-muted">{tier.productName}</span>
                   <span className="tabular-nums">
+                    {tier.productSlug === "hcg" ? "+" : ""}
                     {formatUSD(tier.monthlyPrice * 12)}
                   </span>
                 </li>
@@ -84,7 +91,8 @@ export function PricingBreakdown() {
         </div>
 
         <p className="mx-auto mt-10 max-w-md text-center text-sm leading-relaxed text-muted">
-          FSA-eligible where applicable. No insurance required. Cancel anytime.
+          The planned model has no setup fee and allows cancellation. Final
+          billing, pharmacy and clinical terms remain to be confirmed.
         </p>
       </div>
     </section>

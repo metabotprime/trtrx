@@ -1,14 +1,14 @@
 export type FAQCategory =
-  | 'results'
-  | 'safety'
-  | 'fertility'
-  | 'insurance'
-  | 'legality'
-  | 'products'
-  | 'side-effects'
-  | 'monitoring'
-  | 'lifestyle'
-  | 'refund';
+  | "results"
+  | "safety"
+  | "fertility"
+  | "insurance"
+  | "legality"
+  | "products"
+  | "side-effects"
+  | "monitoring"
+  | "lifestyle"
+  | "refund";
 
 export type FAQ = {
   id: string;
@@ -19,243 +19,220 @@ export type FAQ = {
 };
 
 export const FAQS: FAQ[] = [
-  // --- Homepage 6 ---
   {
-    id: 'how-fast-results',
-    category: 'results',
-    question: 'How fast will I feel different?',
+    id: "how-fast-results",
+    category: "results",
+    question: "When will TRTrx open?",
     answer:
-      'Most men notice improved energy and mood inside three to six weeks. Libido and morning erections often pick up sooner. Body composition changes — more muscle, less fat — show up around month three and continue building through month six.',
+      "TRTrx is preparing to launch. Patient intake, consultations, prescriptions and payments are not available yet. We have not announced a confirmed opening date. The launch-status page explains what is available now.",
     onHomePage: true,
   },
   {
-    id: 'long-term-safety',
-    category: 'safety',
-    question: 'Is testosterone safe long-term?',
+    id: "long-term-safety",
+    category: "safety",
+    question: "What should I ask about TRT safety?",
     answer:
-      'When prescribed and monitored properly, yes. The 2023 TRAVERSE trial followed 5,000+ men for years and found no increase in heart attacks or strokes from TRT compared to placebo. Long-term safety depends on labs every six months and a physician adjusting your dose when something drifts.',
+      "Discuss your diagnosis, medical history, fertility plans, benefits, risks and alternatives with a licensed clinician. TRT requires individual assessment and ongoing monitoring. No treatment is risk-free, and this website cannot establish whether testosterone is appropriate for you.",
     onHomePage: true,
   },
   {
-    id: 'fertility-impact',
-    category: 'fertility',
-    question: 'Will TRT affect my fertility?',
+    id: "fertility-impact",
+    category: "fertility",
+    question: "Will TRT affect my fertility?",
     answer:
-      'Standard injectable TRT suppresses sperm production while you are on it. If you want to keep your fertility intact, two paths work: enclomiphene instead of testosterone, or testosterone plus HCG. Both options are part of our intake conversation, not an upsell.',
+      "Testosterone treatment can suppress sperm production. The Endocrine Society recommends against starting it when planning fertility in the near term. Discuss your plans before treatment; neither enclomiphene nor adding HCG guarantees fertility preservation.",
     onHomePage: true,
   },
   {
-    id: 'insurance',
-    category: 'insurance',
-    question: 'Do you accept insurance?',
+    id: "insurance",
+    category: "insurance",
+    question: "What is the planned pricing model?",
     answer:
-      'No. We are direct-pay so we can keep prices flat and avoid the prior-authorization runaround. Most patients pay less out of pocket with us than they would in copays and clinic fees through insurance. We provide an itemized superbill if you want to file for reimbursement.',
+      "TRTrx is planning direct-pay monthly pricing: $219 for standard injectable treatment, $179 for enclomiphene and $199 for cream. HCG is a planned adjunct at an additional $89, not a standalone $89 plan. Clinical availability and final service terms are still being finalized. No payments are accepted.",
     onHomePage: true,
   },
   {
-    id: 'cypionate-vs-enanthate',
-    category: 'products',
-    question: "What's the difference between cypionate and enanthate?",
+    id: "cypionate-vs-enanthate",
+    category: "products",
+    question: "How should I compare cypionate and enanthate?",
     answer:
-      'They are nearly identical injectable testosterone esters. Cypionate has an eight-day half-life; enanthate has about seven days. Both are dosed once weekly and produce the same clinical results. The only real difference is which one your body responds to better — your physician helps you pick.',
+      "Both are injectable testosterone formulations, but the specific product, route and instructions matter. Ask your clinician why one is being considered, what monitoring is needed and how to use it. Do not switch products or copy a dosing schedule from a website.",
     onHomePage: true,
   },
   {
-    id: 'state-legality',
-    category: 'legality',
-    question: 'Is TRT legal in my state?',
+    id: "state-legality",
+    category: "legality",
+    question: "Is TRTrx available in my state?",
     answer:
-      'Testosterone is a Schedule III controlled substance and is legal everywhere in the US with a valid prescription. We are licensed to prescribe in 47 states. The exceptions today are Hawaii, Alaska, and Puerto Rico. State coverage expands as we add medical directors.',
+      "Not yet. TRTrx is not accepting patients in any state. We have not confirmed a state coverage list. Our state guide explains how to check provider credentials and what to ask before seeking telehealth care.",
     onHomePage: true,
   },
-
-  // --- 19 deeper questions ---
-
-  // results (2)
   {
-    id: 'results-energy-first',
-    category: 'results',
-    question: 'What changes first — energy or muscle?',
+    id: "results-energy-first",
+    category: "results",
+    question: "Can symptoms alone show that I need testosterone?",
     answer:
-      'Energy and mood lead by a wide margin. You will probably feel sharper before anyone notices a physical change. Muscle and body-fat changes need consistent training and protein on top of TRT, and they show up over months, not weeks.',
+      "Symptoms such as fatigue can have several causes. A clinician considers symptoms, medical history and appropriate testing together. Do not assume a symptom or one laboratory value establishes a need for treatment.",
     onHomePage: false,
   },
   {
-    id: 'results-plateau',
-    category: 'results',
-    question: 'Will my results plateau?',
+    id: "results-plateau",
+    category: "results",
+    question: "What if treatment is not helping?",
     answer:
-      'Symptom improvements stabilize around month six. Body composition keeps responding as long as you train and eat for it. If you feel a backslide after a strong start, it usually means a dose adjustment, not that TRT stopped working.',
-    onHomePage: false,
-  },
-
-  // safety (2)
-  {
-    id: 'safety-heart',
-    category: 'safety',
-    question: 'Does TRT cause heart attacks?',
-    answer:
-      'No. The TRAVERSE trial — the largest randomized cardiovascular safety study on TRT — showed no excess risk of heart attack, stroke, or cardiovascular death versus placebo. Older observational claims to the contrary have been retracted or contradicted by stronger data.',
+      "Speak to your prescribing clinician about symptoms, follow-up results and side effects. Do not increase a dose or add another drug yourself. Your clinician can reassess the diagnosis and discuss whether continuing treatment makes sense.",
     onHomePage: false,
   },
   {
-    id: 'safety-prostate',
-    category: 'safety',
-    question: 'Will TRT cause prostate cancer?',
+    id: "safety-heart",
+    category: "safety",
+    question: "How should I discuss heart and blood-pressure risks?",
     answer:
-      'Current evidence does not support a link between TRT and new prostate cancer. We screen with a baseline PSA and recheck annually so anything that does show up gets caught early. If you have an active prostate cancer diagnosis, TRT is contraindicated.',
-    onHomePage: false,
-  },
-
-  // fertility (1)
-  {
-    id: 'fertility-recovery',
-    category: 'fertility',
-    question: 'Does fertility come back after stopping TRT?',
-    answer:
-      'For most men, yes — sperm production typically returns within three to twelve months after stopping testosterone. Older age and longer time on TRT can extend that window. If you might want kids during therapy, ask about HCG or enclomiphene at the start.',
-    onHomePage: false,
-  },
-
-  // insurance (1)
-  {
-    id: 'insurance-hsa-fsa',
-    category: 'insurance',
-    question: 'Can I use my HSA or FSA?',
-    answer:
-      'Yes. Medications, lab work, and physician fees through trtrx are HSA- and FSA-eligible. We provide itemized receipts for reimbursement and most accounts accept them without further documentation.',
-    onHomePage: false,
-  },
-
-  // legality (2)
-  {
-    id: 'legality-controlled',
-    category: 'legality',
-    question: 'Is testosterone a controlled substance?',
-    answer:
-      'Yes. Testosterone is Schedule III in the US, alongside ketamine and codeine combinations. That means a prescription is required and refills are limited. Our pharmacy handles the controlled-substance paperwork on your behalf.',
+      "Tell your clinician about cardiovascular history and current medications. Ask how current testosterone product labeling applies to you and how blood pressure will be monitored. Research findings do not mean every formulation is safe for every patient.",
     onHomePage: false,
   },
   {
-    id: 'legality-travel',
-    category: 'legality',
-    question: 'Can I travel with my testosterone?',
+    id: "safety-prostate",
+    category: "safety",
+    question: "What should I disclose about prostate health?",
     answer:
-      'Domestic travel: keep it in the original pharmacy-labeled vial in your carry-on. International travel: bring the prescription label and a copy of your physician letter. Some countries restrict importation, so check destination rules before you fly.',
-    onHomePage: false,
-  },
-
-  // products (3)
-  {
-    id: 'products-injectable-vs-cream',
-    category: 'products',
-    question: 'Should I pick injectable or cream?',
-    answer:
-      'Injectable is more reliable, less expensive over time, and once-weekly. Cream is easier to start with and avoids needles entirely, but absorption varies and daily compliance matters. Most patients land on injectable after their first six months, but starting on cream is fine.',
+      "Tell your clinician about prostate cancer, prior prostate testing, urinary symptoms and family history. Ask which assessment and follow-up are appropriate for your situation. This website cannot decide whether treatment is suitable.",
     onHomePage: false,
   },
   {
-    id: 'products-enclomiphene-vs-trt',
-    category: 'products',
-    question: 'Is enclomiphene the same as TRT?',
+    id: "fertility-recovery",
+    category: "fertility",
+    question: "Will fertility recover after stopping testosterone?",
     answer:
-      'No. TRT replaces testosterone with an external dose. Enclomiphene tells your own body to make more. Results are similar in mild cases of low T, but enclomiphene preserves fertility and avoids the suppression that comes with replacement therapy.',
+      "Recovery varies, and a specific timeframe or outcome cannot be promised. Discuss fertility preservation with an appropriate specialist before starting treatment, especially if a future pregnancy is a priority.",
     onHomePage: false,
   },
   {
-    id: 'products-compounded',
-    category: 'products',
-    question: 'What does "compounded" mean?',
+    id: "insurance-hsa-fsa",
+    category: "insurance",
+    question: "Will HSA or FSA payment be available?",
     answer:
-      'A compounded medication is prepared by a licensed pharmacy to your specific prescription rather than mass-produced and FDA-approved as a finished product. Our compounded options are prepared by licensed 503A compounding pharmacies — state-licensed, inspected, and operating under USP compounding standards. Compounded preparations are not themselves FDA-approved as finished drugs.',
-    onHomePage: false,
-  },
-
-  // side-effects (3)
-  {
-    id: 'side-effects-acne',
-    category: 'side-effects',
-    question: 'Will TRT give me acne?',
-    answer:
-      'Some men get mild breakouts in the first two to three months, usually on the back or shoulders. It typically settles as your levels stabilize. If it persists, we adjust your dose or add a topical regimen — full-body cystic acne is not a normal TRT side effect.',
+      "Payment methods and documentation are still being finalized. TRTrx does not currently accept payments. Check eligibility requirements with your plan administrator before assuming that any future charge will qualify.",
     onHomePage: false,
   },
   {
-    id: 'side-effects-hair',
-    category: 'side-effects',
-    question: 'Will I lose my hair on TRT?',
+    id: "legality-controlled",
+    category: "legality",
+    question: "What prescription rules should I check?",
     answer:
-      'TRT can speed up male-pattern hair loss if you are genetically predisposed. It does not cause baldness in men who would not have lost hair anyway. If hair matters to you, finasteride or minoxidil pair safely with TRT and we can prescribe both.',
+      "Ask a licensed clinician and pharmacist about the rules for the exact medication, your location and the proposed visit format. TRTrx is not currently prescribing or dispensing medications. Our state guide links to official medical boards.",
     onHomePage: false,
   },
   {
-    id: 'side-effects-mood',
-    category: 'side-effects',
-    question: 'Will TRT change my mood or make me aggressive?',
+    id: "legality-travel",
+    category: "legality",
+    question: "What should I check before travelling with medication?",
     answer:
-      'Properly dosed TRT lifts mood and stabilizes irritability for most men. The "roid rage" trope comes from supraphysiologic anabolic abuse, not from clinical replacement doses. If your dose is too high, you may feel wired or short-tempered — that is a signal to recheck labs.',
-    onHomePage: false,
-  },
-
-  // monitoring (2)
-  {
-    id: 'monitoring-labs-frequency',
-    category: 'monitoring',
-    question: 'How often do I need bloodwork?',
-    answer:
-      'Baseline labs before starting, a follow-up at eight to twelve weeks to confirm your dose is right, and then every six months ongoing. We include two annual lab draws in your monthly fee. Extra panels are available at lab cost if your physician orders them.',
+      "Ask your pharmacist about storage and documentation for your exact prescription. Check official destination and transport rules before travelling, especially internationally. Do not assume that a prescription authorizes importation everywhere.",
     onHomePage: false,
   },
   {
-    id: 'monitoring-what-tested',
-    category: 'monitoring',
-    question: 'What do you test on each panel?',
+    id: "products-injectable-vs-cream",
+    category: "products",
+    question: "How should I compare injections and cream?",
     answer:
-      'Total and free testosterone, estradiol (sensitive assay), CBC for hematocrit, comprehensive metabolic panel, lipids, PSA after age 40, and SHBG when relevant. The full panel runs through Quest or LabCorp at locations near you.',
+      "Discuss the specific formulation, administration requirements, monitoring and household exposure precautions with your clinician. A compounded cream is not FDA-approved and should not be assumed equivalent to an approved gel. Preference alone does not establish clinical suitability.",
     onHomePage: false,
   },
   {
-    id: 'monitoring-doctor-access',
-    category: 'monitoring',
-    question: 'How do I reach my doctor between visits?',
+    id: "products-enclomiphene-vs-trt",
+    category: "products",
+    question: "Is enclomiphene the same as TRT?",
     answer:
-      'Through your 24/7 patient portal. Send your physician a message anytime — about side effects, dose adjustments, lab questions, refills, anything. Most messages get a clinical reply within one business day, often the same day. The portal is also where you view your labs, prescription history, and shipment tracking. No phone tag, no scheduling a follow-up just to ask a question.',
-    onHomePage: false,
-  },
-
-  // lifestyle (1)
-  {
-    id: 'lifestyle-alcohol',
-    category: 'lifestyle',
-    question: 'Can I drink alcohol on TRT?',
-    answer:
-      'Moderate drinking is fine and does not interact with testosterone directly. Heavy drinking suppresses your endogenous T and pushes estrogen up, which works against your therapy. If you are training hard and want results, the math favors keeping it light.',
-    onHomePage: false,
-  },
-
-  // refund (2)
-  {
-    id: 'refund-cancel',
-    category: 'refund',
-    question: 'How do I cancel?',
-    answer:
-      'One click in your account dashboard. No phone tree, no retention call. Your prescription stays active through the end of the current cycle and we ship nothing further. If you want your records sent elsewhere, we transfer them at no charge.',
+      "No. Enclomiphene is not testosterone and is not an FDA-approved drug. It has been studied for effects on hormonal signaling involved in testosterone production. It should not be presented as interchangeable with TRT or as a guaranteed way to preserve fertility.",
     onHomePage: false,
   },
   {
-    id: 'refund-policy',
-    category: 'refund',
-    question: 'What if the protocol does not work for me?',
+    id: "products-compounded",
+    category: "products",
+    question: "What does compounded mean?",
     answer:
-      'Within your first 60 days, if the protocol is not the right fit, your physician adjusts it through the portal. If it still is not working, you cancel and we refund the unused portion of your supply. After 60 days you can still cancel anytime; we just cannot refund medication that has already shipped, for safety and regulatory reasons.',
+      "Compounding involves preparing a medication for an individual medical need. Compounded drugs are not FDA-approved; FDA does not review them for safety, effectiveness or quality before marketing. Discuss approved alternatives and the reason for compounding with your clinician and pharmacist.",
     onHomePage: false,
   },
   {
-    id: 'safety-md-led',
-    category: 'safety',
-    question: 'Is my care plan set by an MD or a nurse practitioner?',
+    id: "side-effects-acne",
+    category: "side-effects",
+    question: "What should I do if I develop side effects?",
     answer:
-      'A board-certified MD, licensed in your state. Many online TRT clinics route patients through nurse practitioners or physician assistants for cost reasons — capable clinicians, but for prescription protocol design and dose adjustments we believe MD oversight is non-negotiable. Every trtrx member meets a real physician for the initial consult and stays under MD care for refills, dose adjustments, and lab interpretation.',
+      "Contact your prescribing clinician and describe the symptom, timing and other medications you take. Do not change the dose or start another prescription on your own. Seek urgent medical help when symptoms could be an emergency.",
+    onHomePage: false,
+  },
+  {
+    id: "side-effects-hair",
+    category: "side-effects",
+    question: "What should I ask about hair changes?",
+    answer:
+      "Discuss your hair history and concerns before starting any hormonal treatment. Ask the prescriber about the exact product and possible adverse effects. TRTrx does not currently prescribe hair-loss medication or any other treatment.",
+    onHomePage: false,
+  },
+  {
+    id: "side-effects-mood",
+    category: "side-effects",
+    question: "What if I notice mood changes?",
+    answer:
+      "Discuss new or worsening mood symptoms promptly with your clinician. Mood changes should not automatically be attributed to testosterone levels or treated by changing a dose. If you feel unsafe or may harm yourself, seek emergency assistance.",
+    onHomePage: false,
+  },
+  {
+    id: "monitoring-labs-frequency",
+    category: "monitoring",
+    question: "How often would I need blood tests?",
+    answer:
+      "Testing should be individualized by the prescribing clinician. Planned TRTrx pricing includes two lab panels per year, but that commercial inclusion does not establish a medically sufficient schedule. Required tests, extra testing and final service terms must be clarified before care begins.",
+    onHomePage: false,
+  },
+  {
+    id: "monitoring-what-tested",
+    category: "monitoring",
+    question: "Which tests should I discuss?",
+    answer:
+      "Ask how the clinician will confirm the diagnosis, investigate the cause and monitor treatment risks. The appropriate tests depend on your medical history and treatment. Read our blood-test guide to prepare for that conversation; TRTrx is not currently ordering labs.",
+    onHomePage: false,
+  },
+  {
+    id: "monitoring-doctor-access",
+    category: "monitoring",
+    question: "Is the patient portal available?",
+    answer:
+      "No. The patient portal and clinician messaging are planned features. There are no accounts or clinical response-time commitments at present. General inquiries can be sent to hello@trtrx.com, but do not send medical records or sensitive health information.",
+    onHomePage: false,
+  },
+  {
+    id: "lifestyle-alcohol",
+    category: "lifestyle",
+    question: "What lifestyle information should I share?",
+    answer:
+      "Tell your clinician about alcohol, tobacco, sleep, exercise, supplements and medications. These details can affect an assessment and the discussion of treatment risks. Ask for guidance specific to your health and prescription.",
+    onHomePage: false,
+  },
+  {
+    id: "refund-cancel",
+    category: "refund",
+    question: "What are the planned cancellation terms?",
+    answer:
+      "The planned model allows cancellation without a long-term commitment. No subscriptions or billing are active. The final cancellation process and billing terms will be published before clinical intake opens.",
+    onHomePage: false,
+  },
+  {
+    id: "refund-policy",
+    category: "refund",
+    question: "Is there a refund or results guarantee?",
+    answer:
+      "No results or refund guarantee is being offered on this prelaunch website. Treatment outcomes vary. Final billing and cancellation terms will be available before any service can be purchased.",
+    onHomePage: false,
+  },
+  {
+    id: "safety-md-led",
+    category: "safety",
+    question: "Who will provide care?",
+    answer:
+      "TRTrx is planning a physician-led care model. The clinician roster and state availability are not finalized. Verified names, credentials and care arrangements will be published before patient intake opens.",
     onHomePage: false,
   },
 ];
@@ -272,7 +249,7 @@ export function getFAQsByCategory(): Record<FAQCategory, FAQ[]> {
     insurance: [],
     legality: [],
     products: [],
-    'side-effects': [],
+    "side-effects": [],
     monitoring: [],
     lifestyle: [],
     refund: [],

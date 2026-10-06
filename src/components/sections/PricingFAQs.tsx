@@ -1,13 +1,14 @@
-import { FAQS } from '@/content/faqs';
+import { FAQSources } from "./FAQSources";
+import { FAQS } from "@/content/faqs";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
-import { SectionHeader } from './SectionHeader';
+} from "@/components/ui/accordion";
+import { SectionHeader } from "./SectionHeader";
 
-const PRICING_CATEGORIES = new Set(['insurance', 'refund', 'legality']);
+const PRICING_CATEGORIES = new Set(["insurance", "refund", "legality"]);
 
 export function PricingFAQs() {
   const faqs = FAQS.filter((f) => PRICING_CATEGORIES.has(f.category));
@@ -24,7 +25,11 @@ export function PricingFAQs() {
         />
 
         <div className="mx-auto mt-12 max-w-3xl">
-          <Accordion type="single" collapsible className="border-t border-border">
+          <Accordion
+            type="single"
+            collapsible
+            className="border-t border-border"
+          >
             {faqs.map((faq) => (
               <AccordionItem key={faq.id} value={faq.id}>
                 <AccordionTrigger>{faq.question}</AccordionTrigger>
@@ -35,6 +40,7 @@ export function PricingFAQs() {
             ))}
           </Accordion>
         </div>
+        <FAQSources />
       </div>
     </section>
   );

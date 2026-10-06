@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { getHomepageBlogPosts, CATEGORY_LABELS } from '@/content/blog';
+import type { BlogPostSummary } from '@/content/blog';
+import { CATEGORY_LABELS } from '@/content/blog-metadata';
 import { SectionHeader } from './SectionHeader';
 
-export function HomeBlogSection() {
-  const posts = getHomepageBlogPosts();
+export function HomeBlogSection({ posts }: { posts: BlogPostSummary[] }) {
   if (posts.length === 0) return null;
 
   return (
@@ -13,7 +13,7 @@ export function HomeBlogSection() {
         <SectionHeader
           eyebrow="Resources"
           title="Read up on *TRT.*"
-          subtitle="Plain-English explainers from physicians who specialize in men's hormone health."
+          subtitle="Source-linked guides to testosterone testing, treatment decisions and monitoring."
           align="center"
         />
 

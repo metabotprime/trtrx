@@ -1,4 +1,5 @@
-import { SITE_URL } from '@/lib/utils';
+import { SITE_URL } from "@/lib/utils";
+import { SITE_DESCRIPTION } from "@/lib/seo/site";
 
 /**
  * Inline JSON-LD — never via Helmet (head-dedup collapses multiple LD tags).
@@ -7,19 +8,18 @@ import { SITE_URL } from '@/lib/utils';
  */
 export function OrganizationSchema() {
   const data = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'trtrx',
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "trtrx",
     url: SITE_URL,
-    description:
-      'Doctor-supervised testosterone replacement therapy with transparent pricing and same-day shipping.',
+    description: SITE_DESCRIPTION,
     logo: `${SITE_URL}/api/og?variant=logo`,
     sameAs: [],
     contactPoint: {
-      '@type': 'ContactPoint',
-      contactType: 'customer support',
-      email: 'hello@trtrx.com',
-      availableLanguage: ['en'],
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: "hello@trtrx.com",
+      availableLanguage: ["en"],
     },
   };
 

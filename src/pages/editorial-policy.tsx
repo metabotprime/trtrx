@@ -11,12 +11,12 @@ export default function EditorialPolicyPage() {
     <>
       <SEOHead
         title="Editorial Policy"
-        description="How trtrx researches, writes, sources, reviews, and corrects its content — and how we keep editorial independent from commerce."
+        description="How trtrx researches, writes, sources, reviews, and corrects its content, including the distinction between an editorial update and clinical review."
         path="/editorial-policy"
       />
       <EntityGraphSchema
         title="Editorial Policy"
-        description="How trtrx researches, writes, sources, reviews, and corrects its content — and how we keep editorial independent from commerce."
+        description="How trtrx researches, writes, sources, reviews, and corrects its content, including the distinction between an editorial update and clinical review."
         url="/editorial-policy"
         pageType="WebPage"
       />
@@ -30,7 +30,7 @@ export default function EditorialPolicyPage() {
         <PolicyContent
           eyebrow="Trust"
           title="Editorial policy"
-          lastUpdated="June 2026"
+          lastUpdated="October 6, 2026"
           intro={[
             'Men make real health decisions based on what they read about testosterone. We treat that responsibility seriously. This policy describes how trtrx content is researched, sourced, reviewed, and corrected.',
           ]}
@@ -39,7 +39,7 @@ export default function EditorialPolicyPage() {
               heading: 'Our standard',
               blocks: [
                 {
-                  p: 'Every article aims to be accurate, current, balanced, and genuinely useful — written in plain English without hype. We explain trade-offs honestly, including when a treatment is not the right fit, and we avoid sensational or exaggerated claims about results.',
+                  p: 'Every article aims to be accurate, current, balanced, and useful, written in plain English without hype. We explain trade-offs honestly, including when a treatment is not the right fit, and we avoid sensational or exaggerated claims about results.',
                 },
               ],
             },
@@ -67,9 +67,10 @@ export default function EditorialPolicyPage() {
                 {
                   p: (
                     <>
-                      Clinical content is reviewed by a board-certified physician
-                      before it publishes and is re-reviewed on a regular cadence.
-                      The details are described in our{' '}
+                      TRTrx is preparing to launch. Clinical review of the current
+                      articles has not yet been completed. Source checking and
+                      editorial updates do not constitute physician review. Our
+                      intended clinical review process is described in the{' '}
                       <Link
                         href="/medical-review-policy"
                         className="text-primary underline-offset-4 hover:text-accent-strong"
@@ -86,7 +87,7 @@ export default function EditorialPolicyPage() {
               heading: 'Independence',
               blocks: [
                 {
-                  p: 'Our educational content is written to inform, not to sell. We do not publish undisclosed sponsored content, and the fact that we offer a treatment does not change how we describe its risks, limitations, or alternatives. Where we mention competitors, we aim to be fair and factual.',
+                  p: 'TRTrx is a commercial health brand preparing to launch. Our articles should help readers understand a question, including limitations, alternatives, and reasons treatment may not be appropriate. Planned offerings do not determine the evidence we include. We do not accept payment for favorable conclusions or present promotional content as independent medical advice.',
                 },
               ],
             },
@@ -94,7 +95,7 @@ export default function EditorialPolicyPage() {
               heading: 'Updates and corrections',
               blocks: [
                 {
-                  p: 'Medicine changes, and so does our content. We review articles periodically and update them as evidence evolves; each clinical article shows when it was last reviewed. If we get something wrong, we correct it promptly. If you spot an error, please tell us.',
+                  p: 'An editorial update date records a substantive content revision. A clinical review date is separate and appears only after a verified reviewer has completed a review of that article version. We do not change dates simply to make an article appear fresh. Material evidence changes and confirmed errors require reassessment of affected content.',
                 },
               ],
             },
@@ -102,19 +103,19 @@ export default function EditorialPolicyPage() {
               heading: 'Authorship',
               blocks: [
                 {
-                  p: 'Content is produced by the trtrx editorial team and reviewed by board-certified physicians. As our content program grows, we will attribute articles to named authors and reviewers.',
+                  p: 'Current articles are credited to the TRTrx Editorial Team. They are source-based editorial materials, not first-person clinician accounts or patient stories. We do not claim clinical authorship, invent identities, or add reviewer credentials before the identity and completed review are verified.',
                 },
               ],
             },
           ]}
           footnote={
             <>
-              Editorial questions or corrections? Email{' '}
+              For current contact information and launch status, see our{' '}
               <Link
-                href="mailto:editorial@trtrx.com"
+                href="/contact"
                 className="text-primary underline-offset-4 hover:text-accent-strong"
               >
-                editorial@trtrx.com
+                contact page
               </Link>
               .
             </>

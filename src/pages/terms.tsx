@@ -1,141 +1,97 @@
-import type { GetStaticProps } from 'next';
-import Link from 'next/link';
-import { PageShell } from '@/components/layout/PageShell';
-import { SEOHead } from '@/components/seo/SEOHead';
-import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
-import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
-import { PolicyContent } from '@/components/sections/PolicyContent';
-
-export default function TermsPage() {
+import { PageShell } from "@/components/layout/PageShell";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { PolicyContent } from "@/components/sections/PolicyContent";
+export default function PolicyPage() {
   return (
-    <>
+    <PageShell>
       <SEOHead
-        title="Terms of Service"
-        description="The terms that govern your use of trtrx, including eligibility, the role of licensed physicians and pharmacies, billing and cancellation, and your responsibilities."
-        path="/terms"
+        title={"Terms of service"}
+        description={
+          "Terms for the prelaunch TRTrx educational website and planned pricing information."
+        }
+        path={"/terms"}
       />
-      <EntityGraphSchema
-        title="Terms of Service"
-        description="The terms that govern your use of trtrx, including eligibility, the role of licensed physicians and pharmacies, billing and cancellation, and your responsibilities."
-        url="/terms"
-        pageType="WebPage"
+      <PolicyContent
+        eyebrow="Website information"
+        title={"Terms of service"}
+        lastUpdated="October 6, 2026"
+        intro={[
+          "These terms apply to this educational website. TRTrx is preparing to launch and is not providing clinical services, prescriptions or purchases through this site.",
+        ]}
+        sections={[
+          {
+            heading: "Current availability",
+            blocks: [
+              {
+                p: "Patient intake is not open in any state. There are no appointments to book, patient accounts to access, subscriptions to purchase or payments to submit. State coverage, clinician participation and final service arrangements have not been confirmed.",
+              },
+            ],
+          },
+          {
+            heading: "Educational information",
+            blocks: [
+              {
+                p: "The information is general education and is not medical advice, diagnosis or treatment. Reading the site or sending a general inquiry does not establish a clinician-patient relationship. Decisions about care belong with an appropriately licensed clinician who can assess your individual circumstances.",
+              },
+            ],
+          },
+          {
+            heading: "Planned pricing and billing",
+            blocks: [
+              {
+                p: "Displayed prices describe the planned program and are not active purchase offers. The planned standard injectable price is $219 per month, enclomiphene is $179, cream is $199, and HCG is an additional $89 with a base TRT plan. Product and clinical availability are not confirmed.",
+              },
+              {
+                p: "The planned model has no setup fee or separate membership and allows cancellation. Final billing, cancellation, testing and pharmacy terms must be published before clinical intake opens. No treatment-results or refund guarantee is currently offered.",
+              },
+            ],
+          },
+          {
+            heading: "Clinical decisions and medication information",
+            blocks: [
+              {
+                p: "No prescription is issued through the current website. Any future treatment would require individual clinical assessment; interest in a product would not establish eligibility. Compounded drugs are not FDA-approved. Enclomiphene is not an FDA-approved drug, so describing it simply as an off-label use of an approved medicine would be inaccurate. See the medical disclaimer and treatment disclosures for further context.",
+              },
+            ],
+          },
+          {
+            heading: "Responsible use",
+            blocks: [
+              {
+                p: "Do not submit sensitive health information through general email. Do not rely on this site to change an existing prescription, select a dose or delay appropriate medical care. TRTrx is not an emergency service; call 911 for a medical emergency.",
+              },
+            ],
+          },
+          {
+            heading: "Intellectual property",
+            blocks: [
+              {
+                p: "The TRTrx name, logo, website design and original content are protected by applicable intellectual-property laws. Third-party materials and references remain attributable to their respective owners.",
+              },
+            ],
+          },
+          {
+            heading: "Changes",
+            blocks: [
+              {
+                p: "Website information and these terms may be updated. The date above identifies this version. Terms for any future clinical service must be reviewed when that service becomes available.",
+              },
+            ],
+          },
+        ]}
+        footnote={
+          <p>
+            General questions:{" "}
+            <a
+              className="text-primary underline underline-offset-4"
+              href="mailto:hello@trtrx.com"
+            >
+              hello@trtrx.com
+            </a>
+            . Do not send sensitive medical information.
+          </p>
+        }
       />
-      <PageShell>
-        <Breadcrumbs
-          items={[
-            { name: 'Home', href: '/' },
-            { name: 'Terms of Service', href: '/terms' },
-          ]}
-        />
-        <PolicyContent
-          eyebrow="Legal"
-          title="Terms of service"
-          lastUpdated="June 2026"
-          intro={[
-            'These terms govern your use of the trtrx website and services. Please read them carefully. By using trtrx, you agree to these terms.',
-          ]}
-          sections={[
-            {
-              heading: 'Eligibility',
-              blocks: [
-                {
-                  p: 'You must be at least 18 years old and a resident of a U.S. state where our services are available to use trtrx. Clinical services are available in 47 states and are not yet available in Hawaii, Alaska, or Puerto Rico.',
-                },
-              ],
-            },
-            {
-              heading: 'What trtrx is — and isn’t',
-              blocks: [
-                {
-                  p: 'trtrx is a technology platform that connects you with independent, licensed physicians and licensed pharmacies. trtrx is not itself a medical practice or a pharmacy. The decision to evaluate, prescribe, or treat is made solely by a licensed physician based on your individual case. trtrx does not practice medicine and does not influence clinical judgment.',
-                },
-                {
-                  p: 'trtrx is not for medical emergencies. If you think you may have a medical emergency, call 911.',
-                },
-              ],
-            },
-            {
-              heading: 'Medical services and prescriptions',
-              blocks: [
-                {
-                  p: 'Completing an intake does not guarantee a prescription. A physician may determine that treatment is not appropriate for you. Testosterone is a Schedule III controlled substance and is prescribed only after a physician reviews your labs and history. Some treatments are compounded preparations, which are prepared per individual prescription and are not FDA-approved as finished drugs, and some uses (such as enclomiphene or HCG for testosterone support) are off-label and prescribed at a clinician’s discretion. See our',
-                },
-                {
-                  p: (
-                    <Link
-                      href="/medical-disclaimer"
-                      className="text-primary underline-offset-4 hover:text-accent-strong"
-                    >
-                      medical disclaimer
-                    </Link>
-                  ),
-                },
-              ],
-            },
-            {
-              heading: 'Pricing, billing, and cancellation',
-              blocks: [
-                {
-                  list: [
-                    'Plans are billed as a flat monthly amount, charged after a physician approves your treatment — not before.',
-                    'You may cancel at any time; cancellation stops future billing and shipments.',
-                    'We offer a 60-day satisfaction guarantee on your first prescription, with a refund of unused medication if you cancel within that window. The guarantee does not cover completed lab work or physician consultations.',
-                    'Prices are subject to change with notice; changes do not affect a cycle you have already been billed for.',
-                  ],
-                },
-              ],
-            },
-            {
-              heading: 'Your responsibilities',
-              blocks: [
-                {
-                  p: 'You agree to provide accurate and complete information, to complete required lab work, to follow the protocol your physician sets, and to use any medication only as prescribed. Providing inaccurate health information can affect your safety and the appropriateness of treatment.',
-                },
-              ],
-            },
-            {
-              heading: 'Intellectual property',
-              blocks: [
-                {
-                  p: 'The trtrx name, logo, site content, and design are owned by trtrx and protected by intellectual-property laws. You may not copy, reproduce, or use them without permission.',
-                },
-              ],
-            },
-            {
-              heading: 'Disclaimers and limitation of liability',
-              blocks: [
-                {
-                  p: 'The website and its educational content are provided “as is,” without warranties of any kind, and are not a substitute for professional medical advice. To the fullest extent permitted by law, trtrx is not liable for indirect, incidental, or consequential damages arising from your use of the website. Nothing in these terms limits liability that cannot be limited under applicable law.',
-                },
-              ],
-            },
-            {
-              heading: 'Changes and governing law',
-              blocks: [
-                {
-                  p: 'We may update these terms from time to time; the “last updated” date above reflects the current version, and continued use after changes means you accept them. These terms are governed by the laws of the United States and the state in which trtrx is organized, without regard to conflict-of-laws rules.',
-                },
-              ],
-            },
-          ]}
-          footnote={
-            <>
-              Questions about these terms? Email{' '}
-              <Link
-                href="mailto:hello@trtrx.com"
-                className="text-primary underline-offset-4 hover:text-accent-strong"
-              >
-                hello@trtrx.com
-              </Link>
-              .
-            </>
-          }
-        />
-      </PageShell>
-    </>
+    </PageShell>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  return { props: {}, revalidate: 86400 };
-};

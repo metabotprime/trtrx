@@ -1,5 +1,5 @@
-import { Check } from 'lucide-react';
-import { SectionHeader } from './SectionHeader';
+import { Check } from "lucide-react";
+import { SectionHeader } from "./SectionHeader";
 
 type Difference = {
   title: string;
@@ -8,24 +8,20 @@ type Difference = {
 
 const DIFFERENCES: Difference[] = [
   {
-    title: 'No hidden minimums',
-    body:
-      'Pay one number every month. No surprise 2.5-month commitments, no setup fees, no membership stacked on top of your medication.',
+    title: "Transparent planned pricing",
+    body: "The planned standard injectable price is $219 per month, with no setup fee or separate membership. Review the full plan before comparing costs.",
   },
   {
-    title: 'One bill, not two',
-    body:
-      'Medication, ongoing physician supervision, two annual lab panels, and shipping — all in your monthly number. One charge, every cycle.',
+    title: "Visible inclusions",
+    body: "The planned bundle includes medication, physician supervision, two lab panels per year and shipping. Final service details must be confirmed before purchase.",
   },
   {
-    title: 'MD-led, not NP-led',
-    body:
-      'Your protocol is set by a board-certified physician — not routed to a nurse practitioner for cost reasons. Real MD oversight from intake through refill.',
+    title: "Individual assessment",
+    body: "The intended model is physician-led. A diagnosis, testing and clinical judgment would come before any treatment decision.",
   },
   {
-    title: 'Live video consult',
-    body:
-      'A real 15-minute video visit with your physician to set your protocol — not async chat. The 24/7 portal handles every question between visits.',
+    title: "Clear launch status",
+    body: "Intake is not open. Verified clinician details, state coverage and care arrangements will be published before patients can begin.",
   },
 ];
 
@@ -35,8 +31,8 @@ export function WhyDifferent() {
       <div className="container py-20 md:py-28">
         <SectionHeader
           eyebrow="Why trtrx"
-          title="Four ways we're *different.*"
-          subtitle="The category was built on hidden minimums, split bills, NP-only care, and async chat. We built the opposite."
+          title="What we are *building.*"
+          subtitle="The planned service starts with clear information about cost, clinical decisions and availability."
           align="center"
         />
 
