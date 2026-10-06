@@ -69,10 +69,18 @@ def main():
     parser.add_argument("--preview", action="store_true", help="Expect preview-host noindex headers on a public release")
     parser.add_argument("--request-host", help="Canonical Host header for a local release check")
     parser.add_argument("--resolve-ip", help="Fresh authoritative DNS IP when the local resolver is still cached; TLS validation stays enabled")
+    parser.add_argument("--middleware-manifest", type=Path, help="Check that the actual Next.js build includes root middleware")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     base = args.base.rstrip("/")
     errors = []
+    middleware_compiled = None
+    if args.middleware_manifest:
+        manifest = json.loads(args.middleware_manifest.read_text())
+        entry = manifest.get("middleware", {}).get("/")
+        middleware_compiled = bool(entry and entry.get("files") and entry.get("matchers"))
+        if not middleware_compiled:
+            errors.append("Next.js build has no compiled root middleware; check its location beside src/pages")
     clinical_articles = {
         "testosterone-replacement-therapy-guide", "testosterone-blood-tests",
         "trt-side-effects-and-monitoring", "choosing-online-trt-provider",
@@ -138,6 +146,8 @@ def main():
             has_noindex = "noindex" in page.meta.get("robots", "") or "noindex" in headers.get("x-robots-tag", "")
             if held != has_noindex:
                 errors.append(f"{path}: indexing state does not match release")
+            if args.preview and "noindex" not in headers.get("x-robots-tag", ""):
+                errors.append(f"{path}: preview X-Robots-Tag header missing")
             if not args.public and "noindex" not in page.meta.get("robots", ""):
                 errors.append(f"{path}: noindex missing from HTML")
             if path in held_paths and not page.clinical_hold:
@@ -159,15 +169,21 @@ def main():
         if status != 404:
             errors.append(f"{path}: expected 404, got {status}")
     for path in ("/robots.txt", "/llms.txt", "/llms-full.txt", "/pricing.md", "/image-sitemap.xml", "/favicon.svg", "/favicon.ico", "/api/og?variant=logo"):
-        status, _, body = fetch(path)
+        status, headers, body = fetch(path)
         if status != 200 or not body:
             errors.append(f"{path}: missing/empty, HTTP {status}")
+        # Middleware must protect machine references as well as HTML pages.
+        # favicon.ico is deliberately excluded from the middleware matcher.
+        if args.preview and path != "/favicon.ico":
+            headers = {key.lower(): value for key, value in headers.items()}
+            if "noindex" not in headers.get("x-robots-tag", ""):
+                errors.append(f"{path}: preview X-Robots-Tag header missing")
         if path in {"/llms.txt", "/llms-full.txt", "/image-sitemap.xml"}:
             document = body.decode("utf-8")
             if any(args.canonical + route in document for route in held_paths):
                 errors.append(f"{path}: exposes held clinical route")
 
-    result = {"observedAt": datetime.now(timezone.utc).isoformat(), "base": base, "expectedPublic": args.public, "previewHost": args.preview, "authoritativeIPOverride": args.resolve_ip, "sitemapURLs": len(locs), "pagesChecked": len(pages), "heldClinicalRoutesChecked": len(held_paths), "jsonLdParsed": sum(len(page.ld) for page in pages.values()), "errors": sorted(set(errors))}
+    result = {"observedAt": datetime.now(timezone.utc).isoformat(), "base": base, "expectedPublic": args.public, "previewHost": args.preview, "authoritativeIPOverride": args.resolve_ip, "middlewareCompiled": middleware_compiled, "sitemapURLs": len(locs), "pagesChecked": len(pages), "heldClinicalRoutesChecked": len(held_paths), "jsonLdParsed": sum(len(page.ld) for page in pages.values()), "errors": sorted(set(errors))}
     if args.output:
         args.output.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result, indent=2))

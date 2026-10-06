@@ -4,6 +4,14 @@ Observed October 6, 2026. This document supersedes the May 2026 SEO roadmap and 
 
 ## Public domain release, October 6
 
+### Indexing operations follow-up
+
+The October 6 live audit found that the root middleware file was not compiled because this repository uses `src/pages`. The middleware now lives in `src/middleware.ts`; built-artifact and served-header checks verify that canonical public pages remain indexable and every preview-host page and machine endpoint receives `X-Robots-Tag: noindex, follow`. The existing user-agent policy is unchanged. The unused security contact file was removed because its mailbox is not provisioned.
+
+The public IndexNow ownership file is `public/9bc92bbe2859c6746d7e88d459492168.txt`. The separately reviewed TRTrx shared-toolkit runtime is the sole submitter, with persistent TRTrx state and live sitemap/key validation. There is no duplicate deployment hook. An accepted submission is discovery evidence, not proof of indexing. Ordinary TRTrx pages are outside Google's Indexing API eligibility; Google discovery uses the sitemap and Search Console, while its API is used for authorized coverage and search measurement.
+
+The existing central SEO heartbeat owns the TRTrx program with separate configuration, fixed public-page census, run/review evidence and content holds. No Trimi clinical facts, cohorts, spam filters or order data are copied. Intake, conversions, support-mailbox operation and unreviewed clinical guidance remain outside this release. Current operational receipts and unfinished access steps are retained separately from this source document.
+
 The user authorized connecting the GoDaddy domain and making the site live. GoDaddy nameservers now point to Vercel, with the existing null MX and restrictive SPF retained. The Vercel project owns apex `trtrx.com` and redirects `www.trtrx.com` to the apex with HTTP 308. Domain configuration was verified by the authenticated Vercel CLI. Registration remains at GoDaddy.
 
 The release configuration is `PUBLIC_LAUNCH_ENABLED=true`, `CLINICAL_CONTENT_RELEASED=false`, `INTAKE_ENABLED=false`. Public content includes brand/operational information, planning prices, policies, the state-availability guide, the cost article and its pricing category. Nine clinical articles, five treatment details, their hub and five clinical category hubs serve status-only pages, with no clinical body in HTML or page props, noindex and exclusion from sitemaps/machine references. The clinical source is preserved for qualified review. No reviewer identity or completed review is invented. An unavailable mailbox is not an active support channel; mailto links and email schema have been removed.

@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
-import { isPublicIndexingAllowed } from './src/content/launch';
+import { isPublicIndexingAllowed } from './content/launch';
 import type { NextRequest } from 'next/server';
 
 /**
+ * Keep this file beside src/pages so Next.js includes it in the build.
+ *
  * Edge middleware blocks parasitic SEO scrapers and pen-test bots.
  *
  * AI engines (GPTBot, ClaudeBot, PerplexityBot, etc.) are explicitly
@@ -39,7 +41,9 @@ export function middleware(req: NextRequest) {
     }
   }
   const response = NextResponse.next();
-  if (!isPublicIndexingAllowed(req.nextUrl.hostname)) {
+  // Use the requested host, not the bind address used by a self-hosted server.
+  const hostname = req.headers.get('host') ?? req.nextUrl.hostname;
+  if (!isPublicIndexingAllowed(hostname)) {
     response.headers.set('X-Robots-Tag', 'noindex, follow');
   }
   return response;
