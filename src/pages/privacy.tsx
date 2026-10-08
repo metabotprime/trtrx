@@ -16,7 +16,7 @@ export default function PolicyPage() {
       <PolicyContent
         eyebrow="Website information"
         title={"Privacy policy"}
-        lastUpdated="October 6, 2026"
+        lastUpdated="October 8, 2026"
         intro={[
           "TRTrx provides educational and planned-service information. There is no patient intake form, active account system, payment checkout, support messaging or email waitlist signup on this site. This notice describes the current website, not a future clinical service.",
         ]}
@@ -39,6 +39,14 @@ export default function PolicyPage() {
                 p: PUBLIC_LAUNCH_ENABLED
                   ? "The public website is configured to use Vercel Web Analytics to understand page visits. URL query strings and fragments are removed, and account, intake and portal routes are excluded. No clinical intake or payment data is collected through this analytics configuration. This notice must be revisited before future clinical data collection or additional tracking is enabled."
                   : "Public-site analytics are disabled during prelaunch. The planned public-site analytics configuration removes URL query strings and fragments and excludes account, intake and portal routes. This notice must be revisited before any future clinical data collection or additional tracking is enabled.",
+              },
+              {
+                p: PUBLIC_LAUNCH_ENABLED
+                  ? "Google Analytics 4 measures visits to selected public pages. It uses cookies and processes technical information such as browser, device and network information. Our configuration removes URL query strings and fragments, uses general page titles and excludes account, intake, portal and clinical-content routes. External referral information is limited to the referring website's origin. Advertising features and automatic tracking of clicks, searches, scrolling, forms and downloads are disabled. No form contents, clinical intake or payment information are sent through this configuration."
+                  : "Google Analytics 4 is disabled before the public website is released.",
+              },
+              {
+                p: <a href="https://policies.google.com/technologies/partner-sites" className="text-primary underline underline-offset-4">How Google uses information from sites or apps that use its services</a>,
               },
             ],
           },

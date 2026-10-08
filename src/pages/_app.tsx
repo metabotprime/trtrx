@@ -3,6 +3,7 @@ import { Fraunces, Inter, JetBrains_Mono } from 'next/font/google';
 import { usePagePerformance } from '@/hooks/usePagePerformance';
 import { Analytics, type BeforeSendEvent } from '@vercel/analytics/next';
 import { PUBLIC_LAUNCH_ENABLED, isPublicIndexingAllowed } from '@/content/launch';
+import { PublicGa4 } from '@/components/analytics/PublicGa4';
 import '@/styles/globals.css';
 
 function publicPageView(event: BeforeSendEvent) {
@@ -44,6 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
     >
       <Component {...pageProps} />
       {PUBLIC_LAUNCH_ENABLED && <Analytics beforeSend={publicPageView} />}
+      <PublicGa4 />
     </div>
   );
 }
