@@ -35,6 +35,18 @@ export default function BlogIndexPage({ posts, featured, categories }: Props) {
           <ul className="mt-7 grid gap-5 md:grid-cols-3">{featured.map((post) => <li key={post.slug}><ArticleCard post={post} headingLevel={3} /></li>)}</ul>
         </div>
       </section> : null}
+      <section className="bg-surface-alt" aria-labelledby="cost-checklist">
+        <div className="container py-12">
+          <h2 id="cost-checklist" className="font-serif text-3xl text-primary">Compare the full cost</h2>
+          <p className="mt-3 max-w-2xl leading-relaxed text-muted">Use the cost guide to compare the same information across providers before making a commitment.</p>
+          <ol className="mt-6 max-w-3xl list-decimal space-y-4 pl-5 leading-relaxed text-muted">
+            <li><Link href="/blog/how-trt-pricing-works#checklist" className="text-primary underline underline-offset-4">Check what is included.</Link> Ask about fees, billing periods, and the services covered by a written estimate.</li>
+            <li><Link href="/blog/how-trt-pricing-works#first-year-total" className="text-primary underline underline-offset-4">Compare a first-year total.</Link> Use the same time period and separate one-time charges from recurring costs.</li>
+            <li><Link href="/blog/how-trt-pricing-works#service-terms" className="text-primary underline underline-offset-4">Read the service terms.</Link> Check cancellation conditions, refunds, and who handles billing questions.</li>
+          </ol>
+          <p className="mt-6 max-w-3xl leading-relaxed text-muted">For TRTrx, review <Link href="/pricing" className="text-primary underline underline-offset-4">planned pricing</Link>, <Link href="/trt-in-your-state" className="text-primary underline underline-offset-4">state availability</Link>, and <Link href="/launch" className="text-primary underline underline-offset-4">launch status</Link>. Patient intake is not open.</p>
+        </div>
+      </section>
       <section className="bg-surface" aria-labelledby="all-articles">
         <div className="container py-12 md:py-16">
           <h2 id="all-articles" className="font-serif text-3xl text-primary">Explore the library</h2>
