@@ -22,7 +22,7 @@ import { FooterCTABand } from "@/components/sections/FooterCTABand";
 import { getHomepageBlogPosts, type BlogPostSummary } from "@/content/blog";
 
 export default function HomePage({ posts }: { posts: BlogPostSummary[] }) {
-  if (!CLINICAL_CONTENT_RELEASED) return <OperationalHome />;
+  if (!CLINICAL_CONTENT_RELEASED) return <OperationalHome posts={posts} />;
   return (
     <>
       <SEOHead
@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps<{
   posts: BlogPostSummary[];
 }> = async () => {
   return {
-    props: { posts: CLINICAL_CONTENT_RELEASED ? getHomepageBlogPosts() : [] },
+    props: { posts: getHomepageBlogPosts() },
     revalidate: 3600,
   };
 };

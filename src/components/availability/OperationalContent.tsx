@@ -5,6 +5,8 @@ import { OrganizationSchema } from "@/components/seo/schemas/OrganizationSchema"
 import { WebSiteSchema } from "@/components/seo/schemas/WebSiteSchema";
 import { HeroCentered } from "@/components/sections/HeroCentered";
 import { FooterCTABand } from "@/components/sections/FooterCTABand";
+import { HomeBlogSection } from "@/components/sections/HomeBlogSection";
+import type { BlogPostSummary } from "@/content/blog";
 import {
   OPERATIONAL_FAQS,
   PROVIDER_NETWORK_DISCLOSURE,
@@ -118,7 +120,7 @@ function PlanningCards() {
   );
 }
 
-export function OperationalHome() {
+export function OperationalHome({ posts }: { posts: BlogPostSummary[] }) {
   return (
     <>
       <SEOHead
@@ -132,6 +134,7 @@ export function OperationalHome() {
         <HeroCentered />
         <PlanningCards />
         <OperationalFAQ compact />
+        <HomeBlogSection posts={posts} />
         <FooterCTABand
           headline="Clear expectations."
           italic="From the start."
