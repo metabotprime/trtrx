@@ -5,7 +5,10 @@ import { OrganizationSchema } from "@/components/seo/schemas/OrganizationSchema"
 import { WebSiteSchema } from "@/components/seo/schemas/WebSiteSchema";
 import { HeroCentered } from "@/components/sections/HeroCentered";
 import { FooterCTABand } from "@/components/sections/FooterCTABand";
-import { OPERATIONAL_FAQS } from "@/content/operational";
+import {
+  OPERATIONAL_FAQS,
+  PROVIDER_NETWORK_DISCLOSURE,
+} from "@/content/operational";
 import { PRICING_STRUCTURE } from "@/content/pricing";
 import { formatUSD } from "@/lib/utils";
 
@@ -211,12 +214,14 @@ function AboutPlans() {
           and clear information about availability. This public website explains
           the plan and the current status before patients can begin.
         </p>
-        <p>
-          The clinician roster, state coverage, pharmacy and laboratory
-          arrangements are still being finalized. No clinician participation,
-          credential, partnership or certification is claimed without
-          verification.
-        </p>
+        <div id="provider-network" className="scroll-mt-24">
+          <h2 className="font-serif text-2xl text-primary">Provider network</h2>
+          <p className="mt-3">
+            {PROVIDER_NETWORK_DISCLOSURE} The individual provider roster, state
+            coverage, and pharmacy and laboratory arrangements are still being
+            finalized.
+          </p>
+        </div>
         <p>
           Clinical articles and treatment information are being prepared
           separately. They remain unpublished while qualified clinical review is
@@ -250,7 +255,7 @@ function LaunchPlan() {
           },
           {
             title: "Confirm the service details",
-            body: "Clinician participation, state coverage, pharmacy and laboratory arrangements, contact channels and final terms must be verified before intake opens.",
+            body: `${PROVIDER_NETWORK_DISCLOSURE} Individual provider participation, state coverage, pharmacy and laboratory arrangements, contact channels and final terms still need to be confirmed before intake opens.`,
           },
           {
             title: "Open intake separately",

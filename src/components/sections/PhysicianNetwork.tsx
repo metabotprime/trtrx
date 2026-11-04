@@ -1,4 +1,5 @@
 import { ShieldCheck, MapPin, Stethoscope } from "lucide-react";
+import { PROVIDER_NETWORK_DISCLOSURE } from "@/content/operational";
 import { SectionHeader } from "./SectionHeader";
 
 type Credential = {
@@ -28,12 +29,12 @@ const CREDENTIALS: Credential[] = [
 
 export function PhysicianNetwork() {
   return (
-    <section className="bg-surface">
+    <section id="provider-network" className="scroll-mt-24 bg-surface">
       <div className="container py-20 md:py-28">
         <SectionHeader
-          eyebrow="Physician Network"
-          title="The team comes with *verified details.*"
-          subtitle="Clinical arrangements are still being finalized. We do not have an announced physician roster or confirmed state coverage."
+          eyebrow="Provider network"
+          title="Arora Health"
+          subtitle={PROVIDER_NETWORK_DISCLOSURE}
           align="center"
         />
 

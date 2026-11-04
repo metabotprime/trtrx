@@ -1,4 +1,5 @@
 import { CLINICAL_CONTENT_RELEASED } from "@/content/launch";
+import { PROVIDER_NETWORK_DISCLOSURE } from "@/content/operational";
 import { OperationalPage } from "@/components/availability/OperationalContent";
 import type { GetStaticProps } from "next";
 import Link from "next/link";
@@ -64,9 +65,10 @@ export default function HowItWorksPage() {
             </h1>
 
             <p className="mx-auto mt-6 max-w-xl text-lg leading-[1.55] text-muted md:text-xl">
-              The intended process brings medical history, appropriate testing
-              and physician-led assessment together. Clinical, pharmacy and lab
-              arrangements are still being finalized.
+              {PROVIDER_NETWORK_DISCLOSURE} The intended process brings medical
+              history, appropriate testing and physician-led assessment together.
+              State coverage, pharmacy and lab arrangements are still being
+              finalized.
             </p>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">

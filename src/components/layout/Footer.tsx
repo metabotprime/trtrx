@@ -35,6 +35,7 @@ const FOOTER_GROUPS = [
     label: "Company",
     links: [
       { label: "About", href: "/about" },
+      { label: "Provider network", href: "/about#provider-network" },
       { label: "Contact", href: "/contact" },
     ],
   },

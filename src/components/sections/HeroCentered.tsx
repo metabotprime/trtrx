@@ -1,4 +1,5 @@
 import { CLINICAL_CONTENT_RELEASED } from "@/content/launch";
+import { PROVIDER_NETWORK_DISCLOSURE } from "@/content/operational";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -89,6 +90,15 @@ export function HeroCentered() {
               {CLINICAL_CONTENT_RELEASED
                 ? "Explore testosterone testing, treatment options and the questions to ask a clinician. TRTrx is preparing to launch."
                 : "Clear information about what we are building, planned pricing and what comes next. Patient intake is not open yet."}
+            </p>
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted">
+              {PROVIDER_NETWORK_DISCLOSURE}{" "}
+              <Link
+                href="/about#provider-network"
+                className="font-medium text-primary underline underline-offset-4"
+              >
+                About the provider network
+              </Link>
             </p>
 
             <div className="mt-7 border-l-[3px] border-accent pl-4 sm:mt-8 sm:pl-5">

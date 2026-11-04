@@ -1,4 +1,7 @@
 /** Operational statements only. Keep clinical advice in the separately reviewed content. */
+export const PROVIDER_NETWORK_DISCLOSURE =
+  "Arora Health is the provider network for TRTrx’s planned clinical service.";
+
 export const OPERATIONAL_FAQS = [
   {
     question: "Can I start care through TRTrx now?",
@@ -19,6 +22,10 @@ export const OPERATIONAL_FAQS = [
     question: "Has an opening date been announced?",
     answer:
       "A confirmed patient-intake opening date has not been announced. The launch-status page will describe confirmed changes when they are available.",
+  },
+  {
+    question: "Who is the provider network for TRTrx?",
+    answer: `${PROVIDER_NETWORK_DISCLOSURE} Patient intake is closed, and state availability is still being confirmed.`,
   },
   {
     question: "Which states will be covered?",
