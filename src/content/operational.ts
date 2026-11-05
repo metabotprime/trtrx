@@ -11,7 +11,7 @@ export const OPERATIONAL_FAQS = [
   {
     question: "What can I find on the public website?",
     answer:
-      "You can read about the planned service, review planning prices and check launch status. Clinical articles and treatment information remain unpublished while qualified clinical review is pending.",
+      "You can read the TRT guides, review planned prices and check launch status.",
   },
   {
     question: "Are the displayed prices available to purchase?",

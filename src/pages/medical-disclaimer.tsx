@@ -59,7 +59,7 @@ export default function MedicalDisclaimerPage() {
                   p: "No prescription or clinical decision is available through this website. Any future treatment would require an individual assessment by an appropriately licensed clinician. Interest in the service, a displayed price or reading an article does not establish eligibility for care.",
                 },
                 {
-                  p: "Clinical guidance and treatment details remain subject to completed clinical review before publication. Source checking is not a substitute for that review. The medical review policy explains how verified reviewer credits will be recorded; no completed clinical review is claimed for the prepared drafts.",
+                  p: "Clinical guidance requires qualified review before publication. Published clinical articles list the reviewer and review date. The medical review policy explains how we verify and record each review.",
                 },
               ],
             },
