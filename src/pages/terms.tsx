@@ -23,7 +23,7 @@ export default function TermsPage() {
         title="Terms of service"
         lastUpdated={POLICY_UPDATED}
         intro={[
-          <>These Terms of Service are an agreement between you and TRTrx. References to we, us or our mean TRTrx. Together with our <Link href="/privacy" className={linkClass}>Privacy Policy</Link>, <Link href="/code-of-conduct" className={linkClass}>Provider Code of Conduct</Link> and <Link href="/refund-policy" className={linkClass}>Refund and Cancellation Policy</Link>, they govern access to this website and the applicable services described below. Please read them carefully. By using this website, you agree to the website terms.</>,
+          <>These Terms of Service are an agreement between you and TRTRX LLC, which operates TRTrx. References to TRTrx, we, us or our mean TRTRX LLC. Together with our <Link href="/privacy" className={linkClass}>Privacy Policy</Link>, <Link href="/code-of-conduct" className={linkClass}>Provider Code of Conduct</Link> and <Link href="/refund-policy" className={linkClass}>Refund and Cancellation Policy</Link>, they govern access to this website and the applicable services described below. Please read them carefully. By using this website, you agree to the website terms.</>,
           SERVICE_POLICY_NOTICE,
           "THE FUTURE-SERVICE TERMS INCLUDE A MANDATORY ARBITRATION CLAUSE AND WAIVER OF CLASS ACTION RIGHTS. The notice and opt-out requirements are explained below.",
         ]}
