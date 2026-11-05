@@ -43,7 +43,9 @@ const FOOTER_GROUPS = [
     label: "Legal",
     links: [
       { label: "Privacy", href: "/privacy" },
-      { label: "Terms", href: "/terms" },
+      { label: "Terms of service", href: "/terms" },
+      { label: "Refund policy", href: "/refund-policy" },
+      { label: "Provider code of conduct", href: "/code-of-conduct" },
       { label: "Accessibility", href: "/accessibility" },
       { label: "Medical disclaimer", href: "/medical-disclaimer" },
       { label: "Editorial policy", href: "/editorial-policy" },

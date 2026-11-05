@@ -72,7 +72,27 @@ export const ROUTES: RouteEntry[] = [
   })),
   { path: "/contact", changeFreq: "yearly", priority: 0.5, inSitemap: true },
   { path: "/privacy", changeFreq: "yearly", priority: 0.3, inSitemap: true },
-  { path: "/terms", changeFreq: "yearly", priority: 0.3, inSitemap: true },
+  {
+    path: "/terms",
+    changeFreq: "yearly",
+    priority: 0.3,
+    inSitemap: true,
+    lastModified: "2026-11-05",
+  },
+  {
+    path: "/refund-policy",
+    changeFreq: "yearly",
+    priority: 0.3,
+    inSitemap: true,
+    lastModified: "2026-11-05",
+  },
+  {
+    path: "/code-of-conduct",
+    changeFreq: "yearly",
+    priority: 0.3,
+    inSitemap: true,
+    lastModified: "2026-11-05",
+  },
   {
     path: "/accessibility",
     changeFreq: "yearly",
