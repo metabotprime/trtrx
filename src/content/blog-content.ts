@@ -13,7 +13,7 @@ const S = {
   cypionate: { id: 'cypionate-label', type: 'WebPage', headline: 'Testosterone cypionate injection: prescribing information', publisher: 'DailyMed, National Library of Medicine', url: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=736dbdfd-c90f-3a9b-e053-2a91aa0aea81' },
   xyosted: { id: 'xyosted-label', type: 'WebPage', headline: 'XYOSTED (testosterone enanthate): prescribing information', publisher: 'DailyMed, National Library of Medicine', url: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8a3d204c-be26-49e0-8599-0ac12a272e81' },
   compounding: { id: 'compounded-drugs', type: 'WebPage', headline: 'Understanding the Risks of Compounded Drugs', publisher: 'U.S. Food and Drug Administration', url: 'https://www.fda.gov/drugs/human-drug-compounding/understanding-risks-compounded-drugs' },
-  estimate: { id: 'good-faith-estimate', type: 'WebPage', headline: 'What is a good faith health insurance estimate?', publisher: 'Centers for Medicare & Medicaid Services', url: 'https://www.cms.gov/medical-bill-rights/help/guides/good-faith-estimate' },
+  estimate: { id: 'good-faith-estimate', type: 'WebPage', headline: 'What is a good faith health insurance estimate?', publisher: 'Centers for Medicare & Medicaid Services', url: 'https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/what-good-faith-estimate' },
   pharmacy: { id: 'online-pharmacy', type: 'WebPage', headline: 'Considering an Online Pharmacy?', publisher: 'U.S. Food and Drug Administration', url: 'https://www.fda.gov/drugs/besaferx-your-source-online-pharmacy-information/considering-online-pharmacy' },
   licensure: { id: 'state-licensure', type: 'WebPage', headline: 'Licensing across state lines', publisher: 'U.S. Department of Health and Human Services', url: 'https://telehealth.hhs.gov/licensure/licensing-across-state-lines' },
   telehealth: { id: 'controlled-telehealth', type: 'WebPage', headline: 'Prescribing controlled substances via telehealth', publisher: 'U.S. Department of Health and Human Services', url: 'https://telehealth.hhs.gov/providers/telehealth-policy/prescribing-controlled-substances-via-telehealth' },
@@ -195,17 +195,28 @@ export const ARTICLE_CONTENT: ArticleInput[] = [
   },
   {
     slug: 'how-trt-pricing-works', category: 'pricing',
-    title: 'How much does TRT cost? Compare the complete care bill',
-    excerpt: 'Compare medication, testing, appointments, supplies, and cancellation terms without relying on headline prices.',
-    quickAnswer: 'TRT costs depend on medication, clinical care, testing, supplies, and the payment arrangement. Compare the expected first-year total and what happens if additional care is needed. Monthly prices are comparable only when included services and billing periods are clear.',
+    title: 'How much does TRT cost per month?',
+    excerpt: 'Compare monthly and first-year TRT costs, including medication, lab work, visits, supplies, and separate fees. Use the checklist to compare written quotes.',
+    quickAnswer: 'TRT costs per month depend on what the quote includes. Add the initial evaluation, recurring fees, and any separately billed medication, lab work, visits, and supplies. Divide the first-year total by 12 to compare monthly costs on the same basis.',
+    updatedAt: '2026-11-04',
     featured: true, onHomePage: true,
     sections: [
-      { id: 'cost-components', title: 'Start with the services you would receive', paragraphs: [
-        'TRT is medical care, not just a vial or a subscription. A useful estimate distinguishes the evaluation, any prescribed medication, follow-up appointments, laboratory work, and supplies. Shipping, dispensing, or administrative charges may be separate. Ask the provider to identify every party that can send a bill.',
+      { id: 'cost-components', title: 'What a monthly TRT price may include', paragraphs: [
+        'A written estimate should distinguish the initial evaluation, any prescribed medication, follow-up appointments, lab work, and supplies. Shipping, dispensing, or administrative charges may be separate. Ask who bills each charge and how often it is due.',
         'Different arrangements can be transparent. Some clinics bundle services; others bill separately. Neither structure tells you the total on its own. An itemized model may suit one person, while a bundle may be easier for another to budget. What matters is a written explanation of what your payment covers.',
       ] },
-      { id: 'checklist', title: 'Use the same questions for every provider', paragraphs: [
-        'Request a first-year estimate for the proposed care plan, not the lowest advertised price. Before the clinical evaluation, ask which costs are known and which remain conditional. Separate one-time evaluation charges from recurring charges so the first month does not distort the comparison.',
+      { id: 'first-year-total', title: 'How to calculate the first-year cost of TRT', paragraphs: [
+        'Add one-time fees, all recurring payments due in the first 12 months, and any expected charges billed separately. Check whether the provider bills by calendar month, treatment cycle, or prepaid term before multiplying an advertised monthly price.',
+        'These hypothetical quotes illustrate the math. Both assume 12 monthly payments and no other charges. The figures are for illustration only.',
+      ], table: { columns: ['Charge', 'Itemized quote', 'Bundled quote'], rows: [
+        ['Initial evaluation', '$100', 'Included'],
+        ['Recurring payment', '$120 × 12', '$145 × 12'],
+        ['Lab work billed separately', '$200', 'Included'],
+        ['First-year total', '$1,740', '$1,740'],
+        ['Average cost per month', '$145', '$145'],
+      ] } },
+      { id: 'checklist', title: 'What to ask before comparing TRT quotes', paragraphs: [
+        'Ask which costs are fixed and which depend on what care you receive. For each bundled item, check what the provider includes and what would trigger an additional bill.',
       ], table: { columns: ['Cost area', 'Question to ask'], rows: [
         ['Evaluation', 'Are the first consultation and diagnostic tests included?'],
         ['Medication', 'Which product and dispensing quantity does the price cover?'],
@@ -214,11 +225,7 @@ export const ARTICLE_CONTENT: ArticleInput[] = [
         ['Billing', 'Is payment monthly, prepaid, or subject to a minimum commitment?'],
         ['Cancellation', 'When does billing stop, and what is refundable?'],
       ] } },
-      { id: 'first-year-total', title: 'Compare a first-year total, then check exceptions', paragraphs: [
-        'A worksheet can add initial charges, ongoing care, medication, testing, and supplies over twelve months. Do not multiply a quoted “monthly equivalent” by twelve until you know whether the provider bills in calendar months, treatment cycles, or prepaid packages.',
-        'Ask what happens if the clinician recommends further testing, another formulation, or stopping treatment. An estimate cannot promise that no additional care will be needed. It should make anticipated costs and exclusions understandable before you commit. Ask for details when a line says only “labs included” without describing the scope.',
-      ] },
-      { id: 'insurance-and-self-pay', title: 'Check insurance and self-pay terms separately', paragraphs: [
+      { id: 'insurance-and-self-pay', title: 'How to compare TRT costs with and without insurance', paragraphs: [
         'Ask the provider and insurer which services, if any, would be billed to insurance and what network or authorization requirements apply. A medication discount, a receipt for reimbursement, and insurance coverage are different arrangements. An advertised price does not settle your final out-of-pocket cost.',
         'CMS explains that people not using insurance usually qualify for a good faith estimate when requested or when care is scheduled sufficiently in advance. Rules and exceptions apply, and an estimate may cover only one provider or facility. The linked CMS guide explains when an estimate applies; ask other billing parties for their own details.',
       ], sourceIds: ['good-faith-estimate'] },

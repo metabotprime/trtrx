@@ -30,10 +30,12 @@ export function summarizeBlogPost(post: BlogPost): BlogPostSummary {
   const { slug, category, title, excerpt, readMinutes, updatedAt } = post;
   return { slug, category, title, excerpt, readMinutes, updatedAt };
 }
-export type ArticleInput = Omit<BlogPost, 'body' | 'readMinutes' | 'authorId' | 'updatedAt'>;
+export type ArticleInput = Omit<BlogPost, 'body' | 'readMinutes' | 'authorId' | 'updatedAt'> & {
+  updatedAt?: string;
+};
 export const BLOG_POSTS: BlogPost[] = ARTICLE_CONTENT.map((post) => {
   const body = [post.quickAnswer, ...post.sections.flatMap((section) => [section.title, ...section.paragraphs, ...(section.bullets ?? []), ...(section.table ? [section.table.columns.join(' '), ...section.table.rows.map((row) => row.join(' '))] : [])])].join('\n\n');
-  return { ...post, body, authorId: 'editorial-team', updatedAt: '2026-10-06', readMinutes: Math.max(1, Math.ceil(body.split(/\s+/).filter(Boolean).length / 200)) };
+  return { ...post, body, authorId: 'editorial-team', updatedAt: post.updatedAt ?? '2026-10-06', readMinutes: Math.max(1, Math.ceil(body.split(/\s+/).filter(Boolean).length / 200)) };
 });
 export function getBlogPostBySlug(slug: string) { return BLOG_POSTS.find((post) => post.slug === slug); }
 export function isBlogPostPublic(post: Pick<BlogPost, 'slug'>): boolean {
