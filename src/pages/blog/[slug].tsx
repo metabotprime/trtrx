@@ -10,30 +10,30 @@ import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 import { ArticleBody, ArticleCard, ReviewNotice } from '@/components/blog/ArticleParts';
 import { QuickAnswerBox } from '@/components/blog/QuickAnswerBox';
-import { isNoindexBlogSlug } from '@/lib/seo/noindex-slugs';
 import { ClinicalContentHold } from '@/components/availability/ClinicalContentHold';
-import { BLOG_POSTS, getBlogPostBySlug, isBlogPostPublic, getRelatedBlogPosts, summarizeBlogPost, type BlogPost, type BlogPostSummary } from '@/content/blog';
+import { BLOG_POSTS, getBlogPostBySlug, isBlogPostPublic, getPublicBlogCategories, getRelatedBlogPosts, summarizeBlogPost, type BlogPost, type BlogPostSummary } from '@/content/blog';
 import { CATEGORY_LABELS, formatEditorialDate, getAuthor, getReviewer, isClinicalBlogSlug } from '@/content/blog-metadata';
 
-type Props = { held: true; slug: string; title: string } | { held: false; post: BlogPost; related: BlogPostSummary[] };
+type Props = { held: true; slug: string; title: string } | { held: false; post: BlogPost; related: BlogPostSummary[]; categoryPublic: boolean };
 export default function BlogPostPage(props: Props) {
   if (props.held) return <ClinicalContentHold title={props.title} path={`/blog/${props.slug}`} />;
-  const { post, related } = props;
+  const { post, related, categoryPublic } = props;
   const isClinical = isClinicalBlogSlug(post.slug);
   const author = getAuthor(post.authorId);
   const reviewer = post.lastReviewedAt ? getReviewer(post.reviewerId) : undefined;
   const path = `/blog/${post.slug}`;
+  const category = { name: CATEGORY_LABELS[post.category], href: `/blog/category/${post.category}` };
   return <>
-    <SEOHead title={post.title} description={post.excerpt} path={path} ogImage={post.ogImage ?? `/api/og?title=${encodeURIComponent(post.title)}`} noindex={isNoindexBlogSlug(post.slug)} />
+    <SEOHead title={post.title} description={post.excerpt} path={path} ogImage={post.ogImage ?? `/api/og?title=${encodeURIComponent(post.title)}`} />
     <EntityGraphSchema title={post.title} description={post.excerpt} url={path} pageType={isClinical ? 'MedicalWebPage' : 'WebPage'} />
     <BlogPostingSchema post={post} />
     {isClinical ? <MedicalWebPageSchema name={post.title} description={post.excerpt} path={path} lastReviewed={reviewer ? post.lastReviewedAt : undefined} reviewedBy={reviewer ? { name: reviewer.name, jobTitle: reviewer.title, honorificSuffix: reviewer.credentials } : undefined} /> : null}
     <CitationSchema pageUrl={path} pageType={isClinical ? 'MedicalWebPage' : 'WebPage'} citations={post.citations.map((source) => ({ '@type': source.type, headline: source.headline, url: source.url, publisher: { name: source.publisher }, ...(source.author ? { author: source.author } : {}), ...(source.datePublished ? { datePublished: source.datePublished } : {}) }))} />
     <PageShell>
-      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'TRT guides', href: '/blog' }, { name: CATEGORY_LABELS[post.category], href: `/blog/category/${post.category}` }, { name: post.title, href: path }]} />
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'TRT guides', href: '/blog' }, ...(categoryPublic ? [category] : []), { name: post.title, href: path }]} />
       <article className="container max-w-4xl py-10 md:py-16">
         <header>
-          <Link href={`/blog/category/${post.category}`} className="eyebrow underline-offset-4 hover:underline">{CATEGORY_LABELS[post.category]}</Link>
+          {categoryPublic ? <Link href={category.href} className="eyebrow underline-offset-4 hover:underline">{category.name}</Link> : <span className="eyebrow">{category.name}</span>}
           <h1 className="mt-5 font-serif text-4xl font-medium leading-tight text-primary md:text-5xl">{post.title}</h1>
           <p className="mt-5 text-lg leading-relaxed text-muted">{post.excerpt}</p>
           <p className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted"><span>By {author?.name ?? 'TRTrx Editorial Team'}</span><span>Editorial update <time dateTime={post.updatedAt}>{formatEditorialDate(post.updatedAt)}</time></span><span>{post.readMinutes} min read</span></p>
@@ -65,5 +65,5 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const post = getBlogPostBySlug(String(params?.slug ?? ''));
   if (!post) return { notFound: true };
   if (!isBlogPostPublic(post)) return { props: { held: true, slug: post.slug, title: post.title }, revalidate: 86400 };
-  return { props: { held: false, post, related: getRelatedBlogPosts(post.slug).map(summarizeBlogPost) }, revalidate: 86400 };
+  return { props: { held: false, post, categoryPublic: getPublicBlogCategories().includes(post.category), related: getRelatedBlogPosts(post.slug).map(summarizeBlogPost) }, revalidate: 86400 };
 };

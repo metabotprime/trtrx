@@ -1,5 +1,7 @@
+import { createHash } from 'node:crypto';
 import { ARTICLE_CONTENT } from './blog-content';
-import { CATEGORY_LABELS, isClinicalBlogSlug } from './blog-metadata';
+import { CATEGORY_LABELS, getReviewer, isClinicalBlogSlug } from './blog-metadata';
+import clinicalArticleReviews from './clinical-article-reviews.json';
 import { CLINICAL_CONTENT_RELEASED } from './launch';
 export { CATEGORY_LABELS, CATEGORY_DESCRIPTIONS, AUTHORS, REVIEWERS, getAuthor, getReviewer, formatEditorialDate } from './blog-metadata';
 
@@ -30,17 +32,39 @@ export function summarizeBlogPost(post: BlogPost): BlogPostSummary {
   const { slug, category, title, excerpt, readMinutes, updatedAt } = post;
   return { slug, category, title, excerpt, readMinutes, updatedAt };
 }
-export type ArticleInput = Omit<BlogPost, 'body' | 'readMinutes' | 'authorId' | 'updatedAt'> & {
+export type ArticleInput = Omit<BlogPost, 'body' | 'readMinutes' | 'authorId' | 'updatedAt' | 'reviewerId' | 'lastReviewedAt'> & {
   updatedAt?: string;
 };
-export const BLOG_POSTS: BlogPost[] = ARTICLE_CONTENT.map((post) => {
+type ClinicalArticleReview = { slug: string; contentSha256: string; reviewerId: string; reviewedAt: string };
+const reviews: readonly ClinicalArticleReview[] = clinicalArticleReviews;
+const reviewsBySlug = new Map(reviews.map((review) => [review.slug, review]));
+if (reviewsBySlug.size !== reviews.length) throw new Error('Duplicate clinical article review');
+
+const approvedClinicalSlugs = new Set<string>();
+export const BLOG_POSTS: BlogPost[] = ARTICLE_CONTENT.map((post): BlogPost => {
   const body = [post.quickAnswer, ...post.sections.flatMap((section) => [section.title, ...section.paragraphs, ...(section.bullets ?? []), ...(section.table ? [section.table.columns.join(' '), ...section.table.rows.map((row) => row.join(' '))] : [])])].join('\n\n');
-  return { ...post, body, authorId: 'editorial-team', updatedAt: post.updatedAt ?? '2026-10-06', readMinutes: Math.max(1, Math.ceil(body.split(/\s+/).filter(Boolean).length / 200)) };
+  const article = { ...post, body, authorId: 'editorial-team', updatedAt: post.updatedAt ?? '2026-10-06', readMinutes: Math.max(1, Math.ceil(body.split(/\s+/).filter(Boolean).length / 200)) };
+  const review = reviewsBySlug.get(article.slug);
+  if (!review) return article;
+
+  const date = new Date(`${review.reviewedAt}T00:00:00Z`);
+  const reviewer = getReviewer(review.reviewerId);
+  const sha256 = createHash('sha256').update(JSON.stringify(article)).digest('hex');
+  if (!isClinicalBlogSlug(article.slug) || !reviewer?.credentials ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(review.reviewedAt) || Number.isNaN(date.valueOf()) ||
+      date.toISOString().slice(0, 10) !== review.reviewedAt || sha256 !== review.contentSha256) {
+    throw new Error(`Invalid or stale clinical review for ${article.slug}`);
+  }
+  approvedClinicalSlugs.add(article.slug);
+  return { ...article, reviewerId: review.reviewerId, lastReviewedAt: review.reviewedAt };
 });
+if (approvedClinicalSlugs.size !== reviews.length) throw new Error('Clinical review references an unknown article');
+
 export function getBlogPostBySlug(slug: string) { return BLOG_POSTS.find((post) => post.slug === slug); }
 export function isBlogPostPublic(post: Pick<BlogPost, 'slug'>): boolean {
-  return CLINICAL_CONTENT_RELEASED || !isClinicalBlogSlug(post.slug);
+  return !isClinicalBlogSlug(post.slug) || approvedClinicalSlugs.has(post.slug);
 }
+export function hasPublicClinicalArticles(): boolean { return approvedClinicalSlugs.size > 0; }
 /** These publication helpers must also drive sitemaps and machine feeds. */
 export function getPublicBlogPosts(): BlogPost[] { return BLOG_POSTS.filter(isBlogPostPublic); }
 export function getHomepageBlogPosts() { return getPublicBlogPosts().filter((post) => post.onHomePage).slice(0, 3).map(summarizeBlogPost); }
@@ -56,7 +80,12 @@ export function getPopulatedBlogCategories(): BlogCategory[] {
 }
 export function getPublicBlogPostsByCategory(): Record<BlogCategory, BlogPost[]> {
   const grouped = getBlogPostsByCategory();
-  for (const category of Object.keys(grouped) as BlogCategory[]) grouped[category] = grouped[category].filter(isBlogPostPublic);
+  for (const category of Object.keys(grouped) as BlogCategory[]) {
+    // Category introductions are separate clinical surfaces with their own hold.
+    grouped[category] = CLINICAL_CONTENT_RELEASED || category === 'pricing'
+      ? grouped[category].filter(isBlogPostPublic)
+      : [];
+  }
   return grouped;
 }
 export function getPublicBlogCategories(): BlogCategory[] {

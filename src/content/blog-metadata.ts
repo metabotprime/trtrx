@@ -26,7 +26,9 @@ export const CATEGORY_DESCRIPTIONS: Record<BlogCategory, string> = {
 export const AUTHORS: BlogAuthor[] = [{ id: 'editorial-team', name: 'TRTrx Editorial Team', title: 'Editorial', credentials: '', photo: '', bio: 'TRTrx prepares educational articles using linked medical and government sources. An editorial update is not a clinical review. Each article shows its review status.' }];
 // Never add a reviewer without verified credentials and a completed review
 // of the specific article version. No placeholder names or organizations.
-export const REVIEWERS: BlogReviewer[] = [];
+export const REVIEWERS: BlogReviewer[] = [
+  { id: 'sean-arora', name: 'Sean Arora', title: 'Provider, Arora Health', credentials: 'MD', photo: '' },
+];
 export function getAuthor(id: string) { return AUTHORS.find((author) => author.id === id); }
 export function getReviewer(id?: string) { return id ? REVIEWERS.find((reviewer) => reviewer.id === id) : undefined; }
 export function formatEditorialDate(date: string): string {

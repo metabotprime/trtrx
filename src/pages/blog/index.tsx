@@ -6,14 +6,13 @@ import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 import { ArticleCard, CategoryNavigation, PublicationNotice } from '@/components/blog/ArticleParts';
-import { getPublicBlogPosts, getFeaturedBlogPosts, getPublicBlogCategories, summarizeBlogPost, type BlogPostSummary, type BlogCategory } from '@/content/blog';
-import { CLINICAL_CONTENT_RELEASED } from '@/content/launch';
+import { getPublicBlogPosts, getFeaturedBlogPosts, getPublicBlogCategories, hasPublicClinicalArticles, summarizeBlogPost, type BlogPostSummary, type BlogCategory } from '@/content/blog';
 
-type Props = { posts: BlogPostSummary[]; featured: BlogPostSummary[]; categories: BlogCategory[] };
-const title = CLINICAL_CONTENT_RELEASED ? 'TRT guides: testing, treatment, safety, and cost' : 'TRT costs and care planning';
-const description = CLINICAL_CONTENT_RELEASED ? 'Understand testosterone testing, treatment decisions, fertility, monitoring, and the questions to ask before choosing care. Sources and review status are visible.' : 'Compare written estimates, included services, billing periods, and cancellation terms. Clinical guidance is awaiting review; patient intake is not open.';
+type Props = { posts: BlogPostSummary[]; featured: BlogPostSummary[]; categories: BlogCategory[]; hasClinicalArticles: boolean };
 
-export default function BlogIndexPage({ posts, featured, categories }: Props) {
+export default function BlogIndexPage({ posts, featured, categories, hasClinicalArticles }: Props) {
+  const title = hasClinicalArticles ? 'TRT guides: testing, treatment, safety, and cost' : 'TRT costs and care planning';
+  const description = hasClinicalArticles ? 'Understand testosterone testing, treatment decisions, fertility, monitoring, and the questions to ask before choosing care. Sources and review status are visible.' : 'Compare written estimates, included services, billing periods, and cancellation terms. Clinical guidance is awaiting review; patient intake is not open.';
   return <>
     <SEOHead title={title} description={description} path="/blog" ogImage={`/api/og?title=${encodeURIComponent('TRT guides')}`} />
     <EntityGraphSchema title={title} description={description} url="/blog" pageType="CollectionPage" />
@@ -22,9 +21,9 @@ export default function BlogIndexPage({ posts, featured, categories }: Props) {
       <section className="bg-surface">
         <div className="container py-12 md:py-16">
           <p className="eyebrow">TRTrx resources</p>
-          <h1 className="mt-5 max-w-3xl font-serif text-display-lg font-medium text-primary">{CLINICAL_CONTENT_RELEASED ? 'Understand TRT.' : 'Understand the costs.'}<br /><span className="display-italic">Ask better questions.</span></h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{CLINICAL_CONTENT_RELEASED ? 'Guides to testing, treatment choices, safety, fertility, and cost. Start with the question that brought you here.' : 'A practical resource for comparing estimates and understanding the services behind an advertised price.'}</p>
-          {!CLINICAL_CONTENT_RELEASED ? <div className="mt-8 max-w-3xl"><PublicationNotice /></div> : null}
+          <h1 className="mt-5 max-w-3xl font-serif text-display-lg font-medium text-primary">{hasClinicalArticles ? 'Understand TRT.' : 'Understand the costs.'}<br /><span className="display-italic">Ask better questions.</span></h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{hasClinicalArticles ? 'Guides to testing, treatment choices, safety, fertility, and cost. Start with the question that brought you here.' : 'A practical resource for comparing estimates and understanding the services behind an advertised price.'}</p>
+          {!hasClinicalArticles ? <div className="mt-8 max-w-3xl"><PublicationNotice /></div> : null}
           <div className="mt-8"><CategoryNavigation categories={categories} /></div>
         </div>
       </section>
@@ -46,4 +45,4 @@ export default function BlogIndexPage({ posts, featured, categories }: Props) {
     </PageShell>
   </>;
 }
-export const getStaticProps: GetStaticProps<Props> = async () => ({ props: { posts: getPublicBlogPosts().sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).map(summarizeBlogPost), featured: getFeaturedBlogPosts().slice(0, 3).map(summarizeBlogPost), categories: getPublicBlogCategories() }, revalidate: 3600 });
+export const getStaticProps: GetStaticProps<Props> = async () => ({ props: { posts: getPublicBlogPosts().sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).map(summarizeBlogPost), featured: getFeaturedBlogPosts().slice(0, 3).map(summarizeBlogPost), categories: getPublicBlogCategories(), hasClinicalArticles: hasPublicClinicalArticles() }, revalidate: 3600 });

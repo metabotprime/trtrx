@@ -3,7 +3,6 @@ import { PageShell } from "@/components/layout/PageShell";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { EmailCapture } from "@/components/forms/EmailCapture";
 import {
-  CLINICAL_CONTENT_RELEASED,
   LAUNCH_MESSAGE,
   PLANNED_CARE_NOTICE,
 } from "@/content/launch";
@@ -40,13 +39,9 @@ export default function LaunchPage() {
                   className="text-primary underline underline-offset-4"
                   href="/blog"
                 >
-                  {CLINICAL_CONTENT_RELEASED
-                    ? "Read TRT guides"
-                    : "See guide publication status"}
+                  Read TRT guides
                 </Link>{" "}
-                {CLINICAL_CONTENT_RELEASED
-                  ? "and prepare questions for your own clinician."
-                  : "while clinical information awaits qualified review."}
+                and prepare questions for your own clinician.
               </li>
               <li>
                 <Link

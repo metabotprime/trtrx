@@ -2,6 +2,8 @@ import {
   getPublicBlogPosts,
   CATEGORY_LABELS,
   getPublicBlogCategories,
+  getReviewer,
+  hasPublicClinicalArticles,
 } from "@/content/blog";
 import { FAQS } from "@/content/faqs";
 import { TREATMENTS } from "@/content/treatments";
@@ -14,10 +16,14 @@ import {
 } from "@/content/launch";
 import { SITE_URL, toAbsoluteUrl } from "@/lib/seo/site";
 import { buildPricingMd } from "./pricing-md";
-import { isNoindexBlogSlug } from "@/lib/seo/noindex-slugs";
+import type { BlogPost } from "@/content/blog";
 
-const publicPosts = () =>
-  getPublicBlogPosts().filter((post) => !isNoindexBlogSlug(post.slug));
+function articleStatus(post: BlogPost): string {
+  const reviewer = getReviewer(post.reviewerId);
+  return reviewer && post.lastReviewedAt
+    ? `Medically reviewed by ${reviewer.name}, ${reviewer.credentials}, on ${post.lastReviewedAt}.`
+    : "This is an operational guide.";
+}
 
 export function buildLlmsTxt(): string {
   return [
@@ -32,7 +38,9 @@ export function buildLlmsTxt(): string {
     "",
     "## Content status",
     "",
-    "Operational guides use linked primary sources. Clinical guidance is withheld pending a completed clinical review. Editorial update dates are not physician review dates. No named clinicians, credentials, testimonials, state coverage, certification or clinical outcomes should be inferred.",
+    hasPublicClinicalArticles()
+      ? "Operational guides use linked primary sources. Published clinical articles list their reviewer and review date. Treatment guidance outside those articles remains subject to separate review. Editorial update dates are not physician review dates."
+      : "Operational guides use linked primary sources. Clinical guidance is withheld pending a completed clinical review. Editorial update dates are not physician review dates. No named clinicians, credentials, testimonials, state coverage, certification or clinical outcomes should be inferred.",
     "This is general information, not personalized medical advice. Pricing is planned, not a purchasable offer.",
     "",
     "## Website information",
@@ -54,7 +62,7 @@ export function buildLlmsTxt(): string {
     "",
     "## Articles",
     "",
-    ...publicPosts().map(
+    ...getPublicBlogPosts().map(
       (post) =>
         `- [${post.title}](${toAbsoluteUrl(`/blog/${post.slug}`)}): ${post.excerpt} Editorial update: ${post.updatedAt}.`,
     ),
@@ -87,10 +95,10 @@ export function buildLlmsFullTxt(): string {
     ...(CLINICAL_CONTENT_RELEASED ? FAQS.flatMap((faq) => [`## ${faq.question}`, faq.answer, ""]) : ["Patient intake is closed. State coverage, final services and support contacts are not confirmed.", ""]),
     "# Educational articles",
     "",
-    ...publicPosts().flatMap((post) => [
+    ...getPublicBlogPosts().flatMap((post) => [
       `## ${post.title}`,
       toAbsoluteUrl(`/blog/${post.slug}`),
-      `Editorial update: ${post.updatedAt}. This is an operational guide.`,
+      `Editorial update: ${post.updatedAt}. ${articleStatus(post)}`,
       "",
       post.body,
       "",

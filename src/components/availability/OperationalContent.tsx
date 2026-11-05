@@ -125,7 +125,7 @@ export function OperationalHome({ posts }: { posts: BlogPostSummary[] }) {
     <>
       <SEOHead
         title="TRTrx launch information and planned pricing"
-        description="Explore planned TRTrx pricing and current launch status. Patient intake is closed, and clinical content is awaiting review."
+        description="Explore planned TRTrx pricing and current launch status. Patient intake is closed, and treatment pages are awaiting review."
         path="/"
       />
       <OrganizationSchema />

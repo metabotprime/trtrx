@@ -5,8 +5,9 @@ import { SEOHead } from '@/components/seo/SEOHead';
 import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { PolicyContent } from '@/components/sections/PolicyContent';
+import { hasPublicClinicalArticles } from '@/content/blog';
 
-export default function EditorialPolicyPage() {
+export default function EditorialPolicyPage({ hasClinicalArticles }: { hasClinicalArticles: boolean }) {
   return (
     <>
       <SEOHead
@@ -32,7 +33,9 @@ export default function EditorialPolicyPage() {
           title="Editorial policy"
           lastUpdated="October 6, 2026"
           intro={[
-            'This policy describes how TRTrx content is researched, sourced, reviewed, and corrected. The public website provides operational information and cost-comparison education. Clinical guidance remains subject to completed review before publication.',
+            hasClinicalArticles
+              ? 'This policy describes how TRTrx content is researched, sourced, reviewed, and corrected. The public website includes operational information, cost-comparison education, and clinical articles with review credits.'
+              : 'This policy describes how TRTrx content is researched, sourced, reviewed, and corrected. The public website provides operational information and cost-comparison education. Clinical guidance remains subject to completed review before publication.',
           ]}
           sections={[
             {
@@ -67,10 +70,11 @@ export default function EditorialPolicyPage() {
                 {
                   p: (
                     <>
-                      Patient intake is closed. Clinical review of the prepared
-                      drafts has not yet been completed. Source checking and
-                      editorial updates do not constitute physician review. Our
-                      intended clinical review process is described in the{' '}
+                      Patient intake is closed. {hasClinicalArticles
+                        ? 'Published clinical articles credit the reviewer of that version. '
+                        : 'Clinical review of the prepared drafts has not yet been completed. '}
+                      Source checking and editorial updates do not constitute physician review.
+                      Our review process is described in the{' '}
                       <Link
                         href="/medical-review-policy"
                         className="text-primary underline-offset-4 hover:text-accent-strong"
@@ -126,6 +130,6 @@ export default function EditorialPolicyPage() {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  return { props: {}, revalidate: 86400 };
+export const getStaticProps: GetStaticProps<{ hasClinicalArticles: boolean }> = async () => {
+  return { props: { hasClinicalArticles: hasPublicClinicalArticles() }, revalidate: 86400 };
 };

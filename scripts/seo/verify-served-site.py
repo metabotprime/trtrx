@@ -2,7 +2,7 @@
 """Check the served site before release, without submitting any URLs."""
 import argparse
 import concurrent.futures
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from html.parser import HTMLParser
 import json
 import subprocess
@@ -27,6 +27,8 @@ class Page(HTMLParser):
         self.in_ld = False
         self.buffer = ""
         self.clinical_hold = False
+        self.in_article = False
+        self.article_text = []
 
     def handle_starttag(self, tag, attributes):
         attrs = dict(attributes)
@@ -36,6 +38,8 @@ class Page(HTMLParser):
             self.ids.add(attrs["id"])
         if tag == "h1":
             self.h1 += 1
+        if tag == "article":
+            self.in_article = True
         if tag == "title":
             self.in_title = True
         if tag == "meta":
@@ -48,6 +52,8 @@ class Page(HTMLParser):
             self.in_ld, self.buffer = True, ""
 
     def handle_endtag(self, tag):
+        if tag == "article":
+            self.in_article = False
         if tag == "title":
             self.in_title = False
         if tag == "script" and self.in_ld:
@@ -59,6 +65,8 @@ class Page(HTMLParser):
             self.title += data
         if self.in_ld:
             self.buffer += data
+        elif self.in_article:
+            self.article_text.append(data)
 
 
 def main():
@@ -70,6 +78,9 @@ def main():
     parser.add_argument("--request-host", help="Canonical Host header for a local release check")
     parser.add_argument("--resolve-ip", help="Fresh authoritative DNS IP when the local resolver is still cached; TLS validation stays enabled")
     parser.add_argument("--middleware-manifest", type=Path, help="Check that the actual Next.js build includes root middleware")
+    parser.add_argument("--clinical-review-manifest", type=Path, help="Expect the exact released clinical article list and review dates")
+    parser.add_argument("--reviewer-name", help="Expected display name on each reviewed article")
+    parser.add_argument("--reviewer-credentials", help="Expected credentials on each reviewed article")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     base = args.base.rstrip("/")
@@ -88,7 +99,17 @@ def main():
         "trt-and-hematocrit", "cypionate-vs-enanthate",
         "weekly-vs-twice-weekly-cypionate",
     }
-    held_paths = {f"/blog/{slug}" for slug in clinical_articles} | {
+    reviewed = {}
+    if args.clinical_review_manifest:
+        for row in json.loads(args.clinical_review_manifest.read_text()):
+            slug = row["slug"]
+            path = f"/blog/{slug}"
+            if slug not in clinical_articles or path in reviewed:
+                parser.error(f"Unknown or duplicate reviewed article: {slug}")
+            reviewed[path] = date.fromisoformat(row["reviewedAt"])
+    if reviewed and (not args.public or not args.reviewer_name or not args.reviewer_credentials):
+        parser.error("Reviewed articles require --public, --reviewer-name and --reviewer-credentials")
+    held_paths = ({f"/blog/{slug}" for slug in clinical_articles} - reviewed.keys()) | {
         "/treatments", *{f"/treatments/{slug}" for slug in ("cypionate", "enanthate", "enclomiphene", "hcg", "cream")},
         *{f"/blog/category/{category}" for category in ("getting-started", "protocols", "comparisons", "side-effects", "fertility")},
     }
@@ -122,7 +143,9 @@ def main():
     sitemap_paths = {urlsplit(url).path or "/" for url in locs}
     if sitemap_paths & held_paths:
         errors.append("Held clinical routes appear in the public sitemap")
-    paths = sorted(sitemap_paths | held_paths | {"/launch", "/sign-in"})
+    if reviewed.keys() - sitemap_paths:
+        errors.append("Reviewed clinical routes are missing from the public sitemap")
+    paths = sorted(sitemap_paths | held_paths | reviewed.keys() | {"/launch", "/sign-in"})
     pages = {}
 
     def inspect(path):
@@ -152,7 +175,24 @@ def main():
                 errors.append(f"{path}: noindex missing from HTML")
             if path in held_paths and not page.clinical_hold:
                 errors.append(f"{path}: clinical publication hold marker missing")
+            if path in reviewed:
+                review_date = reviewed[path]
+                display_date = f"{review_date:%B} {review_date.day}, {review_date.year}"
+                byline = f"Medically reviewed by {args.reviewer_name}, {args.reviewer_credentials}, on {display_date}."
+                visible = " ".join("".join(page.article_text).split())
+                if page.clinical_hold or byline not in visible:
+                    errors.append(f"{path}: reviewed article or byline is not visible")
+                if not any(
+                    item.get("@type") == "MedicalWebPage"
+                    and item.get("lastReviewed") == review_date.isoformat()
+                    and item.get("reviewedBy", {}).get("name") == args.reviewer_name
+                    and item.get("reviewedBy", {}).get("honorificSuffix") == args.reviewer_credentials
+                    for item in page.ld
+                ):
+                    errors.append(f"{path}: medical structured data does not match review")
 
+    if reviewed.keys() - set(pages["/blog"].links):
+        errors.append("The blog does not link to every reviewed clinical article")
     for path, page in pages.items():
         for href in page.links:
             target = urlsplit(urljoin(args.canonical + path, href))
@@ -182,8 +222,10 @@ def main():
             document = body.decode("utf-8")
             if any(args.canonical + route in document for route in held_paths):
                 errors.append(f"{path}: exposes held clinical route")
+            if path != "/image-sitemap.xml" and any(args.canonical + route not in document for route in reviewed):
+                errors.append(f"{path}: missing reviewed clinical route")
 
-    result = {"observedAt": datetime.now(timezone.utc).isoformat(), "base": base, "expectedPublic": args.public, "previewHost": args.preview, "authoritativeIPOverride": args.resolve_ip, "middlewareCompiled": middleware_compiled, "sitemapURLs": len(locs), "pagesChecked": len(pages), "heldClinicalRoutesChecked": len(held_paths), "jsonLdParsed": sum(len(page.ld) for page in pages.values()), "errors": sorted(set(errors))}
+    result = {"observedAt": datetime.now(timezone.utc).isoformat(), "base": base, "expectedPublic": args.public, "previewHost": args.preview, "authoritativeIPOverride": args.resolve_ip, "middlewareCompiled": middleware_compiled, "sitemapURLs": len(locs), "pagesChecked": len(pages), "heldClinicalRoutesChecked": len(held_paths), "reviewedClinicalRoutesChecked": len(reviewed), "jsonLdParsed": sum(len(page.ld) for page in pages.values()), "errors": sorted(set(errors))}
     if args.output:
         args.output.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result, indent=2))

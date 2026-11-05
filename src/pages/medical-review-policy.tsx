@@ -5,18 +5,22 @@ import { SEOHead } from '@/components/seo/SEOHead';
 import { EntityGraphSchema } from '@/components/seo/schemas/EntityGraphSchema';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { PolicyContent } from '@/components/sections/PolicyContent';
+import { hasPublicClinicalArticles } from '@/content/blog';
 
-export default function MedicalReviewPolicyPage() {
+export default function MedicalReviewPolicyPage({ hasClinicalArticles }: { hasClinicalArticles: boolean }) {
+  const description = hasClinicalArticles
+    ? 'How TRTrx verifies clinical reviews and records reviewer credits on published articles.'
+    : 'TRTrx clinical review requirements, the current pending-review status, and how verified reviewer credits will be shown.';
   return (
     <>
       <SEOHead
         title="Medical Review Policy"
-        description="TRTrx clinical review requirements, the current pending-review status, and how verified reviewer credits will be shown."
+        description={description}
         path="/medical-review-policy"
       />
       <EntityGraphSchema
         title="Medical Review Policy"
-        description="TRTrx clinical review requirements, the current pending-review status, and how verified reviewer credits will be shown."
+        description={description}
         url="/medical-review-policy"
         pageType="WebPage"
       />
@@ -32,7 +36,9 @@ export default function MedicalReviewPolicyPage() {
           title="Medical review policy"
           lastUpdated="October 6, 2026"
           intro={[
-            'Clinical review of the prepared TRTrx drafts has not yet been completed. Clinical guidance and treatment details require completed review before publication. Operational website information and cost-comparison education can be published through a separate factual verification process. Source-based editorial work does not replace clinical review.',
+            hasClinicalArticles
+              ? 'Published clinical articles list the reviewer and the date they reviewed that version. Treatment pages and other clinical materials require separate review before publication. Operational website information and cost-comparison education follow a separate factual verification process.'
+              : 'Clinical review of the prepared TRTrx drafts has not yet been completed. Clinical guidance and treatment details require completed review before publication. Operational website information and cost-comparison education can be published through a separate factual verification process. Source-based editorial work does not replace clinical review.',
           ]}
           sections={[
             {
@@ -47,7 +53,9 @@ export default function MedicalReviewPolicyPage() {
               heading: 'Who reviews it',
               blocks: [
                 {
-                  p: 'The process requires an appropriately qualified clinician with relevant experience. The reviewer’s identity and credentials must be verified, and the review must cover the specific content version. No reviewer has been credited for the prepared clinical drafts because completed clinical review has not been established.',
+                  p: hasClinicalArticles
+                    ? 'The process requires an appropriately qualified clinician with relevant experience. Each published clinical article credits the clinician who reviewed that specific version.'
+                    : 'The process requires an appropriately qualified clinician with relevant experience. The reviewer’s identity and credentials must be verified, and the review must cover the specific content version. No reviewer has been credited for the prepared clinical drafts because completed clinical review has not been established.',
                 },
               ],
             },
@@ -76,7 +84,9 @@ export default function MedicalReviewPolicyPage() {
               heading: 'Current publication status',
               blocks: [
                 {
-                  p: 'Patient intake is closed. The public website provides operational information and source-based cost-comparison education. Clinical drafts and treatment guidance are held for review. Preparing an article or linking a guideline does not establish that a physician reviewed it, and no completed review is implied by the public website being available.',
+                  p: hasClinicalArticles
+                    ? 'Patient intake is closed. Clinical articles are educational. A review credit on an article applies to that article only and does not imply that treatment pages or clinical services are available.'
+                    : 'Patient intake is closed. The public website provides operational information and source-based cost-comparison education. Clinical drafts and treatment guidance are held for review. Preparing an article or linking a guideline does not establish that a physician reviewed it, and no completed review is implied by the public website being available.',
                 },
               ],
             },
@@ -114,6 +124,6 @@ export default function MedicalReviewPolicyPage() {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  return { props: {}, revalidate: 86400 };
+export const getStaticProps: GetStaticProps<{ hasClinicalArticles: boolean }> = async () => {
+  return { props: { hasClinicalArticles: hasPublicClinicalArticles() }, revalidate: 86400 };
 };
