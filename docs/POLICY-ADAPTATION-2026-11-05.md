@@ -27,7 +27,7 @@ Trimi `origin/main` at `b8f05301384a819668898bd56eeb0897b3dfea53`:
 | Outcomes | Trimi's six-month weight-loss promise does not apply to TRT and was not copied or renamed. No new outcome or satisfaction promise was created. |
 | Clinical and fulfillment facts | No BelieveRx affiliation, overnight shipping commitment or operating patient portal was inferred from Trimi. |
 | Arbitration | Future-service clause retains the written 30-day opt-out structure; it does not start an opt-out clock while there is no working notices channel. |
-| Legal entity | Christian confirmed TRTRX LLC on November 5, 2026. The terms identify that entity as the operator; TRYTRIMI LLC was not copied from Trimi. |
+| Legal entity | Christian corrected the operator to PEPLUX LLC on November 5, 2026, superseding the earlier TRTRX LLC statement. The terms identify PEPLUX LLC as the operator; TRYTRIMI LLC was not copied from Trimi. |
 
 The Terms incorporate a Provider Code of Conduct, so `/code-of-conduct` was
 also adapted and added. It sets expectations without claiming that automated
