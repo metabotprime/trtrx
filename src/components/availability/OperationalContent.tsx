@@ -94,8 +94,8 @@ function PlanningCards() {
               label: "Check current status",
             },
             {
-              title: "Publication status",
-              body: "Clinical articles and treatment information will be released only after qualified review is completed.",
+              title: "How we review articles",
+              body: "See how we verify reviewer credentials and record the review date for each clinical guide.",
               href: "/medical-review-policy",
               label: "Read the review policy",
             },
@@ -226,10 +226,15 @@ function AboutPlans() {
           </p>
         </div>
         <p>
-          Clinical articles and treatment information are being prepared
-          separately. They remain unpublished while qualified clinical review is
-          pending. An editorial update or a linked reference does not count as
-          medical review.
+          Explore the{" "}
+          <Link
+            href="/blog"
+            className="text-primary underline underline-offset-4"
+          >
+            TRT guides
+          </Link>
+          {" "}for educational articles and cost information. Each published
+          clinical guide lists its reviewer and review date.
         </p>
         <p>
           Patient intake, consultations, prescriptions, accounts and payments

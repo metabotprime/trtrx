@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import type { BlogPostSummary } from '@/content/blog';
 import { CATEGORY_LABELS } from '@/content/blog-metadata';
-import { CLINICAL_CONTENT_RELEASED } from '@/content/launch';
 import { SectionHeader } from './SectionHeader';
 
 export function HomeBlogSection({ posts }: { posts: BlogPostSummary[] }) {
@@ -15,9 +14,7 @@ export function HomeBlogSection({ posts }: { posts: BlogPostSummary[] }) {
           <SectionHeader
             eyebrow="TRTrx blog"
             title="Read up on *TRT.*"
-            subtitle={CLINICAL_CONTENT_RELEASED
-              ? 'Guides to testosterone testing, treatment decisions, and monitoring.'
-              : 'Compare TRT costs for medication, lab work, appointments, and supplies.'}
+            subtitle="Explore our published guides and the sources behind them."
             align="left"
             size="md"
             className="mx-0"

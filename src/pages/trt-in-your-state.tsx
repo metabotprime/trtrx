@@ -65,7 +65,7 @@ export default function StateAvailabilityPage() {
           <p className="mt-4 max-w-3xl leading-relaxed text-muted">
             The Federation of State Medical Boards directory links to state medical boards.
             The FDA explains how to check an online pharmacy. These resources help you verify
-            a provider’s claims; listing them here does not imply that TRTrx has established a clinical network or pharmacy partnership.
+            a provider’s claims. Check clinician and pharmacy details directly before arranging care.
           </p>
           <ul className="mt-6 space-y-3 text-primary underline underline-offset-4">
             <li><a href="https://www.fsmb.org/contact-a-state-medical-board/" target="_blank" rel="noopener noreferrer">Find your state medical board through FSMB</a></li>
@@ -73,11 +73,11 @@ export default function StateAvailabilityPage() {
           </ul>
           <h2 className="mt-12 font-serif text-3xl font-medium text-primary">Explore the current public information</h2>
           <p className="mt-4 max-w-3xl leading-relaxed text-muted">
-            Compare service estimates and planning prices, or check launch status.
-            Clinical articles and treatment guidance remain unpublished while qualified review is pending.
+            Read the TRT guides, compare service estimates and planning prices, or check launch status.
           </p>
           <ul className="mt-6 flex flex-wrap gap-3">
             {[
+              ['Browse TRT guides', '/blog'],
               ['Compare the complete care bill', '/blog/how-trt-pricing-works'],
               ['Planned TRTrx pricing', '/pricing'],
               ['Publication review policy', '/medical-review-policy'],
