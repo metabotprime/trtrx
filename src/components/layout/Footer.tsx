@@ -37,6 +37,7 @@ const FOOTER_GROUPS = [
       { label: "About", href: "/about" },
       { label: "Provider network", href: "/about#provider-network" },
       { label: "Contact", href: "/contact" },
+      { label: "care@trtrx.com", href: "mailto:care@trtrx.com" },
     ],
   },
   {
