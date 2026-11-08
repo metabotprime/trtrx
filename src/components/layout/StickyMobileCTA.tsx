@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { LAUNCH_PATH, PRIMARY_CTA_LABEL } from "@/content/launch";
+import { useRouter } from "next/router";
+import { nextPublicCta } from "@/content/public-ctas";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -10,6 +11,7 @@ type Props = {
 };
 
 export function StickyMobileCTA({ revealAfterPx = 480 }: Props) {
+  const cta = nextPublicCta(useRouter().asPath);
   const [visible, setVisible] = useState(false);
   const [lastY, setLastY] = useState(0);
 
@@ -43,13 +45,15 @@ export function StickyMobileCTA({ revealAfterPx = 480 }: Props) {
     >
       <div className="border-t border-border bg-surface/95 px-5 py-3 backdrop-blur-md">
         <Link
-          href={LAUNCH_PATH}
+          href={cta.href}
+          data-trtrx-cta={cta.action}
+          data-trtrx-surface="mobile_sticky"
           className={buttonVariants({
             size: "lg",
             className: "w-full pointer-events-auto",
           })}
         >
-          {PRIMARY_CTA_LABEL}
+          {cta.label}
         </Link>
       </div>
     </div>

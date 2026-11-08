@@ -114,7 +114,7 @@ export default function EditorialPolicyPage({ hasClinicalArticles }: { hasClinic
           ]}
           footnote={
             <>
-              Support contact details will be published before intake opens. See our{' '}
+              For general questions or editorial corrections, see our{' '}
               <Link
                 href="/contact"
                 className="text-primary underline-offset-4 hover:text-accent-strong"

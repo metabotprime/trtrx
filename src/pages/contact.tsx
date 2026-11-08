@@ -11,13 +11,13 @@ export default function ContactPage() {
     <>
       <SEOHead
         title="Contact"
-        description="TRTrx support contact details will be published before intake opens. No support mailbox, patient intake or consultations are available through this website."
+        description="Email care@trtrx.com for general website and launch questions. Patient intake and consultations are not available yet."
         path="/contact"
         ogImage="/og/contact.png"
       />
       <EntityGraphSchema
         title="Contact"
-        description="TRTrx support contact details will be published before intake opens. No support mailbox, patient intake or consultations are available through this website."
+        description="Email care@trtrx.com for general website and launch questions. Patient intake and consultations are not available yet."
         url="/contact"
         pageType="ContactPage"
       />
@@ -32,9 +32,9 @@ export default function ContactPage() {
           <div className="container py-24 md:py-32">
             <SectionHeader
               as="h1"
-              eyebrow="Contact status"
-              title="Support is *being prepared.*"
-              subtitle="Support contact details will be published before intake opens. There is no active support mailbox or contact form on this website."
+              eyebrow="Contact TRTrx"
+              title="Questions about *TRTrx?*"
+              subtitle="Email care@trtrx.com for general questions about the website and launch plans. Patient intake remains closed."
             />
 
             <div className="mx-auto mt-12 max-w-xl rounded-2xl border border-border bg-surface-alt p-8 text-center md:p-10">
@@ -48,11 +48,15 @@ export default function ContactPage() {
                 Patient intake is not open.
               </p>
               <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted">
-                We are not accepting support messages, booking consultations or
-                collecting medical information through this site. For medical
+                Please do not email medical records, laboratory results, payment
+                information or identification. We are not booking consultations. For medical
                 concerns, contact your existing licensed healthcare provider.
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+                <a href="mailto:care@trtrx.com" data-trtrx-cta="email" data-trtrx-surface="contact"
+                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-7 py-3 text-[15px] font-medium text-primary-foreground">
+                  care@trtrx.com
+                </a>
                 <Link
                   href="/launch"
                   className="inline-flex h-12 items-center justify-center rounded-full border border-primary bg-transparent px-7 text-[15px] font-medium text-primary transition-all hover:-translate-y-px hover:bg-primary hover:text-primary-foreground"

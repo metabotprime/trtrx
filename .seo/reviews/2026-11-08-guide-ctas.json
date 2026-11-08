@@ -1,0 +1,98 @@
+{
+  "brand": "TRTRx",
+  "verdict": "GO",
+  "reviewedAt": "2026-11-08T22:56:16.524841+00:00",
+  "baseCommit": "3db16eec61cc16006448c8303d946cece7ac2a2d",
+  "reviewer": "Codex operational-content and implementation review, not a new clinical review",
+  "founderAuthorization": "Go ahead with the first release you recommended: feature the cost and provider guides, improve the CTAs, fix the contact wording, and add click tracking. Keep intake closed and use the required PR review.",
+  "reviewScope": "Guide discovery, informational CTA destinations, verified general mailbox wording and isolated public-page click events. No new clinical claims, prices, offers, reviewer labels or intake activation.",
+  "intakeEnabled": false,
+  "evidence": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "tsxParse": {
+      "status": "PASS",
+      "files": 20
+    },
+    "nextBuild": "PASS",
+    "servedSite": {
+      "observedAt": "2026-11-08T22:55:13.855057+00:00",
+      "base": "http://localhost:3118",
+      "expectedPublic": true,
+      "previewHost": false,
+      "authoritativeIPOverride": null,
+      "middlewareCompiled": true,
+      "sitemapURLs": 27,
+      "pagesChecked": 40,
+      "heldClinicalRoutesChecked": 11,
+      "reviewedClinicalRoutesChecked": 9,
+      "jsonLdParsed": 76,
+      "errors": []
+    },
+    "trackingIsolation": {
+      "productionRouteRows": 17,
+      "totalReplayFixtures": 29,
+      "nonNewDifferences": 0,
+      "negativeControls": 3,
+      "listenerLifecycle": "PASS",
+      "existingTrackingFiles": "byte-identical",
+      "sourceClinicalPages": "excluded by existing publicGa4Url gate",
+      "eventDelivery": "NOT_MEASURED before deployment"
+    },
+    "browser": {
+      "desktop": "1280px homepage reviewed",
+      "mobile": "390px homepage and contact, no horizontal overflow; menu to cost guide to provider guide to pricing verified"
+    },
+    "contact": "Exact care@trtrx.com Exchange delivered message trace verified in this chat before implementation; no test email sent by agent.",
+    "primaryTrackingDocumentation": "https://vercel.com/docs/analytics/custom-events"
+  },
+  "preserved": [
+    "src/content/launch.ts",
+    "src/content/blog-content.ts",
+    "src/content/blog-metadata.ts",
+    "src/content/clinical-article-reviews.json",
+    "src/content/pricing.ts",
+    "src/pages/_app.tsx",
+    "src/lib/analytics/ga4.ts",
+    "src/components/analytics/PublicGa4.tsx"
+  ],
+  "exposureNote": "Founder-requested homepage and shared CTA changes alter the discovery path during the existing November readout window. Compare periods with this release annotated. Traffic, organic lift and orders remain NOT_MEASURED.",
+  "findings": {
+    "blocking": [],
+    "limitations": [
+      "Provider-selection and other clinical-source pages do not emit click events. Links to these guides from approved operational pages are measured.",
+      "A mailbox click is not an email sent, lead, order or payment.",
+      "No new clinical review is represented. Existing clinical article bytes, hashes and reviewer dates are retained."
+    ]
+  },
+  "files": {
+    ".github/workflows/release-review.yml": "5ce45d931b499b1f65b80c3d37c32b1653ec566d629867f887aa6c0beb2deb9d",
+    "scripts/analytics/fixtures/production-routes-20261104.json": "3a5de8d02cd4ea604602b849bdbe407f997098de7d1c945c1a2babb65283d23e",
+    "scripts/analytics/verify-public-cta.mjs": "10851c68e8f17486a7900265b79e845264d1658caeb8c4bccb1242155baba4ec",
+    "scripts/seo/verify-release-review.mjs": "6795802ab0a2a04169ba0326f67f4b295ede34e725c3d1562e513abcc86b0f79",
+    "src/components/analytics/PublicCtaTracking.tsx": "79d2989107ee6b00117635eb638d38f5c9da802d688095901fca7ae5a32245e3",
+    "src/components/availability/OperationalContent.tsx": "9b46b87e2f77784e25d19896708788e086a5cdbc565c3f3ea08c283404b874d3",
+    "src/components/blog/GuideNextStep.tsx": "4b89948635a9636c121e7d12eada2fadc8e52fbe364cbc63c3922c3c0aaf082c",
+    "src/components/forms/EmailCapture.tsx": "739056b0a97a3e72d2e8fc5285c883a4420263cefdd100cc36e1ba26b242baf4",
+    "src/components/layout/Footer.tsx": "8cf5f091de3f39eb08aa761715aebb867678f52675ecf809fb2a78dc3f7511bc",
+    "src/components/layout/Navigation.tsx": "7cc403d9931af64b4e14312518ff1349b6f972a94277e22b505898f8c31e43ec",
+    "src/components/layout/PageShell.tsx": "57920f9cfa23145a9dc403af94bda4ee1e9130686d9f9ec4e88a8d0512b8f956",
+    "src/components/layout/StickyMobileCTA.tsx": "57dea2ad5f16bc3987bd653a5ef32ebb956f8533bf359d5572250bf1d09bc160",
+    "src/components/sections/FooterCTABand.tsx": "3460dc45e21cd98c0be7cf6af586af53834cf7a40c74b9d9a443618f3953984a",
+    "src/components/sections/HeroCentered.tsx": "38fede598b442b22da7e1c954dd11fbbdf889ae757253d45a8bc79de62c6bf40",
+    "src/components/sections/HomeBlogSection.tsx": "234fb7fe692de070749814601831f8ed652038a1256ddaed371a1355b27b860e",
+    "src/content/blog.ts": "6ee5119a243c4238b1a3cfeec855df41f6e23a80dcb2d83034206ff4a330a8cf",
+    "src/content/public-ctas.ts": "be5f58879a3b097a3721da51f016ed11cb07136ae067924a216ddd62475d40cc",
+    "src/lib/analytics/public-cta.ts": "caccde8a0dac1efae745862c658113ba270dda0c5932241967eced46d0ba39e0",
+    "src/lib/seo/site.ts": "7d33ca083a0221a4b6983423eb52241eb2aec32f5e63e3b7cbbf1b7965559a6e",
+    "src/pages/accessibility.tsx": "e89f713ef9428873646ae7ea31540bf9410be06f90291ba14c77b4f0f4f17a70",
+    "src/pages/blog/[slug].tsx": "7add76bcda66a1f8dbafbefadb82e0226f561f334996647ae08a9d8c9be2ddab",
+    "src/pages/contact.tsx": "d2a9213f6ac0ad1fe5c5f2807b37df76475df2e942c8300ad61d49e95a5be4b3",
+    "src/pages/editorial-policy.tsx": "27646eaaf807e6c3cffc99995e96d063c3545355bab6c88761d3b5d35b0e690b",
+    "src/pages/medical-disclaimer.tsx": "9efdd20c9c2468e4b6a5d786d37be0cf5f7739ffabe06632c915765058f92080",
+    "src/pages/medical-review-policy.tsx": "4a6fdf31cbcb761f0c967b8d0bb810680233947fe10d1fad7ba282ce3ef9abd7",
+    "src/pages/privacy.tsx": "c2c1b1a1a1b9e8561e18da13cdd0984fecb4734cacd307766a4d59d00111ede0",
+    "src/pages/refund-policy.tsx": "34db1ae54d163ff6fdf94d20f49cc789923355b9679a74de93c126837daaff8a",
+    "src/pages/terms.tsx": "2d935b227f0b8cecc47fd27538cc941ad4a839f2bb13bf9b599fc1a9f2bbc924"
+  }
+}

@@ -6,9 +6,9 @@ export const SITE_DESCRIPTION =
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/api/og`;
 export const TITLE_SUFFIX = ` | ${SITE_NAME}`;
 
-// No support mailbox is provisioned. Never publish an unverified address.
-export const SITE_CONTACT_EMAIL = "";
-// PRELAUNCH: real support phone provisioned with the contact mailbox.
+// Verified mailbox for general website and launch questions, not patient intake.
+export const SITE_CONTACT_EMAIL = "care@trtrx.com";
+// No support phone has been verified for publication.
 export const SITE_CONTACT_PHONE = "";
 export const SITE_CONTACT_PHONE_DISPLAY = "";
 

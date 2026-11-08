@@ -24,7 +24,7 @@ const FOOTER_GROUPS = [
       { label: "Pricing", href: "/pricing" },
       { label: "FAQ", href: "/faq" },
       {
-        label: CLINICAL_CONTENT_RELEASED ? "TRT guides" : "Guide review status",
+        label: "TRT guides",
         href: "/blog",
       },
       { label: "Your state", href: "/trt-in-your-state" },
@@ -78,6 +78,8 @@ export function Footer() {
                     <li key={link.href}>
                       <Link
                         href={link.href}
+                        data-trtrx-cta={link.href === "mailto:care@trtrx.com" ? "email" : undefined}
+                        data-trtrx-surface="footer"
                         className="text-sm text-surface/85 transition-colors hover:text-accent"
                       >
                         {link.label}

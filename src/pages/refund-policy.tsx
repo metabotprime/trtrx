@@ -98,7 +98,7 @@ export default function RefundPolicyPage() {
           {
             heading: "How to request a refund",
             blocks: [
-              { p: <>A working support channel and any patient-portal instructions must be published before purchases begin. The current <Link href="/contact" className={linkClass}>contact page</Link> describes availability; it does not receive refund requests. Do not send medical records, payment details or identification to an unverified address.</> },
+              { p: <>General policy questions can be sent through the email address on our <Link href="/contact" className={linkClass}>contact page</Link>. No purchases are currently available. A refund request process and any patient-portal instructions must be published before purchases begin. Do not email medical records, payment details or identification.</> },
               { p: "Once the service opens, use the designated support channel and include:" },
               { list: [
                 "Your full name and the email associated with your account.",
