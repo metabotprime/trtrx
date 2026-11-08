@@ -33,6 +33,8 @@ export function HomeBlogSection({ posts }: { posts: BlogPostSummary[] }) {
             <li key={post.slug} className="min-w-0 flex-1 basis-64">
               <Link
                 href={`/blog/${post.slug}`}
+                data-trtrx-cta={post.slug === 'how-trt-pricing-works' ? 'cost_guide' : post.slug === 'choosing-online-trt-provider' ? 'provider_guide' : undefined}
+                data-trtrx-surface="featured_guides"
                 className="group flex h-full items-center justify-between gap-5 rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:p-6"
               >
                 <div>

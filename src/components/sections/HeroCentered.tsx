@@ -120,19 +120,15 @@ export function HeroCentered() {
 
             <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:gap-6">
               <Link
-                href={
-                  CLINICAL_CONTENT_RELEASED
-                    ? "/blog/testosterone-replacement-therapy-guide"
-                    : "/pricing"
-                }
+                href="/blog/how-trt-pricing-works"
+                data-trtrx-cta="cost_guide"
+                data-trtrx-surface="hero"
                 className={cn(
                   buttonVariants({ size: "lg" }),
                   "group gap-3 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-surface",
                 )}
               >
-                {CLINICAL_CONTENT_RELEASED
-                  ? "Start with the TRT guide"
-                  : "See planned pricing"}
+                Compare TRT costs
                 <ArrowRight
                   size={18}
                   aria-hidden
@@ -140,12 +136,12 @@ export function HeroCentered() {
                 />
               </Link>
               <Link
-                href={CLINICAL_CONTENT_RELEASED ? "/pricing" : "/launch"}
+                href="/pricing"
+                data-trtrx-cta="planned_pricing"
+                data-trtrx-surface="hero"
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-sm text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-primary"
               >
-                {CLINICAL_CONTENT_RELEASED
-                  ? "See planned pricing"
-                  : "Check launch status"}
+                See planned pricing
                 <ArrowRight size={15} aria-hidden />
               </Link>
             </div>

@@ -90,12 +90,12 @@ export default function MedicalDisclaimerPage() {
           ]}
           footnote={
             <>
-              Support contact details will be published before intake opens. Check our{" "}
+              For general website questions, see our{" "}
               <Link
                 href="/contact"
                 className="text-primary underline-offset-4 hover:text-accent-strong"
               >
-                contact status
+                contact page
               </Link>
               . See also our{" "}
               <Link

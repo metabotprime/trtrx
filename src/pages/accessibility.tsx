@@ -62,7 +62,7 @@ export default function AccessibilityPage() {
               heading: 'Ongoing work and known limitations',
               blocks: [
                 {
-                  p: 'We test as we build and address issues as we find them. A complete audit across assistive technologies and browser combinations has not been completed. The public support channel is also not yet available, so the website cannot currently receive accessibility reports.',
+                  p: 'We test as we build and address issues as we find them. A complete audit across assistive technologies and browser combinations has not been completed. Accessibility reports can be sent to care@trtrx.com.',
                 },
               ],
             },
@@ -70,7 +70,7 @@ export default function AccessibilityPage() {
               heading: 'Accessibility contact status',
               blocks: [
                 {
-                  p: 'Support contact details, including a route for accessibility feedback, will be published before intake opens. There is no active support mailbox or feedback form on this website. We are not promising a response time before that channel is available.',
+                  p: 'Email care@trtrx.com with accessibility feedback. Include the page address and a description of the issue, without medical or other sensitive information. There is no feedback form on this website.',
                 },
               ],
             },
@@ -82,7 +82,7 @@ export default function AccessibilityPage() {
                 href="/contact"
                 className="text-primary underline-offset-4 hover:text-accent-strong"
               >
-                contact status
+                contact page
               </Link>
               {' '}for support availability.
             </>

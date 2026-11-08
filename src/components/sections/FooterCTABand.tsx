@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import {
-  CLINICAL_CONTENT_RELEASED,
   INTAKE_ENABLED,
   LAUNCH_MESSAGE,
-  LAUNCH_PATH,
-  PRIMARY_CTA_LABEL,
 } from "@/content/launch";
+import { useRouter } from "next/router";
+import { nextPublicCta } from "@/content/public-ctas";
 
 type Props = {
   headline?: string;
@@ -19,6 +18,7 @@ export function FooterCTABand({
   italic = "for TRT.",
   caption = LAUNCH_MESSAGE,
 }: Props) {
+  const cta = nextPublicCta(useRouter().asPath);
   return (
     <section className="bg-primary text-surface">
       <div className="container py-20 text-center md:py-28">
@@ -30,15 +30,17 @@ export function FooterCTABand({
           <span className="display-italic text-accent">{italic}</span>
         </h2>
 
-        <div className="mt-9 flex justify-center">
-          <Link href={LAUNCH_PATH} className={buttonVariants({ size: "lg" })}>
-            {PRIMARY_CTA_LABEL}
+        <div className="mt-9 flex flex-col items-center justify-center gap-5 sm:flex-row sm:gap-6">
+          <Link href={cta.href} data-trtrx-cta={cta.action} data-trtrx-surface="footer_band" className={buttonVariants({ size: "lg" })}>
+            {cta.label}
           </Link>
           <Link
-            href={CLINICAL_CONTENT_RELEASED ? "/blog" : "/pricing"}
-            className="ml-6 self-center text-sm font-medium underline underline-offset-4"
+            href="mailto:care@trtrx.com"
+            data-trtrx-cta="email"
+            data-trtrx-surface="footer_band"
+            className="inline-flex min-h-11 items-center text-sm font-medium underline underline-offset-4"
           >
-            {CLINICAL_CONTENT_RELEASED ? "Read TRT guides" : "Planned pricing"}
+            Email a general question
           </Link>
         </div>
 

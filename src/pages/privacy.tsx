@@ -9,23 +9,23 @@ export default function PolicyPage() {
       <SEOHead
         title={"Privacy policy"}
         description={
-          "Privacy information for the TRTrx educational website. Intake, payments, accounts, support messages and email signup are not available."
+          "Privacy information for the TRTrx educational website and general email contact. Patient intake, payments, accounts and email signup are not available."
         }
         path={"/privacy"}
       />
       <PolicyContent
         eyebrow="Website information"
         title={"Privacy policy"}
-        lastUpdated="October 8, 2026"
+        lastUpdated="November 8, 2026"
         intro={[
-          "TRTrx provides educational and planned-service information. There is no patient intake form, active account system, payment checkout, support messaging or email waitlist signup on this site. This notice describes the current website, not a future clinical service.",
+          "TRTrx provides educational and planned-service information and a mailbox for general questions. There is no patient intake form, active account system, payment checkout, patient messaging or email waitlist signup on this site. This notice describes the current website, not a future clinical service.",
         ]}
         sections={[
           {
             heading: "Forms and contact information",
             blocks: [
               {
-                p: "The website does not provide a form or active support mailbox for sending personal information. Support contact details will be published before intake opens. Do not send medical records, laboratory results, identification documents or other sensitive health information to an unverified address.",
+                p: "You can email care@trtrx.com for general website, launch or privacy questions. If you email us, your email address and message contents are processed to handle your correspondence. This mailbox is not patient intake or a clinical messaging service. Do not email medical records, laboratory results, payment information, identification documents or other sensitive health information.",
               },
             ],
           },
@@ -37,7 +37,7 @@ export default function PolicyPage() {
               },
               {
                 p: PUBLIC_LAUNCH_ENABLED
-                  ? "The public website is configured to use Vercel Web Analytics to understand page visits. URL query strings and fragments are removed, and account, intake and portal routes are excluded. No clinical intake or payment data is collected through this analytics configuration. This notice must be revisited before future clinical data collection or additional tracking is enabled."
+                  ? "The public website uses Vercel Web Analytics to understand page visits and selected link clicks on operational pages. Click events contain fixed action and placement labels and the public page path. They do not include message contents, email addresses entered by visitors or form values. URL query strings and fragments are removed, and account, intake and portal routes are excluded. Click events are also excluded from clinical-content pages. No clinical intake or payment data is collected through this analytics configuration. This notice must be revisited before future clinical data collection or additional tracking is enabled."
                   : "Public-site analytics are disabled during prelaunch. The planned public-site analytics configuration removes URL query strings and fragments and excludes account, intake and portal routes. This notice must be revisited before any future clinical data collection or additional tracking is enabled.",
               },
               {
@@ -62,7 +62,7 @@ export default function PolicyPage() {
             heading: "Your choices",
             blocks: [
               {
-                p: "You can browse without creating an account or joining a mailing list. You can control cookies and similar storage through your browser settings. An active support channel and instructions for privacy requests will be published before intake opens; this website does not currently receive those requests.",
+                p: "You can browse without creating an account or joining a mailing list. You can control cookies and similar storage through your browser settings. For questions about this website's privacy practices, email care@trtrx.com. Please do not include sensitive health information.",
               },
             ],
           },
@@ -77,12 +77,12 @@ export default function PolicyPage() {
         ]}
         footnote={
           <>
-            Support contact details will be published before intake opens. Check our{" "}
+            For general questions, see our{" "}
             <Link
               className="text-primary underline underline-offset-4"
               href="/contact"
             >
-              contact status
+              contact page
             </Link>
             .
           </>

@@ -95,7 +95,7 @@ export default function TermsPage() {
           {
             heading: "Communications by text and email",
             blocks: [
-              { p: "The website currently has no active support mailbox, signup form or patient messaging service. Do not send sensitive health information to an unverified address. Service communications and any separate marketing choices must be disclosed before a future messaging program begins." },
+              { p: "Email care@trtrx.com for general website and launch questions. The website has no signup form or patient messaging service. Do not email sensitive health information. Service communications and any separate marketing choices must be disclosed before a future messaging program begins." },
               { p: "If you opt into a future text-message program, you must be the authorized user of the device. Message and data rates may apply, messages may not be encrypted, and carriers are not responsible for delayed or undelivered messages. You can opt out by replying STOP and request help by replying HELP. No text-message enrollment is offered on this website." },
             ],
           },
@@ -149,7 +149,7 @@ export default function TermsPage() {
             ],
           },
         ]}
-        footnote={<>Support contact details will be published before intake opens. Check our <Link href="/contact" className={linkClass}>contact status</Link>. See also the <Link href="/refund-policy" className={linkClass}>refund and cancellation policy</Link>.</>}
+        footnote={<>For general questions, see our <Link href="/contact" className={linkClass}>contact page</Link>. See also the <Link href="/refund-policy" className={linkClass}>refund and cancellation policy</Link>.</>}
       />
     </PageShell>
   );

@@ -14,15 +14,16 @@ export function EmailCapture({ className, variant = "inline" }: Props) {
         Email updates are not available yet.
       </p>
       <p className="mt-2 text-sm leading-relaxed text-muted">
-        There is no waitlist signup on this site. Support contact details will
-        be published before intake opens. See the{" "}
+        There is no waitlist signup on this site. For general website and launch questions, email{" "}
         <Link
           className="font-medium text-primary underline underline-offset-4"
-          href="/contact"
+          href="mailto:care@trtrx.com"
+          data-trtrx-cta="email"
+          data-trtrx-surface="email_notice"
         >
-          contact status
+          care@trtrx.com
         </Link>
-        . No email address or medical information is collected here.
+        . Patient intake is closed. Please do not email medical information.
       </p>
     </div>
   );

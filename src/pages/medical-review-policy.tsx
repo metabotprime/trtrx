@@ -94,7 +94,7 @@ export default function MedicalReviewPolicyPage({ hasClinicalArticles }: { hasCl
               heading: 'Flagging a concern',
               blocks: [
                 {
-                  p: 'If content is found to be inaccurate or outdated, the affected claim must be corrected or removed and any previous clinical review reassessed. A public support channel is not currently available. Support contact details will be published before intake opens. A future correction channel will not be a route for urgent medical care.',
+                  p: 'If content is found to be inaccurate or outdated, the affected claim must be corrected or removed and any previous clinical review reassessed. Email care@trtrx.com with the page address and the correction you are requesting. Do not include personal medical information. This mailbox is not a route for urgent medical care.',
                 },
               ],
             },

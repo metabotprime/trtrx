@@ -67,7 +67,14 @@ export function isBlogPostPublic(post: Pick<BlogPost, 'slug'>): boolean {
 export function hasPublicClinicalArticles(): boolean { return approvedClinicalSlugs.size > 0; }
 /** These publication helpers must also drive sitemaps and machine feeds. */
 export function getPublicBlogPosts(): BlogPost[] { return BLOG_POSTS.filter(isBlogPostPublic); }
-export function getHomepageBlogPosts() { return getPublicBlogPosts().filter((post) => post.onHomePage).slice(0, 3).map(summarizeBlogPost); }
+export function getHomepageBlogPosts() {
+  const slugs = ['how-trt-pricing-works', 'choosing-online-trt-provider', 'testosterone-replacement-therapy-guide'];
+  const publicPosts = getPublicBlogPosts();
+  return slugs.flatMap((slug) => {
+    const post = publicPosts.find((entry) => entry.slug === slug);
+    return post ? [summarizeBlogPost(post)] : [];
+  });
+}
 export function getFeaturedBlogPosts() { return getPublicBlogPosts().filter((post) => post.featured); }
 export function getBlogPostsByCategory(): Record<BlogCategory, BlogPost[]> {
   const result = (Object.keys(CATEGORY_LABELS) as BlogCategory[]).reduce((groups, category) => { groups[category] = []; return groups; }, {} as Record<BlogCategory, BlogPost[]>);

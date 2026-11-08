@@ -4,6 +4,7 @@ import { INTAKE_ENABLED, LAUNCH_MESSAGE, LAUNCH_PATH } from "@/content/launch";
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
 import { StickyMobileCTA } from "./StickyMobileCTA";
+import { PublicCtaTracking } from "@/components/analytics/PublicCtaTracking";
 
 type PageShellProps = {
   children: ReactNode;
@@ -14,6 +15,7 @@ type PageShellProps = {
 export function PageShell({ children, hideMobileCTA }: PageShellProps) {
   return (
     <div className="flex min-h-screen flex-col bg-surface">
+      <PublicCtaTracking />
       <Navigation />
       <main id="main-content" className="flex-1 pt-[68px]">
         {!INTAKE_ENABLED && (

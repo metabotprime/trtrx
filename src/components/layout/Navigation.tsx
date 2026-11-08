@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { buttonVariants } from "@/components/ui/button";
-import { LAUNCH_PATH, PRIMARY_CTA_LABEL } from "@/content/launch";
+import { nextPublicCta } from "@/content/public-ctas";
 import { NAV_ITEMS } from "@/lib/seo/navigation";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +13,7 @@ export function Navigation() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const router = useRouter();
+  const cta = nextPublicCta(router.asPath);
 
   useEffect(() => {
     function onScroll() {
@@ -105,8 +106,8 @@ export function Navigation() {
             >
               Intake not open
             </Link>
-            <Link href={LAUNCH_PATH} className={buttonVariants({ size: "sm" })}>
-              {PRIMARY_CTA_LABEL}
+            <Link href={cta.href} data-trtrx-cta={cta.action} data-trtrx-surface="navigation" className={buttonVariants({ size: "sm" })}>
+              {cta.label}
             </Link>
           </div>
 
@@ -152,10 +153,12 @@ export function Navigation() {
           </ul>
           <div className="mt-auto space-y-3">
             <Link
-              href={LAUNCH_PATH}
+              href={cta.href}
+              data-trtrx-cta={cta.action}
+              data-trtrx-surface="mobile_navigation"
               className={buttonVariants({ size: "lg", className: "w-full" })}
             >
-              {PRIMARY_CTA_LABEL}
+              {cta.label}
             </Link>
             <Link
               href="/launch"

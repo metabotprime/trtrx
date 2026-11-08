@@ -1,0 +1,95 @@
+{
+  "source": "Vercel authenticated connector; aggregate_pageviews",
+  "capturedAt": "2026-11-04T22:49:35.367Z",
+  "window": {
+    "start": "2026-10-28T00:00:00Z",
+    "endExclusive": "2026-11-04T00:00:00Z"
+  },
+  "rows": [
+    {
+      "requestPath": "/",
+      "visitors": 4,
+      "pageviews": 5
+    },
+    {
+      "requestPath": "/accessibility",
+      "visitors": 1,
+      "pageviews": 1
+    },
+    {
+      "requestPath": "/contact",
+      "visitors": 1,
+      "pageviews": 1
+    },
+    {
+      "requestPath": "/editorial-policy",
+      "visitors": 1,
+      "pageviews": 1
+    },
+    {
+      "requestPath": "/how-it-works",
+      "visitors": 1,
+      "pageviews": 1
+    },
+    {
+      "requestPath": "/launch",
+      "visitors": 1,
+      "pageviews": 1
+    },
+    {
+      "requestPath": "/medical-disclaimer",
+      "visitors": 1,
+      "pageviews": 1
+    },
+    {
+      "requestPath": "/medical-review-policy",
+      "visitors": 1,
+      "pageviews": 1
+    },
+    {
+      "requestPath": "/pricing",
+      "visitors": 1,
+      "pageviews": 1
+    },
+    {
+      "requestPath": "/terms",
+      "visitors": 1,
+      "pageviews": 1
+    },
+    {
+      "requestPath": "/treatments",
+      "visitors": 1,
+      "pageviews": 1
+    },
+    {
+      "requestPath": "/treatments/cream",
+      "visitors": 1,
+      "pageviews": 1
+    },
+    {
+      "requestPath": "/treatments/cypionate",
+      "visitors": 1,
+      "pageviews": 1
+    },
+    {
+      "requestPath": "/treatments/enanthate",
+      "visitors": 1,
+      "pageviews": 1
+    },
+    {
+      "requestPath": "/treatments/enclomiphene",
+      "visitors": 1,
+      "pageviews": 1
+    },
+    {
+      "requestPath": "/treatments/hcg",
+      "visitors": 1,
+      "pageviews": 1
+    },
+    {
+      "requestPath": "/trt-in-your-state",
+      "visitors": 1,
+      "pageviews": 1
+    }
+  ]
+}

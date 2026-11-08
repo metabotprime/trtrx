@@ -10,6 +10,7 @@ import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { FooterCTABand } from '@/components/sections/FooterCTABand';
 import { ArticleBody, ArticleCard, ReviewNotice } from '@/components/blog/ArticleParts';
 import { QuickAnswerBox } from '@/components/blog/QuickAnswerBox';
+import { GuideNextStep } from '@/components/blog/GuideNextStep';
 import { ClinicalContentHold } from '@/components/availability/ClinicalContentHold';
 import { BLOG_POSTS, getBlogPostBySlug, isBlogPostPublic, getPublicBlogCategories, getRelatedBlogPosts, summarizeBlogPost, type BlogPost, type BlogPostSummary } from '@/content/blog';
 import { CATEGORY_LABELS, formatEditorialDate, getAuthor, getReviewer, isClinicalBlogSlug } from '@/content/blog-metadata';
@@ -40,6 +41,7 @@ export default function BlogPostPage(props: Props) {
           <div className="mt-6">{isClinical ? reviewer && post.lastReviewedAt ? <p className="text-sm text-muted">Medically reviewed by {reviewer.name}, {reviewer.credentials}, on {formatEditorialDate(post.lastReviewedAt)}.</p> : <ReviewNotice /> : <p className="text-sm text-muted">Operational guide to costs and service terms. This article does not provide medical advice.</p>}</div>
         </header>
         <div className="my-8"><QuickAnswerBox answer={post.quickAnswer} /></div>
+        <GuideNextStep path={path} />
         <nav aria-label="On this page" className="mb-10 rounded-xl border border-border p-5 md:p-6">
           <h2 className="font-medium text-primary">On this page</h2>
           <ol className="mt-4 grid gap-3 text-sm sm:grid-cols-2">{post.sections.map((section) => <li key={section.id}><a href={`#${section.id}`} className="text-primary underline decoration-border underline-offset-4 hover:decoration-primary">{section.title}</a></li>)}<li><a href="#sources" className="text-primary underline decoration-border underline-offset-4 hover:decoration-primary">Sources and references</a></li></ol>

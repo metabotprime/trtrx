@@ -182,6 +182,14 @@ function PlannedPricing() {
             </tbody>
           </table>
         </div>
+        <p className="mt-5 text-sm leading-relaxed text-muted">
+          Comparing providers?{' '}
+          <Link href="/blog/how-trt-pricing-works" data-trtrx-cta="cost_guide" data-trtrx-surface="pricing"
+            className="font-medium text-primary underline underline-offset-4">
+            Use the TRT cost checklist
+          </Link>{' '}
+          to review inclusions, additional charges and cancellation terms.
+        </p>
         <p className="mt-5 leading-relaxed text-muted">
           The HCG amount is an additional planned charge with a base TRT plan,
           not a standalone $89 plan. A $219 base plan plus that planned adjunct
