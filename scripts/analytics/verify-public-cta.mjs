@@ -4,6 +4,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import { execFileSync } from 'node:child_process';
 import ts from 'typescript';
+import { withLocalFonts } from './with-local-fonts.mjs';
 
 const base = process.argv[2] ?? '3db16eec61cc16006448c8303d946cece7ac2a2d';
 const baseline = JSON.parse(fs.readFileSync(process.argv[3] ?? 'scripts/analytics/fixtures/production-routes-20261104.json', 'utf8'));
@@ -74,7 +75,11 @@ cleanup();
 // Existing tracking and the clinical release inputs must remain byte-identical.
 const preserved = ['src/pages/_app.tsx', 'src/lib/analytics/ga4.ts', 'src/components/analytics/PublicGa4.tsx',
   'src/content/launch.ts', 'src/content/blog-content.ts', 'src/content/blog-metadata.ts', 'src/content/clinical-article-reviews.json'];
-for (const file of preserved) assert.equal(current(file), old(file), `${file} changed`);
+for (const file of preserved) {
+  const previous = old(file);
+  const expected = file === 'src/pages/_app.tsx' && previous.includes("from 'next/font/google'") ? withLocalFonts(previous) : previous;
+  assert.equal(current(file), expected, `${file} changed`);
+}
 function normalizer(source) {
   const file = ts.createSourceFile('_app.tsx', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
   const fn = file.statements.find((entry) => ts.isFunctionDeclaration(entry) && entry.name?.text === 'publicPageView');

@@ -1,0 +1,83 @@
+{
+  "brand": "TRTRx",
+  "verdict": "GO",
+  "reviewedAt": "2026-11-09T21:58:26.780Z",
+  "baseCommit": "bdb3b6ed3173522b66eeaa13c7db670d041234d8",
+  "reviewer": "Codex technical implementation review",
+  "founderAuthorization": "ok lets fully finish the website besides the intake buttons working. we will be launching soon",
+  "reviewScope": "Fix forward from the GitHub Actions font loader failure by hosting the existing Inter, Fraunces and JetBrains Mono assets, retaining their Unicode subsets, fallback metrics, preloads and cache lifetime. The existing release and intake gates still apply.",
+  "intakeEnabled": false,
+  "evidence": {
+    "failedBuild": "GitHub Actions 42706787403, next/font loader error for Fraunces. PR #4 attempt 1 produced the same loader error for JetBrains Mono.",
+    "fontAssetParity": {
+      "files": 19,
+      "identicalToPriorProduction": 19,
+      "latinPreloads": 4,
+      "contentType": "font/woff2",
+      "immutableCache": true
+    },
+    "browserParity": {
+      "widths": [
+        390,
+        1280
+      ],
+      "routes": [
+        "/",
+        "/pricing",
+        "/blog/how-trt-pricing-works"
+      ],
+      "textBlocksMeasured": 270,
+      "differences": 0
+    },
+    "servedSite": {
+      "pagesChecked": 40,
+      "reviewedClinicalArticles": 9,
+      "heldClinicalRoutes": 11,
+      "errors": []
+    },
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "tsxParse": "PASS (2 files)",
+    "coldNextBuild": "PASS (42 pages generated)",
+    "analytics": {
+      "publicCtaReplayFixtures": 29,
+      "ga4IsolationFixtures": 392,
+      "existingResultDifferences": 0
+    },
+    "reviewGateNegativeControls": [
+      "missing review",
+      "stale font CSS hash"
+    ]
+  },
+  "files": {
+    "next.config.mjs": "7c9ac0950ed7631b52fe9c517aa732c7fe61f0d45e1d8d4385a77122c7233308",
+    "public/fonts/trtrx/fraunces-OFL.txt": "6732d6cc72c5d09292ff754dc1f39d9ea14918f74e87a17afa3f00a5120c3d48",
+    "public/fonts/trtrx/fraunces-italic-latin-6ba5f591.woff2": "c9745ee907c02cdd46cc41a65bb711cd861432f679a76c18e3de204a18723040",
+    "public/fonts/trtrx/fraunces-italic-latin-ext-c62081b0.woff2": "7e701dc124492f7d0856fba4a07157d0cecc84e2b2b4615f08530c1e8bc112dd",
+    "public/fonts/trtrx/fraunces-italic-vietnamese-f3deaf82.woff2": "d24c3502a91415f2ec44f107807673255b696c379b3995543270921c27863e32",
+    "public/fonts/trtrx/fraunces-latin-af4bf839.woff2": "88e17be075f1be50ab67b057b99e3701b828f44ed28f9452df6c02645bb0cba9",
+    "public/fonts/trtrx/fraunces-latin-ext-4da3161b.woff2": "f1451edd6434085c4f9f3a8b4a674182dd7d6acccf53bfced19fd167f0705a06",
+    "public/fonts/trtrx/fraunces-vietnamese-fb526027.woff2": "250cc2966c658fb6d336731de9d82a8129025e9839c20c253bbc477852f6cf4f",
+    "public/fonts/trtrx/inter-OFL.txt": "5dd548d31a85f756e01d63e00d7faf1e324103ed3e9102fcbbabf2cc2db6dd39",
+    "public/fonts/trtrx/inter-cyrillic-21350d82.woff2": "aebf2ab4a4ce6810d73c1ac7be7cafb4e5ec4cee2d6db5fb3e09691747ec4bd6",
+    "public/fonts/trtrx/inter-cyrillic-ext-ba9851c3.woff2": "fccca918fea40089dacadc7045861314d1a6bc91f1f323cc1eeb22ebcdb321b5",
+    "public/fonts/trtrx/inter-greek-19cfc722.woff2": "46dd4cdca58c26ae87cc6927657bf83b2e8abfc39ffd0ab176e301a8d28d22bf",
+    "public/fonts/trtrx/inter-greek-ext-c5fe6dc8.woff2": "a2e2c783ca6f9c20486e81e72a279203e86730bbf8f01ff6a5ee9dbd09e1c271",
+    "public/fonts/trtrx/inter-latin-e4af272c.woff2": "c940764593d0fe5d596be327ca7558855e018039fb78509aa21921fd3644c3e4",
+    "public/fonts/trtrx/inter-latin-ext-8e9860b6.woff2": "a28eb6d3ccb534ae0c94ca999371df024aab60b08c3c8a5720ee9e32fa0faaa2",
+    "public/fonts/trtrx/inter-vietnamese-df0a9ae2.woff2": "8db00ff46c67b22cda8bed865acf7077651cac8d2841d5b40980556b48961931",
+    "public/fonts/trtrx/jetbrains-mono-cyrillic-ac0e76dd.woff2": "4995a9a43ac659ec32fcd8b463755cd6a07b31a6e6b3894a6a153b661cf490e2",
+    "public/fonts/trtrx/jetbrains-mono-cyrillic-ext-edc64095.woff2": "9343de2ca5d9549f792e7962375af8efb0f320c7643bfd36c884b5a30e5c396f",
+    "public/fonts/trtrx/jetbrains-mono-greek-64d784ea.woff2": "49c3da6c9a2b279b0f1f860f5cfb1f5dc38d88a5c7be9c9b1837bbc4e3db6111",
+    "public/fonts/trtrx/jetbrains-mono-latin-558ca1a6.woff2": "2c32b9b3ee358c119e210f6f5195f9bd34894d78a785ff2e95d60e718e400af4",
+    "public/fonts/trtrx/jetbrains-mono-latin-ext-6d831b18.woff2": "9c38cb2d0d2d93c1ee6e21fa78db76f13ea7e15e15cc64214c7ca89b6aaa35c4",
+    "public/fonts/trtrx/jetbrains-mono-vietnamese-ff71da38.woff2": "d44eb1936043a56038eb02dd70b243f379bef65783f94ec12f277550720411f1",
+    "public/fonts/trtrx/jetbrainsmono-OFL.txt": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d",
+    "scripts/analytics/verify-ga4-isolation.mjs": "941243b4e116b0b7e6175cc9c0818a31a48c960d99fdb1b60b07e863edd3b72c",
+    "scripts/analytics/verify-public-cta.mjs": "2eaecde9d8561b132a4dca32907b77bf3bbfac9b18c7bd7890db739f6f2445ff",
+    "scripts/analytics/with-local-fonts.mjs": "d6d153ca2a101e3e9ab3b5bde0fabc95cfb10b5f37b242c1420d882c9ec5b18c",
+    "src/pages/_app.tsx": "dcebc6f36eae5ee5d67356339339ddadd491d3e09a4fcecd16e00ee7ec2df306",
+    "src/pages/_document.tsx": "7bf2c3a869d7b65a38679a647014452410f65318ede5cd19133315abc391fd8a",
+    "src/styles/fonts.module.css": "5916a0d6af0a075e90741dea53ee5a9ca77bce11b6b0b90057a6a23afdc8a10d"
+  }
+}
