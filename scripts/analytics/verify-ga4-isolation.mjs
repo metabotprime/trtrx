@@ -5,6 +5,7 @@ import { execFileSync } from 'node:child_process';
 import { resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 import vm from 'node:vm';
+import { withLocalFonts } from './with-local-fonts.mjs';
 
 const require = createRequire(import.meta.url);
 const [moduleFile, componentFile, baselineFile, reportFile] = process.argv.slice(2);
@@ -15,7 +16,8 @@ const baselineCommit = process.env.GA4_BASELINE_COMMIT ?? '8fc5f0061e72f4245abad
 const oldApp = execFileSync('git', ['show', `${baselineCommit}:src/pages/_app.tsx`], { encoding: 'utf8' });
 const newApp = readFileSync('src/pages/_app.tsx', 'utf8');
 const stripped = newApp.replace("import { PublicGa4 } from '@/components/analytics/PublicGa4';\n", '').replace('      <PublicGa4 />\n', '');
-assert.equal(stripped, oldApp, 'All existing App/Vercel bytes must remain unchanged.');
+const baselineApp = oldApp.includes("from 'next/font/google'") ? withLocalFonts(oldApp) : oldApp;
+assert.equal(stripped, baselineApp, 'All existing App/Vercel bytes outside the font migration must remain unchanged.');
 
 function vercelFunction(source) {
   const match = source.match(/function publicPageView\(event: BeforeSendEvent\) \{([\s\S]*?)\n\}/);
@@ -139,7 +141,7 @@ cleanup(); assert.equal(handlers.size, 0); assert.equal(disabled, true);
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 const report = {
   observedAt: new Date().toISOString(), status: 'PASS', baselineCommit,
-  oldAppSha256: hash(oldApp), oldBytesAfterRemovingOnlyTwoAdditionsSha256: hash(stripped),
+  oldAppSha256: hash(oldApp), baselineAppWithLocalFontsSha256: hash(baselineApp), oldBytesAfterRemovingOnlyTwoAdditionsSha256: hash(stripped),
   existingPlatform: 'Vercel Web Analytics', oldNewUrlFixtures: fixtureCount, existingChannelDifferences: 0,
   providerBaselineFile: resolve(baselineFile), providerBaselineSha256: hash(readFileSync(baselineFile)),
   providerRows: native.response.data.length, providerSummaryGroups: native.response.summary.length,
