@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { PageShell } from '@/components/layout/PageShell';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { Button } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 
 export default function NotFoundPage() {
   return (
@@ -27,13 +27,11 @@ export default function NotFoundPage() {
             </p>
 
             <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
-              <Link href="/">
-                <Button size="md">Go home</Button>
+              <Link href="/" className={buttonVariants({ size: 'md' })}>
+                Go home
               </Link>
-              <Link href="/treatments">
-                <Button size="md" variant="outline">
-                  Browse treatments
-                </Button>
+              <Link href="/treatments" className={buttonVariants({ size: 'md', variant: 'outline' })}>
+                Browse treatments
               </Link>
             </div>
           </div>

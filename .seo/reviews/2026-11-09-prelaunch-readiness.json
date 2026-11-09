@@ -1,0 +1,69 @@
+{
+  "brand": "TRTRx",
+  "verdict": "GO",
+  "reviewedAt": "2026-11-09T21:50:17.528Z",
+  "baseCommit": "d3fa3bf37ea5dbbf84eaa606089e399aa6499241",
+  "reviewer": "Codex technical implementation review",
+  "founderAuthorization": "ok lets fully finish the website besides the intake buttons working. we will be launching soon",
+  "reviewScope": "Prelaunch technical readiness: short-screen and keyboard navigation, accessible 404 recovery links, a current Next.js runtime, and exact-diff CI review verification. Existing public copy, destinations, pricing and clinical records are preserved.",
+  "intakeEnabled": false,
+  "evidence": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "tsxParse": "PASS (2 files)",
+    "nextBuild": "PASS (42 pages generated)",
+    "dependencyAudit": {
+      "next": "15.5.29",
+      "productionFindings": 0,
+      "devOnlyModerateFindings": 6
+    },
+    "servedSite": {
+      "pagesChecked": 40,
+      "sitemapURLs": 27,
+      "heldClinicalRoutes": 11,
+      "reviewedClinicalArticles": 9,
+      "jsonLdParsed": 76,
+      "errors": [],
+      "previewNoindex": "PASS"
+    },
+    "browser": {
+      "chromium": [
+        "320x568",
+        "390x844",
+        "844x390"
+      ],
+      "webkit": [
+        "844x390"
+      ],
+      "desktopResize": "1280x800",
+      "checks": [
+        "scroll to and click last menu link",
+        "keyboard focus and Escape",
+        "same-page and route link dismissal",
+        "404 recovery",
+        "state selector",
+        "contact link and closed sign-in"
+      ]
+    },
+    "analytics": {
+      "publicCtaReplayFixtures": 29,
+      "ga4IsolationFixtures": 392,
+      "changedExistingResults": 0,
+      "providerEventDelivery": "NOT_MEASURED"
+    },
+    "reviewGateNegativeControls": [
+      "missing review",
+      "stale file hash",
+      "wrong base commit",
+      "rewritten prior record"
+    ]
+  },
+  "files": {
+    ".github/workflows/release-review.yml": "9b2050440dbe85b0242c4dadc4fa33d1d6490b433c272255300aaa390da0af9b",
+    "package-lock.json": "a0da103c54bdb878c59b4037ac6df507e78bcf07e23d99ea836ee242ec765dc7",
+    "package.json": "ae4872eb0ea6c93c589eec8ceff7a3da68c55f57d45d9ac3dbc3ec4f63f4307e",
+    "scripts/seo/verify-release-review.mjs": "5e24684311df21a0342812061724b9f61e593e1b05780b86799bcefa10138cb2",
+    "src/components/layout/Navigation.tsx": "1c38ccf72210f52078ab0d8f9dae8de7486e7dcce4cbdb77cbd8c43c5df54282",
+    "src/pages/404.tsx": "09691636f34702fd6344e35584562bdac02c3634f4c08228379cebd4082a0f8d"
+  }
+}
