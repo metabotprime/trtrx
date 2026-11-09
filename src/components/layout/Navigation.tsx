@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { type MouseEvent, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Menu, X } from "lucide-react";
@@ -12,8 +12,21 @@ export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const drawerRef = useRef<HTMLDialogElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const router = useRouter();
   const cta = nextPublicCta(router.asPath);
+
+  function openMenu(event: MouseEvent<HTMLButtonElement>) {
+    event.currentTarget.focus({ preventScroll: true });
+    drawerRef.current?.showModal();
+    closeButtonRef.current?.focus();
+    setDrawerOpen(true);
+  }
+
+  function closeMenu() {
+    drawerRef.current?.close();
+  }
 
   useEffect(() => {
     function onScroll() {
@@ -28,23 +41,25 @@ export function Navigation() {
   }, []);
 
   useEffect(() => {
-    setDrawerOpen(false);
+    closeMenu();
   }, [router.asPath]);
 
   useEffect(() => {
-    document.body.style.overflow = drawerOpen ? "hidden" : "";
+    if (!drawerOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const onDesktop = () => {
+      if (desktop.matches) closeMenu();
+    };
+    onDesktop();
+    desktop.addEventListener("change", onDesktop);
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
+      desktop.removeEventListener("change", onDesktop);
     };
   }, [drawerOpen]);
-
-  useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setDrawerOpen(false);
-    }
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, []);
 
   return (
     <>
@@ -113,62 +128,78 @@ export function Navigation() {
 
           <button
             type="button"
-            aria-label={drawerOpen ? "Close menu" : "Open menu"}
+            aria-label="Open menu"
             aria-controls="mobile-navigation"
             aria-expanded={drawerOpen}
-            onClick={() => setDrawerOpen((v) => !v)}
+            aria-haspopup="dialog"
+            onClick={openMenu}
             className="-mr-2 inline-flex h-10 w-10 items-center justify-center rounded-full text-primary lg:hidden"
           >
-            {drawerOpen ? <X size={22} /> : <Menu size={22} />}
+            <Menu size={22} />
           </button>
         </div>
       </header>
 
-      {/* mobile drawer */}
-      <div
+      <dialog
         id="mobile-navigation"
-        aria-hidden={!drawerOpen}
-        className={cn(
-          "fixed inset-0 z-30 bg-surface transition-opacity duration-200 lg:hidden",
-          drawerOpen
-            ? "visible pointer-events-auto opacity-100"
-            : "invisible pointer-events-none opacity-0",
-        )}
+        ref={drawerRef}
+        aria-label="Site menu"
+        onClose={() => setDrawerOpen(false)}
+        onClick={(event) => {
+          if (event.target instanceof Element && event.target.closest("a[href]")) closeMenu();
+        }}
+        className="fixed inset-0 m-0 h-full max-h-none w-full max-w-none overflow-y-auto overscroll-contain bg-surface text-text"
       >
-        <div className="flex h-full flex-col px-6 pb-12 pt-[88px]">
-          <ul className="flex flex-col">
-            {NAV_ITEMS.map((item) => (
-              <li key={item.href} className="border-b border-border">
-                <Link
-                  href={item.href}
-                  className="flex items-center justify-between py-5 font-serif text-2xl text-primary"
-                >
-                  {item.label}
-                  <span className="font-sans text-eyebrow uppercase tracking-tracked text-muted">
-                    →
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-auto space-y-3">
-            <Link
-              href={cta.href}
-              data-trtrx-cta={cta.action}
-              data-trtrx-surface="mobile_navigation"
-              className={buttonVariants({ size: "lg", className: "w-full" })}
-            >
-              {cta.label}
-            </Link>
-            <Link
-              href="/launch"
-              className="block text-center text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent-strong"
-            >
-              Intake not open
-            </Link>
+        <div className="flex min-h-full flex-col">
+          <div className="sticky top-0 z-10 bg-surface">
+            <div className="container flex h-[68px] items-center justify-between">
+              <Logo />
+              <button
+                ref={closeButtonRef}
+                type="button"
+                aria-label="Close menu"
+                onClick={closeMenu}
+                className="-mr-2 inline-flex h-10 w-10 items-center justify-center rounded-full text-primary"
+              >
+                <X size={22} />
+              </button>
+            </div>
           </div>
+          <nav aria-label="Mobile" className="flex flex-1 flex-col px-6 pb-12 pt-5">
+            <ul className="flex flex-col">
+              {NAV_ITEMS.map((item) => (
+                <li key={item.href} className="border-b border-border">
+                  <Link
+                    href={item.href}
+                    className="flex items-center justify-between py-5 font-serif text-2xl text-primary"
+                  >
+                    {item.label}
+                    <span className="font-sans text-eyebrow uppercase tracking-tracked text-muted">
+                      →
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-auto space-y-3">
+              <Link
+                href={cta.href}
+                data-trtrx-cta={cta.action}
+                data-trtrx-surface="mobile_navigation"
+                className={buttonVariants({ size: "lg", className: "w-full" })}
+              >
+                {cta.label}
+              </Link>
+              <Link
+                href="/launch"
+                className="block text-center text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent-strong"
+              >
+                Intake not open
+              </Link>
+            </div>
+          </nav>
         </div>
-      </div>
+      </dialog>
     </>
   );
 }

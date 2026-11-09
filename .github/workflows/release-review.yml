@@ -18,6 +18,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: node scripts/seo/verify-release-review.mjs
+        env:
+          TRTRX_RELEASE_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
       - run: node scripts/analytics/verify-public-cta.mjs
       - run: npm run typecheck
       - run: npm run lint
