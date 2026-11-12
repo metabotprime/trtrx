@@ -31,7 +31,7 @@ export default function EditorialPolicyPage({ hasClinicalArticles }: { hasClinic
         <PolicyContent
           eyebrow="Trust"
           title="Editorial policy"
-          lastUpdated="October 6, 2026"
+          lastUpdated="October 15, 2026"
           intro={[
             hasClinicalArticles
               ? 'This policy describes how TRTrx content is researched, sourced, reviewed, and corrected. The public website includes operational information, cost-comparison education, and clinical articles with review credits.'
@@ -61,6 +61,53 @@ export default function EditorialPolicyPage({ hasClinicalArticles }: { hasClinic
                 },
                 {
                   p: 'When an article makes a specific clinical claim, we link the study or guideline behind it rather than asking you to take our word for it.',
+                },
+              ],
+            },
+            {
+              heading: 'Operational information and cost guidance',
+              blocks: [
+                {
+                  p: 'Any provider-specific description of fees, included services, billing periods, or cancellation conditions must be checked against that provider’s written terms. General billing explanations draw on official billing guidance. Those sources serve different purposes: general guidance does not establish what an individual provider includes or charges.',
+                },
+                {
+                  p: (
+                    <>
+                      Our{' '}
+                      <Link
+                        href="/blog/how-trt-pricing-works"
+                        className="text-primary underline underline-offset-4"
+                      >
+                        cost-comparison guide
+                      </Link>{' '}
+                      helps readers request a written estimate and compare the
+                      full cost and service terms. It links to official billing
+                      guidance where relevant.
+                    </>
+                  ),
+                },
+                {
+                  p: (
+                    <>
+                      We distinguish planned offerings from services confirmed as
+                      available. TRTrx intake is closed. Check our{' '}
+                      <Link
+                        href="/trt-in-your-state"
+                        className="text-primary underline underline-offset-4"
+                      >
+                        state availability information
+                      </Link>{' '}
+                      and{' '}
+                      <Link
+                        href="/launch"
+                        className="text-primary underline underline-offset-4"
+                      >
+                        launch status
+                      </Link>{' '}
+                      for the current position. A planned price or published
+                      guide does not confirm that care is available.
+                    </>
+                  ),
                 },
               ],
             },
