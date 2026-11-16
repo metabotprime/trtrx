@@ -85,7 +85,7 @@ export function Navigation() {
         />
 
         <div className="container flex h-[68px] items-center justify-between">
-          <Logo />
+          <Logo animated />
 
           <nav className="hidden items-center gap-5 lg:flex">
             {NAV_ITEMS.map((item) => {

@@ -1,0 +1,157 @@
+{
+  "brand": "TRTRx",
+  "verdict": "GO",
+  "reviewedAt": "2026-11-16T00:45:14.722Z",
+  "baseCommit": "87e11991030c11e280e1b51774afea240e5fff23",
+  "reviewer": "Codex technical branding review, with an independent source and artwork review",
+  "founderAuthorization": "i like 3. update the site accordingly",
+  "reviewScope": "Implement selected A3 Compact Monolith wordmark from the three close refinements, using exact Higgsfield source silhouettes. Update shared vector artwork, icons, share images, brand provenance and the short header entrance requested earlier in this chat.",
+  "intakeEnabled": false,
+  "source": {
+    "jobId": "32175833-1288-4e3a-be13-b4af2d8faefa",
+    "sha256": "5f5cd83723f0f0bd56d39a3773df63cc7e430b2ca6709fc1a744eeab70952059",
+    "model": "gpt_image_2_6_flare",
+    "selection": "A3 / Compact",
+    "approvalDate": "2026-11-15"
+  },
+  "evidence": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "tsxParse": {
+      "status": "PASS",
+      "files": 3
+    },
+    "nextBuild": "PASS (42 pages)",
+    "servedSite": {
+      "observedAt": "2026-11-16T00:43:51.502726+00:00",
+      "base": "http://127.0.0.1:3858",
+      "expectedPublic": true,
+      "previewHost": false,
+      "authoritativeIPOverride": null,
+      "middlewareCompiled": true,
+      "sitemapURLs": 27,
+      "pagesChecked": 40,
+      "heldClinicalRoutesChecked": 11,
+      "reviewedClinicalRoutesChecked": 9,
+      "jsonLdParsed": 76,
+      "errors": []
+    },
+    "browser": [
+      {
+        "browser": "chromium",
+        "width": 320,
+        "brandPaths": "PASS",
+        "navigation": "PASS",
+        "entrance": "PASS",
+        "reducedMotion": "PASS",
+        "errors": []
+      },
+      {
+        "browser": "chromium",
+        "width": 390,
+        "brandPaths": "PASS",
+        "navigation": "PASS",
+        "entrance": "PASS",
+        "reducedMotion": "PASS",
+        "errors": []
+      },
+      {
+        "browser": "chromium",
+        "width": 768,
+        "brandPaths": "PASS",
+        "navigation": "PASS",
+        "entrance": "PASS",
+        "reducedMotion": "PASS",
+        "errors": []
+      },
+      {
+        "browser": "chromium",
+        "width": 1280,
+        "brandPaths": "PASS",
+        "navigation": "PASS",
+        "entrance": "PASS",
+        "reducedMotion": "PASS",
+        "errors": []
+      },
+      {
+        "browser": "chromium",
+        "width": 1536,
+        "brandPaths": "PASS",
+        "navigation": "PASS",
+        "entrance": "PASS",
+        "reducedMotion": "PASS",
+        "errors": []
+      },
+      {
+        "browser": "webkit",
+        "width": 390,
+        "brandPaths": "PASS",
+        "navigation": "PASS",
+        "entrance": "PASS",
+        "reducedMotion": "PASS",
+        "errors": []
+      },
+      {
+        "browser": "webkit",
+        "width": 1280,
+        "brandPaths": "PASS",
+        "navigation": "PASS",
+        "entrance": "PASS",
+        "reducedMotion": "PASS",
+        "errors": []
+      }
+    ],
+    "silhouetteIntersectionOverUnion": {
+      "trt": 0.998183,
+      "rx": 0.997792
+    },
+    "sourceTopology": {
+      "trtContours": 4,
+      "rxContours": 2,
+      "vertices": 172
+    },
+    "icons": "SVG, five PNG sizes and six-entry ICO regenerated. Actual 16px rendering inspected.",
+    "socialImages": "Both 1200x630 dynamic OG variants rendered and visually inspected. Static vector geometry.",
+    "independentReview": "GO after correcting a possible post-hydration animation reset; no remaining actionable findings.",
+    "animation": "One short header entrance per document load. Mobile drawer, footer and OG remain static. Reduced-motion skips both animations.",
+    "trackingIsolation": {
+      "status": "PASS",
+      "replayFixtures": 29,
+      "nonNewDifferences": 0,
+      "negativeControls": 3
+    },
+    "sourceHashNegativeControl": "Wrong A1 image rejected with exit 1 before writing outputs.",
+    "releaseReviewNegativeControl": "Stale stylesheet hash rejected."
+  },
+  "preserved": [
+    "src/content/launch.ts",
+    "src/content/blog-content.ts",
+    "src/content/blog-metadata.ts",
+    "src/content/clinical-article-reviews.json",
+    "src/content/pricing.ts",
+    "src/pages/_app.tsx",
+    "src/lib/analytics/ga4.ts",
+    "src/components/analytics/PublicGa4.tsx",
+    "src/components/analytics/PublicCtaTracking.tsx"
+  ],
+  "exposureNote": "Founder-requested branding update changes the shared header, footer and brand assets on public and protected pages. Annotate this visual exposure in any subsequent readout. No lift or conversion outcome has been measured.",
+  "files": {
+    "docs/LAUNCH-SEO-2026-10-06.md": "6f435d34ebb1c5b5aecbc7b6353da7139cd3714cee67b4452dde85deb69832ad",
+    "public/android-chrome-192x192.png": "979bc279b4d9007f0a26463f7555d826fe6f10fa6692532471e8a9b5d08a1748",
+    "public/android-chrome-512x512.png": "a203626582fa60b602c2f0f183e755b9447a10918df52ad1613a0439eca77953",
+    "public/apple-touch-icon.png": "b64e43e4550b69a7095ea0677995cb882283d03d986baf9c68381a4516fc48e6",
+    "public/brand/README.md": "2afeb6f30ba0f061dfddd5e7a821359cbbe5b2f9daefddbedf2665d65984e7fb",
+    "public/brand/wordmark-on-dark.svg": "b155175ebc3c55cd7291855eb4044609a193ec34b4781bbda75212ad47b0b7fe",
+    "public/brand/wordmark.svg": "b5a264b4f323f3a2ddac5ab5cd808363f922efc2a97fbf67ff0900c58e6b1687",
+    "public/favicon-16x16.png": "73d562efbcf51ab87e4d2f1f35eb60e12f3212440cc637c8da349e36181b4118",
+    "public/favicon-32x32.png": "71a2f1cc1c04524d04328dc09b44401d74215d4becc44cf6ea885870e6349f05",
+    "public/favicon.ico": "e829ce91e13ba2c4e621f9a2616076d3ba7fbc8e324f4f9d6cba6299a847d70e",
+    "public/favicon.svg": "70d68a7469d1e83f89cd450b8672b58eea73cc1633be4124eb4323617dca663b",
+    "scripts/brand/trace-approved-wordmark.py": "aedde4447f175ca561784e0548baf919c232cde464fbc96b76c66c1f4bb0fd59",
+    "src/components/layout/Logo.tsx": "58d3b1959b5203dd3489e053c7d13599aa95bf43b7667a08ff26642da891c257",
+    "src/components/layout/Navigation.tsx": "3a7c37c5c1eb3f3a65213ab3417158fa65d4addd45c77d91691fccc7863498c2",
+    "src/components/layout/Wordmark.tsx": "bb154f24416daf746c7a55a1e526f2de9d9f2f949dbc874ccd642d5ce2019b22",
+    "src/lib/brand/wordmark.ts": "d34a0516a358dd97a2874214cec8935820f0f59d4f3aa04390027a55bb3859d8",
+    "src/styles/globals.css": "1eca54ee38c5b410aff6f450aea7528191379f4a422d1c88749731a6f0547f20"
+  }
+}

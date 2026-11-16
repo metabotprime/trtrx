@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export approved Crisp literary artwork, preserving its glyph silhouettes.
+"""Export approved Compact Monolith artwork, preserving its glyph silhouettes.
 
 python3 scripts/brand/trace-approved-wordmark.py /path/to/approved.png
 Requires Pillow and NumPy; never substitutes a font or ships raster artwork.
@@ -12,7 +12,7 @@ import json
 import numpy as np
 from PIL import Image
 
-SOURCE_HASH = '769cf672ff5c87f76a3f2b94b4426020e4c6c3f0c10ed21a6cb4182d68c674f9'
+SOURCE_HASH = '5f5cd83723f0f0bd56d39a3773df63cc7e430b2ca6709fc1a744eeab70952059'
 
 def number(value):
     return f'{value:.3f}'.rstrip('0').rstrip('.') or '0'
@@ -65,28 +65,23 @@ if hashlib.sha256(args.source.read_bytes()).hexdigest() != SOURCE_HASH:
     raise SystemExit('Source differs from selected Higgsfield image. Verify before rebuilding.')
 pixels = np.array(Image.open(args.source).convert('RGB')).astype(np.int16)
 red, green, blue = pixels[:, :, 0], pixels[:, :, 1], pixels[:, :, 2]
-letters = (red < 150) & (green < 165) & (blue > red+20) & (blue > 60)
-yellow = (red > 200) & (green > 130) & (blue < 110)
-ys, xs = np.where(yellow)
-tx, ty, tw, th = int(xs.min()), int(ys.min()), int(xs.max()-xs.min()+1), int(ys.max()-ys.min()+1)
-ly, lx = np.where(letters)
-x0, y0 = min(int(lx.min()), tx)-2, min(int(ly.min()), ty)-2
-x1, y1 = max(int(lx.max())+1, tx+tw)+2, max(int(ly.max())+1, ty+th)+2
-scale, split = 34/(y1-y0), tx-x0
-crop = letters[y0:y1, x0:x1]
-left, right = crop.copy(), crop.copy()
-left[:, split:], right[:, :split] = False, False
-left_contours, right_contours = contours(left), contours(right)
+letters = (red > 180) & (green > 180) & (blue > 180)
+gold = (red > 190) & (green > 120) & (blue < 130)
+ys, xs = np.where(letters | gold)
+x0, y0 = int(xs.min())-2, int(ys.min())-2
+x1, y1 = int(xs.max())+3, int(ys.max())+3
+scale = 34/(y1-y0)
+left_contours = contours(letters[y0:y1, x0:x1])
+right_contours = contours(gold[y0:y1, x0:x1])
 if len(left_contours) != 4 or len(right_contours) != 2:
     raise SystemExit(f'Unexpected glyph topology: {len(left_contours)} TRT, {len(right_contours)} rx.')
 
 def path(outlines):
     return ''.join('M'+' '.join(f'{number(x*scale)},{number(y*scale)}' for x, y in outline[:-1])+'Z' for outline in outlines)
 
-tile = {'x': round((tx-x0)*scale, 3), 'y': round((ty-y0)*scale, 3), 'width': round(tw*scale, 3), 'height': round(th*scale, 3), 'radius': round(th*.16*scale, 3)}
-data = {'width': round((x1-x0)*scale, 3), 'height': 34, 'tile': tile, 'trt': path(left_contours), 'rx': path(right_contours)}
+data = {'width': round((x1-x0)*scale, 3), 'height': 34, 'trt': path(left_contours), 'rx': path(right_contours)}
 root = Path(__file__).resolve().parents[2]
-source = '// Approved Crisp literary, custom outlines from Higgsfield job 37fa8e3b-de6a-4f8b-877e-29a767edcaf7.\n'
+source = '// Approved Compact Monolith A3, traced from Higgsfield job 32175833-1288-4e3a-be13-b4af2d8faefa.\n'
 source += '// Geometry shared by the site, SVG exports and social images. No runtime font dependency.\n'
 source += 'export const WORDMARK = '+json.dumps(data, indent=2)+' as const;\n'
 (root/'src/lib/brand/wordmark.ts').write_text(source)
@@ -94,8 +89,7 @@ source += 'export const WORDMARK = '+json.dumps(data, indent=2)+' as const;\n'
 def svg(color):
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{number(data["width"]*10)}" height="340" viewBox="0 0 {data["width"]} 34">'
             f'<path fill="{color}" d="{data["trt"]}"/>'
-            f'<rect x="{tile["x"]}" y="{tile["y"]}" width="{tile["width"]}" height="{tile["height"]}" rx="{tile["radius"]}" fill="#F9C31F"/>'
-            f'<path fill="#1D4173" d="{data["rx"]}"/></svg>\n')
+            f'<path fill="#F9C31F" d="{data["rx"]}"/></svg>\n')
 for name, color in [('wordmark', '#1D4173'), ('wordmark-on-dark', '#FBFCFD')]:
     (root/f'public/brand/{name}.svg').write_text(svg(color))
 points = np.array([point for outline in right_contours for point in outline])*scale

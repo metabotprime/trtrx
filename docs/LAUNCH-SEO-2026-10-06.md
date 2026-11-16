@@ -22,7 +22,7 @@ This section supersedes the older checklist's global noindex review-release conf
 
 Launch a useful, transparent education site before patient intake opens. Keep public indexing and clinical intake as separate releases. Build depth around testing, safety, cost and choosing care, then add state pages when there are verified differences that help the reader. Volume alone is not the goal.
 
-The approved brand direction is **1, Crisp literary**: uppercase `TRT` and italic `rx` in the yellow tile. The chosen Higgsfield artwork is reconstructed as scalable outlines used by the header, footer, social images and icons. See `public/brand/README.md` for provenance and rebuilding.
+The October 6, 2026 **Crisp literary** artwork was superseded by Christian's November 15, 2026 selection of **A3, Compact Monolith**, with heavy upright TRT and integrated gold rx. The chosen Higgsfield artwork is reconstructed as scalable outlines used by the header, footer, social images and icons. See `public/brand/README.md` for current provenance and rebuilding.
 
 ## What the audit found and changed
 
