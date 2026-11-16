@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* One brief header entrance, followed by the static approved artwork. */
+@media (prefers-reduced-motion: no-preference) {
+  .wordmark-entrance .wordmark-trt {
+    animation: wordmark-lock 650ms cubic-bezier(.22, 1, .36, 1) both;
+  }
+
+  .wordmark-entrance .wordmark-rx {
+    animation: wordmark-accent 750ms 120ms cubic-bezier(.22, 1, .36, 1) both;
+  }
+}
+
+@keyframes wordmark-lock {
+  from { opacity: 0; transform: translateX(-3px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes wordmark-accent {
+  from { opacity: 0; transform: translateX(4px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
 @layer base {
   :root {
     /* Palette — Gold/Blue/White: ocean blue + bright marigold (with dark-amber text sibling) on cool white */
